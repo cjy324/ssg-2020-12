@@ -55,7 +55,7 @@
 						<li><a class="block"> <i class="fas fa-list"></i> <span>ARTICLES</span>
 						</a>
 							<ul>
-								<li><a href="notice-list-1.html" class="block"><i class="fas fa-exclamation"></i> <span>NOTICE LIST</span></a></li><li><a href="free-list-1.html" class="block"><i class="fas fa-users"></i> <span>FREE LIST</span></a></li>
+								<li><a href="notice-list-1.html" class="block"><i class="fas fa-exclamation"></i> <span>NOTICE BOARD</span></a></li><li><a href="free-list-1.html" class="block"><i class="fas fa-users"></i> <span>FREE BOARD</span></a></li><li><a href="java-list-1.html" class="block"><i class="fab fa-java"></i> <span>JAVA BOARD</span></a></li>
 							</ul></li>
 						<li><a class="block"> <i class="fas fa-link"></i> <span>LINK</span>
 						</a>
@@ -104,15 +104,53 @@
 
 
    <!-- 메인-상세페이지 시작 -->
-    <section class="section-2 con-min-width height-500px">
+    <section class="section-2 con-min-width min-height-70vh">
       <div class="con height-100p">
         <div class="article-detail-cell height-100p">
-	  	<div class="article-detail-cell__id"><div><span>번호 : </span><span>2</span></div></div><div class="article-detail-cell__title"><div><span>제목 : </span><span>하이라이트 적용 확인용 공지2</span></div></div><div class="article-detail-cell__title"><div><span>작성자 : </span><span>테스트 관리자</span></div></div><div class="article-detail-cell__title"><div><span>작성일 : </span><span>2020-12-17 16:16:21</span></div></div><br><div class="article-detail-cell__body height-70p "><div><span># 자바기본문법
-```java
-int a = 10;
-int b = 20;
-int c = a + b;
-```</span></div></div><br><br></div></section><section class="section-3 con-min-width"><div class="con"><div class="article-list-bottom-cell flex flex-jc-c"><div class="./"><a href="1.html" class="hover-underline">&lt 이전글</a></div><div class="./"><i class="fas fa-th-list"></i><a href="notice-list-1.html" class="hover-underline"> 목록 </a></div><div class="./"><a href="3.html"class="hover-underline">다음글 &gt</a></div>
+	  	<div class="article-detail-cell__id"><div><span>번호 : </span><span>2</span></div></div><div class="article-detail-cell__title"><div><span>제목 : </span><span>2강. Scanner 객체 생성</span></div></div><div class="article-detail-cell__title"><div><span>작성자 : </span><span>Dev_J</span></div></div><div class="article-detail-cell__title"><div><span>작성일 : </span><span>2020-12-17 18:38:39</span></div></div><br><div class="article-detail-cell__body height-70p "><div><span>Scanner scanner = new Scanner(System.in); 라고 작성하면 다음과 같이 Scanner 부분에 밑줄이 생긴다.
+<br>
+
+Scanner에 커서를 올려두고 ctrl+shift+O를 누르면,
+
+상단에 import java.util.Scanner; 라고 자동으로 유틸을 불러올 수 있다.
+
+(자바에는 사용하기 편리하게 몇가지 유용한 유틸들이 라이브러리에 이미 저장되어 있다.)
+<br>
+
+이후에 예를 들어
+
+String command = scanner.nextLine(); 라고 작성하고 실행을 하면
+
+콘솔창에서 명령어를 입력할 수 있게 된다.
+<br>
+
+또한 Scanner 객체를 생성한 후 하단에는 scanner.close();이라고 작성해 주는 것이 좋다.
+
+(scanner.close();을 꼭 작성하지 않아도 실행하는 데 문제는 없지만 그래도 클린 코드를 위해 작성하도록 하자)
+
+* * *
+
+
+**예시**
+
+``` java
+package zCodeTest;
+
+import java.util.Scanner;
+
+public class Main {
+
+	public static void main(String[] args) {
+		Scanner scanner = new Scanner(System.in);
+		
+		String command = scanner.nextLine();
+		
+		scanner.close();
+
+	}
+
+}
+```</span></div></div><br><br></div></section><section class="section-3 con-min-width"><div class="con"><div class="article-list-bottom-cell flex flex-jc-c"><div class="./"><a href="1.html" class="hover-underline">&lt 이전글</a></div><div class="./"><i class="fas fa-th-list"></i><a href="java-list-1.html" class="hover-underline"> 목록 </a></div>
         </div>
       </div>
     </section>

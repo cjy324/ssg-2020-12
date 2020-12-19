@@ -45,60 +45,83 @@
 </head>
 
 <body>
-	<div class="body-content min-height-100vh flex flex-column">
-		<!-- 로고바 시작 -->
-		<header class="logo-bar con-min-width">
-			<div class="con height-100p flex flex-jc-c">
-				<a href="index.html" class="logo flex flex-ai-c"> <i
-					class="fab fa-jenkins"></i> <span> Develo<span>p</span>ers
-				</span>
-				</a>
-			</div>
-		</header>
-		<!-- 로고바 끝 -->
+<!-- 사이트 박스 시작 -->
+<div class="body-content min-height-100vh flex flex-column">
+  <!-- 로고바 시작 -->
+  <header class="logo-bar con-min-width">
+    <div class="con height-100p flex flex-jc-c">
+      <a href="index.html" class="logo flex flex-ai-c">
+        
+        <span>
+          Dev_<span>J</span>Blog
+        </span>
+      </a>
+    </div>
+  </header>
+  <!-- 로고바 끝 -->
 
-		<!-- 메뉴바 시작 -->
-		<header class="menu-bar con-min-width">
-			<div class="con height-100p">
-				<nav class="menu-bar__menu-1">
-					<ul class="flex">
-						<li><a href="index.html" class="block"> <i class="fas fa-home"></i>
-								<span>HOME</span>
-						</a></li>
-						<li><a class="block"> <i class="fas fa-list"></i> <span>ARTICLES</span>
-						</a>
-							<ul>
-								<li><a href="notice-list-1.html" class="block"><i class="fas fa-exclamation"></i> <span>NOTICE BOARD</span></a></li><li><a href="free-list-1.html" class="block"><i class="fas fa-users"></i> <span>FREE BOARD</span></a></li><li><a href="java-list-1.html" class="block"><i class="fab fa-java"></i> <span>JAVA BOARD</span></a></li>
-							</ul></li>
-						<li><a class="block"> <i class="fas fa-link"></i> <span>LINK</span>
-						</a>
-							<ul>
-								<li><a href="https://jhs512.github.io/blog/"
-									target="_blank" class="block"> <i class="fab fa-blogger-b"></i>
-										<span>BLOG</span>
-								</a></li>
-								<li><a href="https://github.com/" target="_blank"
-									class="block"> <i class="fab fa-github"></i> <span>GITHUB</span>
-								</a></li>
-							</ul></li>
-						<li><a href="stat.html" class="block"> <i
-								class="fas fa-chart-pie"></i> <span>STATISTICS</span>
-						</a></li>
-					</ul>
-				</nav>
-			</div>
-		</header>
-		<!-- 메뉴바 끝 -->
+  <!-- 메뉴바 시작 -->
+  <header class="menu-bar con-min-width">
+    <div class="con height-100p">
+      <nav class="menu-bar__menu-1">
+        <ul class="flex">
+          <li>
+            <a href="index.html" class="block">
+              <i class="fas fa-home"></i>
+              <span>HOME</span>
+            </a>
+          </li>
+          <li>
+            <a class="block">
+              <i class="fas fa-list"></i>
+              <span>ARTICLES</span>
+            </a>
+            <ul>
+              <li><a href="notice-list-1.html" class="block"><i class="fas fa-exclamation"></i> <span>NOTICE</span> BOARD</a></li><li><a href="java-list-1.html" class="block"><i class="fab fa-java"></i> <span>JAVA</span> BOARD</a></li>
+            </ul>
+          </li>
+          <li>
+            <a class="block">
+              <i class="fas fa-link"></i>
+              <span>LINK</span>
+            </a>
+            <ul>
+              <li>
+                <a href="https://cjy324.tistory.com/" target="_blank" class="block">
+                  <i class="fas fa-rss-square"></i>
+                  <span>T-STORY</span>
+                </a>
+              </li>
+              <li>
+                <a href="https://github.com/cjy324/TIL_Jooyoung" target="_blank" class="block">
+                  <i class="fab fa-github"></i>
+                  <span>GITHUB</span>
+                </a>
+              </li>
+            </ul>
+          </li>
+          <li>
+            <a href="stat.html" class="block">
+              <i class="fas fa-chart-pie"></i>
+              <span>STATISTICS</span>
+            </a>
+          </li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+  <!-- 메뉴바 끝 --> 
 
-		<!-- 메인-타이틀바 시작 -->
-		<main class="flex-grow-1">
-			<div class="title-bar con-min-width">
-				<h1 class="con">
-					<i class="fab fa-java"></i> <span>JAVA BOARD</span>
-				</h1>
-			</div>
-			<!-- 메인-타이틀바 종료 --> <!-- 메인-리스트페이지 시작 -->  
-  <section class="section-1 con-min-width">
+  <!-- 메인 컨텐츠 박스 시작 -->
+  <main class="flex-grow-1">
+   <!-- 메인-타이틀바 시작 -->
+   <div class="title-bar con-min-width">
+      <h1 class="con">
+		<i class="fab fa-java"></i> <span>JAVA</span>
+      </h1>
+    </div>
+   <!-- 메인-타이틀바 종료 -->   <!-- 메인-리스트페이지 시작 -->  
+   <section class="section-1 con-min-width ">
     <div class="con">
       <div class="article-list">
         <header>
@@ -109,35 +132,93 @@
             <div class="article-list__cell-title">제목</div>
           </div>
         </header>
-        <main>
-          <div><div class="article-list__cell-id">1</div><div class="article-list__cell-reg-date">2020-12-17 18:07:18</div><div class="article-list__cell-writer">Dev_J</a></div><div class="article-list__cell-title"><a href="1.html" class="hover-underline">1강. Spring Tool Suite 4(STS) 기본 개념 및 단축키 등</a></div></div><div><div class="article-list__cell-id">2</div><div class="article-list__cell-reg-date">2020-12-17 18:38:39</div><div class="article-list__cell-writer">Dev_J</a></div><div class="article-list__cell-title"><a href="2.html" class="hover-underline">2강. Scanner 객체 생성</a></div></div>
+        <main class="article-list__cell-body">
+          <div><div class="article-list__cell-id">2</div><div class="article-list__cell-reg-date">2020-12-17 18:07:18</div><div class="article-list__cell-writer">Dev_J</a></div><div class="article-list__cell-title"><a href="2.html" class="hover-underline">1강. Spring Tool Suite 4(STS) 기본 개념 및 단축키 등</a></div></div><div><div class="article-list__cell-id">3</div><div class="article-list__cell-reg-date">2020-12-17 18:38:39</div><div class="article-list__cell-writer">Dev_J</a></div><div class="article-list__cell-title"><a href="3.html" class="hover-underline">2강. Scanner 객체 생성</a></div></div>
         </main>
       </div>
     </div>
   </section>
-  
- 
-  <div class="article-page-menu">
+   <!-- 메인-리스트페이지 끝 -->  
+   <!-- 메인-리스트 하단 메뉴 시작 --> 
+   <div class="article-page-menu">
           <ul class="flex flex-jc-c">
             <li><a href="java-list-1.html" class="flex flex-ai-c article-page-menu__link--selected">1</a></li>
           </ul>
         </div>
- <!-- 메인-리스트페이지 끝 -->  </main>
+   <!-- 메인-리스트 하단 메뉴 끝 --> 
+  </main>
+  <!-- 메인 컨텐츠 박스 끝 -->  <!-- 사이드바 시작 -->
+  <header class="side-bar flex flex-column">
+   <div class="side-bar__status-icon">
+    <div>▶</div>
+    <div>▼</div>
+   </div>
+   <nav class="side-bar__menu">
+    <ul>
+      <li>
+        <a href="index.html" class="block">
+          <i class="fas fa-home"></i>
+          <span>HOME</span>
+        </a>
+      </li>
+      <li>
+        <a class="block">
+          <i class="fas fa-list"></i>
+          <span>ARTICLES</span>
+        </a>
+        <ul>
+          <li><a href="notice-list-1.html" class="block"><i class="fas fa-exclamation"></i> <span>NOTICE</span></a></li><li><a href="java-list-1.html" class="block"><i class="fab fa-java"></i> <span>JAVA</span></a></li>
+        </ul>
+      </li>
+      <li>
+        <a class="block">
+          <i class="fas fa-link"></i>
+          <span>LINK</span>
+        </a>
+        <ul>
+          <li>
+            <a href="https://cjy324.tistory.com/" target="_blank" class="block">
+            <i class="fas fa-rss-square"></i>
+            <span>T-STORY</span>
+            </a>
+          </li>
+          <li>
+           <a href="https://github.com/cjy324/TIL_Jooyoung" target="_blank" class="block">
+           <i class="fab fa-github"></i>
+           <span>GITHUB</span>
+           </a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="stat.html" class="block">
+          <i class="fas fa-chart-pie"></i>
+          <span>STATISTICS</span>
+        </a>
+      </li>
+    </ul>
+   </nav>
+  </header>
+  <!-- 사이드바 끝 -->
 
-<footer class="bottom-bar con-min-width">
-	<div class="con flex flex-ai-c">
-		<a href="index.html" class="logo logo--mini flex flex-ai-c"> <i
-			class="fab fa-jenkins"></i> <span> Develo<span>p</span>ers
-		</span>
-		</a>
+  <!-- 푸터 시작 -->
+  <footer class="bottom-bar con-min-width">
+    <div class="con flex flex-ai-c">
+      <a href="#" class="logo logo--mini flex flex-ai-c">
+       
+        <span>
+          Dev_<span>J</span>Blog
+        </span>
+      </a>
 
-		<div class="bottom-bar__site-info">Lorem ipsum dolor sit amet
-			consectetur adipisicing elit. Dolorum eos ipsum necessitatibus
-			doloremque quos voluptate debitis earum aut a consequuntur explicabo
-			deleniti qui eius facere, harum error eveniet vel laudantium.</div>
-	</div>
-</footer>
+      <div class="bottom-bar__site-info">
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorum eos ipsum necessitatibus doloremque quos voluptate debitis earum aut a consequuntur explicabo deleniti qui eius facere, harum error eveniet vel laudantium.
+      </div>
+    </div>
+  </footer>
+  <!-- 푸터 끝 -->
 </div>
+<!-- 사이트 박스 끝 -->
 <!-- app.js 불러오기 -->
 <script src="app.js"></script>
 </body>

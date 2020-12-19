@@ -19,10 +19,6 @@ SET `name` = '공지사항',
 `code` = 'notice';
 
 INSERT INTO `board`
-SET `name` = '자유',
-`code` = 'free';
-
-INSERT INTO `board`
 SET `name` = 'JAVA',
 `code` = 'java';
 

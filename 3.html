@@ -143,19 +143,22 @@
    <section class="section-2 con-min-width min-height-50vh">
       <div class="con height-100p">
         <div class="article-detail-cell height-100p">
-          <div class="article-detail-cell__board-name"><div><span>게시판 : </span><span>JAVA 게시판</span></div></div><div class="article-detail-cell__id"><div><span>게시물 번호 : </span><span>3</span></div></div><div class="article-detail-cell__member-id"><div><span>작성자 : </span><span>Dev_J</span></div></div><div class="article-detail-cell__reg-date"><div><span>작성일 : </span><span>2020-12-17 18:38:39</span></div></div><div class="article-detail-cell__update-date"><div><span>수정일 : </span><span>2020-12-19 17:19:23</span></div><br></div><div class="article-detail-cell__title"><div><span>제목 : </span><span>2강. Scanner 객체 생성</span></div></div><div class="article-detail-cell__body height-70p "><div><span>Scanner scanner = new Scanner(System.in); 라고 작성하면 다음과 같이 Scanner 부분에 밑줄이 생긴다.
+          <div class="article-detail-cell__board-name"><div><span>게시판 : </span><span>JAVA 게시판</span></div></div><div class="article-detail-cell__id"><div><span>게시물 번호 : </span><span>3</span></div></div><div class="article-detail-cell__member-id"><div><span>작성자 : </span><span>Dev_J</span></div></div><div class="article-detail-cell__reg-date"><div><span>작성일 : </span><span>2020-12-17 18:38:39</span></div></div><div class="article-detail-cell__update-date"><div><span>수정일 : </span><span>2020-12-19 17:19:23</span></div><br></div><div class="article-detail-cell__title"><div><span>제목 : </span><span>2강. Scanner객체를 통한 입력</span></div></div><div class="article-detail-cell__body height-70p "><div><span>내가 원하는 명령어 입력하고 이 명령어를 컴퓨터에게 올바르게 인식시키기 위해 JAVA에선 **Scanner 유틸**을 사용한다.
 <br>
 
-Scanner에 커서를 올려두고 ctrl+shift+O를 누르면,
+별도의 입력없이
+**Scanner scanner = new Scanner(System.in);** 라고 작성하면 **Scanner** 부분에 밑줄이 생긴다.
 
-상단에 import java.util.Scanner; 라고 자동으로 유틸을 불러올 수 있다.
+이때 **Scanner에 커서를 올려두고 'ctrl+shift+O'를 누르면,**
+
+**상단에 import java.util.Scanner; 라고 자동으로 유틸을 불러올 수 있다.**
 
 (자바에는 사용하기 편리하게 몇가지 유용한 유틸들이 라이브러리에 이미 저장되어 있다.)
 <br>
 
 이후에 예를 들어
 
-String command = scanner.nextLine(); 라고 작성하고 실행을 하면
+String command = scanner.nextLine(); 라는 객체를 만들고 실행을 하면
 
 콘솔창에서 명령어를 입력할 수 있게 된다.
 <br>
@@ -170,9 +173,7 @@ String command = scanner.nextLine(); 라고 작성하고 실행을 하면
 **예시**
 
 ``` java
-package zCodeTest;
-
-import java.util.Scanner;
+import java.util.Scanner;  //Scanner 유틸을 불러온 것
 
 public class Main {
 
@@ -181,7 +182,7 @@ public class Main {
 		
 		String command = scanner.nextLine();
 		
-		scanner.close();
+		scanner.close();   //마지막에는 scanner를 종료시켜주는 것이 좋다
 
 	}
 
@@ -204,7 +205,7 @@ public class Main {
    <section class="section-3 con-min-width">
       <div class="con">
         <div class="article-list-bottom-cell flex flex-jc-c">
-          <div class="./"><a href="2.html" class="hover-underline">&lt 이전글</a></div><div class="./"><i class="fas fa-th-list"></i><a href="java-list-1.html" class="hover-underline"> 목록 </a></div>
+          <div class="./"><a href="2.html" class="hover-underline">&lt 이전글</a></div><div class="./"><i class="fas fa-th-list"></i><a href="java-list-1.html" class="hover-underline"> 목록 </a></div><div class="./"><a href="4.html"class="hover-underline">다음글 &gt</a></div>
         </div>
       </div>
     </section>

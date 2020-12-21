@@ -153,9 +153,19 @@ a {
   color:red;
 }
 
+.logo__img{
+  width:200px;
+  margin-right:10px;
+}
+
 .logo--mini {
   font-size:2rem;
 }
+
+.logo--mini__img{
+  width:150px;
+}
+
 /* 로고 끝 */
 
 

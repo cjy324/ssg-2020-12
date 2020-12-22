@@ -595,3 +595,27 @@ a {
 }
 
 /* 맨 위 버튼 끝 */
+
+
+/* 토스트에디터-유튜브 플러그인 시작 */
+.toast-ui-youtube-plugin-wrap{
+  max-width:500px;
+  margin-left:auto;
+  margin-right:auto;
+  position:relative;
+}
+
+.toast-ui-youtube-plugin-wrap::before{
+  content:"";
+  display:block;
+  padding-top:calc(100% / 16 * 9);
+}
+
+.toast-ui-youtube-plugin-wrap > iframe{
+  position:absolute;
+  top:0;
+  left:0;
+  width:100%;
+  height:100%;
+}
+/* 토스트에디터-유튜브 플러그인 끝 */

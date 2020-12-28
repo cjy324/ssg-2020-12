@@ -1,0 +1,514 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+<script data-ad-client="ca-pub-7996879977557531" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-X5RMP83794"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-X5RMP83794');
+</script>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- 구글 검색엔진 등록-소유권 확인 -->
+<meta name="google-site-verification" content="37R4KcEaJU5LfiKL7GI1hu1_spJgWOazN6xy48OHhD4" />
+
+<!-- Meta Tag & Open Graph -->
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<meta name="viewport" content="width=1200">
+<meta name="apple-mobile-web-app-title" content="Dev_J BLOG" />
+<!-- 메타태그정보 //-->
+<!-- META -->
+<link rel="canonical" href="https://blog.devj.me" />
+<meta name="subject" content="8강. 변수"/>
+<meta name="title" content="Dev_J BLOG" />
+<meta name="keywords" content="JAVA, HTML, CSS, JavaScript, MySQL" />
+<meta name="copyright" content="Dev_J BLOG" />
+<meta name="pubdate" content="2020-12-28T18:52:14" />
+<meta name="lastmod" content="2020-12-28T18:52:14" />
+<!-- OPENGRAPH -->
+<meta property="og:site_name" content="Dev_J BLOG" />
+<meta property="og:type" content="blog" />
+<meta property="og:title" content="8강. 변수" />
+<meta property="og:description" content=" 변수
+
+ 변수의 기본 속성
+
+ 변수에는 오직 한개의 값만 선언될 수 있다
+ 변수는 자신이 선언된속한 공간을 벗어날 수 없다
+
+
+    예를 들어 반복문 안에 변수를 선언하면 반복이 계속될 동안 변수는 그 영역 안에서 계속 변경될 수 있지만 외부 영역여기에서는 반복문 외부를 뜻함에는 영향을 미치지 못한다 하지만 변수를 반복문 영역 밖으로 빼내고 반복문보다 위쪽에 위치시키면 그 변수의 값은 반복문의 영향을 받지 않는다
+
+br
+ 변수의 종류
+
+  변수의 종류는 변수가 선언된 위치 에 의해 결정된다
+  종류로는 인스턴스 변수 클래스변수 지역변수가 있다
+
+imagehttpsimg1daumcdnnetthumbR1280x0scodemtistory2fnamehttps3A2F2Fblogkakaocdnnet2Fdn2FdScUgz2FbtqLFSwo2qn2FokVUtvk47Ds2KjtKE1OSTk2Fimgjpg
+출처 itminingtistorycom20
+
+
+ 변수의 유지 조건 
+ 객체인스턴스가 살아있는 동안 유지  인스턴스 변수
+ 함수매서드가 실행되는 동안만 유지  지역변수
+
+
+br
+ 변수별 특징
+
+1 인스턴스 변수
+    인스턴스가 생성될 때 생성됨
+    인스턴스마다 고유의 값을 가질 수 있음
+   br
+2 클래스 변수
+    인스턴스 변수에 static을 붙여준 것
+    인스턴스 변수는 각각의 고유한 값을 가지지만 클래스 변수는 모든 인스턴스가 공통된 값을 공유하게 됨
+    클래스가 로딩 시 생성되고 종료 시 까지 유지되는 변수에는 public을 붙여주어야 함
+    public이 붙은 변수는 전역 변수라 하며 동일 프로그램 내에서 어디서든 접근이 가능함
+    인스턴스 전근법과 다르게 인스턴스를 생성하지 않고 클래스이름클래스변수명으로도 접근이 가능함
+     br
+3 지역 변수
+    메서드 내에서 선언됨
+    메서드 내에서만 사용이 가능한 변수
+    메서드 실행 시 메모리가 할당되며생성되며 메서드 종료 시 기능을 상실
+   br
+4 레퍼런스 변수
+    하나의 객체가 여러 기능을 원격으로 조종할 수 있는 리모컨 기능을 갖고 있는 객체가 되는 것을 레퍼런스 변수라 함
+
+참조reference는 심볼릭 링크symbolic link 혹은 바로가기윈도우를 만드는 것과 비슷하다
+원본 파일에 대해서 심볼릭 링크를 만들면 원본이 수정되면 심볼릭 링크에도 그 내용이 실시간으로 반영되는 것과 같은 효과다
+심볼릭 링크를 통해서 만든 파일은 원본 파일에 대한 주소 값이 담겨 있다
+누군가 심볼릭 링크에 접근하면 컴퓨터는 심볼릭 링크에 저장된 원본의 주소를 참조해서 원본의 위치를 알아내고 원본에 대한 작업을 하게 된다
+
+다시 말해서 원본을 복제한 것이 아니라 원본 파일을 참조reference하고 있는 것 이다 덕분에 저장 장치의 용량을 절약할 수 있고 원본 파일을 사용하고 있는 모든 복제본이 동일한 내용을 유지할 수 있게 된다 참조는 전자화된 세계의 극치라고 할 수 있다
+
+출처 opentutorialsorgmodule249514152
+
+
+" />
+<meta property="og:locale" content="ko_KR" />
+<meta property="og:image" content="images/Dev_J_logo/logo.png" />
+<meta property="og:image:alt" content="blog.devj.me" />
+<meta property="og:image:width" content="486" />
+<meta property="og:image:height" content="254" />
+<meta property="og:updated_time" content="2020-12-28T18:52:14"/>
+<meta property="og:pubdate" content="2020-12-28T18:52:14" />
+<meta property="og:url" content="https://blog.devj.me" />
+<!-- TWITTER -->
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="8강. 변수" />
+<meta name="twitter:site" content="@Dev_J BLOG" />
+<meta name="twitter:creator" content="@Dev_J BLOG" />
+<meta name="twitter:image" content="images/Dev_J_logo/logo.png">
+<meta name="twitter:description" content=" 변수
+
+ 변수의 기본 속성
+
+ 변수에는 오직 한개의 값만 선언될 수 있다
+ 변수는 자신이 선언된속한 공간을 벗어날 수 없다
+
+
+    예를 들어 반복문 안에 변수를 선언하면 반복이 계속될 동안 변수는 그 영역 안에서 계속 변경될 수 있지만 외부 영역여기에서는 반복문 외부를 뜻함에는 영향을 미치지 못한다 하지만 변수를 반복문 영역 밖으로 빼내고 반복문보다 위쪽에 위치시키면 그 변수의 값은 반복문의 영향을 받지 않는다
+
+br
+ 변수의 종류
+
+  변수의 종류는 변수가 선언된 위치 에 의해 결정된다
+  종류로는 인스턴스 변수 클래스변수 지역변수가 있다
+
+imagehttpsimg1daumcdnnetthumbR1280x0scodemtistory2fnamehttps3A2F2Fblogkakaocdnnet2Fdn2FdScUgz2FbtqLFSwo2qn2FokVUtvk47Ds2KjtKE1OSTk2Fimgjpg
+출처 itminingtistorycom20
+
+
+ 변수의 유지 조건 
+ 객체인스턴스가 살아있는 동안 유지  인스턴스 변수
+ 함수매서드가 실행되는 동안만 유지  지역변수
+
+
+br
+ 변수별 특징
+
+1 인스턴스 변수
+    인스턴스가 생성될 때 생성됨
+    인스턴스마다 고유의 값을 가질 수 있음
+   br
+2 클래스 변수
+    인스턴스 변수에 static을 붙여준 것
+    인스턴스 변수는 각각의 고유한 값을 가지지만 클래스 변수는 모든 인스턴스가 공통된 값을 공유하게 됨
+    클래스가 로딩 시 생성되고 종료 시 까지 유지되는 변수에는 public을 붙여주어야 함
+    public이 붙은 변수는 전역 변수라 하며 동일 프로그램 내에서 어디서든 접근이 가능함
+    인스턴스 전근법과 다르게 인스턴스를 생성하지 않고 클래스이름클래스변수명으로도 접근이 가능함
+     br
+3 지역 변수
+    메서드 내에서 선언됨
+    메서드 내에서만 사용이 가능한 변수
+    메서드 실행 시 메모리가 할당되며생성되며 메서드 종료 시 기능을 상실
+   br
+4 레퍼런스 변수
+    하나의 객체가 여러 기능을 원격으로 조종할 수 있는 리모컨 기능을 갖고 있는 객체가 되는 것을 레퍼런스 변수라 함
+
+참조reference는 심볼릭 링크symbolic link 혹은 바로가기윈도우를 만드는 것과 비슷하다
+원본 파일에 대해서 심볼릭 링크를 만들면 원본이 수정되면 심볼릭 링크에도 그 내용이 실시간으로 반영되는 것과 같은 효과다
+심볼릭 링크를 통해서 만든 파일은 원본 파일에 대한 주소 값이 담겨 있다
+누군가 심볼릭 링크에 접근하면 컴퓨터는 심볼릭 링크에 저장된 원본의 주소를 참조해서 원본의 위치를 알아내고 원본에 대한 작업을 하게 된다
+
+다시 말해서 원본을 복제한 것이 아니라 원본 파일을 참조reference하고 있는 것 이다 덕분에 저장 장치의 용량을 절약할 수 있고 원본 파일을 사용하고 있는 모든 복제본이 동일한 내용을 유지할 수 있게 된다 참조는 전자화된 세계의 극치라고 할 수 있다
+
+출처 opentutorialsorgmodule249514152
+
+
+" />
+<!-- GOOGLE+ -->
+<meta itemprop="headline" content="Dev_J BLOG" />
+<meta itemprop="name" content="Dev_J BLOG" />
+<meta itemprop="description" content=" 변수
+
+ 변수의 기본 속성
+
+ 변수에는 오직 한개의 값만 선언될 수 있다
+ 변수는 자신이 선언된속한 공간을 벗어날 수 없다
+
+
+    예를 들어 반복문 안에 변수를 선언하면 반복이 계속될 동안 변수는 그 영역 안에서 계속 변경될 수 있지만 외부 영역여기에서는 반복문 외부를 뜻함에는 영향을 미치지 못한다 하지만 변수를 반복문 영역 밖으로 빼내고 반복문보다 위쪽에 위치시키면 그 변수의 값은 반복문의 영향을 받지 않는다
+
+br
+ 변수의 종류
+
+  변수의 종류는 변수가 선언된 위치 에 의해 결정된다
+  종류로는 인스턴스 변수 클래스변수 지역변수가 있다
+
+imagehttpsimg1daumcdnnetthumbR1280x0scodemtistory2fnamehttps3A2F2Fblogkakaocdnnet2Fdn2FdScUgz2FbtqLFSwo2qn2FokVUtvk47Ds2KjtKE1OSTk2Fimgjpg
+출처 itminingtistorycom20
+
+
+ 변수의 유지 조건 
+ 객체인스턴스가 살아있는 동안 유지  인스턴스 변수
+ 함수매서드가 실행되는 동안만 유지  지역변수
+
+
+br
+ 변수별 특징
+
+1 인스턴스 변수
+    인스턴스가 생성될 때 생성됨
+    인스턴스마다 고유의 값을 가질 수 있음
+   br
+2 클래스 변수
+    인스턴스 변수에 static을 붙여준 것
+    인스턴스 변수는 각각의 고유한 값을 가지지만 클래스 변수는 모든 인스턴스가 공통된 값을 공유하게 됨
+    클래스가 로딩 시 생성되고 종료 시 까지 유지되는 변수에는 public을 붙여주어야 함
+    public이 붙은 변수는 전역 변수라 하며 동일 프로그램 내에서 어디서든 접근이 가능함
+    인스턴스 전근법과 다르게 인스턴스를 생성하지 않고 클래스이름클래스변수명으로도 접근이 가능함
+     br
+3 지역 변수
+    메서드 내에서 선언됨
+    메서드 내에서만 사용이 가능한 변수
+    메서드 실행 시 메모리가 할당되며생성되며 메서드 종료 시 기능을 상실
+   br
+4 레퍼런스 변수
+    하나의 객체가 여러 기능을 원격으로 조종할 수 있는 리모컨 기능을 갖고 있는 객체가 되는 것을 레퍼런스 변수라 함
+
+참조reference는 심볼릭 링크symbolic link 혹은 바로가기윈도우를 만드는 것과 비슷하다
+원본 파일에 대해서 심볼릭 링크를 만들면 원본이 수정되면 심볼릭 링크에도 그 내용이 실시간으로 반영되는 것과 같은 효과다
+심볼릭 링크를 통해서 만든 파일은 원본 파일에 대한 주소 값이 담겨 있다
+누군가 심볼릭 링크에 접근하면 컴퓨터는 심볼릭 링크에 저장된 원본의 주소를 참조해서 원본의 위치를 알아내고 원본에 대한 작업을 하게 된다
+
+다시 말해서 원본을 복제한 것이 아니라 원본 파일을 참조reference하고 있는 것 이다 덕분에 저장 장치의 용량을 절약할 수 있고 원본 파일을 사용하고 있는 모든 복제본이 동일한 내용을 유지할 수 있게 된다 참조는 전자화된 세계의 극치라고 할 수 있다
+
+출처 opentutorialsorgmodule249514152
+
+
+" />
+<meta itemprop="image" content="images/Dev_J_logo/logo.png" />
+
+<!-- 사이트 타이틀 -->
+<title>8강. 변수 | Dev_J BLOG | ARTICLE DETAIL</title>
+
+
+<!-- 파비콘 -->
+<link rel="shortcut icon" href="images/favicon/favicon.ico" type="image/x-icon">
+<link rel="icon" href="images/favicon/favicon.ico" type="image/x-icon">
+
+<!-- 폰트어썸 불러오기 -->
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+<!-- app.css 불러오기 -->
+<link rel="stylesheet" href="app.css">
+
+<!--모바일에서도 PC와 같은 비율 유지-->
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<!--제이쿼리-->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+
+</head>
+
+<body>
+<!-- 사이트 박스 시작 -->
+<div class="body-content min-height-100vh flex flex-column">
+  <!-- 로고바 시작 -->
+  <header class="logo-bar con-min-width" id="header">
+    <div class="con height-100p flex flex-jc-c">
+      <a href="index.html" class="logo flex flex-ai-c"> 
+        <img class="logo__img" src="images/Dev_J_logo/facebook_cover_photo_1.png" alt="">
+        <span>
+          BLOG
+        </span>
+      </a>
+    </div>
+  </header>
+  <!-- 로고바 끝 -->
+
+  <!-- 메뉴바 시작 -->
+  <header class="menu-bar con-min-width">
+    <div class="con height-100p">
+      <nav class="menu-bar__menu-1">
+        <ul class="flex">
+          <li>
+            <a href="index.html" class="block">
+              <i class="fas fa-home"></i>
+              <span>HOME</span>
+            </a>
+          </li>
+          <li>
+            <a class="block">
+              <i class="fas fa-list"></i>
+              <span>ARTICLES</span>
+            </a>
+            <ul>
+              <li><a href="notice-list-1.html" class="block"><i class="fas fa-exclamation"></i> <span>NOTICE</span> BOARD</a></li><li><a href="java-list-1.html" class="block"><i class="fab fa-java"></i> <span>JAVA</span> BOARD</a></li>
+            </ul>
+          </li>
+          <li>
+            <a class="block">
+              <i class="fas fa-link"></i>
+              <span>LINK</span>
+            </a>
+            <ul>
+              <li>
+                <a href="https://cjy324.tistory.com/" target="_blank" class="block">
+                  <i class="fas fa-rss-square"></i>
+                  <span>T-STORY</span>
+                </a>
+              </li>
+              <li>
+                <a href="https://github.com/cjy324/TIL_Jooyoung#til_jooyoung" target="_blank" class="block">
+                  <i class="fab fa-github"></i>
+                  <span>GITHUB</span>
+                </a>
+              </li>
+            </ul>
+          </li>
+          <li>
+            <a href="https://analytics.google.com/analytics/web/?hl=ko&pli=1#/p256591365/reports/defaulthome?params=_u..nav%3Ddefault" target="_blank" class="block">
+              <i class="fas fa-chart-pie"></i>
+              <span>STATISTICS</span>
+            </a>
+          </li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+  <!-- 메뉴바 끝 --> 
+
+  <!-- 메인 컨텐츠 박스 시작 -->
+  <main class="flex-grow-1">
+   <!-- 메인-타이틀바 시작 -->
+	<div class="title-bar con-min-width">
+		<h1 class="con">
+			<i class="fas fa-file-invoice"></i> <span>ARTICLE DETAIL</span>
+		</h1>
+	</div>
+   <!-- 메인-타이틀바 종료 --><!-- 하이라이트 라이브러리 추가, 토스트 UI 에디터에서 사용됨 -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.4.1/highlight.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.4.1/styles/default.min.css">
+
+<!-- 토스트 UI 에디터, 자바스크립트 코어 -->
+<script
+	src="https://uicdn.toast.com/editor/latest/toastui-editor-all.min.js"></script>
+
+<!-- 코드 미러 라이브러리 추가, 토스트 UI 에디터에서 사용됨 -->
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.58.3/codemirror.min.css" />
+<!-- 토스트 UI 에디터, CSS 코어 -->
+<link rel="stylesheet"
+	href="https://uicdn.toast.com/editor/latest/toastui-editor.min.css" />
+
+<!-- 토스트 UI 에디터, 신택스 하이라이트 플러그인 추가 -->
+<script src="https://uicdn.toast.com/editor-plugin-code-syntax-highlight/latest/toastui-editor-plugin-code-syntax-highlight.min.js"></script>
+
+<!-- Progress-bar -->
+<script type="text/javascript" src="https://rawcdn.githack.com/mburakerman/prognroll/0feda211643153bce2c69de32ea1b39cdc64ffbe/src/prognroll.js"></script> 
+<script type="text/javascript"> $(function() { $("body").prognroll( {height:10, color:"#666666"} ); $(".content").prognroll({ custom:true }); }); </script>
+
+   <!-- 메인-상세페이지 시작 -->
+   <section class="section-2 con-min-width min-height-50vh">
+      <div class="con height-100p">
+        <div class="article-detail-cell height-100p">
+          <div class="article-detail-cell__board-name"><div><span>게시판 : </span><span>JAVA 게시판</span></div></div><div class="article-detail-cell__id"><div><span>게시물 번호 : </span><span>10</span></div></div><div class="article-detail-cell__member-id"><div><span>작성자 : </span><span>Dev_J</span></div></div><div class="article-detail-cell__reg-date"><div><span>작성일 : </span><span>2020-12-28 18:15:22</span></div></div><div class="article-detail-cell__update-date"><div><span>수정일 : </span><span>2020-12-28 18:15:22</span></div><br></div><div class="article-detail-cell__title"><div><span>제목 : </span><span>8강. 변수</span></div></div><div class="article-detail-cell__body height-70p "><div><span># 변수
+
+## 변수의 기본 속성
+
+- **변수에는 오직 한개의 값만 선언될 수 있다.**
+- **변수는 자신이 선언된(속한) 공간을 벗어날 수 없다.**
+
+```
+    예를 들어, 반복문 안에 변수를 선언하면 반복이 계속될 동안 변수는 그 영역 안에서 계속 변경될 수 있지만, 외부 영역(여기에서는 반복문 외부를 뜻함)에는 영향을 미치지 못한다. 하지만, 변수를 반복문 영역 밖으로 빼내고 반복문보다 위쪽에 위치시키면, 그 변수의 값은 반복문의 영향을 받지 않는다.
+```
+<br>
+## 변수의 종류
+
+ - 변수의 종류는 **'변수가 선언된 위치'** 에 의해 결정된다.
+ - 종류로는 **인스턴스 변수**, **클래스변수**, **지역변수**가 있다.
+
+![image](https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FdScUgz%2FbtqLFSwo2qn%2FokVUtvk47Ds2KjtKE1OSTk%2Fimg.jpg)
+(출처: itmining.tistory.com/20)
+
+```
+※ 변수의 유지 조건 ※
+- 객체(인스턴스)가 살아있는 동안 유지 = 인스턴스 변수
+- 함수(매서드)가 실행되는 동안만 유지 = 지역변수
+```
+
+<br>
+## 변수별 특징
+
+1. **인스턴스 변수**
+   - 인스턴스가 생성될 때 생성됨
+   - 인스턴스마다 **고유의 값**을 가질 수 있음
+   <br>
+2. **클래스 변수**
+   - 인스턴스 변수에 **static**을 붙여준 것
+   - 인스턴스 변수는 각각의 고유한 값을 가지지만 클래스 변수는 모든 인스턴스가 **공통된 값을 공유**하게 됨
+   - 클래스가 로딩 시 생성되고 종료 시 까지 유지되는 변수에는 public을 붙여주어야 함
+   - public이 붙은 변수는 전역 변수라 하며, 동일 프로그램 내에서 어디서든 접근이 가능함
+   - 인스턴스 전근법과 다르게 인스턴스를 생성하지 않고 "클래스이름.클래스변수명"으로도 접근이 가능함
+     <br>
+3. **지역 변수**
+   - **메서드 내**에서 선언됨
+   - **메서드 내에서만** 사용이 가능한 변수
+   - 메서드 실행 시 메모리가 할당되며(생성되며) **메서드 종료 시 기능을 상실**
+   <br>
+4. **레퍼런스 변수**
+   - **하나의 객체가 여러 기능을 원격으로 조종**할 수 있는 **리모컨 기능**을 갖고 있는 객체가 되는 것을 레퍼런스 변수라 함
+```
+참조(reference)는 심볼릭 링크(symbolic link) 혹은 바로가기(윈도우)를 만드는 것과 비슷하다.
+원본 파일에 대해서 심볼릭 링크를 만들면 원본이 수정되면 심볼릭 링크에도 그 내용이 실시간으로 반영되는 것과 같은 효과다.
+심볼릭 링크를 통해서 만든 파일은 원본 파일에 대한 주소 값이 담겨 있다.
+누군가 심볼릭 링크에 접근하면 컴퓨터는 심볼릭 링크에 저장된 원본의 주소를 참조해서 원본의 위치를 알아내고 원본에 대한 작업을 하게 된다.
+
+다시 말해서 원본을 복제한 것이 아니라 원본 파일을 참조(reference)하고 있는 것 이다. 덕분에 저장 장치의 용량을 절약할 수 있고, 원본 파일을 사용하고 있는 모든 복제본이 동일한 내용을 유지할 수 있게 된다. 참조는 전자화된 세계의 극치라고 할 수 있다.
+
+(출처: opentutorials.org/module/2495/14152)
+```
+
+</span></div></div><br><br><nav><div id="disqus_thread"></div>
+<script>
+    (function() { // DON'T EDIT BELOW THIS LINE
+    var d = document, s = d.createElement('script');
+    s.src = 'https://devj-blog.disqus.com/embed.js';
+    s.setAttribute('data-timestamp', +new Date());
+    (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript></nav>
+        </div>
+      </div>
+    </section>
+   <!-- 메인-상세페이지 끝 -->
+   <!-- 메인-상세 하단 메뉴 시작 -->
+   <section class="section-3 con-min-width">
+      <div class="con">
+        <div class="article-list-bottom-cell flex flex-jc-c">
+          <div class="./"><a href="9.html" class="hover-underline">&lt 이전글</a></div><div class="./"><i class="fas fa-th-list"></i><a href="java-list-1.html" class="hover-underline"> 목록 </a></div>
+        </div>
+      </div>
+    </section>
+   <!-- 메인-상세 하단 메뉴 끝 -->
+    
+  </main>
+  <!-- 메인 컨텐츠 박스 끝 -->  <!-- 사이드바 시작 -->
+  <header class="side-bar flex flex-column">
+   <div class="side-bar__status-icon">
+    <div>Menu<i class="fas fa-stream"></i></div>
+    <div>▶</div>
+    <div>▼</div>
+   </div>
+   <nav class="side-bar__menu">
+    <ul>
+      <li>
+        <a href="index.html" class="block">
+          <i class="fas fa-home"></i>
+          <span>HOME</span>
+        </a>
+      </li>
+      <li>
+        <a class="block">
+          <i class="fas fa-list"></i>
+          <span>ARTICLES</span>
+        </a>
+        <ul>
+          <li><a href="notice-list-1.html" class="block"><i class="fas fa-exclamation"></i> <span>NOTICE</span></a></li><li><a href="java-list-1.html" class="block"><i class="fab fa-java"></i> <span>JAVA</span></a></li>
+        </ul>
+      </li>
+      <li>
+        <a class="block">
+          <i class="fas fa-link"></i>
+          <span>LINK</span>
+        </a>
+        <ul>
+          <li>
+            <a href="https://cjy324.tistory.com/" target="_blank" class="block">
+            <i class="fas fa-rss-square"></i>
+            <span>T-STORY</span>
+            </a>
+          </li>
+          <li>
+           <a href="https://github.com/cjy324/TIL_Jooyoung" target="_blank" class="block">
+           <i class="fab fa-github"></i>
+           <span>GITHUB</span>
+           </a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="https://analytics.google.com/analytics/web/?hl=ko&pli=1#/p256591365/reports/defaulthome?params=_u..nav%3Ddefault" target="_blank" class="block">
+          <i class="fas fa-chart-pie"></i>
+          <span>STATISTICS</span>
+        </a>
+      </li>
+    </ul>
+   </nav>
+  </header>
+  <!-- 사이드바 끝 -->    <!-- 맨 위 버튼 시작 -->
+  <nav class="top-button flex flex-jc-c flex-ai-c">
+    <div class="">
+      <a href="#header">▲ TOP</a> 
+    </div>     
+  </nav>
+  <!-- 맨 위 버튼 끝 -->
+  <!-- 푸터 시작 -->
+  <footer class="bottom-bar con-min-width">
+    <div class="con flex flex-ai-c">
+      <a href="#" class="logo logo--mini flex flex-ai-c">
+        <img class="logo--mini__img" src="images/Dev_J_logo/facebook_cover_photo_1.png" alt="">
+      </a>
+      <div class="bottom-bar__site-info">
+        COPYRIGHT 2020. Dev_J. All rights reserved.
+      </div>
+    </div>
+  </footer>
+  <!-- 푸터 끝 -->
+</div>
+<!-- 사이트 박스 끝 -->
+<!-- app.js 불러오기 -->
+<script src="app.js"></script>
+</body>
+</html>

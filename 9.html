@@ -24,7 +24,7 @@
 <!-- 메타태그정보 //-->
 <!-- META -->
 <link rel="canonical" href="https://blog.devj.me" />
-<meta name="subject" content="5강. 비교연산자"/>
+<meta name="subject" content="7강. 삼항연산자"/>
 <meta name="title" content="Dev_J BLOG" />
 <meta name="keywords" content="JAVA, HTML, CSS, JavaScript, MySQL" />
 <meta name="copyright" content="Dev_J BLOG" />
@@ -33,52 +33,47 @@
 <!-- OPENGRAPH -->
 <meta property="og:site_name" content="Dev_J BLOG" />
 <meta property="og:type" content="blog" />
-<meta property="og:title" content="5강. 비교연산자" />
-<meta property="og:description" content="JAVA에서 두 수의 크기를 비교하고 싶을 때에는 비교연산자를 사용할 수 있다
+<meta property="og:title" content="7강. 삼항연산자" />
+<meta property="og:description" content=" 삼항연산자
 
-비교연산자의 종류는 다음과 같다
+ 개념
 
-
-          
-
-
-수학에서 쓰이는 기호와 같다고 생각하면 된다
+간단한 조건을 확인할 수 있는 연산자로 조건연산자라고도 한다
 br
-
-단 사용시 주의할 점은    기호를 쓸 때 일반 수학에서는 하나만 입력해도 되지만 JAVA에서는    처럼 2개를 입력해야 한다
-
-또한       기호를 입력할 때에는 반드시       기호가    기호 앞에 위치해야 한다는 점을 명심하자
+원하는 조건에 부합하는 결과를 얻고 싶을때 대표적으로 if함수를 사용하지만 간단한 조건을 확인할 때에는 삼항연산자도 자주 사용된다
 br
+삼항연산자의 문법은 다음과 같다
 
+
+조건  참일 경우 실행할 내용  거짓일 경우 실행할 내용
+
+br
+예시를 통해 사용법을 알아보자
+br
  예시
-
 java
-int a  20
-int b  20   
+int a  10
+int b  16
+		
+Systemoutprintlna  b  true  false
+해석 
+	조건 a  b
+	조건에 부합한다면맞다면 true
+	조건에 부합하지 않다면틀리면 false
 
- a와 b가 같은지 비교하는 연산자
-    Systemoutprintlna  b    
-     결과 true
-		    
- a가 b보다 작은지 비교하는 연산자
-    Systemoutprintlna  b
-     결과 false
-		    
- a가 b보다 작거나 같은지 비교하는 연산자
-    Systemoutprintlna  b
-     결과 true
-		    
- a가 b보다 큰지 비교하는 연산자
-    Systemoutprintlna  b      
-     결과 false
+출력 결과 false
+		
+		
+int c  30
+int d  40
+		
+Systemoutprintlnc  d  c  d
+해석 
+	조건 c  d
+	조건에 부합한다면맞다면 c
+	조건에 부합하지 않다면틀리면 d
 
- a가 b보다 크거나 같은지 비교하는 연산자
-    Systemoutprintlna  b     
-     결과 true
-		    
- a와 b가 다른지 비교하는 연산자
-    Systemoutprintlna  b   
-     결과 false 
+출력 결과 40
 " />
 <meta property="og:locale" content="ko_KR" />
 <meta property="og:image" content="images/Dev_J_logo/logo.png" />
@@ -90,109 +85,99 @@ int b  20
 <meta property="og:url" content="https://blog.devj.me" />
 <!-- TWITTER -->
 <meta name="twitter:card" content="summary_large_image" />
-<meta name="twitter:title" content="5강. 비교연산자" />
+<meta name="twitter:title" content="7강. 삼항연산자" />
 <meta name="twitter:site" content="@Dev_J BLOG" />
 <meta name="twitter:creator" content="@Dev_J BLOG" />
 <meta name="twitter:image" content="images/Dev_J_logo/logo.png">
-<meta name="twitter:description" content="JAVA에서 두 수의 크기를 비교하고 싶을 때에는 비교연산자를 사용할 수 있다
+<meta name="twitter:description" content=" 삼항연산자
 
-비교연산자의 종류는 다음과 같다
+ 개념
 
-
-          
-
-
-수학에서 쓰이는 기호와 같다고 생각하면 된다
+간단한 조건을 확인할 수 있는 연산자로 조건연산자라고도 한다
 br
-
-단 사용시 주의할 점은    기호를 쓸 때 일반 수학에서는 하나만 입력해도 되지만 JAVA에서는    처럼 2개를 입력해야 한다
-
-또한       기호를 입력할 때에는 반드시       기호가    기호 앞에 위치해야 한다는 점을 명심하자
+원하는 조건에 부합하는 결과를 얻고 싶을때 대표적으로 if함수를 사용하지만 간단한 조건을 확인할 때에는 삼항연산자도 자주 사용된다
 br
+삼항연산자의 문법은 다음과 같다
 
+
+조건  참일 경우 실행할 내용  거짓일 경우 실행할 내용
+
+br
+예시를 통해 사용법을 알아보자
+br
  예시
-
 java
-int a  20
-int b  20   
+int a  10
+int b  16
+		
+Systemoutprintlna  b  true  false
+해석 
+	조건 a  b
+	조건에 부합한다면맞다면 true
+	조건에 부합하지 않다면틀리면 false
 
- a와 b가 같은지 비교하는 연산자
-    Systemoutprintlna  b    
-     결과 true
-		    
- a가 b보다 작은지 비교하는 연산자
-    Systemoutprintlna  b
-     결과 false
-		    
- a가 b보다 작거나 같은지 비교하는 연산자
-    Systemoutprintlna  b
-     결과 true
-		    
- a가 b보다 큰지 비교하는 연산자
-    Systemoutprintlna  b      
-     결과 false
+출력 결과 false
+		
+		
+int c  30
+int d  40
+		
+Systemoutprintlnc  d  c  d
+해석 
+	조건 c  d
+	조건에 부합한다면맞다면 c
+	조건에 부합하지 않다면틀리면 d
 
- a가 b보다 크거나 같은지 비교하는 연산자
-    Systemoutprintlna  b     
-     결과 true
-		    
- a와 b가 다른지 비교하는 연산자
-    Systemoutprintlna  b   
-     결과 false 
+출력 결과 40
 " />
 <!-- GOOGLE+ -->
 <meta itemprop="headline" content="Dev_J BLOG" />
 <meta itemprop="name" content="Dev_J BLOG" />
-<meta itemprop="description" content="JAVA에서 두 수의 크기를 비교하고 싶을 때에는 비교연산자를 사용할 수 있다
+<meta itemprop="description" content=" 삼항연산자
 
-비교연산자의 종류는 다음과 같다
+ 개념
 
-
-          
-
-
-수학에서 쓰이는 기호와 같다고 생각하면 된다
+간단한 조건을 확인할 수 있는 연산자로 조건연산자라고도 한다
 br
-
-단 사용시 주의할 점은    기호를 쓸 때 일반 수학에서는 하나만 입력해도 되지만 JAVA에서는    처럼 2개를 입력해야 한다
-
-또한       기호를 입력할 때에는 반드시       기호가    기호 앞에 위치해야 한다는 점을 명심하자
+원하는 조건에 부합하는 결과를 얻고 싶을때 대표적으로 if함수를 사용하지만 간단한 조건을 확인할 때에는 삼항연산자도 자주 사용된다
 br
+삼항연산자의 문법은 다음과 같다
 
+
+조건  참일 경우 실행할 내용  거짓일 경우 실행할 내용
+
+br
+예시를 통해 사용법을 알아보자
+br
  예시
-
 java
-int a  20
-int b  20   
+int a  10
+int b  16
+		
+Systemoutprintlna  b  true  false
+해석 
+	조건 a  b
+	조건에 부합한다면맞다면 true
+	조건에 부합하지 않다면틀리면 false
 
- a와 b가 같은지 비교하는 연산자
-    Systemoutprintlna  b    
-     결과 true
-		    
- a가 b보다 작은지 비교하는 연산자
-    Systemoutprintlna  b
-     결과 false
-		    
- a가 b보다 작거나 같은지 비교하는 연산자
-    Systemoutprintlna  b
-     결과 true
-		    
- a가 b보다 큰지 비교하는 연산자
-    Systemoutprintlna  b      
-     결과 false
+출력 결과 false
+		
+		
+int c  30
+int d  40
+		
+Systemoutprintlnc  d  c  d
+해석 
+	조건 c  d
+	조건에 부합한다면맞다면 c
+	조건에 부합하지 않다면틀리면 d
 
- a가 b보다 크거나 같은지 비교하는 연산자
-    Systemoutprintlna  b     
-     결과 true
-		    
- a와 b가 다른지 비교하는 연산자
-    Systemoutprintlna  b   
-     결과 false 
+출력 결과 40
 " />
 <meta itemprop="image" content="images/Dev_J_logo/logo.png" />
 
 <!-- 사이트 타이틀 -->
-<title>5강. 비교연산자 | Dev_J BLOG | ARTICLE DETAIL</title>
+<title>7강. 삼항연산자 | Dev_J BLOG | ARTICLE DETAIL</title>
 
 
 <!-- 파비콘 -->
@@ -316,51 +301,46 @@ int b  20
    <section class="section-2 con-min-width min-height-50vh">
       <div class="con height-100p">
         <div class="article-detail-cell height-100p">
-          <div class="article-detail-cell__board-name"><div><span>게시판 : </span><span>JAVA 게시판</span></div></div><div class="article-detail-cell__id"><div><span>게시물 번호 : </span><span>7</span></div></div><div class="article-detail-cell__member-id"><div><span>작성자 : </span><span>Dev_J</span></div></div><div class="article-detail-cell__reg-date"><div><span>작성일 : </span><span>2020-12-22 19:09:39</span></div></div><div class="article-detail-cell__update-date"><div><span>수정일 : </span><span>2020-12-22 19:09:39</span></div><br></div><div class="article-detail-cell__title"><div><span>제목 : </span><span>5강. 비교연산자</span></div></div><div class="article-detail-cell__body height-70p "><div><span>JAVA에서 두 수의 크기를 비교하고 싶을 때에는 **비교연산자**를 사용할 수 있다.
+          <div class="article-detail-cell__board-name"><div><span>게시판 : </span><span>JAVA 게시판</span></div></div><div class="article-detail-cell__id"><div><span>게시물 번호 : </span><span>9</span></div></div><div class="article-detail-cell__member-id"><div><span>작성자 : </span><span>Dev_J</span></div></div><div class="article-detail-cell__reg-date"><div><span>작성일 : </span><span>2020-12-28 18:15:22</span></div></div><div class="article-detail-cell__update-date"><div><span>수정일 : </span><span>2020-12-28 18:15:22</span></div><br></div><div class="article-detail-cell__title"><div><span>제목 : </span><span>7강. 삼항연산자</span></div></div><div class="article-detail-cell__body height-70p "><div><span># 삼항연산자
 
-비교연산자의 종류는 다음과 같다.
+## 개념
 
-
-"==",  "<",  "<=",  ">",  ">=",  "!="
-
-
-수학에서 쓰이는 기호와 같다고 생각하면 된다.
+간단한 조건을 확인할 수 있는 연산자로 '**조건연산자**'라고도 한다.
 <br>
-
-단, 사용시 주의할 점은 " = " 기호를 쓸 때 일반 수학에서는 하나만 입력해도 되지만 JAVA에서는 " == " 처럼 2개를 입력해야 한다.
-
-또한 " >= ", " <= " 기호를 입력할 때에는 반드시 " > ", " < " 기호가 " = " 기호 앞에 위치해야 한다는 점을 명심하자.
+원하는 조건에 부합하는 결과를 얻고 싶을때 대표적으로 if()함수를 사용하지만, **간단한 조건을 확인할 때에는 삼항연산자도 자주 사용**된다.
 <br>
+삼항연산자의 문법은 다음과 같다.
 
-### 예시
-
+```
+조건 ? 참일 경우 실행할 내용 : 거짓일 경우 실행할 내용;
+```
+<br>
+예시를 통해 사용법을 알아보자
+<br>
+## 예시
 ```java
-int a = 20;
-int b = 20;   
-
-// a와 b가 같은지 비교하는 연산자
-    System.out.println(a == b);    
-    // 결과: true
-		    
-// a가 b보다 작은지 비교하는 연산자
-    System.out.println(a < b);
-    // 결과: false
-		    
-// a가 b보다 작거나 같은지 비교하는 연산자
-    System.out.println(a <= b);
-    // 결과: true
-		    
-// a가 b보다 큰지 비교하는 연산자
-    System.out.println(a > b);      
-    // 결과: false
-
-// a가 b보다 크거나 같은지 비교하는 연산자
-    System.out.println(a >= b);     
-    // 결과: true
-		    
-// a와 b가 다른지 비교하는 연산자
-    System.out.println(a != b);   
-    // 결과: false 
+int a = 10;
+int b = 16;
+		
+System.out.println(a > b ? true : false);
+/*해석: 
+	조건: a > b
+	조건에 부합한다면(맞다면): true
+	조건에 부합하지 않다면(틀리면): false
+*/
+//출력 결과: false
+		
+		
+int c = 30;
+int d = 40;
+		
+System.out.println(c >= d ? c : d);
+/*해석: 
+	조건: c >= d
+	조건에 부합한다면(맞다면): c
+	조건에 부합하지 않다면(틀리면): d
+*/
+//출력 결과: 40
 ```</span></div></div><br><br><nav><div id="disqus_thread"></div>
 <script>
     (function() { // DON'T EDIT BELOW THIS LINE
@@ -379,7 +359,7 @@ int b = 20;
    <section class="section-3 con-min-width">
       <div class="con">
         <div class="article-list-bottom-cell flex flex-jc-c">
-          <div class="./"><a href="5.html" class="hover-underline">&lt 이전글</a></div><div class="./"><i class="fas fa-th-list"></i><a href="java-list-1.html" class="hover-underline"> 목록 </a></div><div class="./"><a href="8.html"class="hover-underline">다음글 &gt</a></div>
+          <div class="./"><a href="8.html" class="hover-underline">&lt 이전글</a></div><div class="./"><i class="fas fa-th-list"></i><a href="java-list-1.html" class="hover-underline"> 목록 </a></div><div class="./"><a href="10.html"class="hover-underline">다음글 &gt</a></div>
         </div>
       </div>
     </section>

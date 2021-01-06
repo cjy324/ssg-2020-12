@@ -1,0 +1,540 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+<script data-ad-client="ca-pub-7996879977557531" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-X5RMP83794"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-X5RMP83794');
+</script>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- 구글 검색엔진 등록-소유권 확인 -->
+<meta name="google-site-verification" content="37R4KcEaJU5LfiKL7GI1hu1_spJgWOazN6xy48OHhD4" />
+
+<!-- Meta Tag & Open Graph -->
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<meta name="viewport" content="width=1200">
+<meta name="apple-mobile-web-app-title" content="Dev_J BLOG" />
+<!-- 메타태그정보 //-->
+<!-- META -->
+<link rel="canonical" href="https://blog.devj.me" />
+<meta name="subject" content="1강. HTML & CSS & JS의 개념 및 역할"/>
+<meta name="title" content="Dev_J BLOG" />
+<meta name="keywords" content="JAVA, HTML, CSS, JavaScript, MySQL" />
+<meta name="copyright" content="Dev_J BLOG" />
+<meta name="pubdate" content="2021-01-06T22:05:19" />
+<meta name="lastmod" content="2021-01-06T22:05:19" />
+<!-- OPENGRAPH -->
+<meta property="og:site_name" content="Dev_J BLOG" />
+<meta property="og:type" content="blog" />
+<meta property="og:title" content="1강. HTML & CSS & JS의 개념 및 역할" />
+<meta property="og:description" content="하나의 웹페이지는 HTML CSS JS로 구성되어 있다  HTML CSS JS는 각각 자신들만의 역할을 담당하고 있는데 그 역할들을 잘 조합하면 하나의 웹페이지를 만들어 낼 수 있다 
+
+ 이러한 HTML CSS JS을 다루는 것을 웹코딩 이라 한다 
+ 
+ 지금부터 각각의 기본적인 개념과 역할들을 알아보자
+br
+
+  HTML 
+  주요 역할  문서 내용 담당배우
+br
+ 웹페이지를 만들기 위한 언어로 웹브라우저 위에서 동작하는 언어다
+ html안에는 이미  기본 태그와  속성들이 저장되어 있다
+ CSS는 이 속성들을 창조하는 것이 아닌 변화시켜주는 리모컨 역할을 한다
+
+HTML의 의미
+
+HT  HyperText 문서와 문서가 링크로 연결되어 있다
+
+M  Markup 태그로 이루어져 있다
+
+L  Language
+
+
+
+
+  CSS 
+
+  주요 역할  문서 꾸밈 담당스타일리스트
+br
+ CSS는 HTML을 아름답게 꾸며주는 디자이너의 언어다
+ 잘 설계된 CSS는 재활용이 가능하며 테마 템플릿의 형태로 확장할 수 있다 
+ 또한 자바스크립트와 연계해 콘텐츠의 내용이나 디자인을 동적으로 처리할 경우에도 유용하게 사용된다
+
+CSS의 의미
+
+C  Cascading 폭포처럼 떨어져 내리는이라는 사전적 의미로 상위 요소에서 정의한 속성이 하위 요소로 전달된다는 의미에서 유래했다
+
+SS  StyleSheet 스타일을 다루는 정체성을 보여준다
+
+
+  JS JavaScript 
+
+  주요 역할 감독감독
+br
+ JavaScript는 객체object 기반의 스크립트 언어다
+ HTML로는 웹의 내용을 작성하고 CSS로는 웹을 디자인하고 JavaScript로는 웹의 동작을 구현할 수 있다
+ JavaScript는 동적이며 타입을 명시할 필요가 없는 인터프리터 언어다
+ 따라서 컴파일 작업이 필요하지 않고 소스코드를 바로 실행한다
+
+Java와 JavaScript
+
+Java와 JavaScript는 그 이름만 놓고 보면 서로 관련이 있는 언어로 생각되기 쉽다
+
+하지만 두 언어는 서로 직접적인 관련은 없으며 비슷한 점보다는 다른 점이 훨씬 많다
+
+문법상 비슷한 부분은 두 언어의 문법이 모두 C언어를 기반으로 만들어졌기 때문이다
+
+출처 httpwwwtcpschoolcomjavascriptjsintrobasic
+
+" />
+<meta property="og:locale" content="ko_KR" />
+<meta property="og:image" content="images/Dev_J_logo/logo.png" />
+<meta property="og:image:alt" content="blog.devj.me" />
+<meta property="og:image:width" content="486" />
+<meta property="og:image:height" content="254" />
+<meta property="og:updated_time" content="2021-01-06T22:05:19"/>
+<meta property="og:pubdate" content="2021-01-06T22:05:19" />
+<meta property="og:url" content="https://blog.devj.me" />
+<!-- TWITTER -->
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="1강. HTML & CSS & JS의 개념 및 역할" />
+<meta name="twitter:site" content="@Dev_J BLOG" />
+<meta name="twitter:creator" content="@Dev_J BLOG" />
+<meta name="twitter:image" content="images/Dev_J_logo/logo.png">
+<meta name="twitter:description" content="하나의 웹페이지는 HTML CSS JS로 구성되어 있다  HTML CSS JS는 각각 자신들만의 역할을 담당하고 있는데 그 역할들을 잘 조합하면 하나의 웹페이지를 만들어 낼 수 있다 
+
+ 이러한 HTML CSS JS을 다루는 것을 웹코딩 이라 한다 
+ 
+ 지금부터 각각의 기본적인 개념과 역할들을 알아보자
+br
+
+  HTML 
+  주요 역할  문서 내용 담당배우
+br
+ 웹페이지를 만들기 위한 언어로 웹브라우저 위에서 동작하는 언어다
+ html안에는 이미  기본 태그와  속성들이 저장되어 있다
+ CSS는 이 속성들을 창조하는 것이 아닌 변화시켜주는 리모컨 역할을 한다
+
+HTML의 의미
+
+HT  HyperText 문서와 문서가 링크로 연결되어 있다
+
+M  Markup 태그로 이루어져 있다
+
+L  Language
+
+
+
+
+  CSS 
+
+  주요 역할  문서 꾸밈 담당스타일리스트
+br
+ CSS는 HTML을 아름답게 꾸며주는 디자이너의 언어다
+ 잘 설계된 CSS는 재활용이 가능하며 테마 템플릿의 형태로 확장할 수 있다 
+ 또한 자바스크립트와 연계해 콘텐츠의 내용이나 디자인을 동적으로 처리할 경우에도 유용하게 사용된다
+
+CSS의 의미
+
+C  Cascading 폭포처럼 떨어져 내리는이라는 사전적 의미로 상위 요소에서 정의한 속성이 하위 요소로 전달된다는 의미에서 유래했다
+
+SS  StyleSheet 스타일을 다루는 정체성을 보여준다
+
+
+  JS JavaScript 
+
+  주요 역할 감독감독
+br
+ JavaScript는 객체object 기반의 스크립트 언어다
+ HTML로는 웹의 내용을 작성하고 CSS로는 웹을 디자인하고 JavaScript로는 웹의 동작을 구현할 수 있다
+ JavaScript는 동적이며 타입을 명시할 필요가 없는 인터프리터 언어다
+ 따라서 컴파일 작업이 필요하지 않고 소스코드를 바로 실행한다
+
+Java와 JavaScript
+
+Java와 JavaScript는 그 이름만 놓고 보면 서로 관련이 있는 언어로 생각되기 쉽다
+
+하지만 두 언어는 서로 직접적인 관련은 없으며 비슷한 점보다는 다른 점이 훨씬 많다
+
+문법상 비슷한 부분은 두 언어의 문법이 모두 C언어를 기반으로 만들어졌기 때문이다
+
+출처 httpwwwtcpschoolcomjavascriptjsintrobasic
+
+" />
+<!-- GOOGLE+ -->
+<meta itemprop="headline" content="Dev_J BLOG" />
+<meta itemprop="name" content="Dev_J BLOG" />
+<meta itemprop="description" content="하나의 웹페이지는 HTML CSS JS로 구성되어 있다  HTML CSS JS는 각각 자신들만의 역할을 담당하고 있는데 그 역할들을 잘 조합하면 하나의 웹페이지를 만들어 낼 수 있다 
+
+ 이러한 HTML CSS JS을 다루는 것을 웹코딩 이라 한다 
+ 
+ 지금부터 각각의 기본적인 개념과 역할들을 알아보자
+br
+
+  HTML 
+  주요 역할  문서 내용 담당배우
+br
+ 웹페이지를 만들기 위한 언어로 웹브라우저 위에서 동작하는 언어다
+ html안에는 이미  기본 태그와  속성들이 저장되어 있다
+ CSS는 이 속성들을 창조하는 것이 아닌 변화시켜주는 리모컨 역할을 한다
+
+HTML의 의미
+
+HT  HyperText 문서와 문서가 링크로 연결되어 있다
+
+M  Markup 태그로 이루어져 있다
+
+L  Language
+
+
+
+
+  CSS 
+
+  주요 역할  문서 꾸밈 담당스타일리스트
+br
+ CSS는 HTML을 아름답게 꾸며주는 디자이너의 언어다
+ 잘 설계된 CSS는 재활용이 가능하며 테마 템플릿의 형태로 확장할 수 있다 
+ 또한 자바스크립트와 연계해 콘텐츠의 내용이나 디자인을 동적으로 처리할 경우에도 유용하게 사용된다
+
+CSS의 의미
+
+C  Cascading 폭포처럼 떨어져 내리는이라는 사전적 의미로 상위 요소에서 정의한 속성이 하위 요소로 전달된다는 의미에서 유래했다
+
+SS  StyleSheet 스타일을 다루는 정체성을 보여준다
+
+
+  JS JavaScript 
+
+  주요 역할 감독감독
+br
+ JavaScript는 객체object 기반의 스크립트 언어다
+ HTML로는 웹의 내용을 작성하고 CSS로는 웹을 디자인하고 JavaScript로는 웹의 동작을 구현할 수 있다
+ JavaScript는 동적이며 타입을 명시할 필요가 없는 인터프리터 언어다
+ 따라서 컴파일 작업이 필요하지 않고 소스코드를 바로 실행한다
+
+Java와 JavaScript
+
+Java와 JavaScript는 그 이름만 놓고 보면 서로 관련이 있는 언어로 생각되기 쉽다
+
+하지만 두 언어는 서로 직접적인 관련은 없으며 비슷한 점보다는 다른 점이 훨씬 많다
+
+문법상 비슷한 부분은 두 언어의 문법이 모두 C언어를 기반으로 만들어졌기 때문이다
+
+출처 httpwwwtcpschoolcomjavascriptjsintrobasic
+
+" />
+<meta itemprop="image" content="images/Dev_J_logo/logo.png" />
+
+<!-- 사이트 타이틀 -->
+<title>1강. HTML & CSS & JS의 개념 및 역할 | Dev_J BLOG | ARTICLE DETAIL</title>
+
+
+<!-- 파비콘 -->
+<link rel="shortcut icon" href="images/favicon/favicon.ico" type="image/x-icon">
+<link rel="icon" href="images/favicon/favicon.ico" type="image/x-icon">
+
+<!-- 폰트어썸 불러오기 -->
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+<!-- app.css 불러오기 -->
+<link rel="stylesheet" href="app.css">
+
+<!--모바일에서도 PC와 같은 비율 유지-->
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<!--제이쿼리-->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+
+</head>
+
+<body>
+<!-- 사이트 박스 시작 -->
+<div class="body-content min-height-100vh flex flex-column">
+  <!-- 로고바 시작 -->
+  <header class="logo-bar con-min-width" id="header">
+    <div class="con height-100p flex flex-jc-c">
+      <a href="index.html" class="logo flex flex-ai-c"> 
+        <img class="logo__img" src="images/Dev_J_logo/facebook_cover_photo_1.png" alt="">
+        <span>
+          BLOG
+        </span>
+      </a>
+    </div>
+  </header>
+  <!-- 로고바 끝 -->
+
+  <!-- 메뉴바 시작 -->
+  <header class="menu-bar con-min-width">
+    <div class="con height-100p">
+      <nav class="menu-bar__menu-1">
+        <ul class="flex">
+          <li>
+            <a href="index.html" class="block">
+              <i class="fas fa-home"></i>
+              <span>ABOUT</span>
+            </a>
+          </li>
+          <li>
+            <a class="block">
+              <i class="fas fa-list"></i>
+              <span>ARTICLES</span>
+            </a>
+            <ul>
+              <li><a href="notice-list-1.html" class="block"><i class="fas fa-exclamation"></i> <span>NOTICE</span> BOARD</a></li><li><a href="java-list-1.html" class="block"><i class="fab fa-java"></i> <span>JAVA</span> BOARD</a></li><li><a href="html-list-1.html" class="block"><i class="fab fa-html5"></i> <span>HTML & CSS & JS</span> BOARD</a></li>
+            </ul>
+          </li>
+          <li>
+            <a class="block">
+              <i class="fas fa-link"></i>
+              <span>LINK</span>
+            </a>
+            <ul>
+              <li>
+                <a href="https://cjy324.tistory.com/" target="_blank" class="block">
+                  <i class="fas fa-rss-square"></i>
+                  <span>T-STORY</span>
+                </a>
+              </li>
+              <li>
+                <a href="https://github.com/cjy324/TIL_Jooyoung#til_jooyoung" target="_blank" class="block">
+                  <i class="fab fa-github"></i>
+                  <span>GITHUB</span>
+                </a>
+              </li>
+            </ul>
+          </li>
+          <li>
+            <a href="search.html" class="block">
+              <i class="fas fa-search"></i>
+              <span>SEARCH</span>
+            </a>
+          </li>
+          <li>
+            <a href="statistics.html" class="block">
+              <i class="fas fa-chart-pie"></i>
+              <span>STATISTICS</span>
+            </a>
+          </li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+  <!-- 메뉴바 끝 --> 
+
+  <!-- 메인 컨텐츠 박스 시작 -->
+  <main class="main-box flex-grow-1">
+   <!-- 메인-타이틀바 시작 -->
+	<div class="title-bar con-min-width">
+		<h1 class="con">
+			<i class="fas fa-file-invoice"></i> <span>ARTICLE DETAIL</span>
+		</h1>
+	</div>
+   <!-- 메인-타이틀바 종료 --><!-- 하이라이트 라이브러리 추가, 토스트 UI 에디터에서 사용됨 -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.4.1/highlight.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.4.1/styles/default.min.css">
+
+<!-- 토스트 UI 에디터, 자바스크립트 코어 -->
+<script
+	src="https://uicdn.toast.com/editor/latest/toastui-editor-all.min.js"></script>
+
+<!-- 코드 미러 라이브러리 추가, 토스트 UI 에디터에서 사용됨 -->
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.58.3/codemirror.min.css" />
+<!-- 토스트 UI 에디터, CSS 코어 -->
+<link rel="stylesheet"
+	href="https://uicdn.toast.com/editor/latest/toastui-editor.min.css" />
+
+<!-- 토스트 UI 에디터, 신택스 하이라이트 플러그인 추가 -->
+<script src="https://uicdn.toast.com/editor-plugin-code-syntax-highlight/latest/toastui-editor-plugin-code-syntax-highlight.min.js"></script>
+
+<!-- Progress-bar -->
+<script type="text/javascript" src="https://rawcdn.githack.com/mburakerman/prognroll/0feda211643153bce2c69de32ea1b39cdc64ffbe/src/prognroll.js"></script> 
+<script type="text/javascript"> $(function() { $("body").prognroll( {height:10, color:"#666666"} ); $(".content").prognroll({ custom:true }); }); </script>
+
+   <!-- 메인-상세페이지 시작 -->
+   <section class="section-2 con-min-width min-height-50vh">
+      <div class="con height-100p">
+        <div class="article-detail-cell height-100p">
+          <div class="article-detail-cell__board-name"><div><span>게시판 : </span><span>HTML & CSS & JS 게시판</span></div></div><div class="article-detail-cell__id"><div><span>게시물 번호 : </span><span>11</span></div></div><div class="article-detail-cell__member-id"><div><span>작성자 : </span><span>Dev_J</span></div></div><div class="article-detail-cell__reg-date"><div><span>작성일 : </span><span>2021-01-06 21:48:37</span></div></div><div class="article-detail-cell__update-date"><div><span>수정일 : </span><span>2021-01-06 22:05:14</span></div></div><div class="article-detail-cell__update-date"><div><span>조회수 : </span><span>0</span></div></div><div class="article-detail-cell__update-date"><div><span>추천수 : </span><span>0</span></div></div><div class="article-detail-cell__update-date"><div><span>댓글수 : </span><span>0</span></div><br></div><div class="article-detail-cell__title"><div><span>제목 : </span><span>1강. HTML & CSS & JS의 개념 및 역할</span></div></div><div class="article-detail-cell__body height-70p "><div><span>하나의 웹페이지는 **HTML,** **CSS,** **JS**로 구성되어 있다.  **HTML,** **CSS,** **JS**는 각각 자신들만의 역할을 담당하고 있는데, 그 역할들을 잘 조합하면 하나의 웹페이지를 만들어 낼 수 있다. 
+
+ 이러한 **HTML,** **CSS,** **JS**을 다루는 것을 **'웹코딩'** 이라 한다. 
+ 
+ 지금부터 각각의 기본적인 개념과 역할들을 알아보자.
+<br>
+
+# < HTML >
+####  주요 역할 : 문서 내용 담당[배우]
+<br>
+- 웹페이지를 만들기 위한 언어로 웹브라우저 위에서 동작하는 언어다.
+- html안에는 이미  **기본 태그**와  **속성**들이 저장되어 있다.
+- CSS는 이 속성들을 창조하는 것이 아닌 변화시켜주는 리모컨 역할을 한다.
+```
+-HTML의 의미-
+
+HT - HyperText, 문서와 문서가 링크로 연결되어 있다.
+
+M - Markup, 태그로 이루어져 있다.
+
+L - Language
+```
+
+
+
+# < CSS >
+
+####  주요 역할 : 문서 꾸밈 담당[스타일리스트]
+<br>
+- CSS는 HTML을 아름답게 꾸며주는 **디자이너의 언어**다.
+- 잘 설계된 CSS는 **재활용이 가능**하며 **테마, 템플릿**의 형태로 **확장**할 수 있다. 
+- 또한 자바스크립트와 연계해 콘텐츠의 내용이나 디자인을 **동적**으로 처리할 경우에도 유용하게 사용된다.
+```
+-CSS의 의미-
+
+C - Cascading, '폭포처럼 떨어져 내리는'이라는 사전적 의미로 상위 요소에서 정의한 속성이 하위 요소로 전달된다는 의미에서 유래했다.
+
+SS - StyleSheet, 스타일을 다루는 정체성을 보여준다.
+```
+
+# < JS; JavaScript >
+
+####  주요 역할: 감독[감독]
+<br>
+- JavaScript는 **객체(object)** 기반의 스크립트 언어다.
+- **HTML로는 웹의 내용을 작성**하고, **CSS로는 웹을 디자인**하고, **JavaScript로는 웹의 동작을 구현**할 수 있다.
+- JavaScript는 **동적**이며, 타입을 명시할 필요가 없는 **인터프리터 언어**다.
+- 따라서, 컴파일 작업이 필요하지 않고, 소스코드를 바로 실행한다.
+```
+-Java와 JavaScript-
+
+Java와 JavaScript는 그 이름만 놓고 보면 서로 관련이 있는 언어로 생각되기 쉽다.
+
+하지만 두 언어는 서로 직접적인 관련은 없으며, 비슷한 점보다는 다른 점이 훨씬 많다.
+
+문법상 비슷한 부분은 두 언어의 문법이 모두 C언어를 기반으로 만들어졌기 때문이다.
+
+(출처: http://www.tcpschool.com/javascript/js_intro_basic)
+
+```</span></div></div><br><br>
+         <!-- Disqus api 적용 --><!-- 정확한 페이지 경로 알려주는 기능 추가-->
+		 <nav>
+		 	<div id="disqus_thread"></div>
+			<script>
+				
+			var disqus_config = function () {   
+		        this.page.url = 'https://blog.devj.me/article_detail_11.html';
+		        this.page.identifier = 'article_detail_11.html';
+		    };
+					(function() { 
+						//DON'T EDIT BELOW THIS LINE
+						var d = document, s = d.createElement('script');
+						s.src = 'https://devj-blog.disqus.com/embed.js';
+						s.setAttribute('data-timestamp', +new Date());
+						(d.head || d.body).appendChild(s);
+						})();
+			</script>
+			<noscript>Please enable JavaScript to view the 
+				<a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+			</noscript>
+		 </nav>
+        </div>
+      </div>
+    </section>
+   <!-- 메인-상세페이지 끝 -->
+   <!-- 메인-상세 하단 메뉴 시작 -->
+   <section class="section-3 con-min-width">
+      <div class="con">
+        <div class="article-list-bottom-cell flex flex-jc-c">
+          <div class="./"><i class="fas fa-th-list"></i><a href="html-list-1.html" class="hover-underline"> 목록 </a></div>
+        </div>
+      </div>
+    </section>
+   <!-- 메인-상세 하단 메뉴 끝 -->
+    
+  </main>
+  <!-- 메인 컨텐츠 박스 끝 -->  <!-- 사이드바 시작 -->
+  <header class="side-bar flex flex-column">
+   <div class="side-bar__status-icon">
+    <div>Menu<i class="fas fa-stream"></i></div>
+    <div>▶</div>
+    <div>▼</div>
+   </div>
+   <nav class="side-bar__menu">
+    <ul>
+      <li>
+        <a href="index.html" class="block">
+          <i class="fas fa-home"></i>
+          <span>HOME</span>
+        </a>
+      </li>
+      <li>
+        <a class="block">
+          <i class="fas fa-list"></i>
+          <span>ARTICLES</span>
+        </a>
+        <ul>
+          <li><a href="notice-list-1.html" class="block"><i class="fas fa-exclamation"></i> <span>NOTICE</span></a></li><li><a href="java-list-1.html" class="block"><i class="fab fa-java"></i> <span>JAVA</span></a></li><li><a href="html-list-1.html" class="block"><i class="fab fa-html5"></i> <span>HTML & CSS & JS</span></a></li>
+        </ul>
+      </li>
+      <li>
+        <a class="block">
+          <i class="fas fa-link"></i>
+          <span>LINK</span>
+        </a>
+        <ul>
+          <li>
+            <a href="https://cjy324.tistory.com/" target="_blank" class="block">
+            <i class="fas fa-rss-square"></i>
+            <span>T-STORY</span>
+            </a>
+          </li>
+          <li>
+           <a href="https://github.com/cjy324/TIL_Jooyoung" target="_blank" class="block">
+           <i class="fab fa-github"></i>
+           <span>GITHUB</span>
+           </a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="https://analytics.google.com/analytics/web/?hl=ko&pli=1#/p256591365/reports/defaulthome?params=_u..nav%3Ddefault" target="_blank" class="block">
+          <i class="fas fa-chart-pie"></i>
+          <span>STATISTICS</span>
+        </a>
+      </li>
+    </ul>
+   </nav>
+  </header>
+  <!-- 사이드바 끝 -->    <!-- 맨 위 버튼 시작 -->
+  <nav class="top-button flex flex-jc-c flex-ai-c">
+    <div class="">
+      <a href="#header">▲ TOP</a> 
+    </div>     
+  </nav>
+  <!-- 맨 위 버튼 끝 -->
+  <!-- 푸터 시작 -->
+  <footer class="bottom-bar con-min-width">
+    <div class="con flex flex-ai-c">
+      <a href="#" class="logo logo--mini flex flex-ai-c">
+        <img class="logo--mini__img" src="images/Dev_J_logo/facebook_cover_photo_1.png" alt="">
+      </a>
+      <div class="bottom-bar__site-info">
+        COPYRIGHT 2020. Dev_J. All rights reserved.
+      </div>
+    </div>
+  </footer>
+  <!-- 푸터 끝 -->
+</div>
+<!-- 사이트 박스 끝 -->
+<!-- app.js 불러오기 -->
+<script src="app.js"></script>
+</body>
+</html>

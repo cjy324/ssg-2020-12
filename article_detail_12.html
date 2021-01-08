@@ -1,0 +1,590 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+<script data-ad-client="ca-pub-7996879977557531" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-X5RMP83794"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-X5RMP83794');
+</script>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- 구글 검색엔진 등록-소유권 확인 -->
+<meta name="google-site-verification" content="37R4KcEaJU5LfiKL7GI1hu1_spJgWOazN6xy48OHhD4" />
+
+<!-- Meta Tag & Open Graph -->
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<meta name="viewport" content="width=1200">
+<meta name="apple-mobile-web-app-title" content="Dev_J BLOG" />
+<!-- 메타태그정보 //-->
+<!-- META -->
+<link rel="canonical" href="https://blog.devj.me" />
+<meta name="subject" content="2강. HTML 태그, 엘리먼트 개념 및 관계성(feat.부모,자식,형제)"/>
+<meta name="title" content="Dev_J BLOG" />
+<meta name="keywords" content="JAVA, HTML, CSS, JavaScript, MySQL" />
+<meta name="copyright" content="Dev_J BLOG" />
+<meta name="pubdate" content="2021-01-08T18:26:07" />
+<meta name="lastmod" content="2021-01-08T18:26:07" />
+<!-- OPENGRAPH -->
+<meta property="og:site_name" content="Dev_J BLOG" />
+<meta property="og:type" content="blog" />
+<meta property="og:title" content="2강. HTML 태그, 엘리먼트 개념 및 관계성(feat.부모,자식,형제)" />
+<meta property="og:description" content=" HTML의 구성 개념
+
+hr
+
+태그1nbspnbspnbsp엘리먼트1여는 태그  nbsp내용1nbsp  엘리먼트1닫는 태그nbspnbspnbsp태그2
+태그3nbspnbspnbsp엘리먼트2여는 태그  nbsp내용2nbsp  엘리먼트2닫는 태그nbspnbspnbsp태그4
+hr
+
+
+   각각을 태그 라 한다
+ 서로 짝이되는여는 태그닫는 태그태그를 1개의 엘리먼트라고 한다
+ 즉 위 내용에서 태그는 총 4개이고 엘리먼트는 총 2개이다
+ HTML에서 태그는 여러 종류가 존재하는데 이는 다음에 자세히 살펴보도록 하자
+
+ 엘리먼트간의 관계성feat 부모 자식 형제
+html
+
+div1                   
+    section           
+        navnav    
+    section
+div1
+
+div2div2   
+
+
+
+  각각의 엘리먼트간에는 관계성이 존재한다
+  위 내용에서 div1 엘리먼트의 여는태그div1와 닫는태그div1 사이에 section과 nav 엘리먼트가 위치하고 있는 것을 볼 수 있다
+  마찬가지로 section엘리먼트의 여는태그section와 닫는태그section 사이에는 nav 엘리먼트가 있는 것을 볼 수 있다
+  이 관계를 해석하면 아래와 같다
+html
+
+div1                           section의 부모nav의 조상
+    section                    div의 자식
+        navnav              div의 후손 section의 자식
+    section
+div1
+
+
+ div1엘리먼트에 속한 자식은 section엘리먼트
+
+ section엘리먼트에 속한 자식은 nav엘리먼트
+
+ div1엘리먼트의 후손은 nav엘리먼트
+
+ nav엘리먼트의 조상은 div1엘리먼트
+
+
+ 엘리먼트간의 관계성에서 자식과 후손은 각각의 부모 또는 조상으로부터 영향을 받는다
+ 즉 부모 또는 조상의 속성을 변경하면 자식과 후손도 속성이 변한다는 의미이다
+ 이를 적절히 활용하면 스타일을 적용할 때 모든 엘리먼트를 일일이 선택할 필요없이 부모나 조상의 스타일만 바꿔도 이에 속한 자식과 후손들의 스타일을 한번에 바꿀 수 있다다만 속성에 따라 적용이 되지 않는 것도 있으니 유의하도록 하자
+br
+ 다음으로 div2 엘리먼트는 div1에 속해있지 않고 다른 위치에 있는 것을 확인할 수 있다
+ 이러한 관계는 형제관계라 한다
+
+html
+
+div1                           section의 부모nav의 조상
+    section                    div의 자식
+        navnav              div의 후손 section의 자식
+    section
+div1
+
+
+div2div2                   형제관계동등
+
+ div1 엘리먼트와 div2 엘리먼트는 형제관계
+
+ 즉 div1 엘리먼트와 div2 엘리먼트는 서로 영향을 받지 않는 동등한 관계라는 것을 의미한다
+ 웹코딩을 할 때 선택한 엘리먼트 외 다른 엘리먼트에는 영향을 끼치고 싶지 않다면 이와 같은 형제관계를 적절히 사용하도록 하자" />
+<meta property="og:locale" content="ko_KR" />
+<meta property="og:image" content="images/Dev_J_logo/logo.png" />
+<meta property="og:image:alt" content="blog.devj.me" />
+<meta property="og:image:width" content="486" />
+<meta property="og:image:height" content="254" />
+<meta property="og:updated_time" content="2021-01-08T18:26:07"/>
+<meta property="og:pubdate" content="2021-01-08T18:26:07" />
+<meta property="og:url" content="https://blog.devj.me" />
+<!-- TWITTER -->
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="2강. HTML 태그, 엘리먼트 개념 및 관계성(feat.부모,자식,형제)" />
+<meta name="twitter:site" content="@Dev_J BLOG" />
+<meta name="twitter:creator" content="@Dev_J BLOG" />
+<meta name="twitter:image" content="images/Dev_J_logo/logo.png">
+<meta name="twitter:description" content=" HTML의 구성 개념
+
+hr
+
+태그1nbspnbspnbsp엘리먼트1여는 태그  nbsp내용1nbsp  엘리먼트1닫는 태그nbspnbspnbsp태그2
+태그3nbspnbspnbsp엘리먼트2여는 태그  nbsp내용2nbsp  엘리먼트2닫는 태그nbspnbspnbsp태그4
+hr
+
+
+   각각을 태그 라 한다
+ 서로 짝이되는여는 태그닫는 태그태그를 1개의 엘리먼트라고 한다
+ 즉 위 내용에서 태그는 총 4개이고 엘리먼트는 총 2개이다
+ HTML에서 태그는 여러 종류가 존재하는데 이는 다음에 자세히 살펴보도록 하자
+
+ 엘리먼트간의 관계성feat 부모 자식 형제
+html
+
+div1                   
+    section           
+        navnav    
+    section
+div1
+
+div2div2   
+
+
+
+  각각의 엘리먼트간에는 관계성이 존재한다
+  위 내용에서 div1 엘리먼트의 여는태그div1와 닫는태그div1 사이에 section과 nav 엘리먼트가 위치하고 있는 것을 볼 수 있다
+  마찬가지로 section엘리먼트의 여는태그section와 닫는태그section 사이에는 nav 엘리먼트가 있는 것을 볼 수 있다
+  이 관계를 해석하면 아래와 같다
+html
+
+div1                           section의 부모nav의 조상
+    section                    div의 자식
+        navnav              div의 후손 section의 자식
+    section
+div1
+
+
+ div1엘리먼트에 속한 자식은 section엘리먼트
+
+ section엘리먼트에 속한 자식은 nav엘리먼트
+
+ div1엘리먼트의 후손은 nav엘리먼트
+
+ nav엘리먼트의 조상은 div1엘리먼트
+
+
+ 엘리먼트간의 관계성에서 자식과 후손은 각각의 부모 또는 조상으로부터 영향을 받는다
+ 즉 부모 또는 조상의 속성을 변경하면 자식과 후손도 속성이 변한다는 의미이다
+ 이를 적절히 활용하면 스타일을 적용할 때 모든 엘리먼트를 일일이 선택할 필요없이 부모나 조상의 스타일만 바꿔도 이에 속한 자식과 후손들의 스타일을 한번에 바꿀 수 있다다만 속성에 따라 적용이 되지 않는 것도 있으니 유의하도록 하자
+br
+ 다음으로 div2 엘리먼트는 div1에 속해있지 않고 다른 위치에 있는 것을 확인할 수 있다
+ 이러한 관계는 형제관계라 한다
+
+html
+
+div1                           section의 부모nav의 조상
+    section                    div의 자식
+        navnav              div의 후손 section의 자식
+    section
+div1
+
+
+div2div2                   형제관계동등
+
+ div1 엘리먼트와 div2 엘리먼트는 형제관계
+
+ 즉 div1 엘리먼트와 div2 엘리먼트는 서로 영향을 받지 않는 동등한 관계라는 것을 의미한다
+ 웹코딩을 할 때 선택한 엘리먼트 외 다른 엘리먼트에는 영향을 끼치고 싶지 않다면 이와 같은 형제관계를 적절히 사용하도록 하자" />
+<!-- GOOGLE+ -->
+<meta itemprop="headline" content="Dev_J BLOG" />
+<meta itemprop="name" content="Dev_J BLOG" />
+<meta itemprop="description" content=" HTML의 구성 개념
+
+hr
+
+태그1nbspnbspnbsp엘리먼트1여는 태그  nbsp내용1nbsp  엘리먼트1닫는 태그nbspnbspnbsp태그2
+태그3nbspnbspnbsp엘리먼트2여는 태그  nbsp내용2nbsp  엘리먼트2닫는 태그nbspnbspnbsp태그4
+hr
+
+
+   각각을 태그 라 한다
+ 서로 짝이되는여는 태그닫는 태그태그를 1개의 엘리먼트라고 한다
+ 즉 위 내용에서 태그는 총 4개이고 엘리먼트는 총 2개이다
+ HTML에서 태그는 여러 종류가 존재하는데 이는 다음에 자세히 살펴보도록 하자
+
+ 엘리먼트간의 관계성feat 부모 자식 형제
+html
+
+div1                   
+    section           
+        navnav    
+    section
+div1
+
+div2div2   
+
+
+
+  각각의 엘리먼트간에는 관계성이 존재한다
+  위 내용에서 div1 엘리먼트의 여는태그div1와 닫는태그div1 사이에 section과 nav 엘리먼트가 위치하고 있는 것을 볼 수 있다
+  마찬가지로 section엘리먼트의 여는태그section와 닫는태그section 사이에는 nav 엘리먼트가 있는 것을 볼 수 있다
+  이 관계를 해석하면 아래와 같다
+html
+
+div1                           section의 부모nav의 조상
+    section                    div의 자식
+        navnav              div의 후손 section의 자식
+    section
+div1
+
+
+ div1엘리먼트에 속한 자식은 section엘리먼트
+
+ section엘리먼트에 속한 자식은 nav엘리먼트
+
+ div1엘리먼트의 후손은 nav엘리먼트
+
+ nav엘리먼트의 조상은 div1엘리먼트
+
+
+ 엘리먼트간의 관계성에서 자식과 후손은 각각의 부모 또는 조상으로부터 영향을 받는다
+ 즉 부모 또는 조상의 속성을 변경하면 자식과 후손도 속성이 변한다는 의미이다
+ 이를 적절히 활용하면 스타일을 적용할 때 모든 엘리먼트를 일일이 선택할 필요없이 부모나 조상의 스타일만 바꿔도 이에 속한 자식과 후손들의 스타일을 한번에 바꿀 수 있다다만 속성에 따라 적용이 되지 않는 것도 있으니 유의하도록 하자
+br
+ 다음으로 div2 엘리먼트는 div1에 속해있지 않고 다른 위치에 있는 것을 확인할 수 있다
+ 이러한 관계는 형제관계라 한다
+
+html
+
+div1                           section의 부모nav의 조상
+    section                    div의 자식
+        navnav              div의 후손 section의 자식
+    section
+div1
+
+
+div2div2                   형제관계동등
+
+ div1 엘리먼트와 div2 엘리먼트는 형제관계
+
+ 즉 div1 엘리먼트와 div2 엘리먼트는 서로 영향을 받지 않는 동등한 관계라는 것을 의미한다
+ 웹코딩을 할 때 선택한 엘리먼트 외 다른 엘리먼트에는 영향을 끼치고 싶지 않다면 이와 같은 형제관계를 적절히 사용하도록 하자" />
+<meta itemprop="image" content="images/Dev_J_logo/logo.png" />
+
+<!-- 사이트 타이틀 -->
+<title>2강. HTML 태그, 엘리먼트 개념 및 관계성(feat.부모,자식,형제) | Dev_J BLOG | ARTICLE DETAIL</title>
+
+
+<!-- 파비콘 -->
+<link rel="shortcut icon" href="images/favicon/favicon.ico" type="image/x-icon">
+<link rel="icon" href="images/favicon/favicon.ico" type="image/x-icon">
+
+<!-- 폰트어썸 불러오기 -->
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+<!-- app.css 불러오기 -->
+<link rel="stylesheet" href="app.css">
+
+<!--모바일에서도 PC와 같은 비율 유지-->
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<!--제이쿼리-->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+
+</head>
+
+<body>
+<!-- 사이트 박스 시작 -->
+<div class="body-content min-height-100vh flex flex-column">
+  <!-- 로고바 시작 -->
+  <header class="logo-bar con-min-width" id="header">
+    <div class="con height-100p flex flex-jc-c">
+      <a href="index.html" class="logo flex flex-ai-c"> 
+        <img class="logo__img" src="images/Dev_J_logo/facebook_cover_photo_1.png" alt="">
+        <span>
+          BLOG
+        </span>
+      </a>
+    </div>
+  </header>
+  <!-- 로고바 끝 -->
+
+  <!-- 메뉴바 시작 -->
+  <header class="menu-bar con-min-width">
+    <div class="con height-100p">
+      <nav class="menu-bar__menu-1">
+        <ul class="flex">
+          <li>
+            <a href="index.html" class="block">
+              <i class="fas fa-home"></i>
+              <span>ABOUT</span>
+            </a>
+          </li>
+          <li>
+            <a class="block">
+              <i class="fas fa-list"></i>
+              <span>ARTICLES</span>
+            </a>
+            <ul>
+              <li><a href="notice-list-1.html" class="block"><i class="fas fa-exclamation"></i> <span>NOTICE</span> BOARD</a></li><li><a href="java-list-1.html" class="block"><i class="fab fa-java"></i> <span>JAVA</span> BOARD</a></li><li><a href="html-list-1.html" class="block"><i class="fab fa-html5"></i> <span>HTML & CSS & JS</span> BOARD</a></li>
+            </ul>
+          </li>
+          <li>
+            <a class="block">
+              <i class="fas fa-link"></i>
+              <span>LINK</span>
+            </a>
+            <ul>
+              <li>
+                <a href="https://cjy324.tistory.com/" target="_blank" class="block">
+                  <i class="fas fa-rss-square"></i>
+                  <span>T-STORY</span>
+                </a>
+              </li>
+              <li>
+                <a href="https://github.com/cjy324/TIL_Jooyoung#til_jooyoung" target="_blank" class="block">
+                  <i class="fab fa-github"></i>
+                  <span>GITHUB</span>
+                </a>
+              </li>
+            </ul>
+          </li>
+          <li>
+            <a href="search.html" class="block">
+              <i class="fas fa-search"></i>
+              <span>SEARCH</span>
+            </a>
+          </li>
+          <li>
+            <a href="statistics.html" class="block">
+              <i class="fas fa-chart-pie"></i>
+              <span>STATISTICS</span>
+            </a>
+          </li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+  <!-- 메뉴바 끝 --> 
+
+  <!-- 메인 컨텐츠 박스 시작 -->
+  <main class="main-box flex-grow-1">
+   <!-- 메인-타이틀바 시작 -->
+	<div class="title-bar con-min-width">
+		<h1 class="con">
+			<i class="fas fa-file-invoice"></i> <span>ARTICLE DETAIL</span>
+		</h1>
+	</div>
+   <!-- 메인-타이틀바 종료 --><!-- 하이라이트 라이브러리 추가, 토스트 UI 에디터에서 사용됨 -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.4.1/highlight.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.4.1/styles/default.min.css">
+
+<!-- 토스트 UI 에디터, 자바스크립트 코어 -->
+<script
+	src="https://uicdn.toast.com/editor/latest/toastui-editor-all.min.js"></script>
+
+<!-- 코드 미러 라이브러리 추가, 토스트 UI 에디터에서 사용됨 -->
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.58.3/codemirror.min.css" />
+<!-- 토스트 UI 에디터, CSS 코어 -->
+<link rel="stylesheet"
+	href="https://uicdn.toast.com/editor/latest/toastui-editor.min.css" />
+
+<!-- 토스트 UI 에디터, 신택스 하이라이트 플러그인 추가 -->
+<script src="https://uicdn.toast.com/editor-plugin-code-syntax-highlight/latest/toastui-editor-plugin-code-syntax-highlight.min.js"></script>
+
+<!-- Progress-bar -->
+<script type="text/javascript" src="https://rawcdn.githack.com/mburakerman/prognroll/0feda211643153bce2c69de32ea1b39cdc64ffbe/src/prognroll.js"></script> 
+<script type="text/javascript"> $(function() { $("body").prognroll( {height:10, color:"#666666"} ); $(".content").prognroll({ custom:true }); }); </script>
+
+   <!-- 메인-상세페이지 시작 -->
+   <section class="section-2 con-min-width min-height-50vh">
+      <div class="con height-100p">
+        <div class="article-detail-cell height-100p">
+          <div class="article-detail-cell__board-name"><div><span>게시판 : </span><span>HTML & CSS & JS 게시판</span></div></div><div class="article-detail-cell__id"><div><span>게시물 번호 : </span><span>12</span></div></div><div class="article-detail-cell__member-id"><div><span>작성자 : </span><span>Dev_J</span></div></div><div class="article-detail-cell__reg-date"><div><span>작성일 : </span><span>2021-01-08 18:08:22</span></div></div><div class="article-detail-cell__update-date"><div><span>수정일 : </span><span>2021-01-08 18:26:05</span></div></div><div class="article-detail-cell__update-date"><div><span>조회수 : </span><span>0</span></div></div><div class="article-detail-cell__update-date"><div><span>추천수 : </span><span>0</span></div></div><div class="article-detail-cell__update-date"><div><span>댓글수 : </span><span>0</span></div><br></div><div class="article-detail-cell__title"><div><span>제목 : </span><span>2강. HTML 태그, 엘리먼트 개념 및 관계성(feat.부모,자식,형제)</span></div></div><div class="article-detail-cell__body height-70p "><div><span># HTML의 구성 개념
+
+<hr>
+
+태그1---▶&nbsp;&nbsp;&nbsp;<엘리먼트1(여는 태그)>  &nbsp;내용1&nbsp;  <\/엘리먼트1(닫는 태그)>&nbsp;&nbsp;&nbsp;◀---태그2
+태그3---▶&nbsp;&nbsp;&nbsp;<엘리먼트2(여는 태그)>  &nbsp;내용2&nbsp;  <\/엘리먼트2(닫는 태그)>&nbsp;&nbsp;&nbsp;◀---태그4
+<hr>
+
+
+- <  >각각을 **'태그'** 라 한다.
+- 서로 짝이되는(여는 태그+닫는 태그)태그를 **1개의 엘리먼트**라고 한다.
+- 즉, 위 내용에서 태그는 총 4개이고, 엘리먼트는 총 2개이다.
+- HTML에서 태그는 여러 종류가 존재하는데 이는 다음에 자세히 살펴보도록 하자.
+
+# 엘리먼트간의 관계성(feat. 부모, 자식, 형제)
+```html
+
+<div1>                   
+    <section>           
+        <nav></nav>    
+    </section>
+</div1>
+
+<div2></div2>   
+
+```
+
+ - 각각의 엘리먼트간에는 **관계성**이 존재한다.
+ - 위 내용에서 div1 엘리먼트의 여는태그(\<div1>)와 닫는태그(\</div1>) 사이에 section과 nav 엘리먼트가 위치하고 있는 것을 볼 수 있다.
+ - 마찬가지로 section엘리먼트의 여는태그(\<section>)와 닫는태그(\</section>) 사이에는 nav 엘리먼트가 있는 것을 볼 수 있다.
+ - 이 관계를 해석하면 아래와 같다.
+```html
+
+<div1>                           <!--section의 부모--><!--nav의 조상-->
+    <section>                    <!--div의 자식-->
+        <nav></nav>              <!--div의 후손--> <!--section의 자식-->
+    </section>
+</div1>
+
+
+- div1엘리먼트에 속한 자식은 section엘리먼트
+
+- section엘리먼트에 속한 자식은 nav엘리먼트
+
+- div1엘리먼트의 후손은 nav엘리먼트
+
+- nav엘리먼트의 조상은 div1엘리먼트
+
+```
+- 엘리먼트간의 관계성에서 **자식과 후손**은 각각의 **부모 또는 조상**으로부터 **영향을 받는다.**
+- **즉, 부모 또는 조상의 속성을 변경하면 자식과 후손도 속성이 변한다는 의미이다.**
+- 이를 적절히 활용하면 스타일을 적용할 때 모든 엘리먼트를 일일이 선택할 필요없이 부모나 조상의 스타일만 바꿔도 이에 속한 자식과 후손들의 스타일을 한번에 바꿀 수 있다.(다만, 속성에 따라 적용이 되지 않는 것도 있으니 유의하도록 하자.)
+<br>
+- 다음으로 div2 엘리먼트는 div1에 속해있지 않고 다른 위치에 있는 것을 확인할 수 있다.
+- 이러한 관계는 **형제관계**라 한다.
+
+```html
+
+<div1>                           <!--section의 부모--><!--nav의 조상-->
+    <section>                    <!--div의 자식-->
+        <nav></nav>              <!--div의 후손--> <!--section의 자식-->
+    </section>
+</div1>
+
+
+<div2></div2>                   <!--형제관계(동등)-->
+
+- div1 엘리먼트와 div2 엘리먼트는 형제관계
+```
+- 즉, div1 엘리먼트와 div2 엘리먼트는 **서로 영향을 받지 않는 동등한 관계**라는 것을 의미한다.
+- 웹코딩을 할 때 선택한 엘리먼트 외 다른 엘리먼트에는 영향을 끼치고 싶지 않다면 이와 같은 형제관계를 적절히 사용하도록 하자.</span></div></div><br><br>
+         <!-- Disqus api 적용 --><!-- 정확한 페이지 경로 알려주는 기능 추가-->
+		 <nav>
+		 	<div id="disqus_thread"></div>
+			<script>
+				
+			var disqus_config = function () {   
+		        this.page.url = 'https://blog.devj.me/article_detail_12.html';
+		        this.page.identifier = 'article_detail_12.html';
+		    };
+					(function() { 
+						//DON'T EDIT BELOW THIS LINE
+						var d = document, s = d.createElement('script');
+						s.src = 'https://devj-blog.disqus.com/embed.js';
+						s.setAttribute('data-timestamp', +new Date());
+						(d.head || d.body).appendChild(s);
+						})();
+			</script>
+			<noscript>Please enable JavaScript to view the 
+				<a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+			</noscript>
+		 </nav>
+        </div>
+      </div>
+    </section>
+   <!-- 메인-상세페이지 끝 -->
+   <!-- 메인-상세 하단 메뉴 시작 -->
+   <section class="section-3 con-min-width">
+      <div class="con">
+        <div class="article-list-bottom-cell flex flex-jc-c">
+          <div class="./"><a href="article_detail_11.html" class="hover-underline">&lt 이전글</a></div><div class="./"><i class="fas fa-th-list"></i><a href="html-list-1.html" class="hover-underline"> 목록 </a></div>
+        </div>
+      </div>
+    </section>
+   <!-- 메인-상세 하단 메뉴 끝 -->
+    
+  </main>
+  <!-- 메인 컨텐츠 박스 끝 -->  <!-- 사이드바 시작 -->
+  <header class="side-bar flex flex-column">
+   <div class="side-bar__status-icon">
+    <div>Menu<i class="fas fa-stream"></i></div>
+    <div>▶</div>
+    <div>▼</div>
+   </div>
+   <nav class="side-bar__menu">
+    <ul>
+      <li>
+        <a href="index.html" class="block">
+          <i class="fas fa-home"></i>
+          <span>HOME</span>
+        </a>
+      </li>
+      <li>
+        <a class="block">
+          <i class="fas fa-list"></i>
+          <span>ARTICLES</span>
+        </a>
+        <ul>
+          <li><a href="notice-list-1.html" class="block"><i class="fas fa-exclamation"></i> <span>NOTICE</span></a></li><li><a href="java-list-1.html" class="block"><i class="fab fa-java"></i> <span>JAVA</span></a></li><li><a href="html-list-1.html" class="block"><i class="fab fa-html5"></i> <span>HTML & CSS & JS</span></a></li>
+        </ul>
+      </li>
+      <li>
+        <a class="block">
+          <i class="fas fa-link"></i>
+          <span>LINK</span>
+        </a>
+        <ul>
+          <li>
+            <a href="https://cjy324.tistory.com/" target="_blank" class="block">
+            <i class="fas fa-rss-square"></i>
+            <span>T-STORY</span>
+            </a>
+          </li>
+          <li>
+           <a href="https://github.com/cjy324/TIL_Jooyoung" target="_blank" class="block">
+           <i class="fab fa-github"></i>
+           <span>GITHUB</span>
+           </a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="search.html" class="block">
+          <i class="fas fa-search"></i>
+          <span>SEARCH</span>
+        </a>
+      </li>
+      <li>
+        <a href="statistics.html" class="block">
+          <i class="fas fa-chart-pie"></i>
+          <span>STATISTICS</span>
+        </a>
+      </li>
+    </ul>
+   </nav>
+  </header>
+  <!-- 사이드바 끝 -->    <!-- 맨 위 버튼 시작 -->
+  <nav class="top-button flex flex-jc-c flex-ai-c">
+    <div class="">
+      <a href="#header">▲ TOP</a> 
+    </div>     
+  </nav>
+  <!-- 맨 위 버튼 끝 -->
+  <!-- 푸터 시작 -->
+  <footer class="bottom-bar con-min-width">
+    <div class="con flex flex-ai-c">
+      <a href="#" class="logo logo--mini flex flex-ai-c">
+        <img class="logo--mini__img" src="images/Dev_J_logo/facebook_cover_photo_1.png" alt="">
+      </a>
+      <div class="bottom-bar__site-info">
+        COPYRIGHT 2020. Dev_J. All rights reserved.
+      </div>
+    </div>
+  </footer>
+  <!-- 푸터 끝 -->
+</div>
+<!-- 사이트 박스 끝 -->
+<!-- app.js 불러오기 -->
+<script src="app.js"></script>
+</body>
+</html>

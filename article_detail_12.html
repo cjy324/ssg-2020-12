@@ -28,19 +28,20 @@
 <meta name="title" content="Dev_J BLOG" />
 <meta name="keywords" content="JAVA, HTML, CSS, JavaScript, MySQL" />
 <meta name="copyright" content="Dev_J BLOG" />
-<meta name="pubdate" content="2021-01-12T16:10:23" />
-<meta name="lastmod" content="2021-01-12T16:10:23" />
+<meta name="pubdate" content="2021-01-13T17:29:48" />
+<meta name="lastmod" content="2021-01-13T17:29:48" />
 <!-- OPENGRAPH -->
 <meta property="og:site_name" content="Dev_J BLOG" />
 <meta property="og:type" content="blog" />
 <meta property="og:title" content="2강. HTML 태그, 엘리먼트 개념 및 관계성(feat.부모,자식,형제)" />
 <meta property="og:description" content=" HTML의 구성 개념
 
-hr
 
-태그1nbspnbspnbsp엘리먼트1여는 태그  nbsp내용1nbsp  엘리먼트1닫는 태그nbspnbspnbsp태그2
-태그3nbspnbspnbsp엘리먼트2여는 태그  nbsp내용2nbsp  엘리먼트2닫는 태그nbspnbspnbsp태그4
-hr
+
+태그1     엘리먼트1여는 태그  내용1  엘리먼트1닫는 태그     태그2
+태그3     엘리먼트2여는 태그  내용2  엘리먼트2닫는 태그     태그4
+
+
 
 
    각각을 태그 라 한다
@@ -110,8 +111,8 @@ div2div2                   형제관계동등
 <meta property="og:image:alt" content="blog.devj.me" />
 <meta property="og:image:width" content="486" />
 <meta property="og:image:height" content="254" />
-<meta property="og:updated_time" content="2021-01-12T16:10:23"/>
-<meta property="og:pubdate" content="2021-01-12T16:10:23" />
+<meta property="og:updated_time" content="2021-01-13T17:29:48"/>
+<meta property="og:pubdate" content="2021-01-13T17:29:48" />
 <meta property="og:url" content="https://blog.devj.me" />
 <!-- TWITTER -->
 <meta name="twitter:card" content="summary_large_image" />
@@ -121,11 +122,12 @@ div2div2                   형제관계동등
 <meta name="twitter:image" content="images/Dev_J_logo/logo.png">
 <meta name="twitter:description" content=" HTML의 구성 개념
 
-hr
 
-태그1nbspnbspnbsp엘리먼트1여는 태그  nbsp내용1nbsp  엘리먼트1닫는 태그nbspnbspnbsp태그2
-태그3nbspnbspnbsp엘리먼트2여는 태그  nbsp내용2nbsp  엘리먼트2닫는 태그nbspnbspnbsp태그4
-hr
+
+태그1     엘리먼트1여는 태그  내용1  엘리먼트1닫는 태그     태그2
+태그3     엘리먼트2여는 태그  내용2  엘리먼트2닫는 태그     태그4
+
+
 
 
    각각을 태그 라 한다
@@ -195,11 +197,12 @@ div2div2                   형제관계동등
 <meta itemprop="name" content="Dev_J BLOG" />
 <meta itemprop="description" content=" HTML의 구성 개념
 
-hr
 
-태그1nbspnbspnbsp엘리먼트1여는 태그  nbsp내용1nbsp  엘리먼트1닫는 태그nbspnbspnbsp태그2
-태그3nbspnbspnbsp엘리먼트2여는 태그  nbsp내용2nbsp  엘리먼트2닫는 태그nbspnbspnbsp태그4
-hr
+
+태그1     엘리먼트1여는 태그  내용1  엘리먼트1닫는 태그     태그2
+태그3     엘리먼트2여는 태그  내용2  엘리먼트2닫는 태그     태그4
+
+
 
 
    각각을 태그 라 한다
@@ -277,8 +280,6 @@ div2div2                   형제관계동등
 <!-- 폰트어썸 불러오기 -->
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
-<!-- app.css 불러오기 -->
-<link rel="stylesheet" href="app.css">
 
 <!--모바일에서도 PC와 같은 비율 유지-->
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -286,6 +287,28 @@ div2div2                   형제관계동등
 <!--제이쿼리-->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
+<!-- 하이라이트 라이브러리 추가, 토스트 UI 에디터에서 사용됨 -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.4.1/highlight.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.4.1/styles/default.min.css">
+
+<!-- 토스트 UI 에디터, 자바스크립트 코어 -->
+<script
+	src="https://uicdn.toast.com/editor/latest/toastui-editor-all.min.js" defer></script>
+
+<!-- 코드 미러 라이브러리 추가, 토스트 UI 에디터에서 사용됨 -->
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.58.3/codemirror.min.css" />
+<!-- 토스트 UI 에디터, CSS 코어 -->
+<link rel="stylesheet"
+	href="https://uicdn.toast.com/editor/latest/toastui-editor.min.css" />
+
+<!-- 토스트 UI 에디터, 신택스 하이라이트 플러그인 추가 -->
+<script src="https://uicdn.toast.com/editor-plugin-code-syntax-highlight/latest/toastui-editor-plugin-code-syntax-highlight.min.js" defer></script>
+
+<!-- app.css 불러오기 -->
+<link rel="stylesheet" href="app.css">
+<!-- app.js 불러오기 -->
+<script src="app.js" defer></script>
 
 </head>
 
@@ -371,24 +394,7 @@ div2div2                   형제관계동등
 			<i class="fas fa-file-invoice"></i> <span>ARTICLE DETAIL</span>
 		</h1>
 	</div>
-   <!-- 메인-타이틀바 종료 --><!-- 하이라이트 라이브러리 추가, 토스트 UI 에디터에서 사용됨 -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.4.1/highlight.min.js"></script>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.4.1/styles/default.min.css">
-
-<!-- 토스트 UI 에디터, 자바스크립트 코어 -->
-<script
-	src="https://uicdn.toast.com/editor/latest/toastui-editor-all.min.js"></script>
-
-<!-- 코드 미러 라이브러리 추가, 토스트 UI 에디터에서 사용됨 -->
-<link rel="stylesheet"
-	href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.58.3/codemirror.min.css" />
-<!-- 토스트 UI 에디터, CSS 코어 -->
-<link rel="stylesheet"
-	href="https://uicdn.toast.com/editor/latest/toastui-editor.min.css" />
-
-<!-- 토스트 UI 에디터, 신택스 하이라이트 플러그인 추가 -->
-<script src="https://uicdn.toast.com/editor-plugin-code-syntax-highlight/latest/toastui-editor-plugin-code-syntax-highlight.min.js"></script>
-
+   <!-- 메인-타이틀바 종료 -->
 <!-- Progress-bar -->
 <script type="text/javascript" src="https://rawcdn.githack.com/mburakerman/prognroll/0feda211643153bce2c69de32ea1b39cdc64ffbe/src/prognroll.js"></script> 
 <script type="text/javascript"> $(function() { $("body").prognroll( {height:10, color:"#666666"} ); $(".content").prognroll({ custom:true }); }); </script>
@@ -397,13 +403,14 @@ div2div2                   형제관계동등
    <section class="section-2 con-min-width min-height-50vh">
       <div class="con height-100p">
         <div class="article-detail-cell height-100p">
-          <div class="article-detail-cell__board-name"><div><span>게시판 : </span><span>HTML & CSS & JS 게시판</span></div></div><div class="article-detail-cell__id"><div><span>번호 : </span><span>12</span></div></div><div class="article-detail-cell__member-id"><div><span>작성자 : </span><span>Dev_J</span></div></div><div class="article-detail-cell__reg-date"><div><span>작성일 : </span><span>2021-01-08 18:08:22</span></div></div><div class="article-detail-cell__update-date"><div><span>수정일 : </span><span>2021-01-12 16:10:18</span></div></div><div class="article-detail-cell__hitsCount"><div><span>조회수 : </span><span>0</span></div></div><div class="article-detail-cell__likesCount"><div><span>추천수 : </span><span>0</span></div></div><div class="article-detail-cell__commentsCount"><div><span>댓글수 : </span><span>0</span></div><br></div><div class="article-detail-cell__title"><div><span>제목 : </span><span>2강. HTML 태그, 엘리먼트 개념 및 관계성(feat.부모,자식,형제)</span></div></div><div class="article-detail-cell__body height-70p "><div><span># HTML의 구성 개념
+          <div class="article-detail-cell__board-name"><div><span>게시판 : </span><span>HTML & CSS & JS 게시판</span></div></div><div class="article-detail-cell__id"><div><span>번호 : </span><span>12</span></div></div><div class="article-detail-cell__member-id"><div><span>작성자 : </span><span>Dev_J</span></div></div><div class="article-detail-cell__reg-date"><div><span>작성일 : </span><span>2021-01-08 18:08:22</span></div></div><div class="article-detail-cell__update-date"><div><span>수정일 : </span><span>2021-01-13 17:29:43</span></div></div><div class="article-detail-cell__hitsCount"><div><span>조회수 : </span><span>0</span></div></div><div class="article-detail-cell__likesCount"><div><span>추천수 : </span><span>0</span></div></div><div class="article-detail-cell__commentsCount"><div><span>댓글수 : </span><span>0</span></div><br></div><div class="article-detail-cell__title"><div><span>제목 : </span><span>2강. HTML 태그, 엘리먼트 개념 및 관계성(feat.부모,자식,형제)</span></div></div><script type"text/x-template"># HTML의 구성 개념
 
-<hr>
+```
 
-태그1---▶&nbsp;&nbsp;&nbsp;<엘리먼트1(여는 태그)>  &nbsp;내용1&nbsp;  <\/엘리먼트1(닫는 태그)>&nbsp;&nbsp;&nbsp;◀---태그2
-태그3---▶&nbsp;&nbsp;&nbsp;<엘리먼트2(여는 태그)>  &nbsp;내용2&nbsp;  <\/엘리먼트2(닫는 태그)>&nbsp;&nbsp;&nbsp;◀---태그4
-<hr>
+태그1---▶     <엘리먼트1(여는 태그)>  내용1  </엘리먼트1(닫는 태그)>     ◀---태그2
+태그3---▶     <엘리먼트2(여는 태그)>  내용2  </엘리먼트2(닫는 태그)>     ◀---태그4
+
+```
 
 
 - <  >각각을 **'태그'** 라 한다.
@@ -467,7 +474,7 @@ div2div2                   형제관계동등
 - div1 엘리먼트와 div2 엘리먼트는 형제관계
 ```
 - 즉, div1 엘리먼트와 div2 엘리먼트는 **서로 영향을 받지 않는 동등한 관계**라는 것을 의미한다.
-- 웹코딩을 할 때 선택한 엘리먼트 외 다른 엘리먼트에는 영향을 끼치고 싶지 않다면 이와 같은 형제관계를 적절히 사용하도록 하자.</span></div></div><br><br>
+- 웹코딩을 할 때 선택한 엘리먼트 외 다른 엘리먼트에는 영향을 끼치고 싶지 않다면 이와 같은 형제관계를 적절히 사용하도록 하자.</script><div class="article-detail-cell__body height-70p toast-ui-viewer"><div></div></div><br><div class="article-detail-cell__tag"><nav># <a href="#" target="_blank">tag.title</a></nav></div><br><br>
          <!-- Disqus api 적용 --><!-- 정확한 페이지 경로 알려주는 기능 추가-->
 		 <nav>
 		 	<div id="disqus_thread"></div>
@@ -587,7 +594,5 @@ div2div2                   형제관계동등
   <!-- 푸터 끝 -->
 </div>
 <!-- 사이트 박스 끝 -->
-<!-- app.js 불러오기 -->
-<script src="app.js"></script>
 </body>
 </html>

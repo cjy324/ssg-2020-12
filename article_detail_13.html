@@ -28,8 +28,8 @@
 <meta name="title" content="Dev_J BLOG" />
 <meta name="keywords" content="JAVA, HTML, CSS, JavaScript, MySQL" />
 <meta name="copyright" content="Dev_J BLOG" />
-<meta name="pubdate" content="2021-01-12T16:10:22" />
-<meta name="lastmod" content="2021-01-12T16:10:22" />
+<meta name="pubdate" content="2021-01-13T17:29:48" />
+<meta name="lastmod" content="2021-01-13T17:29:48" />
 <!-- OPENGRAPH -->
 <meta property="og:site_name" content="Dev_J BLOG" />
 <meta property="og:type" content="blog" />
@@ -73,8 +73,8 @@ httpscodepeniocjy324embedpreviewpoEZLJMheight265themeidlightdefaulttabhtmlcssres
 <meta property="og:image:alt" content="blog.devj.me" />
 <meta property="og:image:width" content="486" />
 <meta property="og:image:height" content="254" />
-<meta property="og:updated_time" content="2021-01-12T16:10:22"/>
-<meta property="og:pubdate" content="2021-01-12T16:10:22" />
+<meta property="og:updated_time" content="2021-01-13T17:29:48"/>
+<meta property="og:pubdate" content="2021-01-13T17:29:48" />
 <meta property="og:url" content="https://blog.devj.me" />
 <!-- TWITTER -->
 <meta name="twitter:card" content="summary_large_image" />
@@ -166,8 +166,6 @@ httpscodepeniocjy324embedpreviewpoEZLJMheight265themeidlightdefaulttabhtmlcssres
 <!-- 폰트어썸 불러오기 -->
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
-<!-- app.css 불러오기 -->
-<link rel="stylesheet" href="app.css">
 
 <!--모바일에서도 PC와 같은 비율 유지-->
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -175,6 +173,28 @@ httpscodepeniocjy324embedpreviewpoEZLJMheight265themeidlightdefaulttabhtmlcssres
 <!--제이쿼리-->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
+<!-- 하이라이트 라이브러리 추가, 토스트 UI 에디터에서 사용됨 -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.4.1/highlight.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.4.1/styles/default.min.css">
+
+<!-- 토스트 UI 에디터, 자바스크립트 코어 -->
+<script
+	src="https://uicdn.toast.com/editor/latest/toastui-editor-all.min.js" defer></script>
+
+<!-- 코드 미러 라이브러리 추가, 토스트 UI 에디터에서 사용됨 -->
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.58.3/codemirror.min.css" />
+<!-- 토스트 UI 에디터, CSS 코어 -->
+<link rel="stylesheet"
+	href="https://uicdn.toast.com/editor/latest/toastui-editor.min.css" />
+
+<!-- 토스트 UI 에디터, 신택스 하이라이트 플러그인 추가 -->
+<script src="https://uicdn.toast.com/editor-plugin-code-syntax-highlight/latest/toastui-editor-plugin-code-syntax-highlight.min.js" defer></script>
+
+<!-- app.css 불러오기 -->
+<link rel="stylesheet" href="app.css">
+<!-- app.js 불러오기 -->
+<script src="app.js" defer></script>
 
 </head>
 
@@ -260,24 +280,7 @@ httpscodepeniocjy324embedpreviewpoEZLJMheight265themeidlightdefaulttabhtmlcssres
 			<i class="fas fa-file-invoice"></i> <span>ARTICLE DETAIL</span>
 		</h1>
 	</div>
-   <!-- 메인-타이틀바 종료 --><!-- 하이라이트 라이브러리 추가, 토스트 UI 에디터에서 사용됨 -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.4.1/highlight.min.js"></script>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.4.1/styles/default.min.css">
-
-<!-- 토스트 UI 에디터, 자바스크립트 코어 -->
-<script
-	src="https://uicdn.toast.com/editor/latest/toastui-editor-all.min.js"></script>
-
-<!-- 코드 미러 라이브러리 추가, 토스트 UI 에디터에서 사용됨 -->
-<link rel="stylesheet"
-	href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.58.3/codemirror.min.css" />
-<!-- 토스트 UI 에디터, CSS 코어 -->
-<link rel="stylesheet"
-	href="https://uicdn.toast.com/editor/latest/toastui-editor.min.css" />
-
-<!-- 토스트 UI 에디터, 신택스 하이라이트 플러그인 추가 -->
-<script src="https://uicdn.toast.com/editor-plugin-code-syntax-highlight/latest/toastui-editor-plugin-code-syntax-highlight.min.js"></script>
-
+   <!-- 메인-타이틀바 종료 -->
 <!-- Progress-bar -->
 <script type="text/javascript" src="https://rawcdn.githack.com/mburakerman/prognroll/0feda211643153bce2c69de32ea1b39cdc64ffbe/src/prognroll.js"></script> 
 <script type="text/javascript"> $(function() { $("body").prognroll( {height:10, color:"#666666"} ); $(".content").prognroll({ custom:true }); }); </script>
@@ -286,7 +289,7 @@ httpscodepeniocjy324embedpreviewpoEZLJMheight265themeidlightdefaulttabhtmlcssres
    <section class="section-2 con-min-width min-height-50vh">
       <div class="con height-100p">
         <div class="article-detail-cell height-100p">
-          <div class="article-detail-cell__board-name"><div><span>게시판 : </span><span>공지사항 게시판</span></div></div><div class="article-detail-cell__id"><div><span>번호 : </span><span>13</span></div></div><div class="article-detail-cell__member-id"><div><span>작성자 : </span><span>Dev_J</span></div></div><div class="article-detail-cell__reg-date"><div><span>작성일 : </span><span>2021-01-09 13:08:43</span></div></div><div class="article-detail-cell__update-date"><div><span>수정일 : </span><span>2021-01-12 16:10:18</span></div></div><div class="article-detail-cell__hitsCount"><div><span>조회수 : </span><span>5</span></div></div><div class="article-detail-cell__likesCount"><div><span>추천수 : </span><span>0</span></div></div><div class="article-detail-cell__commentsCount"><div><span>댓글수 : </span><span>0</span></div><br></div><div class="article-detail-cell__title"><div><span>제목 : </span><span>Codepen 적용 테스트입니다.</span></div></div><div class="article-detail-cell__body height-70p "><div><span># Type 1 = html
+          <div class="article-detail-cell__board-name"><div><span>게시판 : </span><span>공지사항 게시판</span></div></div><div class="article-detail-cell__id"><div><span>번호 : </span><span>13</span></div></div><div class="article-detail-cell__member-id"><div><span>작성자 : </span><span>Dev_J</span></div></div><div class="article-detail-cell__reg-date"><div><span>작성일 : </span><span>2021-01-09 13:08:43</span></div></div><div class="article-detail-cell__update-date"><div><span>수정일 : </span><span>2021-01-13 17:29:43</span></div></div><div class="article-detail-cell__hitsCount"><div><span>조회수 : </span><span>6</span></div></div><div class="article-detail-cell__likesCount"><div><span>추천수 : </span><span>0</span></div></div><div class="article-detail-cell__commentsCount"><div><span>댓글수 : </span><span>0</span></div><br></div><div class="article-detail-cell__title"><div><span>제목 : </span><span>Codepen 적용 테스트입니다.</span></div></div><script type"text/x-template"># Type 1 = html
 ```codepen
 https://codepen.io/jangka44/embed/JjRyxQY?height=265&theme-id=light&default-tab=html,result
 ```
@@ -319,7 +322,7 @@ https://codepen.io/jangka44/embed/wvzqZqB?height=300&theme-id=light&default-tab=
 # 테스트
 ```codepen
 https://codepen.io/cjy324/embed/preview/poEZLJM?height=265&theme-id=light&default-tab=html,css,result&editable=true
-```</span></div></div><br><br>
+```</script><div class="article-detail-cell__body height-70p toast-ui-viewer"><div></div></div><br><div class="article-detail-cell__tag"><nav># <a href="#" target="_blank">tag.title</a></nav></div><br><br>
          <!-- Disqus api 적용 --><!-- 정확한 페이지 경로 알려주는 기능 추가-->
 		 <nav>
 		 	<div id="disqus_thread"></div>
@@ -439,7 +442,5 @@ https://codepen.io/cjy324/embed/preview/poEZLJM?height=265&theme-id=light&defaul
   <!-- 푸터 끝 -->
 </div>
 <!-- 사이트 박스 끝 -->
-<!-- app.js 불러오기 -->
-<script src="app.js"></script>
 </body>
 </html>

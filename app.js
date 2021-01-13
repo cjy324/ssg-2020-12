@@ -1,3 +1,8 @@
+function ArticleDetail__Body__init() {
+	if (toastui === undefined) {
+		return;
+	}
+
 
 /* 유튜브 함수 시작 */
 
@@ -51,23 +56,25 @@ function renderCodepen(wrapperId, url) {
 
 
 /* toastui-viewr 함수 시작 */
+function EditorViewer__init() {
+	  $('.toast-ui-viewer').each(function(index, node) {
+	    var initialValue = $(node).prev().html().trim();
+//.replace(/t-script/gi, 'script')
 
-function ArticleDetail__Body__init() {
-	if (toastui === undefined) {
-		return;
-	}
-
-	var body = document.querySelector('.article-detail-cell__body > div > span');
-	var initValue = body.innerHTML.trim();
+//	var body = document.querySelector('.article-detail-cell__body > div > span');
+//	var initValue = body.innerHTML.trim();
 
 	
 	var viewer = new toastui.Editor.factory({
-		el: body,
-		initialValue: initValue,
+		el: node,
+		initialValue: initialValue,
 		viewer: true,
 		plugins: [toastui.Editor.plugin.codeSyntaxHighlight, youtubePlugin, codepenPlugin]
 	});
-};
+});
+}
+	EditorViewer__init();
+}
 
 ArticleDetail__Body__init();
 
@@ -97,5 +104,3 @@ $(function() {
 });
 
 /* top-button 옵션 끝 */
-
-

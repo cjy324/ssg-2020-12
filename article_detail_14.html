@@ -24,55 +24,301 @@
 <!-- 메타태그정보 //-->
 <!-- META -->
 <link rel="canonical" href="https://blog.devj.me" />
-<meta name="subject" content="script test"/>
+<meta name="subject" content="1강. DB, SQL 그리고 MySQL 소개"/>
 <meta name="title" content="Dev_J BLOG" />
 <meta name="keywords" content="JAVA, HTML, CSS, JavaScript, MySQL" />
 <meta name="copyright" content="Dev_J BLOG" />
-<meta name="pubdate" content="2021-01-13T18:24:38" />
-<meta name="lastmod" content="2021-01-13T18:24:38" />
+<meta name="pubdate" content="2021-01-18T00:10:21" />
+<meta name="lastmod" content="2021-01-18T00:10:21" />
 <!-- OPENGRAPH -->
 <meta property="og:site_name" content="Dev_J BLOG" />
 <meta property="og:type" content="blog" />
-<meta property="og:title" content="script test" />
-<meta property="og:description" content=" 테스트게시물
+<meta property="og:title" content="1강. DB, SQL 그리고 MySQL 소개" />
+<meta property="og:description" content=" 데이터베이스DB Database
+MySQL을 학습하기전에 데이터베이스에 대한 간략한 개념정리를 먼저 해보자
 
-script
-테스트
-script
-" />
+ 데이터베이스란 통합하여 관리되고 있는 데이터들의 집합이다
+ 즉 정보 저장소라고 생각하면 될 것이다
+ 데이터베이스는 별도의 미들웨어에 의해 관리되는데 이러한 미들웨어를 DBMSDatabase Management System 즉 데이터베이스 관리시스템 이라 한다
+MySql은 현재 가장 많이 사용되고 있는 관계형 데이터베이스 관리 시스템RDBMS Relational DBMS이다 자세한 내용은 아래 참고
+ 또한 데이터베이스에서 데이터를 정의 조작 등을 수행하는 언어가 존재하는데 이를 SQL이라 한다
+
+ SQLStructured Query Language
+
+ SQL은 데이터베이스에서 데이터를 정의 조작 제어하기 위해 사용하는 언어이다
+ SQL 구문에는 목적에 따라 크게 3가지DDL DML DCL로 분류할 수 있는데 이부분에 대해선 아래 표를 통해 간략히 이해정도만 하고 넘어가도록 하자
+
+
+ 속성 설명  주요 명령어  
+      
+DDL   데이터베이스나 테이블 등을 생성 삭제하거나 그 구조를 변경하기 위한 명령어 CREATE ALTER DROP  
+ DML  데이터베이스에 저장된 데이터를 처리하거나 조회 검색하기 위한 명령어  INSERT UPDATE DELETE SELECT 등
+  DCL 데이터베이스에 저장된 데이터를 관리하기 위하여 데이터의 보안성 및 무결성 등을 제어하기 위한 명령어 GRANT REVOKE 등  
+
+
+ MySQL
+지금부터는 MySQL에 대해 본격적으로 살펴보도록 하자
+
+
+
+ MySQL의 개념
+ MySQL은 현재 가장 많이 사용되고 있는 관계형 데이터베이스 관리 시스템RDBMS Relational DBMS 이다 
+
+
+RDBMS란
+  현재 가장 많이 사용되고 있는 데이터베이스의 한 종류
+  데이터의 종속성을 관계relationship로 표현
+
+ MySQL은 오픈 소스이며 다중 사용자와 다중 스레드를 지원한다
+ 또한 C언어 C JAVA PHP 등 여러 프로그래밍 언어를 위한 다양한 API를 제공하고 있다
+ MySQL은 유닉스 리눅스 윈도우 등 다양한 운영체제에서 사용할 수 있으며 특히 PHP와 함께 웹 개발에 자주 사용된다
+ MySQL은 오픈 소스 라이센스를 따르기는 하지만 상업적으로 사용할 때는 상업용 라이센스를 구입해야만 한다
+
+ MySQL의 장점
+1 오픈 소스이므로 무료로 사용할 수 있다
+
+2 다양한 운영체제와 프로그래밍 언어에서 사용할 수 있다
+
+3 크기가 큰 데이터 집합도 빠르고 효과적으로 처리할 수 있다
+
+4 표준 SQL 형식을 사용한다
+
+5 MySQL 응용 프로그램을 사용자의 용도에 맞게 수정할 수 있다
+
+
+ MySQL 개념도
+
+
+Database  Table  Column row Data
+
+ Database
+Table들의 집합
+
+ Table
+ Column  Row들의 집합
+
+ Column
+ 각각의 data 값에 대한 열
+
+ Low
+ 각각의 data 값에 대한 행
+
+즉 Database는  폴더 저장소
+Table  각각의 data들이 Column과 Low로 정렬된 표
+
+그리고
+
+DB들  관리프로그램이 MySQL이다
+
+
+ MySQL client 그리고 server
+MySQL에는 Client Server라는 개념이 존재한다
+
+ Client
+ 데이터를 수정하거나 반환하기 위해 서버에 접속하는 프로그램
+ Server
+ 주요 데이터베이스를 다루는 프로그램
+
+정리하자면 MySQL client는 MySQL sever에게 요청을 하는 고객 개념으로 이해하면 되고 MySQL sever는 고객의 요청을 받고 이를 DB에서 직접적으로 수행하는 종업원 정도로 이해하면 된다
+
+즉 MySQL client는 MySQL sever를 관리하기 위해 사용하는 것cmd" />
 <meta property="og:locale" content="ko_KR" />
 <meta property="og:image" content="images/Dev_J_logo/logo.png" />
 <meta property="og:image:alt" content="blog.devj.me" />
 <meta property="og:image:width" content="486" />
 <meta property="og:image:height" content="254" />
-<meta property="og:updated_time" content="2021-01-13T18:24:38"/>
-<meta property="og:pubdate" content="2021-01-13T18:24:38" />
+<meta property="og:updated_time" content="2021-01-18T00:10:21"/>
+<meta property="og:pubdate" content="2021-01-18T00:10:21" />
 <meta property="og:url" content="https://blog.devj.me" />
 <!-- TWITTER -->
 <meta name="twitter:card" content="summary_large_image" />
-<meta name="twitter:title" content="script test" />
+<meta name="twitter:title" content="1강. DB, SQL 그리고 MySQL 소개" />
 <meta name="twitter:site" content="@Dev_J BLOG" />
 <meta name="twitter:creator" content="@Dev_J BLOG" />
 <meta name="twitter:image" content="images/Dev_J_logo/logo.png">
-<meta name="twitter:description" content=" 테스트게시물
+<meta name="twitter:description" content=" 데이터베이스DB Database
+MySQL을 학습하기전에 데이터베이스에 대한 간략한 개념정리를 먼저 해보자
 
-script
-테스트
-script
-" />
+ 데이터베이스란 통합하여 관리되고 있는 데이터들의 집합이다
+ 즉 정보 저장소라고 생각하면 될 것이다
+ 데이터베이스는 별도의 미들웨어에 의해 관리되는데 이러한 미들웨어를 DBMSDatabase Management System 즉 데이터베이스 관리시스템 이라 한다
+MySql은 현재 가장 많이 사용되고 있는 관계형 데이터베이스 관리 시스템RDBMS Relational DBMS이다 자세한 내용은 아래 참고
+ 또한 데이터베이스에서 데이터를 정의 조작 등을 수행하는 언어가 존재하는데 이를 SQL이라 한다
+
+ SQLStructured Query Language
+
+ SQL은 데이터베이스에서 데이터를 정의 조작 제어하기 위해 사용하는 언어이다
+ SQL 구문에는 목적에 따라 크게 3가지DDL DML DCL로 분류할 수 있는데 이부분에 대해선 아래 표를 통해 간략히 이해정도만 하고 넘어가도록 하자
+
+
+ 속성 설명  주요 명령어  
+      
+DDL   데이터베이스나 테이블 등을 생성 삭제하거나 그 구조를 변경하기 위한 명령어 CREATE ALTER DROP  
+ DML  데이터베이스에 저장된 데이터를 처리하거나 조회 검색하기 위한 명령어  INSERT UPDATE DELETE SELECT 등
+  DCL 데이터베이스에 저장된 데이터를 관리하기 위하여 데이터의 보안성 및 무결성 등을 제어하기 위한 명령어 GRANT REVOKE 등  
+
+
+ MySQL
+지금부터는 MySQL에 대해 본격적으로 살펴보도록 하자
+
+
+
+ MySQL의 개념
+ MySQL은 현재 가장 많이 사용되고 있는 관계형 데이터베이스 관리 시스템RDBMS Relational DBMS 이다 
+
+
+RDBMS란
+  현재 가장 많이 사용되고 있는 데이터베이스의 한 종류
+  데이터의 종속성을 관계relationship로 표현
+
+ MySQL은 오픈 소스이며 다중 사용자와 다중 스레드를 지원한다
+ 또한 C언어 C JAVA PHP 등 여러 프로그래밍 언어를 위한 다양한 API를 제공하고 있다
+ MySQL은 유닉스 리눅스 윈도우 등 다양한 운영체제에서 사용할 수 있으며 특히 PHP와 함께 웹 개발에 자주 사용된다
+ MySQL은 오픈 소스 라이센스를 따르기는 하지만 상업적으로 사용할 때는 상업용 라이센스를 구입해야만 한다
+
+ MySQL의 장점
+1 오픈 소스이므로 무료로 사용할 수 있다
+
+2 다양한 운영체제와 프로그래밍 언어에서 사용할 수 있다
+
+3 크기가 큰 데이터 집합도 빠르고 효과적으로 처리할 수 있다
+
+4 표준 SQL 형식을 사용한다
+
+5 MySQL 응용 프로그램을 사용자의 용도에 맞게 수정할 수 있다
+
+
+ MySQL 개념도
+
+
+Database  Table  Column row Data
+
+ Database
+Table들의 집합
+
+ Table
+ Column  Row들의 집합
+
+ Column
+ 각각의 data 값에 대한 열
+
+ Low
+ 각각의 data 값에 대한 행
+
+즉 Database는  폴더 저장소
+Table  각각의 data들이 Column과 Low로 정렬된 표
+
+그리고
+
+DB들  관리프로그램이 MySQL이다
+
+
+ MySQL client 그리고 server
+MySQL에는 Client Server라는 개념이 존재한다
+
+ Client
+ 데이터를 수정하거나 반환하기 위해 서버에 접속하는 프로그램
+ Server
+ 주요 데이터베이스를 다루는 프로그램
+
+정리하자면 MySQL client는 MySQL sever에게 요청을 하는 고객 개념으로 이해하면 되고 MySQL sever는 고객의 요청을 받고 이를 DB에서 직접적으로 수행하는 종업원 정도로 이해하면 된다
+
+즉 MySQL client는 MySQL sever를 관리하기 위해 사용하는 것cmd" />
 <!-- GOOGLE+ -->
 <meta itemprop="headline" content="Dev_J BLOG" />
 <meta itemprop="name" content="Dev_J BLOG" />
-<meta itemprop="description" content=" 테스트게시물
+<meta itemprop="description" content=" 데이터베이스DB Database
+MySQL을 학습하기전에 데이터베이스에 대한 간략한 개념정리를 먼저 해보자
 
-script
-테스트
-script
-" />
+ 데이터베이스란 통합하여 관리되고 있는 데이터들의 집합이다
+ 즉 정보 저장소라고 생각하면 될 것이다
+ 데이터베이스는 별도의 미들웨어에 의해 관리되는데 이러한 미들웨어를 DBMSDatabase Management System 즉 데이터베이스 관리시스템 이라 한다
+MySql은 현재 가장 많이 사용되고 있는 관계형 데이터베이스 관리 시스템RDBMS Relational DBMS이다 자세한 내용은 아래 참고
+ 또한 데이터베이스에서 데이터를 정의 조작 등을 수행하는 언어가 존재하는데 이를 SQL이라 한다
+
+ SQLStructured Query Language
+
+ SQL은 데이터베이스에서 데이터를 정의 조작 제어하기 위해 사용하는 언어이다
+ SQL 구문에는 목적에 따라 크게 3가지DDL DML DCL로 분류할 수 있는데 이부분에 대해선 아래 표를 통해 간략히 이해정도만 하고 넘어가도록 하자
+
+
+ 속성 설명  주요 명령어  
+      
+DDL   데이터베이스나 테이블 등을 생성 삭제하거나 그 구조를 변경하기 위한 명령어 CREATE ALTER DROP  
+ DML  데이터베이스에 저장된 데이터를 처리하거나 조회 검색하기 위한 명령어  INSERT UPDATE DELETE SELECT 등
+  DCL 데이터베이스에 저장된 데이터를 관리하기 위하여 데이터의 보안성 및 무결성 등을 제어하기 위한 명령어 GRANT REVOKE 등  
+
+
+ MySQL
+지금부터는 MySQL에 대해 본격적으로 살펴보도록 하자
+
+
+
+ MySQL의 개념
+ MySQL은 현재 가장 많이 사용되고 있는 관계형 데이터베이스 관리 시스템RDBMS Relational DBMS 이다 
+
+
+RDBMS란
+  현재 가장 많이 사용되고 있는 데이터베이스의 한 종류
+  데이터의 종속성을 관계relationship로 표현
+
+ MySQL은 오픈 소스이며 다중 사용자와 다중 스레드를 지원한다
+ 또한 C언어 C JAVA PHP 등 여러 프로그래밍 언어를 위한 다양한 API를 제공하고 있다
+ MySQL은 유닉스 리눅스 윈도우 등 다양한 운영체제에서 사용할 수 있으며 특히 PHP와 함께 웹 개발에 자주 사용된다
+ MySQL은 오픈 소스 라이센스를 따르기는 하지만 상업적으로 사용할 때는 상업용 라이센스를 구입해야만 한다
+
+ MySQL의 장점
+1 오픈 소스이므로 무료로 사용할 수 있다
+
+2 다양한 운영체제와 프로그래밍 언어에서 사용할 수 있다
+
+3 크기가 큰 데이터 집합도 빠르고 효과적으로 처리할 수 있다
+
+4 표준 SQL 형식을 사용한다
+
+5 MySQL 응용 프로그램을 사용자의 용도에 맞게 수정할 수 있다
+
+
+ MySQL 개념도
+
+
+Database  Table  Column row Data
+
+ Database
+Table들의 집합
+
+ Table
+ Column  Row들의 집합
+
+ Column
+ 각각의 data 값에 대한 열
+
+ Low
+ 각각의 data 값에 대한 행
+
+즉 Database는  폴더 저장소
+Table  각각의 data들이 Column과 Low로 정렬된 표
+
+그리고
+
+DB들  관리프로그램이 MySQL이다
+
+
+ MySQL client 그리고 server
+MySQL에는 Client Server라는 개념이 존재한다
+
+ Client
+ 데이터를 수정하거나 반환하기 위해 서버에 접속하는 프로그램
+ Server
+ 주요 데이터베이스를 다루는 프로그램
+
+정리하자면 MySQL client는 MySQL sever에게 요청을 하는 고객 개념으로 이해하면 되고 MySQL sever는 고객의 요청을 받고 이를 DB에서 직접적으로 수행하는 종업원 정도로 이해하면 된다
+
+즉 MySQL client는 MySQL sever를 관리하기 위해 사용하는 것cmd" />
 <meta itemprop="image" content="images/Dev_J_logo/logo.png" />
 
 <!-- 사이트 타이틀 -->
-<title>script test | Dev_J BLOG | ARTICLE DETAIL</title>
+<title>1강. DB, SQL 그리고 MySQL 소개 | Dev_J BLOG | ARTICLE DETAIL</title>
 
 
 <!-- 파비콘 -->
@@ -111,6 +357,8 @@ script
 <link rel="stylesheet" href="app.css">
 <!-- app.js 불러오기 -->
 <script src="app.js" defer></script>
+<!-- index.js 불러오기 -->
+<script src="index.js" defer></script>
 
 </head>
 
@@ -121,7 +369,7 @@ script
   <header class="logo-bar con-min-width" id="header">
     <div class="con height-100p flex flex-jc-c" title="HOME">
       <a href="index.html" class="logo flex flex-ai-c"> 
-        <img class="logo__img" src="images/Dev_J_logo/facebook_cover_photo_1.png" alt="">
+        <img class="logo__img" src="images/Dev_J_logo/logo_transparent.png" alt="">
         <span>
           BLOG
         </span>
@@ -130,11 +378,16 @@ script
   </header>
   <!-- 로고바 끝 -->
 
-  <!-- 메뉴바 시작 -->
+  <!-- 메뉴바 시작-->
   <header class="menu-bar con-min-width">
-    <div class="con height-100p">
-      <nav class="menu-bar__menu-1">
-        <ul class="flex">
+   <div class="menu-bar__status-icon" title="Menu">
+     <div></div>
+     <div></div>
+     <div></div>
+   </div>
+   <div class="con hide">
+    <nav class="menu-bar__menu">
+      <ul class="flex">
           <li title="ABOUT">
             <a href="about.html" class="block">
               <i class="far fa-address-card"></i>
@@ -147,7 +400,7 @@ script
               <span>ARTICLES</span>
             </a>
             <ul>
-              <li title="NOTICE"><a href="notice-list-1.html" class="block"><i class="fas fa-bullhorn"></i> <span>NOTICE BOARD</span></a></li><li title="JAVA"><a href="java-list-1.html" class="block"><i class="fab fa-java"></i> <span>JAVA BOARD</span></a></li><li title="HTML"><a href="html-list-1.html" class="block"><i class="fab fa-html5"></i> <span>HTML & CSS & JS BOARD</span></a></li>
+              <li title="NOTICE"><a href="notice-list-1.html" class="block"><i class="fas fa-bullhorn"></i> <span>NOTICE BOARD</span></a></li><li title="JAVA"><a href="java-list-1.html" class="block"><i class="fab fa-java"></i> <span>JAVA BOARD</span></a></li><li title="HTML"><a href="html-list-1.html" class="block"><i class="fab fa-html5"></i> <span>HTML & CSS & JS BOARD</span></a></li><li title="MYSQL"><a href="mysql-list-1.html" class="block"><i class="fas fa-database"></i> <span>MySQL BOARD</span></a></li>
             </ul>
           </li>
           <li>
@@ -156,7 +409,7 @@ script
               <span>LINK</span>
             </a>
             <ul>
-             <li title="T-STORY">
+              <li title="T-STORY">
                 <a href="https://cjy324.tistory.com/" target="_blank" class="block">
                   <i class="fas fa-rss-square"></i>
                   <span>T-STORY</span>
@@ -167,9 +420,9 @@ script
                   <i class="fab fa-github"></i>
                   <span>GITHUB</span>
                 </a>
-             </li>
+              </li>
             </ul>
-           </li> 
+          </li>
           <li title="SEARCH">
             <a href="search.html" class="block">
               <i class="fas fa-search"></i>
@@ -184,12 +437,13 @@ script
           </li>
         </ul>
       </nav>
-    </div>
+   </div>
   </header>
   <!-- 메뉴바 끝 --> 
 
   <!-- 메인 컨텐츠 박스 시작 -->
   <main class="main-box flex-grow-1">
+  <section class="main-box-section con-min-width">
    <!-- 메인-타이틀바 시작 -->
 	<div class="title-bar con-min-width">
 		<h1 class="con">
@@ -205,12 +459,94 @@ script
    <section class="section-2 con-min-width min-height-50vh">
       <div class="con height-100p">
         <div class="article-detail-cell height-100p">
-          <div class="article-detail-cell__board-name"><div><span>게시판 : </span><span>HTML & CSS & JS 게시판</span></div></div><div class="article-detail-cell__id"><div><span>번호 : </span><span>14</span></div></div><div class="article-detail-cell__member-id"><div><span>작성자 : </span><span>Dev_J</span></div></div><div class="article-detail-cell__reg-date"><div><span>작성일 : </span><span>2021-01-13 18:11:48</span></div></div><div class="article-detail-cell__update-date"><div><span>수정일 : </span><span>2021-01-13 18:24:34</span></div></div><div class="article-detail-cell__hitsCount"><div><span>조회수 : </span><span>0</span></div></div><div class="article-detail-cell__likesCount"><div><span>추천수 : </span><span>0</span></div></div><div class="article-detail-cell__commentsCount"><div><span>댓글수 : </span><span>0</span></div><br></div><div class="article-detail-cell__title"><div><span>제목 : </span><span>script test</span></div></div><script type"text/x-template"># 테스트게시물
+          <div class="article-detail-cell__board-name"><div><span>게시판 : </span><span>MySQL 게시판</span></div></div><div class="article-detail-cell__id"><div><span>번호 : </span><span>14</span></div></div><div class="article-detail-cell__member-id"><div><span>작성자 : </span><span>Dev_J</span></div></div><div class="article-detail-cell__reg-date"><div><span>작성일 : </span><span>2021-01-17 23:22:09</span></div></div><div class="article-detail-cell__update-date"><div><span>수정일 : </span><span>2021-01-18 00:10:18</span></div></div><br><div class="article-detail-cell__title-contents flex flex-jc-fe"><div class="article-detail-cell__hitsCount"><div><span>조회수 : </span><span>0</span></div></div><div class="article-detail-cell__likesCount"><div><span>추천수 : </span><span>0</span></div></div><div class="article-detail-cell__commentsCount"><div><span>댓글수 : </span><span>0</span></div></div></div><div class="article-detail-cell__title"><div><span>제목 : </span><span>1강. DB, SQL 그리고 MySQL 소개</span></div></div><script type"text/x-template"># 데이터베이스(DB; Database)
+MySQL을 학습하기전에 데이터베이스에 대한 간략한 개념정리를 먼저 해보자.
+
+* 데이터베이스란, **통합하여 관리되고 있는 데이터들의 집합**이다.
+* 즉, **정보 저장소**라고 생각하면 될 것이다.
+* 데이터베이스는 별도의 미들웨어에 의해 관리되는데 이러한 미들웨어를 **DBMS(Database Management System) 즉, '데이터베이스 관리시스템'** 이라 한다.
+(*MySql은 현재 가장 많이 사용되고 있는 관계형 데이터베이스 관리 시스템(RDBMS: Relational DBMS)이다, 자세한 내용은 아래 참고)
+* 또한, 데이터베이스에서 데이터를 정의, 조작 등을 수행하는 언어가 존재하는데 이를 'SQL'이라 한다.
+
+# SQL(Structured Query Language)
+
+* SQL은 데이터베이스에서 데이터를 **정의, 조작, 제어**하기 위해 사용하는 언어이다.
+* SQL 구문에는 목적에 따라 크게 3가지(DDL, DML, DCL)로 분류할 수 있는데 이부분에 대해선 아래 표를 통해 간략히 이해정도만 하고 넘어가도록 하자
+
+
+| 속성 |설명  |주요 명령어  |
+| --- | --- | --- |
+|DDL  | 데이터베이스나 테이블 등을 생성, 삭제하거나 그 구조를 변경하기 위한 명령어 |CREATE, ALTER, DROP  |
+| DML | 데이터베이스에 저장된 데이터를 처리하거나 조회, 검색하기 위한 명령어 | INSERT, UPDATE, DELETE, SELECT 등|
+|  DCL| 데이터베이스에 저장된 데이터를 관리하기 위하여 데이터의 보안성 및 무결성 등을 제어하기 위한 명령어 |GRANT, REVOKE 등  |
+
+
+# MySQL
+지금부터는 **MySQL**에 대해 본격적으로 살펴보도록 하자
+
+
+
+## MySQL의 개념
+* MySQL은 현재 가장 많이 사용되고 있는 ***관계형 데이터베이스 관리 시스템(RDBMS: Relational DBMS)** 이다. 
+
 ```
-<t-script>
-테스트
-</t-script>
-```</script><div class="article-detail-cell__body height-70p toast-ui-viewer"><div></div></div><br><div class="article-detail-cell__tag"><nav># <a href="#" target="_blank">tag.title</a></nav></div><br><br>
+*RDBMS란?
+ - 현재 가장 많이 사용되고 있는 데이터베이스의 한 종류
+ - 데이터의 종속성을 관계(relationship)로 표현
+```
+* MySQL은 **오픈 소스**이며, 다중 사용자와 다중 스레드를 지원한다.
+* 또한, C언어, C++, JAVA, PHP 등 **여러 프로그래밍 언어를 위한 다양한 API를 제공**하고 있다.
+* MySQL은 유닉스, 리눅스, 윈도우 등 **다양한 운영체제에서 사용**할 수 있으며, 특히 **PHP와 함께 웹 개발에 자주 사용**된다.
+* MySQL은 오픈 소스 라이센스를 따르기는 하지만, 상업적으로 사용할 때는 상업용 라이센스를 구입해야만 한다.
+
+## MySQL의 장점
+1. 오픈 소스이므로 **무료**로 사용할 수 있다.
+
+2. **다양한 운영체제**와 **프로그래밍 언어**에서 사용할 수 있다.
+
+3. 크기가 큰 데이터 집합도 **빠르고 효과적으로 처리**할 수 있다.
+
+4. **표준 SQL 형식**을 사용한다.
+
+5. MySQL 응용 프로그램을 사용자의 용도에 맞게 수정할 수 있다.
+
+
+## MySQL 개념도
+
+```
+Database > Table > Column, row, Data
+
+- Database
+:Table들의 집합
+
+- Table
+: Column + Row들의 집합
+
+- Column
+: 각각의 data 값에 대한 열
+
+- Low
+: 각각의 data 값에 대한 행
+
+즉, Database는 = 폴더, 저장소
+Table = 각각의 data들이 Column과 Low로 정렬된 표
+
+그리고
+
+DB들 + 관리프로그램이 'MySQL'이다.
+```
+
+## MySQL client 그리고 server
+MySQL에는 **Client, Server**라는 개념이 존재한다.
+
+* Client
+: 데이터를 수정하거나 반환하기 위해 서버에 접속하는 프로그램
+* Server
+: 주요 데이터베이스를 다루는 프로그램
+
+정리하자면, MySQL client는 MySQL sever에게 요청을 하는 **"고객"** 개념으로 이해하면 되고, MySQL sever는 고객의 요청을 받고 이를 DB에서 직접적으로 수행하는 **"종업원"** 정도로 이해하면 된다.
+
+즉, MySQL client는 MySQL sever를 관리하기 위해 사용하는 것(cmd)</script><div class="article-detail-cell__body height-70p toast-ui-viewer"><div></div></div><br><div class="article-detail-cell__tag flex"><nav># <a href="#" target="_blank">SQL</a></nav><nav># <a href="#" target="_blank">DB</a></nav><nav># <a href="#" target="_blank">MySQL</a></nav></div><br><br>
          <!-- Disqus api 적용 --><!-- 정확한 페이지 경로 알려주는 기능 추가-->
 		 <nav>
 		 	<div id="disqus_thread"></div>
@@ -240,73 +576,14 @@ script
    <section class="section-3 con-min-width">
       <div class="con">
         <div class="article-list-bottom-cell flex flex-jc-c">
-          <div class="./"><a href="article_detail_12.html" class="hover-underline">&lt 이전글</a></div><div class="./"><i class="fas fa-th-list"></i><a href="html-list-1.html" class="hover-underline"> 목록 </a></div>
+          <div class="./"><i class="fas fa-th-list"></i><a href="mysql-list-1.html" class="hover-underline"> 목록 </a></div><div class="./"><a href="article_detail_15.html"class="hover-underline">다음글 &gt</a></div>
         </div>
       </div>
     </section>
    <!-- 메인-상세 하단 메뉴 끝 -->
-    
+    </section>
   </main>
-  <!-- 메인 컨텐츠 박스 끝 -->  <!-- 사이드바 시작 -->
-  <header class="side-bar flex flex-column">
-   <div class="side-bar__status-icon">
-    <div>Menu<i class="fas fa-stream"></i></div>
-    <div>▶</div>
-    <div>▼</div>
-   </div>
-   <nav class="side-bar__menu">
-    <ul>
-      <li title="ABOUT">
-        <a href="about.html" class="block">
-          <i class="far fa-address-card"></i>
-          <span>ABOUT</span>
-        </a>
-      </li>
-      <li>
-        <a class="block">
-          <i class="fas fa-list"></i>
-          <span>ARTICLES</span>
-        </a>
-        <ul>
-          <li title="NOTICE"><a href="notice-list-1.html" class="block"><i class="fas fa-bullhorn"></i> <span>NOTICE BOARD</span></a></li><li title="JAVA"><a href="java-list-1.html" class="block"><i class="fab fa-java"></i> <span>JAVA BOARD</span></a></li><li title="HTML"><a href="html-list-1.html" class="block"><i class="fab fa-html5"></i> <span>HTML & CSS & JS BOARD</span></a></li>
-        </ul>
-      </li>
-      <li>
-        <a class="block">
-          <i class="fas fa-link"></i>
-          <span>LINK</span>
-        </a>
-        <ul>
-          <li title="T-STORY">
-            <a href="https://cjy324.tistory.com/" target="_blank" class="block">
-            <i class="fas fa-rss-square"></i>
-            <span>T-STORY</span>
-            </a>
-          </li>
-          <li title="GITHUB">
-           <a href="https://github.com/cjy324/TIL_Jooyoung" target="_blank" class="block">
-           <i class="fab fa-github"></i>
-           <span>GITHUB</span>
-           </a>
-          </li>
-        </ul>
-      </li>
-      <li title="SEARCH">
-        <a href="search.html" class="block">
-          <i class="fas fa-search"></i>
-          <span>SEARCH</span>
-        </a>
-      </li>
-      <li title="STATISTICS">
-        <a href="statistics.html" class="block">
-          <i class="fas fa-chart-pie"></i>
-          <span>STATISTICS</span>
-        </a>
-      </li>
-    </ul>
-   </nav>
-  </header>
-  <!-- 사이드바 끝 -->    <!-- 맨 위 버튼 시작 -->
+  <!-- 메인 컨텐츠 박스 끝 -->  <!-- 맨 위 버튼 시작 -->
   <nav class="top-button flex flex-jc-c flex-ai-c">
     <div class="">
       <a href="#header">▲ TOP</a> 
@@ -317,7 +594,7 @@ script
   <footer class="bottom-bar con-min-width">
     <div class="con flex flex-ai-c">
       <a href="index.html" class="logo logo--mini flex flex-ai-c" title="HOME">
-        <img class="logo--mini__img" src="images/Dev_J_logo/facebook_cover_photo_1.png" alt="">
+        <img class="logo--mini__img" src="images/Dev_J_logo/logo_transparent.png" alt="">
       </a>
       <div class="bottom-bar__site-info">
         <span><i class="far fa-envelope"></i> juy32400@gmail.com</span>

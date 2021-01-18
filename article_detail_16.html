@@ -1,0 +1,543 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+<script data-ad-client="ca-pub-7996879977557531" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-X5RMP83794"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-X5RMP83794');
+</script>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- 구글 검색엔진 등록-소유권 확인 -->
+<meta name="google-site-verification" content="37R4KcEaJU5LfiKL7GI1hu1_spJgWOazN6xy48OHhD4" />
+
+<!-- Meta Tag & Open Graph -->
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<meta name="viewport" content="width=1200">
+<meta name="apple-mobile-web-app-title" content="Dev_J BLOG" />
+<!-- 메타태그정보 //-->
+<!-- META -->
+<link rel="canonical" href="https://blog.devj.me" />
+<meta name="subject" content="9강. 배열"/>
+<meta name="title" content="Dev_J BLOG" />
+<meta name="keywords" content="JAVA, HTML, CSS, JavaScript, MySQL" />
+<meta name="copyright" content="Dev_J BLOG" />
+<meta name="pubdate" content="2021-01-18T22:46:31" />
+<meta name="lastmod" content="2021-01-18T22:46:31" />
+<!-- OPENGRAPH -->
+<meta property="og:site_name" content="Dev_J BLOG" />
+<meta property="og:type" content="blog" />
+<meta property="og:title" content="9강. 배열" />
+<meta property="og:description" content=" 배열이란
+  배열은 같은 타입의 데이터를 연속된 공간에 나열시키고 각 데이터에 인덱스index 를 부여해 놓은 자료구조다
+  즉 타입이 같은 연관된 데이터들을 그룹화하여 배열 이란 상자 에 담아두는 것이다
+  배열은 프로그래밍을 할 때 아주 다양하게 활용되므로 반드시 학습해 두어야 한다
+
+ 
+
+ 배열의 장점
+  변수는 한개의 데이터만 저장할 수 있다 따라서 저장해야 할 데이터의 수가 많아지면 그만큼 많은 양의 변수를 선언해줘야하는 비효율성이 발생한다
+  배열은 이러한 문제를 효율적으로 해결할 수 있다
+  연관된 데이터를 저장할 때 변수의 선언을 줄여주며 반복문 등 반복되는 계산과정을 쉽게 처리할 수 있다
+
+ 
+
+ 배열 선언 방법
+JAVA에서 배열의 선언 방법은 크게 2가지가 있다 
+br
+ 1 자료형  변수명  데이터1 데이터2 데이터3
+br
+ 이 방법은 데이터 값들을 이미 알고 있을 때 활용하면 편리한 방법이다
+br
+
+
+자료형 변수명  데이터1 데이터2 데이터3
+
+ex String data  데이터1 데이터2 데이터3
+ 
+ 
+배열의 구조 해석
+
+length배열의 크기길이  3
+element데이터 값  데이터1 데이터2 데이터3
+index구분자번호  0 1 2
+
+
+
+ 
+br
+ 2 자료형  변수명  new 자료형배열의 크기길이
+br
+ 이 방법은 현재 데이터 값은 잘 모르지만 변수를 미리 선언해 놓고 향후에 데이터를 추가하고자 할 때 활용하면 편리한 방법이다
+ br
+
+
+ 자료형 변수명  new 자료형배열의 크기길이
+ 
+    변수명0  데이터1
+
+    변수명1  데이터2
+
+    변수명2  데이터3
+
+
+
+ ex String data  new String3
+
+         data0  데이터1
+
+         data1  데이터2
+
+         data2  데이터3
+
+
+배열의 구조 해석
+
+length배열의 크기길이  3
+element데이터 값  데이터1 데이터2 데이터3
+index구분자번호  0 1 2
+
+br
+각 방법마다 장단점이 있으므로 꼭 한가지 방법만 활용하기 보다는 자신에게 요구되는 상황에 맞게 적절하게 선택하여 활용하는 것이 좋다" />
+<meta property="og:locale" content="ko_KR" />
+<meta property="og:image" content="images/Dev_J_logo/logo.png" />
+<meta property="og:image:alt" content="blog.devj.me" />
+<meta property="og:image:width" content="486" />
+<meta property="og:image:height" content="254" />
+<meta property="og:updated_time" content="2021-01-18T22:46:31"/>
+<meta property="og:pubdate" content="2021-01-18T22:46:31" />
+<meta property="og:url" content="https://blog.devj.me" />
+<!-- TWITTER -->
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="9강. 배열" />
+<meta name="twitter:site" content="@Dev_J BLOG" />
+<meta name="twitter:creator" content="@Dev_J BLOG" />
+<meta name="twitter:image" content="images/Dev_J_logo/logo.png">
+<meta name="twitter:description" content=" 배열이란
+  배열은 같은 타입의 데이터를 연속된 공간에 나열시키고 각 데이터에 인덱스index 를 부여해 놓은 자료구조다
+  즉 타입이 같은 연관된 데이터들을 그룹화하여 배열 이란 상자 에 담아두는 것이다
+  배열은 프로그래밍을 할 때 아주 다양하게 활용되므로 반드시 학습해 두어야 한다
+
+ 
+
+ 배열의 장점
+  변수는 한개의 데이터만 저장할 수 있다 따라서 저장해야 할 데이터의 수가 많아지면 그만큼 많은 양의 변수를 선언해줘야하는 비효율성이 발생한다
+  배열은 이러한 문제를 효율적으로 해결할 수 있다
+  연관된 데이터를 저장할 때 변수의 선언을 줄여주며 반복문 등 반복되는 계산과정을 쉽게 처리할 수 있다
+
+ 
+
+ 배열 선언 방법
+JAVA에서 배열의 선언 방법은 크게 2가지가 있다 
+br
+ 1 자료형  변수명  데이터1 데이터2 데이터3
+br
+ 이 방법은 데이터 값들을 이미 알고 있을 때 활용하면 편리한 방법이다
+br
+
+
+자료형 변수명  데이터1 데이터2 데이터3
+
+ex String data  데이터1 데이터2 데이터3
+ 
+ 
+배열의 구조 해석
+
+length배열의 크기길이  3
+element데이터 값  데이터1 데이터2 데이터3
+index구분자번호  0 1 2
+
+
+
+ 
+br
+ 2 자료형  변수명  new 자료형배열의 크기길이
+br
+ 이 방법은 현재 데이터 값은 잘 모르지만 변수를 미리 선언해 놓고 향후에 데이터를 추가하고자 할 때 활용하면 편리한 방법이다
+ br
+
+
+ 자료형 변수명  new 자료형배열의 크기길이
+ 
+    변수명0  데이터1
+
+    변수명1  데이터2
+
+    변수명2  데이터3
+
+
+
+ ex String data  new String3
+
+         data0  데이터1
+
+         data1  데이터2
+
+         data2  데이터3
+
+
+배열의 구조 해석
+
+length배열의 크기길이  3
+element데이터 값  데이터1 데이터2 데이터3
+index구분자번호  0 1 2
+
+br
+각 방법마다 장단점이 있으므로 꼭 한가지 방법만 활용하기 보다는 자신에게 요구되는 상황에 맞게 적절하게 선택하여 활용하는 것이 좋다" />
+<!-- GOOGLE+ -->
+<meta itemprop="headline" content="Dev_J BLOG" />
+<meta itemprop="name" content="Dev_J BLOG" />
+<meta itemprop="description" content=" 배열이란
+  배열은 같은 타입의 데이터를 연속된 공간에 나열시키고 각 데이터에 인덱스index 를 부여해 놓은 자료구조다
+  즉 타입이 같은 연관된 데이터들을 그룹화하여 배열 이란 상자 에 담아두는 것이다
+  배열은 프로그래밍을 할 때 아주 다양하게 활용되므로 반드시 학습해 두어야 한다
+
+ 
+
+ 배열의 장점
+  변수는 한개의 데이터만 저장할 수 있다 따라서 저장해야 할 데이터의 수가 많아지면 그만큼 많은 양의 변수를 선언해줘야하는 비효율성이 발생한다
+  배열은 이러한 문제를 효율적으로 해결할 수 있다
+  연관된 데이터를 저장할 때 변수의 선언을 줄여주며 반복문 등 반복되는 계산과정을 쉽게 처리할 수 있다
+
+ 
+
+ 배열 선언 방법
+JAVA에서 배열의 선언 방법은 크게 2가지가 있다 
+br
+ 1 자료형  변수명  데이터1 데이터2 데이터3
+br
+ 이 방법은 데이터 값들을 이미 알고 있을 때 활용하면 편리한 방법이다
+br
+
+
+자료형 변수명  데이터1 데이터2 데이터3
+
+ex String data  데이터1 데이터2 데이터3
+ 
+ 
+배열의 구조 해석
+
+length배열의 크기길이  3
+element데이터 값  데이터1 데이터2 데이터3
+index구분자번호  0 1 2
+
+
+
+ 
+br
+ 2 자료형  변수명  new 자료형배열의 크기길이
+br
+ 이 방법은 현재 데이터 값은 잘 모르지만 변수를 미리 선언해 놓고 향후에 데이터를 추가하고자 할 때 활용하면 편리한 방법이다
+ br
+
+
+ 자료형 변수명  new 자료형배열의 크기길이
+ 
+    변수명0  데이터1
+
+    변수명1  데이터2
+
+    변수명2  데이터3
+
+
+
+ ex String data  new String3
+
+         data0  데이터1
+
+         data1  데이터2
+
+         data2  데이터3
+
+
+배열의 구조 해석
+
+length배열의 크기길이  3
+element데이터 값  데이터1 데이터2 데이터3
+index구분자번호  0 1 2
+
+br
+각 방법마다 장단점이 있으므로 꼭 한가지 방법만 활용하기 보다는 자신에게 요구되는 상황에 맞게 적절하게 선택하여 활용하는 것이 좋다" />
+<meta itemprop="image" content="images/Dev_J_logo/logo.png" />
+
+<!-- 사이트 타이틀 -->
+<title>9강. 배열 | Dev_J BLOG | ARTICLE DETAIL</title>
+
+
+<!-- 파비콘 -->
+<link rel="shortcut icon" href="images/favicon/favicon.ico" type="image/x-icon">
+<link rel="icon" href="images/favicon/favicon.ico" type="image/x-icon">
+
+<!-- 폰트어썸 불러오기 -->
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+
+<!--모바일에서도 PC와 같은 비율 유지-->
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<!--제이쿼리-->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+<!-- 하이라이트 라이브러리 추가, 토스트 UI 에디터에서 사용됨 -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.4.1/highlight.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.4.1/styles/default.min.css">
+
+<!-- 토스트 UI 에디터, 자바스크립트 코어 -->
+<script
+	src="https://uicdn.toast.com/editor/latest/toastui-editor-all.min.js" defer></script>
+
+<!-- 코드 미러 라이브러리 추가, 토스트 UI 에디터에서 사용됨 -->
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.58.3/codemirror.min.css" />
+<!-- 토스트 UI 에디터, CSS 코어 -->
+<link rel="stylesheet"
+	href="https://uicdn.toast.com/editor/latest/toastui-editor.min.css" />
+
+<!-- 토스트 UI 에디터, 신택스 하이라이트 플러그인 추가 -->
+<script src="https://uicdn.toast.com/editor-plugin-code-syntax-highlight/latest/toastui-editor-plugin-code-syntax-highlight.min.js" defer></script>
+
+<!-- app.css 불러오기 -->
+<link rel="stylesheet" href="app.css">
+<!-- app.js 불러오기 -->
+<script src="app.js" defer></script>
+<!-- index.js 불러오기 -->
+<script src="index.js" defer></script>
+
+</head>
+
+<body>
+<!-- 사이트 박스 시작 -->
+<div class="body-content min-height-100vh flex flex-column">
+  <!-- 로고바 시작 -->
+  <header class="logo-bar con-min-width" id="header">
+    <div class="con height-100p flex flex-jc-c" title="HOME">
+      <a href="index.html" class="logo flex flex-ai-c"> 
+        <img class="logo__img" src="images/Dev_J_logo/logo_transparent.png" alt="">
+        <span>
+          BLOG
+        </span>
+      </a>
+    </div>
+  </header>
+  <!-- 로고바 끝 -->
+
+  <!-- 메뉴바 시작-->
+  <header class="menu-bar con-min-width">
+   <div class="menu-bar__status-icon" title="Menu">
+     <div></div>
+     <div></div>
+     <div></div>
+   </div>
+   <div class="con hide">
+    <nav class="menu-bar__menu">
+      <ul class="flex">
+          <li title="ABOUT">
+            <a href="about.html" class="block">
+              <i class="far fa-address-card"></i>
+              <span>ABOUT</span>
+            </a>
+          </li>
+          <li>
+            <a class="block">
+              <i class="fas fa-list"></i>
+              <span>ARTICLES</span>
+            </a>
+            <ul>
+              <li title="NOTICE"><a href="notice-list-1.html" class="block"><i class="fas fa-bullhorn"></i> <span>NOTICE BOARD</span></a></li><li title="JAVA"><a href="java-list-1.html" class="block"><i class="fab fa-java"></i> <span>JAVA BOARD</span></a></li><li title="HTML"><a href="html-list-1.html" class="block"><i class="fab fa-html5"></i> <span>HTML & CSS & JS BOARD</span></a></li><li title="MYSQL"><a href="mysql-list-1.html" class="block"><i class="fas fa-database"></i> <span>MySQL BOARD</span></a></li>
+            </ul>
+          </li>
+          <li>
+            <a class="block">
+              <i class="fas fa-link"></i>
+              <span>LINK</span>
+            </a>
+            <ul>
+              <li title="T-STORY">
+                <a href="https://cjy324.tistory.com/" target="_blank" class="block">
+                  <i class="fas fa-rss-square"></i>
+                  <span>T-STORY</span>
+                </a>
+              </li>
+              <li title="GITHUB">
+                <a href="https://github.com/cjy324/TIL_Jooyoung#til_jooyoung" target="_blank" class="block">
+                  <i class="fab fa-github"></i>
+                  <span>GITHUB</span>
+                </a>
+              </li>
+            </ul>
+          </li>
+          <li title="SEARCH">
+            <a href="search.html" class="block">
+              <i class="fas fa-search"></i>
+              <span>SEARCH</span>
+            </a>
+          </li>
+          <li title="STATISTICS">
+            <a href="statistics.html" class="block">
+              <i class="fas fa-chart-pie"></i>
+              <span>STATISTICS</span>
+            </a>
+          </li>
+        </ul>
+      </nav>
+   </div>
+  </header>
+  <!-- 메뉴바 끝 --> 
+
+  <!-- 메인 컨텐츠 박스 시작 -->
+  <main class="main-box flex-grow-1">
+  <section class="main-box-section con-min-width">
+   <!-- 메인-타이틀바 시작 -->
+	<div class="title-bar con-min-width">
+		<h1 class="con">
+			<i class="fas fa-file-invoice"></i> <span>ARTICLE DETAIL</span>
+		</h1>
+	</div>
+   <!-- 메인-타이틀바 종료 -->
+<!-- Progress-bar -->
+<script type="text/javascript" src="https://rawcdn.githack.com/mburakerman/prognroll/0feda211643153bce2c69de32ea1b39cdc64ffbe/src/prognroll.js"></script> 
+<script type="text/javascript"> $(function() { $("body").prognroll( {height:10, color:"#666666"} ); $(".content").prognroll({ custom:true }); }); </script>
+
+   <!-- 메인-상세페이지 시작 -->
+   <section class="section-2 con-min-width min-height-50vh">
+      <div class="con height-100p">
+        <div class="article-detail-cell height-100p">
+          <div class="article-detail-cell__board-name"><div><span>게시판 : </span><span>JAVA 게시판</span></div></div><div class="article-detail-cell__id"><div><span>번호 : </span><span>16</span></div></div><div class="article-detail-cell__member-id"><div><span>작성자 : </span><span>Dev_J</span></div></div><div class="article-detail-cell__reg-date"><div><span>작성일 : </span><span>2021-01-18 22:36:23</span></div></div><div class="article-detail-cell__update-date"><div><span>수정일 : </span><span>2021-01-18 22:46:29</span></div></div><br><div class="article-detail-cell__title-contents flex flex-jc-fe"><div class="article-detail-cell__hitsCount"><div><span>조회수 : </span><span>0</span></div></div><div class="article-detail-cell__likesCount"><div><span>추천수 : </span><span>0</span></div></div><div class="article-detail-cell__commentsCount"><div><span>댓글수 : </span><span>0</span></div></div></div><div class="article-detail-cell__title"><div><span>제목 : </span><span>9강. 배열</span></div></div><script type"text/x-template"># 배열이란?
+ - 배열은 **같은 타입의 데이터**를 연속된 공간에 나열시키고 각 데이터에 **인덱스(index)** 를 부여해 놓은 자료구조다.
+ - 즉, **타입이 같은 연관된 데이터들**을 **그룹화**하여 **'배열'** 이란 **'상자'** 에 담아두는 것이다.
+ - 배열은 프로그래밍을 할 때 아주 다양하게 활용되므로 반드시 학습해 두어야 한다.
+
+ 
+
+# 배열의 장점
+ - 변수는 **한개의 데이터만 저장**할 수 있다. 따라서 저장해야 할 **데이터의 수가 많아지면** 그만큼 많은 양의 변수를 선언해줘야하는 **비효율성이 발생**한다.
+ - 배열은 이러한 문제를 **효율적**으로 해결할 수 있다.
+ - 연관된 데이터를 저장할 때 변수의 선언을 줄여주며, 반복문 등 반복되는 계산과정을 쉽게 처리할 수 있다.
+
+ 
+
+# 배열 선언 방법
+JAVA에서 배열의 선언 방법은 크게 **2가지**가 있다. 
+<br>
+## (1) 자료형[ ] 변수명 = {데이터1, 데이터2, 데이터3};
+<br>
+#### 이 방법은 데이터 값들을 이미 알고 있을 때 활용하면 편리한 방법이다.
+<br>
+
+```
+자료형[] 변수명 = {데이터1, 데이터2, 데이터3};
+
+ex) String[] data = {"데이터1", "데이터2", "데이터3"};
+ 
+ 
+<배열의 구조 해석>
+
+length(배열의 크기(길이)) -> 3
+element(데이터 값) -> 데이터1, 데이터2, 데이터3
+index(구분자(번호)) -> 0, 1, 2
+```
+
+
+ 
+<br>
+## (2) 자료형[ ] 변수명 = new 자료형[배열의 크기(길이)];
+<br>
+#### 이 방법은 현재 데이터 값은 잘 모르지만 변수를 미리 선언해 놓고 향후에 데이터를 추가하고자 할 때 활용하면 편리한 방법이다.
+ <br>
+
+```
+ 자료형[] 변수명 = new 자료형[배열의 크기(길이)];
+ 
+    변수명[0] = 데이터1;
+
+    변수명[1] = 데이터2;
+
+    변수명[2] = 데이터3;
+
+
+
+ ex) String[] data = new String[3];
+
+         data[0] = "데이터1";
+
+         data[1] = "데이터2";
+
+         data[2] = "데이터3";
+
+
+<배열의 구조 해석>
+
+length(배열의 크기(길이)) -> 3
+element(데이터 값) -> 데이터1, 데이터2, 데이터3
+index(구분자(번호)) -> 0, 1, 2
+```
+<br>
+각 방법마다 장단점이 있으므로 꼭 한가지 방법만 활용하기 보다는 자신에게 요구되는 상황에 맞게 적절하게 선택하여 활용하는 것이 좋다.</script><div class="article-detail-cell__body height-70p toast-ui-viewer"><div></div></div><br><div class="article-detail-cell__tag flex"><nav># <a href="#" target="_blank">JAVA</a></nav><nav># <a href="#" target="_blank">배열</a></nav></div><br><br>
+         <!-- Disqus api 적용 --><!-- 정확한 페이지 경로 알려주는 기능 추가-->
+		 <nav>
+		 	<div id="disqus_thread"></div>
+			<script>
+				
+			var disqus_config = function () {   
+		        this.page.url = 'https://blog.devj.me/article_detail_16.html';
+		        this.page.identifier = 'article_detail_16.html';
+		    };
+					(function() { 
+						//DON'T EDIT BELOW THIS LINE
+						var d = document, s = d.createElement('script');
+						s.src = 'https://devj-blog.disqus.com/embed.js';
+						s.setAttribute('data-timestamp', +new Date());
+						(d.head || d.body).appendChild(s);
+						})();
+			</script>
+			<noscript>Please enable JavaScript to view the 
+				<a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+			</noscript>
+		 </nav>
+        </div>
+      </div>
+    </section>
+   <!-- 메인-상세페이지 끝 -->
+   <!-- 메인-상세 하단 메뉴 시작 -->
+   <section class="section-3 con-min-width">
+      <div class="con">
+        <div class="article-list-bottom-cell flex flex-jc-c">
+          <div class="./"><a href="article_detail_10.html" class="hover-underline">&lt 이전글</a></div><div class="./"><i class="fas fa-th-list"></i><a href="java-list-1.html" class="hover-underline"> 목록 </a></div>
+        </div>
+      </div>
+    </section>
+   <!-- 메인-상세 하단 메뉴 끝 -->
+    </section>
+  </main>
+  <!-- 메인 컨텐츠 박스 끝 -->  <!-- 맨 위 버튼 시작 -->
+  <nav class="top-button flex flex-jc-c flex-ai-c">
+    <div class="">
+      <a href="#header">▲ TOP</a> 
+    </div>     
+  </nav>
+  <!-- 맨 위 버튼 끝 -->
+  <!-- 푸터 시작 -->
+  <footer class="bottom-bar con-min-width">
+    <div class="con flex flex-ai-c">
+      <a href="index.html" class="logo logo--mini flex flex-ai-c" title="HOME">
+        <img class="logo--mini__img" src="images/Dev_J_logo/logo_transparent.png" alt="">
+      </a>
+      <div class="bottom-bar__site-info">
+        <span><i class="far fa-envelope"></i> juy32400@gmail.com</span>
+        <br>
+        <br>
+        <span>COPYRIGHT 2020. Dev_J. All rights reserved.</span>
+      </div>
+    </div>
+  </footer>
+  <!-- 푸터 끝 -->
+</div>
+<!-- 사이트 박스 끝 -->
+</body>
+</html>

@@ -1470,6 +1470,11 @@ font-size:1.6rem;
 
 
 @media (max-width: 480px) and (min-width: 320px){
+  
+    .con-min-width {
+  padding-left:0px;
+  padding-right:0px;
+}
 
   .logo-bar{
     height:100px;
@@ -1700,6 +1705,11 @@ font-size:1.5rem;
 }
 
 @media (max-width: 319px){
+    .con-min-width {
+  padding-left:0px;
+  padding-right:0px;
+}
+  
   .logo-bar{
     height:100px;
   }
@@ -1876,5 +1886,7 @@ font-size:1.5rem;
   font-size:0.9rem;
   padding:10px;
 }
+  
+
   
 }

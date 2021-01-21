@@ -1,0 +1,1099 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+<script data-ad-client="ca-pub-7996879977557531" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-X5RMP83794"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-X5RMP83794');
+</script>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- 구글 검색엔진 등록-소유권 확인 -->
+<meta name="google-site-verification" content="37R4KcEaJU5LfiKL7GI1hu1_spJgWOazN6xy48OHhD4" />
+
+<!-- Meta Tag & Open Graph -->
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<meta name="viewport" content="width=1200">
+<meta name="apple-mobile-web-app-title" content="Dev_J BLOG" />
+<!-- 메타태그정보 //-->
+<!-- META -->
+<link rel="canonical" href="https://blog.devj.me" />
+<meta name="subject" content="P.JSP - 개발일지(게시판별 CRUD 기능 구현)"/>
+<meta name="title" content="Dev_J BLOG" />
+<meta name="keywords" content="JAVA, HTML, CSS, JavaScript, MySQL" />
+<meta name="copyright" content="Dev_J BLOG" />
+<meta name="pubdate" content="2021-01-22T00:06:23" />
+<meta name="lastmod" content="2021-01-22T00:06:23" />
+<!-- OPENGRAPH -->
+<meta property="og:site_name" content="Dev_J BLOG" />
+<meta property="og:type" content="blog" />
+<meta property="og:title" content="P.JSP - 개발일지(게시판별 CRUD 기능 구현)" />
+<meta property="og:description" content="
+ 게시판별 CRUD 기능 구현
+  x 게시판별 게시물 리스팅
+  x Create
+    x 로그인 회원만 가능
+  x  Read
+  x  Update
+    x 로그인시에만 버튼 노출
+    x 로그인 회원만 가능
+    x  작성자만 수정 가능권한체크
+    x 확인창최소 가능
+  x  Delete
+    x 로그인시에만 버튼 노출
+    x 로그인 회원만 가능
+    x  작성자만 수정 가능권한체크
+    x 확인창최소 가능
+br
+
+ 영상
+
+youtube
+uqnKGhVZ4QA
+
+br
+ 소스코드
+java
+
+ 리스트 가져오기
+public String showListHttpServletRequest request HttpServletResponse response 
+
+		int boardId  IntegerparseIntrequestgetParameterboardId
+
+		ListArticle articles  articleServicegetArticlesForPrintByBoardIdboardId
+
+		 만약 해당 게시판 번호의 게시판이 없으면 알림 메시지와 뒤로 돌아가기 실시
+		if articlessize  0 
+			requestsetAttributealertMsg boardId  번 게시물은 존재하지 않습니다 게시판 번호를 확인하세요
+			requestsetAttributehistoryBack true  historyBack 뒤로 돌아가기
+			return commonredirect
+		
+
+		requestsetAttributearticles articles
+
+		return usrarticlelist
+	
+
+ 게시물 상세보기
+public String showDetailHttpServletRequest request HttpServletResponse response 
+
+		int id  IntegerparseIntrequestgetParameterid
+
+		Article article  articleServicegetArticleByIdid
+
+		if article  null 
+			requestsetAttributealertMsg id  번 게시물은 존재하지 않습니다 게시물 번호를 확인하세요
+			requestsetAttributehistoryBack true  historyBack 뒤로 돌아가기
+			return commonredirect
+		
+
+		requestsetAttributearticle article
+
+		return usrarticledetail
+	
+
+ 게시물 등록 폼
+public String doWriteFormHttpServletRequest request HttpServletResponse response 
+
+		HttpSession session  requestgetSession
+
+		 로그인 여부 체크
+		if sessiongetAttributeloginedMemberId  null 
+			requestsetAttributealertMsg 로그인 후 이용가능합니다
+			requestsetAttributereplaceUrl memberdoLoginForm
+			return commonredirect
+		
+
+		return usrarticledoWriteForm
+	
+
+ 게시물 등록
+public String doWriteHttpServletRequest request HttpServletResponse response 
+
+		HttpSession session  requestgetSession
+
+		int boardId  IntegerparseIntrequestgetParameterboardId
+		int memberId  int sessiongetAttributeloginedMemberId
+
+		String title  requestgetParametertitle
+
+		String body  requestgetParameterbody
+
+		 해당 게시판이 존재하는지 확인
+		ListArticle articles  articleServicegetArticlesForPrintByBoardIdboardId
+
+		if articlessize  0 
+			requestsetAttributealertMsg boardId  번 게시판은 존재하지 않습니다 게시판 번호를 확인하세요
+			requestsetAttributehistoryBack true  historyBack 뒤로 돌아가기
+			return commonredirect
+		
+
+		 게시물 생성
+		int id  articleServiceaddboardId title body memberId
+
+		 생성 알림창 보여주고 detail로 이동하기
+		requestsetAttributealertMsg id  번 게시물이 생성되었습니다
+		requestsetAttributereplaceUrl Stringformatdetailidd id
+		return commonredirect
+
+	
+
+ 게시물 수정 폼
+public String doModifyFormHttpServletRequest request HttpServletResponse response 
+
+		HttpSession session  requestgetSession
+		
+		 로그인 여부 체크
+		if sessiongetAttributeloginedMemberId  null 
+			requestsetAttributealertMsg 로그인 후 이용가능합니다
+			requestsetAttributereplaceUrl memberdoLoginForm
+			return commonredirect
+		
+
+		int memberId  int sessiongetAttributeloginedMemberId
+
+		 해당 게시판이 존재하는지 확인
+		int id  IntegerparseIntrequestgetParameterid
+
+		Article article  articleServicegetArticleByIdid
+
+		if article  null 
+			requestsetAttributealertMsg id  번 게시물은 존재하지 않습니다 게시물 번호를 확인하세요
+			requestsetAttributehistoryBack true  historyBack 뒤로 돌아가기
+			return commonredirect
+		
+
+		 작성자 본인 여부 체크
+		if articlegetMemberId  memberId 
+			requestsetAttributealertMsg 작성자만 수정이 가능합니다
+			requestsetAttributehistoryBack true  historyBack 뒤로 돌아가기
+			return commonredirect
+		
+
+		requestsetAttributearticle article
+
+		return usrarticledoModifyForm
+	
+
+ 게시물 수정
+public String doModifyHttpServletRequest request HttpServletResponse response 
+
+		int id  IntegerparseIntrequestgetParameterid
+		String title  requestgetParametertitle
+		String body  requestgetParameterbody
+
+		 게시물 수정
+		articleServicearticleModifyid title body
+
+		 수정 알림창 보여주고 detail로 이동하기
+		requestsetAttributealertMsg id  번 게시물이 수정되었습니다
+		requestsetAttributereplaceUrl Stringformatdetailidd id
+		return commonredirect
+
+	
+
+ 게시물 삭제
+public String doDeleteHttpServletRequest request HttpServletResponse response 
+
+		HttpSession session  requestgetSession
+
+		 로그인 여부 체크
+		if sessiongetAttributeloginedMemberId  null 
+			requestsetAttributealertMsg 로그인 후 이용가능합니다
+			requestsetAttributehistoryBack true  historyBack 뒤로 돌아가기
+			return commonredirect
+		
+
+		int memberId  int sessiongetAttributeloginedMemberId
+
+		
+		 해당 게시판이 존재하는지 확인
+		int id  IntegerparseIntrequestgetParameterid
+
+		Article article  articleServicegetArticleByIdid
+
+		if article  null 
+			requestsetAttributealertMsg id  번 게시물은 존재하지 않습니다 게시물 번호를 확인하세요
+			requestsetAttributehistoryBack true  historyBack 뒤로 돌아가기
+			return commonredirect
+		
+		
+		 작성자 본인 여부 체크
+		if articlegetMemberId  memberId 
+			requestsetAttributealertMsg 작성자만 삭제가 가능합니다
+			requestsetAttributehistoryBack true  historyBack 뒤로 돌아가기
+			return commonredirect
+		
+		
+		 게시물 삭제
+		articleServicearticleDeleteid
+
+		 삭제 알림창 보여주고 리스트로 이동하기
+		requestsetAttributealertMsg id  번 게시물이 삭제되었습니다
+		requestsetAttributereplaceUrl StringformatlistboardIdd articlegetBoardId
+		return commonredirect
+
+	
+
+
+
+" />
+<meta property="og:locale" content="ko_KR" />
+<meta property="og:image" content="images/Dev_J_logo/logo.png" />
+<meta property="og:image:alt" content="blog.devj.me" />
+<meta property="og:image:width" content="486" />
+<meta property="og:image:height" content="254" />
+<meta property="og:updated_time" content="2021-01-22T00:06:23"/>
+<meta property="og:pubdate" content="2021-01-22T00:06:23" />
+<meta property="og:url" content="https://blog.devj.me" />
+<!-- TWITTER -->
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="P.JSP - 개발일지(게시판별 CRUD 기능 구현)" />
+<meta name="twitter:site" content="@Dev_J BLOG" />
+<meta name="twitter:creator" content="@Dev_J BLOG" />
+<meta name="twitter:image" content="images/Dev_J_logo/logo.png">
+<meta name="twitter:description" content="
+ 게시판별 CRUD 기능 구현
+  x 게시판별 게시물 리스팅
+  x Create
+    x 로그인 회원만 가능
+  x  Read
+  x  Update
+    x 로그인시에만 버튼 노출
+    x 로그인 회원만 가능
+    x  작성자만 수정 가능권한체크
+    x 확인창최소 가능
+  x  Delete
+    x 로그인시에만 버튼 노출
+    x 로그인 회원만 가능
+    x  작성자만 수정 가능권한체크
+    x 확인창최소 가능
+br
+
+ 영상
+
+youtube
+uqnKGhVZ4QA
+
+br
+ 소스코드
+java
+
+ 리스트 가져오기
+public String showListHttpServletRequest request HttpServletResponse response 
+
+		int boardId  IntegerparseIntrequestgetParameterboardId
+
+		ListArticle articles  articleServicegetArticlesForPrintByBoardIdboardId
+
+		 만약 해당 게시판 번호의 게시판이 없으면 알림 메시지와 뒤로 돌아가기 실시
+		if articlessize  0 
+			requestsetAttributealertMsg boardId  번 게시물은 존재하지 않습니다 게시판 번호를 확인하세요
+			requestsetAttributehistoryBack true  historyBack 뒤로 돌아가기
+			return commonredirect
+		
+
+		requestsetAttributearticles articles
+
+		return usrarticlelist
+	
+
+ 게시물 상세보기
+public String showDetailHttpServletRequest request HttpServletResponse response 
+
+		int id  IntegerparseIntrequestgetParameterid
+
+		Article article  articleServicegetArticleByIdid
+
+		if article  null 
+			requestsetAttributealertMsg id  번 게시물은 존재하지 않습니다 게시물 번호를 확인하세요
+			requestsetAttributehistoryBack true  historyBack 뒤로 돌아가기
+			return commonredirect
+		
+
+		requestsetAttributearticle article
+
+		return usrarticledetail
+	
+
+ 게시물 등록 폼
+public String doWriteFormHttpServletRequest request HttpServletResponse response 
+
+		HttpSession session  requestgetSession
+
+		 로그인 여부 체크
+		if sessiongetAttributeloginedMemberId  null 
+			requestsetAttributealertMsg 로그인 후 이용가능합니다
+			requestsetAttributereplaceUrl memberdoLoginForm
+			return commonredirect
+		
+
+		return usrarticledoWriteForm
+	
+
+ 게시물 등록
+public String doWriteHttpServletRequest request HttpServletResponse response 
+
+		HttpSession session  requestgetSession
+
+		int boardId  IntegerparseIntrequestgetParameterboardId
+		int memberId  int sessiongetAttributeloginedMemberId
+
+		String title  requestgetParametertitle
+
+		String body  requestgetParameterbody
+
+		 해당 게시판이 존재하는지 확인
+		ListArticle articles  articleServicegetArticlesForPrintByBoardIdboardId
+
+		if articlessize  0 
+			requestsetAttributealertMsg boardId  번 게시판은 존재하지 않습니다 게시판 번호를 확인하세요
+			requestsetAttributehistoryBack true  historyBack 뒤로 돌아가기
+			return commonredirect
+		
+
+		 게시물 생성
+		int id  articleServiceaddboardId title body memberId
+
+		 생성 알림창 보여주고 detail로 이동하기
+		requestsetAttributealertMsg id  번 게시물이 생성되었습니다
+		requestsetAttributereplaceUrl Stringformatdetailidd id
+		return commonredirect
+
+	
+
+ 게시물 수정 폼
+public String doModifyFormHttpServletRequest request HttpServletResponse response 
+
+		HttpSession session  requestgetSession
+		
+		 로그인 여부 체크
+		if sessiongetAttributeloginedMemberId  null 
+			requestsetAttributealertMsg 로그인 후 이용가능합니다
+			requestsetAttributereplaceUrl memberdoLoginForm
+			return commonredirect
+		
+
+		int memberId  int sessiongetAttributeloginedMemberId
+
+		 해당 게시판이 존재하는지 확인
+		int id  IntegerparseIntrequestgetParameterid
+
+		Article article  articleServicegetArticleByIdid
+
+		if article  null 
+			requestsetAttributealertMsg id  번 게시물은 존재하지 않습니다 게시물 번호를 확인하세요
+			requestsetAttributehistoryBack true  historyBack 뒤로 돌아가기
+			return commonredirect
+		
+
+		 작성자 본인 여부 체크
+		if articlegetMemberId  memberId 
+			requestsetAttributealertMsg 작성자만 수정이 가능합니다
+			requestsetAttributehistoryBack true  historyBack 뒤로 돌아가기
+			return commonredirect
+		
+
+		requestsetAttributearticle article
+
+		return usrarticledoModifyForm
+	
+
+ 게시물 수정
+public String doModifyHttpServletRequest request HttpServletResponse response 
+
+		int id  IntegerparseIntrequestgetParameterid
+		String title  requestgetParametertitle
+		String body  requestgetParameterbody
+
+		 게시물 수정
+		articleServicearticleModifyid title body
+
+		 수정 알림창 보여주고 detail로 이동하기
+		requestsetAttributealertMsg id  번 게시물이 수정되었습니다
+		requestsetAttributereplaceUrl Stringformatdetailidd id
+		return commonredirect
+
+	
+
+ 게시물 삭제
+public String doDeleteHttpServletRequest request HttpServletResponse response 
+
+		HttpSession session  requestgetSession
+
+		 로그인 여부 체크
+		if sessiongetAttributeloginedMemberId  null 
+			requestsetAttributealertMsg 로그인 후 이용가능합니다
+			requestsetAttributehistoryBack true  historyBack 뒤로 돌아가기
+			return commonredirect
+		
+
+		int memberId  int sessiongetAttributeloginedMemberId
+
+		
+		 해당 게시판이 존재하는지 확인
+		int id  IntegerparseIntrequestgetParameterid
+
+		Article article  articleServicegetArticleByIdid
+
+		if article  null 
+			requestsetAttributealertMsg id  번 게시물은 존재하지 않습니다 게시물 번호를 확인하세요
+			requestsetAttributehistoryBack true  historyBack 뒤로 돌아가기
+			return commonredirect
+		
+		
+		 작성자 본인 여부 체크
+		if articlegetMemberId  memberId 
+			requestsetAttributealertMsg 작성자만 삭제가 가능합니다
+			requestsetAttributehistoryBack true  historyBack 뒤로 돌아가기
+			return commonredirect
+		
+		
+		 게시물 삭제
+		articleServicearticleDeleteid
+
+		 삭제 알림창 보여주고 리스트로 이동하기
+		requestsetAttributealertMsg id  번 게시물이 삭제되었습니다
+		requestsetAttributereplaceUrl StringformatlistboardIdd articlegetBoardId
+		return commonredirect
+
+	
+
+
+
+" />
+<!-- GOOGLE+ -->
+<meta itemprop="headline" content="Dev_J BLOG" />
+<meta itemprop="name" content="Dev_J BLOG" />
+<meta itemprop="description" content="
+ 게시판별 CRUD 기능 구현
+  x 게시판별 게시물 리스팅
+  x Create
+    x 로그인 회원만 가능
+  x  Read
+  x  Update
+    x 로그인시에만 버튼 노출
+    x 로그인 회원만 가능
+    x  작성자만 수정 가능권한체크
+    x 확인창최소 가능
+  x  Delete
+    x 로그인시에만 버튼 노출
+    x 로그인 회원만 가능
+    x  작성자만 수정 가능권한체크
+    x 확인창최소 가능
+br
+
+ 영상
+
+youtube
+uqnKGhVZ4QA
+
+br
+ 소스코드
+java
+
+ 리스트 가져오기
+public String showListHttpServletRequest request HttpServletResponse response 
+
+		int boardId  IntegerparseIntrequestgetParameterboardId
+
+		ListArticle articles  articleServicegetArticlesForPrintByBoardIdboardId
+
+		 만약 해당 게시판 번호의 게시판이 없으면 알림 메시지와 뒤로 돌아가기 실시
+		if articlessize  0 
+			requestsetAttributealertMsg boardId  번 게시물은 존재하지 않습니다 게시판 번호를 확인하세요
+			requestsetAttributehistoryBack true  historyBack 뒤로 돌아가기
+			return commonredirect
+		
+
+		requestsetAttributearticles articles
+
+		return usrarticlelist
+	
+
+ 게시물 상세보기
+public String showDetailHttpServletRequest request HttpServletResponse response 
+
+		int id  IntegerparseIntrequestgetParameterid
+
+		Article article  articleServicegetArticleByIdid
+
+		if article  null 
+			requestsetAttributealertMsg id  번 게시물은 존재하지 않습니다 게시물 번호를 확인하세요
+			requestsetAttributehistoryBack true  historyBack 뒤로 돌아가기
+			return commonredirect
+		
+
+		requestsetAttributearticle article
+
+		return usrarticledetail
+	
+
+ 게시물 등록 폼
+public String doWriteFormHttpServletRequest request HttpServletResponse response 
+
+		HttpSession session  requestgetSession
+
+		 로그인 여부 체크
+		if sessiongetAttributeloginedMemberId  null 
+			requestsetAttributealertMsg 로그인 후 이용가능합니다
+			requestsetAttributereplaceUrl memberdoLoginForm
+			return commonredirect
+		
+
+		return usrarticledoWriteForm
+	
+
+ 게시물 등록
+public String doWriteHttpServletRequest request HttpServletResponse response 
+
+		HttpSession session  requestgetSession
+
+		int boardId  IntegerparseIntrequestgetParameterboardId
+		int memberId  int sessiongetAttributeloginedMemberId
+
+		String title  requestgetParametertitle
+
+		String body  requestgetParameterbody
+
+		 해당 게시판이 존재하는지 확인
+		ListArticle articles  articleServicegetArticlesForPrintByBoardIdboardId
+
+		if articlessize  0 
+			requestsetAttributealertMsg boardId  번 게시판은 존재하지 않습니다 게시판 번호를 확인하세요
+			requestsetAttributehistoryBack true  historyBack 뒤로 돌아가기
+			return commonredirect
+		
+
+		 게시물 생성
+		int id  articleServiceaddboardId title body memberId
+
+		 생성 알림창 보여주고 detail로 이동하기
+		requestsetAttributealertMsg id  번 게시물이 생성되었습니다
+		requestsetAttributereplaceUrl Stringformatdetailidd id
+		return commonredirect
+
+	
+
+ 게시물 수정 폼
+public String doModifyFormHttpServletRequest request HttpServletResponse response 
+
+		HttpSession session  requestgetSession
+		
+		 로그인 여부 체크
+		if sessiongetAttributeloginedMemberId  null 
+			requestsetAttributealertMsg 로그인 후 이용가능합니다
+			requestsetAttributereplaceUrl memberdoLoginForm
+			return commonredirect
+		
+
+		int memberId  int sessiongetAttributeloginedMemberId
+
+		 해당 게시판이 존재하는지 확인
+		int id  IntegerparseIntrequestgetParameterid
+
+		Article article  articleServicegetArticleByIdid
+
+		if article  null 
+			requestsetAttributealertMsg id  번 게시물은 존재하지 않습니다 게시물 번호를 확인하세요
+			requestsetAttributehistoryBack true  historyBack 뒤로 돌아가기
+			return commonredirect
+		
+
+		 작성자 본인 여부 체크
+		if articlegetMemberId  memberId 
+			requestsetAttributealertMsg 작성자만 수정이 가능합니다
+			requestsetAttributehistoryBack true  historyBack 뒤로 돌아가기
+			return commonredirect
+		
+
+		requestsetAttributearticle article
+
+		return usrarticledoModifyForm
+	
+
+ 게시물 수정
+public String doModifyHttpServletRequest request HttpServletResponse response 
+
+		int id  IntegerparseIntrequestgetParameterid
+		String title  requestgetParametertitle
+		String body  requestgetParameterbody
+
+		 게시물 수정
+		articleServicearticleModifyid title body
+
+		 수정 알림창 보여주고 detail로 이동하기
+		requestsetAttributealertMsg id  번 게시물이 수정되었습니다
+		requestsetAttributereplaceUrl Stringformatdetailidd id
+		return commonredirect
+
+	
+
+ 게시물 삭제
+public String doDeleteHttpServletRequest request HttpServletResponse response 
+
+		HttpSession session  requestgetSession
+
+		 로그인 여부 체크
+		if sessiongetAttributeloginedMemberId  null 
+			requestsetAttributealertMsg 로그인 후 이용가능합니다
+			requestsetAttributehistoryBack true  historyBack 뒤로 돌아가기
+			return commonredirect
+		
+
+		int memberId  int sessiongetAttributeloginedMemberId
+
+		
+		 해당 게시판이 존재하는지 확인
+		int id  IntegerparseIntrequestgetParameterid
+
+		Article article  articleServicegetArticleByIdid
+
+		if article  null 
+			requestsetAttributealertMsg id  번 게시물은 존재하지 않습니다 게시물 번호를 확인하세요
+			requestsetAttributehistoryBack true  historyBack 뒤로 돌아가기
+			return commonredirect
+		
+		
+		 작성자 본인 여부 체크
+		if articlegetMemberId  memberId 
+			requestsetAttributealertMsg 작성자만 삭제가 가능합니다
+			requestsetAttributehistoryBack true  historyBack 뒤로 돌아가기
+			return commonredirect
+		
+		
+		 게시물 삭제
+		articleServicearticleDeleteid
+
+		 삭제 알림창 보여주고 리스트로 이동하기
+		requestsetAttributealertMsg id  번 게시물이 삭제되었습니다
+		requestsetAttributereplaceUrl StringformatlistboardIdd articlegetBoardId
+		return commonredirect
+
+	
+
+
+
+" />
+<meta itemprop="image" content="images/Dev_J_logo/logo.png" />
+
+<!-- 사이트 타이틀 -->
+<title>P.JSP - 개발일지(게시판별 CRUD 기능 구현) | Dev_J BLOG | ARTICLE DETAIL</title>
+
+
+<!-- 파비콘 -->
+<link rel="shortcut icon" href="images/favicon/favicon.ico" type="image/x-icon">
+<link rel="icon" href="images/favicon/favicon.ico" type="image/x-icon">
+
+<!-- 폰트어썸 불러오기 -->
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+
+<!--모바일에서도 PC와 같은 비율 유지-->
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<!--제이쿼리-->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+<!-- 하이라이트 라이브러리 추가, 토스트 UI 에디터에서 사용됨 -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.4.1/highlight.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.4.1/styles/default.min.css">
+
+<!-- 토스트 UI 에디터, 자바스크립트 코어 -->
+<script
+	src="https://uicdn.toast.com/editor/latest/toastui-editor-all.min.js" defer></script>
+
+<!-- 코드 미러 라이브러리 추가, 토스트 UI 에디터에서 사용됨 -->
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.58.3/codemirror.min.css" />
+<!-- 토스트 UI 에디터, CSS 코어 -->
+<link rel="stylesheet"
+	href="https://uicdn.toast.com/editor/latest/toastui-editor.min.css" />
+
+<!-- 토스트 UI 에디터, 신택스 하이라이트 플러그인 추가 -->
+<script src="https://uicdn.toast.com/editor-plugin-code-syntax-highlight/latest/toastui-editor-plugin-code-syntax-highlight.min.js" defer></script>
+
+<!-- app.css 불러오기 -->
+<link rel="stylesheet" href="app.css">
+<!-- app.js 불러오기 -->
+<script src="app.js" defer></script>
+<!-- index.js 불러오기 -->
+<script src="index.js" defer></script>
+
+</head>
+
+<body>
+<!-- 사이트 박스 시작 -->
+<div class="body-content min-height-100vh flex flex-column">
+  <!-- 로고바 시작 -->
+  <header class="logo-bar con-min-width" id="header">
+    <div class="con height-100p flex flex-jc-c" title="HOME">
+      <a href="index.html" class="logo flex flex-ai-c"> 
+        <img class="logo__img" src="images/Dev_J_logo/logo_transparent.png" alt="">
+        <span>
+          BLOG
+        </span>
+      </a>
+    </div>
+  </header>
+  <!-- 로고바 끝 -->
+
+  <!-- 메뉴바 시작-->
+  <header class="menu-bar con-min-width">
+   <div class="menu-bar__status-icon" title="Menu">
+     <div></div>
+     <div></div>
+     <div></div>
+   </div>
+   <div class="con hide">
+    <nav class="menu-bar__menu">
+      <ul class="flex">
+          <li title="ABOUT">
+            <a href="about.html" class="block">
+              <i class="far fa-address-card"></i>
+              <span>ABOUT</span>
+            </a>
+          </li>
+          <li>
+            <a class="block">
+              <i class="fas fa-list"></i>
+              <span>ARTICLES</span>
+            </a>
+            <ul>
+              <li title="NOTICE"><a href="notice-list-1.html" class="block"><i class="fas fa-bullhorn"></i> <span>NOTICE BOARD</span></a></li><li title="JAVA"><a href="java-list-1.html" class="block"><i class="fab fa-java"></i> <span>JAVA BOARD</span></a></li><li title="HTML"><a href="html-list-1.html" class="block"><i class="fab fa-html5"></i> <span>HTML & CSS & JS BOARD</span></a></li><li title="MYSQL"><a href="mysql-list-1.html" class="block"><i class="fas fa-database"></i> <span>MySQL BOARD</span></a></li><li title="JSP"><a href="jsp-list-1.html" class="block"><i class="fas fa-database"></i> <span>P.JSP BOARD(임시)</span></a></li>
+            </ul>
+          </li>
+          <li>
+            <a class="block">
+              <i class="fas fa-link"></i>
+              <span>LINK</span>
+            </a>
+            <ul>
+              <li title="T-STORY">
+                <a href="https://cjy324.tistory.com/" target="_blank" class="block">
+                  <i class="fas fa-rss-square"></i>
+                  <span>T-STORY</span>
+                </a>
+              </li>
+              <li title="GITHUB">
+                <a href="https://github.com/cjy324/TIL_Jooyoung#til_jooyoung" target="_blank" class="block">
+                  <i class="fab fa-github"></i>
+                  <span>GITHUB</span>
+                </a>
+              </li>
+            </ul>
+          </li>
+          <li title="SEARCH">
+            <a href="search.html" class="block">
+              <i class="fas fa-search"></i>
+              <span>SEARCH</span>
+            </a>
+          </li>
+          <li title="STATISTICS">
+            <a href="statistics.html" class="block">
+              <i class="fas fa-chart-pie"></i>
+              <span>STATISTICS</span>
+            </a>
+          </li>
+        </ul>
+      </nav>
+   </div>
+  </header>
+  <!-- 메뉴바 끝 --> 
+
+  <!-- 메인 컨텐츠 박스 시작 -->
+  <main class="main-box flex-grow-1">
+  <section class="main-box-section con-min-width">
+   <!-- 메인-타이틀바 시작 -->
+	<div class="title-bar con-min-width">
+		<h1 class="con">
+			<i class="fas fa-file-invoice"></i> <span>ARTICLE DETAIL</span>
+		</h1>
+	</div>
+   <!-- 메인-타이틀바 종료 -->
+<!-- Progress-bar -->
+<script type="text/javascript" src="https://rawcdn.githack.com/mburakerman/prognroll/0feda211643153bce2c69de32ea1b39cdc64ffbe/src/prognroll.js"></script> 
+<script type="text/javascript"> $(function() { $("body").prognroll( {height:10, color:"#666666"} ); $(".content").prognroll({ custom:true }); }); </script>
+
+   <!-- 메인-상세페이지 시작 -->
+   <section class="section-2 con-min-width min-height-50vh">
+      <div class="con height-100p">
+        <div class="article-detail-cell height-100p">
+          <div class="article-detail-cell__board-name"><div><span>게시판 : </span><span>P.JSP 게시판</span></div></div><div class="article-detail-cell__id"><div><span>번호 : </span><span>20</span></div></div><div class="article-detail-cell__member-id"><div><span>작성자 : </span><span>Dev_J</span></div></div><div class="article-detail-cell__reg-date"><div><span>작성일 : </span><span>2021-01-21 23:53:39</span></div></div><div class="article-detail-cell__update-date"><div><span>수정일 : </span><span>2021-01-22 00:06:17</span></div></div><br><div class="article-detail-cell__title-contents flex flex-jc-fe"><div class="article-detail-cell__hitsCount"><div><span>조회수 : </span><span>0</span></div></div><div class="article-detail-cell__likesCount"><div><span>추천수 : </span><span>0</span></div></div><div class="article-detail-cell__commentsCount"><div><span>댓글수 : </span><span>0</span></div></div></div><div class="article-detail-cell__title"><div><span>제목 : </span><span>P.JSP - 개발일지(게시판별 CRUD 기능 구현)</span></div></div><script type"text/x-template">
+# 게시판별 CRUD 기능 구현
+ - [x] 게시판별 게시물 리스팅
+ - [x] Create
+   - [x] 로그인 회원만 가능
+ - [x]  Read
+ - [x]  Update
+   - [x] 로그인시에만 버튼 노출
+   - [x] 로그인 회원만 가능
+   - [x]  작성자만 수정 가능(권한체크)
+   - [x] 확인창(최소 가능)
+ - [x]  Delete
+   - [x] 로그인시에만 버튼 노출
+   - [x] 로그인 회원만 가능
+   - [x]  작성자만 수정 가능(권한체크)
+   - [x] 확인창(최소 가능)
+<br>
+
+## 영상
+
+```youtube
+uqnKGhVZ4QA
+```
+<br>
+## 소스코드
+```java
+
+// 리스트 가져오기
+public String showList(HttpServletRequest request, HttpServletResponse response) {
+
+		int boardId = Integer.parseInt(request.getParameter("boardId"));
+
+		List<Article> articles = articleService.getArticlesForPrintByBoardId(boardId);
+
+		// 만약, 해당 게시판 번호의 게시판이 없으면 알림 메시지와 뒤로 돌아가기 실시
+		if (articles.size() <= 0) {
+			request.setAttribute("alertMsg", boardId + "번 게시물은 존재하지 않습니다. 게시판 번호를 확인하세요.");
+			request.setAttribute("historyBack", true); // historyBack: 뒤로 돌아가기
+			return "common/redirect";
+		}
+
+		request.setAttribute("articles", articles);
+
+		return "usr/article/list";
+	}
+
+// 게시물 상세보기
+public String showDetail(HttpServletRequest request, HttpServletResponse response) {
+
+		int id = Integer.parseInt(request.getParameter("id"));
+
+		Article article = articleService.getArticleById(id);
+
+		if (article == null) {
+			request.setAttribute("alertMsg", id + "번 게시물은 존재하지 않습니다. 게시물 번호를 확인하세요.");
+			request.setAttribute("historyBack", true); // historyBack: 뒤로 돌아가기
+			return "common/redirect";
+		}
+
+		request.setAttribute("article", article);
+
+		return "usr/article/detail";
+	}
+
+// 게시물 등록 폼
+public String doWriteForm(HttpServletRequest request, HttpServletResponse response) {
+
+		HttpSession session = request.getSession();
+
+		// 로그인 여부 체크
+		if (session.getAttribute("loginedMemberId") == null) {
+			request.setAttribute("alertMsg", "로그인 후 이용가능합니다.");
+			request.setAttribute("replaceUrl", "../member/doLoginForm");
+			return "common/redirect";
+		}
+
+		return "usr/article/doWriteForm";
+	}
+
+// 게시물 등록
+public String doWrite(HttpServletRequest request, HttpServletResponse response) {
+
+		HttpSession session = request.getSession();
+
+		int boardId = Integer.parseInt(request.getParameter("boardId"));
+		int memberId = (int) session.getAttribute("loginedMemberId");
+
+		String title = request.getParameter("title");
+
+		String body = request.getParameter("body");
+
+		// 해당 게시판이 존재하는지 확인
+		List<Article> articles = articleService.getArticlesForPrintByBoardId(boardId);
+
+		if (articles.size() <= 0) {
+			request.setAttribute("alertMsg", boardId + "번 게시판은 존재하지 않습니다. 게시판 번호를 확인하세요.");
+			request.setAttribute("historyBack", true); // historyBack: 뒤로 돌아가기
+			return "common/redirect";
+		}
+
+		// 게시물 생성
+		int id = articleService.add(boardId, title, body, memberId);
+
+		// 생성 알림창 보여주고 detail로 이동하기
+		request.setAttribute("alertMsg", id + "번 게시물이 생성되었습니다.");
+		request.setAttribute("replaceUrl", String.format("detail?id=%d", id));
+		return "common/redirect";
+
+	}
+
+// 게시물 수정 폼
+public String doModifyForm(HttpServletRequest request, HttpServletResponse response) {
+
+		HttpSession session = request.getSession();
+		
+		// 로그인 여부 체크
+		if (session.getAttribute("loginedMemberId") == null) {
+			request.setAttribute("alertMsg", "로그인 후 이용가능합니다.");
+			request.setAttribute("replaceUrl", "../member/doLoginForm");
+			return "common/redirect";
+		}
+
+		int memberId = (int) session.getAttribute("loginedMemberId");
+
+		// 해당 게시판이 존재하는지 확인
+		int id = Integer.parseInt(request.getParameter("id"));
+
+		Article article = articleService.getArticleById(id);
+
+		if (article == null) {
+			request.setAttribute("alertMsg", id + "번 게시물은 존재하지 않습니다. 게시물 번호를 확인하세요.");
+			request.setAttribute("historyBack", true); // historyBack: 뒤로 돌아가기
+			return "common/redirect";
+		}
+
+		// 작성자 본인 여부 체크
+		if (article.getMemberId() != memberId) {
+			request.setAttribute("alertMsg", "작성자만 수정이 가능합니다.");
+			request.setAttribute("historyBack", true); // historyBack: 뒤로 돌아가기
+			return "common/redirect";
+		}
+
+		request.setAttribute("article", article);
+
+		return "usr/article/doModifyForm";
+	}
+
+// 게시물 수정
+public String doModify(HttpServletRequest request, HttpServletResponse response) {
+
+		int id = Integer.parseInt(request.getParameter("id"));
+		String title = request.getParameter("title");
+		String body = request.getParameter("body");
+
+		// 게시물 수정
+		articleService.articleModify(id, title, body);
+
+		// 수정 알림창 보여주고 detail로 이동하기
+		request.setAttribute("alertMsg", id + "번 게시물이 수정되었습니다.");
+		request.setAttribute("replaceUrl", String.format("detail?id=%d", id));
+		return "common/redirect";
+
+	}
+
+// 게시물 삭제
+public String doDelete(HttpServletRequest request, HttpServletResponse response) {
+
+		HttpSession session = request.getSession();
+
+		// 로그인 여부 체크
+		if (session.getAttribute("loginedMemberId") == null) {
+			request.setAttribute("alertMsg", "로그인 후 이용가능합니다.");
+			request.setAttribute("historyBack", true); // historyBack: 뒤로 돌아가기
+			return "common/redirect";
+		}
+
+		int memberId = (int) session.getAttribute("loginedMemberId");
+
+		
+		// 해당 게시판이 존재하는지 확인
+		int id = Integer.parseInt(request.getParameter("id"));
+
+		Article article = articleService.getArticleById(id);
+
+		if (article == null) {
+			request.setAttribute("alertMsg", id + "번 게시물은 존재하지 않습니다. 게시물 번호를 확인하세요.");
+			request.setAttribute("historyBack", true); // historyBack: 뒤로 돌아가기
+			return "common/redirect";
+		}
+		
+		// 작성자 본인 여부 체크
+		if (article.getMemberId() != memberId) {
+			request.setAttribute("alertMsg", "작성자만 삭제가 가능합니다.");
+			request.setAttribute("historyBack", true); // historyBack: 뒤로 돌아가기
+			return "common/redirect";
+		}
+		
+		// 게시물 삭제
+		articleService.articleDelete(id);
+
+		// 삭제 알림창 보여주고 리스트로 이동하기
+		request.setAttribute("alertMsg", id + "번 게시물이 삭제되었습니다.");
+		request.setAttribute("replaceUrl", String.format("list?boardId=%d", article.getBoardId()));
+		return "common/redirect";
+
+	}
+
+
+```
+</script><div class="article-detail-cell__body height-70p toast-ui-viewer"><div></div></div><br><div class="article-detail-cell__tag flex"></div><br><br>
+         <!-- Disqus api 적용 --><!-- 정확한 페이지 경로 알려주는 기능 추가-->
+		 <nav>
+		 	<div id="disqus_thread"></div>
+			<script>
+				
+			var disqus_config = function () {   
+		        this.page.url = 'https://blog.devj.me/article_detail_20.html';
+		        this.page.identifier = 'article_detail_20.html';
+		    };
+					(function() { 
+						//DON'T EDIT BELOW THIS LINE
+						var d = document, s = d.createElement('script');
+						s.src = 'https://devj-blog.disqus.com/embed.js';
+						s.setAttribute('data-timestamp', +new Date());
+						(d.head || d.body).appendChild(s);
+						})();
+			</script>
+			<noscript>Please enable JavaScript to view the 
+				<a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+			</noscript>
+		 </nav>
+        </div>
+      </div>
+    </section>
+   <!-- 메인-상세페이지 끝 -->
+   <!-- 메인-상세 하단 메뉴 시작 -->
+   <section class="section-3 con-min-width">
+      <div class="con">
+        <div class="article-list-bottom-cell flex flex-jc-c">
+          <div class="./"><a href="article_detail_19.html" class="hover-underline">&lt 이전글</a></div><div class="./"><i class="fas fa-th-list"></i><a href="jsp-list-1.html" class="hover-underline"> 목록 </a></div><div class="./"><a href="article_detail_21.html"class="hover-underline">다음글 &gt</a></div>
+        </div>
+      </div>
+    </section>
+   <!-- 메인-상세 하단 메뉴 끝 -->
+    </section>
+  </main>
+  <!-- 메인 컨텐츠 박스 끝 -->  <!-- 맨 위 버튼 시작 -->
+  <nav class="top-button flex flex-jc-c flex-ai-c">
+    <div class="">
+      <a href="#header">▲ TOP</a> 
+    </div>     
+  </nav>
+  <!-- 맨 위 버튼 끝 -->
+  <!-- 푸터 시작 -->
+  <footer class="bottom-bar con-min-width">
+    <div class="con flex flex-ai-c">
+      <a href="index.html" class="logo logo--mini flex flex-ai-c" title="HOME">
+        <img class="logo--mini__img" src="images/Dev_J_logo/logo_transparent.png" alt="">
+      </a>
+      <div class="bottom-bar__site-info">
+        <span><i class="far fa-envelope"></i> juy32400@gmail.com</span>
+        <br>
+        <br>
+        <span>COPYRIGHT 2020. Dev_J. All rights reserved.</span>
+      </div>
+    </div>
+  </footer>
+  <!-- 푸터 끝 -->
+</div>
+<!-- 사이트 박스 끝 -->
+</body>
+</html>

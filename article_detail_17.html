@@ -24,76 +24,301 @@
 <!-- 메타태그정보 //-->
 <!-- META -->
 <link rel="canonical" href="https://blog.devj.me" />
-<meta name="subject" content="P.JSP - 기록일지(회원가입 기능 구현)"/>
+<meta name="subject" content="P.JSP - 개발일지(회원가입 기능 구현)"/>
 <meta name="title" content="Dev_J BLOG" />
 <meta name="keywords" content="JAVA, HTML, CSS, JavaScript, MySQL" />
 <meta name="copyright" content="Dev_J BLOG" />
-<meta name="pubdate" content="2021-01-20T23:51:53" />
-<meta name="lastmod" content="2021-01-20T23:51:53" />
+<meta name="pubdate" content="2021-01-22T00:06:23" />
+<meta name="lastmod" content="2021-01-22T00:06:23" />
 <!-- OPENGRAPH -->
 <meta property="og:site_name" content="Dev_J BLOG" />
 <meta property="og:type" content="blog" />
-<meta property="og:title" content="P.JSP - 기록일지(회원가입 기능 구현)" />
+<meta property="og:title" content="P.JSP - 개발일지(회원가입 기능 구현)" />
 <meta property="og:description" content="
  회원가입 기능 구현
- 아이디 중복 여부 확인
-비밀번호 확인
- email연락처 올바른 양식 확인
-공란 여부 확인
-알림창 확인
-완료페이지 이동 확인
+  x 아이디 중복 여부 확인
+  x 비밀번호 확인
+    x email연락처 올바른 양식 확인
+  x 공란 여부 확인
+  x 알림창 확인
+  x 완료페이지 이동 확인
 br
+ 영상
 
 youtube
 V5vZMGrpo
+
+br
+ 소스코드
+java
+ 회원가입 폼
+	public String doJoinFormHttpServletRequest request HttpServletResponse response 
+
+		HttpSession session  requestgetSession
+
+		 로그인 여부 확인
+		if sessiongetAttributeloginedMemberId  null 
+			requestsetAttributealertMsg 이미 로그인된 상태입니다
+			requestsetAttributehistoryBack true  historyBack 뒤로 돌아가기
+			return commonredirect
+		
+		
+		return usrmemberdoJoinForm
+	
+
+	 회원가입
+	public String doJoinHttpServletRequest request HttpServletResponse response 
+
+		String loginId  requestgetParameterloginId
+		String loginPw  requestgetParameterloginPw
+		String name  requestgetParametername
+		String nickname  requestgetParameternickname
+		String email  requestgetParameteremail
+		String cellPhoneNo  requestgetParametercellPhoneNo
+
+		ListMember members  memberServicegetMemberListForPrint
+
+		 해당 loginId가 사용가능한지 중복확인
+		for int i  0 i  memberssize i 
+			if membersgetigetLoginIdequalsloginId  true 
+				requestsetAttributealertMsg 해당 아이디는 이미 사용중인 아이디입니다
+				requestsetAttributehistoryBack true  historyBack 뒤로 돌아가기
+				return commonredirect
+			
+		
+
+		 해당 nickname이 사용가능한지 중복확인
+		for int i  0 i  memberssize i 
+			if membersgetigetNicknameequalsnickname  true 
+				requestsetAttributealertMsg 해당 닉네임는 이미 사용중인 닉네임입니다
+				requestsetAttributehistoryBack true  historyBack 뒤로 돌아가기
+				return commonredirect
+			
+		
+
+		MapString Object joinArg  new HashMap
+		joinArgputloginId loginId
+		joinArgputloginPw loginPw
+		joinArgputname name
+		joinArgputnickname nickname
+		joinArgputemail email
+		joinArgputcellPhoneNo cellPhoneNo
+
+		 신규 회원가입
+		int id  memberServicejoinjoinArg
+
+		 생성 알림창 보여주고 회원정보로 이동하기
+		requestsetAttributealertMsg id  번 회원님 반갑습니다
+
+		Member member  memberServicegetMemberByIdid
+
+		requestsetAttributemember member
+
+		return usrmemberdoJoin
+
+	
+
+
+
+
 " />
 <meta property="og:locale" content="ko_KR" />
 <meta property="og:image" content="images/Dev_J_logo/logo.png" />
 <meta property="og:image:alt" content="blog.devj.me" />
 <meta property="og:image:width" content="486" />
 <meta property="og:image:height" content="254" />
-<meta property="og:updated_time" content="2021-01-20T23:51:53"/>
-<meta property="og:pubdate" content="2021-01-20T23:51:53" />
+<meta property="og:updated_time" content="2021-01-22T00:06:23"/>
+<meta property="og:pubdate" content="2021-01-22T00:06:23" />
 <meta property="og:url" content="https://blog.devj.me" />
 <!-- TWITTER -->
 <meta name="twitter:card" content="summary_large_image" />
-<meta name="twitter:title" content="P.JSP - 기록일지(회원가입 기능 구현)" />
+<meta name="twitter:title" content="P.JSP - 개발일지(회원가입 기능 구현)" />
 <meta name="twitter:site" content="@Dev_J BLOG" />
 <meta name="twitter:creator" content="@Dev_J BLOG" />
 <meta name="twitter:image" content="images/Dev_J_logo/logo.png">
 <meta name="twitter:description" content="
  회원가입 기능 구현
- 아이디 중복 여부 확인
-비밀번호 확인
- email연락처 올바른 양식 확인
-공란 여부 확인
-알림창 확인
-완료페이지 이동 확인
+  x 아이디 중복 여부 확인
+  x 비밀번호 확인
+    x email연락처 올바른 양식 확인
+  x 공란 여부 확인
+  x 알림창 확인
+  x 완료페이지 이동 확인
 br
+ 영상
 
 youtube
 V5vZMGrpo
+
+br
+ 소스코드
+java
+ 회원가입 폼
+	public String doJoinFormHttpServletRequest request HttpServletResponse response 
+
+		HttpSession session  requestgetSession
+
+		 로그인 여부 확인
+		if sessiongetAttributeloginedMemberId  null 
+			requestsetAttributealertMsg 이미 로그인된 상태입니다
+			requestsetAttributehistoryBack true  historyBack 뒤로 돌아가기
+			return commonredirect
+		
+		
+		return usrmemberdoJoinForm
+	
+
+	 회원가입
+	public String doJoinHttpServletRequest request HttpServletResponse response 
+
+		String loginId  requestgetParameterloginId
+		String loginPw  requestgetParameterloginPw
+		String name  requestgetParametername
+		String nickname  requestgetParameternickname
+		String email  requestgetParameteremail
+		String cellPhoneNo  requestgetParametercellPhoneNo
+
+		ListMember members  memberServicegetMemberListForPrint
+
+		 해당 loginId가 사용가능한지 중복확인
+		for int i  0 i  memberssize i 
+			if membersgetigetLoginIdequalsloginId  true 
+				requestsetAttributealertMsg 해당 아이디는 이미 사용중인 아이디입니다
+				requestsetAttributehistoryBack true  historyBack 뒤로 돌아가기
+				return commonredirect
+			
+		
+
+		 해당 nickname이 사용가능한지 중복확인
+		for int i  0 i  memberssize i 
+			if membersgetigetNicknameequalsnickname  true 
+				requestsetAttributealertMsg 해당 닉네임는 이미 사용중인 닉네임입니다
+				requestsetAttributehistoryBack true  historyBack 뒤로 돌아가기
+				return commonredirect
+			
+		
+
+		MapString Object joinArg  new HashMap
+		joinArgputloginId loginId
+		joinArgputloginPw loginPw
+		joinArgputname name
+		joinArgputnickname nickname
+		joinArgputemail email
+		joinArgputcellPhoneNo cellPhoneNo
+
+		 신규 회원가입
+		int id  memberServicejoinjoinArg
+
+		 생성 알림창 보여주고 회원정보로 이동하기
+		requestsetAttributealertMsg id  번 회원님 반갑습니다
+
+		Member member  memberServicegetMemberByIdid
+
+		requestsetAttributemember member
+
+		return usrmemberdoJoin
+
+	
+
+
+
+
 " />
 <!-- GOOGLE+ -->
 <meta itemprop="headline" content="Dev_J BLOG" />
 <meta itemprop="name" content="Dev_J BLOG" />
 <meta itemprop="description" content="
  회원가입 기능 구현
- 아이디 중복 여부 확인
-비밀번호 확인
- email연락처 올바른 양식 확인
-공란 여부 확인
-알림창 확인
-완료페이지 이동 확인
+  x 아이디 중복 여부 확인
+  x 비밀번호 확인
+    x email연락처 올바른 양식 확인
+  x 공란 여부 확인
+  x 알림창 확인
+  x 완료페이지 이동 확인
 br
+ 영상
 
 youtube
 V5vZMGrpo
+
+br
+ 소스코드
+java
+ 회원가입 폼
+	public String doJoinFormHttpServletRequest request HttpServletResponse response 
+
+		HttpSession session  requestgetSession
+
+		 로그인 여부 확인
+		if sessiongetAttributeloginedMemberId  null 
+			requestsetAttributealertMsg 이미 로그인된 상태입니다
+			requestsetAttributehistoryBack true  historyBack 뒤로 돌아가기
+			return commonredirect
+		
+		
+		return usrmemberdoJoinForm
+	
+
+	 회원가입
+	public String doJoinHttpServletRequest request HttpServletResponse response 
+
+		String loginId  requestgetParameterloginId
+		String loginPw  requestgetParameterloginPw
+		String name  requestgetParametername
+		String nickname  requestgetParameternickname
+		String email  requestgetParameteremail
+		String cellPhoneNo  requestgetParametercellPhoneNo
+
+		ListMember members  memberServicegetMemberListForPrint
+
+		 해당 loginId가 사용가능한지 중복확인
+		for int i  0 i  memberssize i 
+			if membersgetigetLoginIdequalsloginId  true 
+				requestsetAttributealertMsg 해당 아이디는 이미 사용중인 아이디입니다
+				requestsetAttributehistoryBack true  historyBack 뒤로 돌아가기
+				return commonredirect
+			
+		
+
+		 해당 nickname이 사용가능한지 중복확인
+		for int i  0 i  memberssize i 
+			if membersgetigetNicknameequalsnickname  true 
+				requestsetAttributealertMsg 해당 닉네임는 이미 사용중인 닉네임입니다
+				requestsetAttributehistoryBack true  historyBack 뒤로 돌아가기
+				return commonredirect
+			
+		
+
+		MapString Object joinArg  new HashMap
+		joinArgputloginId loginId
+		joinArgputloginPw loginPw
+		joinArgputname name
+		joinArgputnickname nickname
+		joinArgputemail email
+		joinArgputcellPhoneNo cellPhoneNo
+
+		 신규 회원가입
+		int id  memberServicejoinjoinArg
+
+		 생성 알림창 보여주고 회원정보로 이동하기
+		requestsetAttributealertMsg id  번 회원님 반갑습니다
+
+		Member member  memberServicegetMemberByIdid
+
+		requestsetAttributemember member
+
+		return usrmemberdoJoin
+
+	
+
+
+
+
 " />
 <meta itemprop="image" content="images/Dev_J_logo/logo.png" />
 
 <!-- 사이트 타이틀 -->
-<title>P.JSP - 기록일지(회원가입 기능 구현) | Dev_J BLOG | ARTICLE DETAIL</title>
+<title>P.JSP - 개발일지(회원가입 기능 구현) | Dev_J BLOG | ARTICLE DETAIL</title>
 
 
 <!-- 파비콘 -->
@@ -234,18 +459,93 @@ V5vZMGrpo
    <section class="section-2 con-min-width min-height-50vh">
       <div class="con height-100p">
         <div class="article-detail-cell height-100p">
-          <div class="article-detail-cell__board-name"><div><span>게시판 : </span><span>P.JSP 게시판</span></div></div><div class="article-detail-cell__id"><div><span>번호 : </span><span>17</span></div></div><div class="article-detail-cell__member-id"><div><span>작성자 : </span><span>Dev_J</span></div></div><div class="article-detail-cell__reg-date"><div><span>작성일 : </span><span>2021-01-20 23:45:44</span></div></div><div class="article-detail-cell__update-date"><div><span>수정일 : </span><span>2021-01-20 23:51:46</span></div></div><br><div class="article-detail-cell__title-contents flex flex-jc-fe"><div class="article-detail-cell__hitsCount"><div><span>조회수 : </span><span>0</span></div></div><div class="article-detail-cell__likesCount"><div><span>추천수 : </span><span>0</span></div></div><div class="article-detail-cell__commentsCount"><div><span>댓글수 : </span><span>0</span></div></div></div><div class="article-detail-cell__title"><div><span>제목 : </span><span>P.JSP - 기록일지(회원가입 기능 구현)</span></div></div><script type"text/x-template">
-# 회원가입 기능 구현[ㅇ]
- -아이디 중복 여부 확인[ㅇ]
--비밀번호 확인[ㅇ]
- -email,연락처 올바른 양식 확인[ㅇ]
--공란 여부 확인[ㅇ]
--알림창 확인[ㅇ]
--완료페이지 이동 확인[ㅇ]
+          <div class="article-detail-cell__board-name"><div><span>게시판 : </span><span>P.JSP 게시판</span></div></div><div class="article-detail-cell__id"><div><span>번호 : </span><span>17</span></div></div><div class="article-detail-cell__member-id"><div><span>작성자 : </span><span>Dev_J</span></div></div><div class="article-detail-cell__reg-date"><div><span>작성일 : </span><span>2021-01-20 23:45:44</span></div></div><div class="article-detail-cell__update-date"><div><span>수정일 : </span><span>2021-01-22 00:06:15</span></div></div><br><div class="article-detail-cell__title-contents flex flex-jc-fe"><div class="article-detail-cell__hitsCount"><div><span>조회수 : </span><span>0</span></div></div><div class="article-detail-cell__likesCount"><div><span>추천수 : </span><span>0</span></div></div><div class="article-detail-cell__commentsCount"><div><span>댓글수 : </span><span>0</span></div></div></div><div class="article-detail-cell__title"><div><span>제목 : </span><span>P.JSP - 개발일지(회원가입 기능 구현)</span></div></div><script type"text/x-template">
+# 회원가입 기능 구현
+ - [x] 아이디 중복 여부 확인
+ - [x] 비밀번호 확인
+   - [x] email,연락처 올바른 양식 확인
+ - [x] 공란 여부 확인
+ - [x] 알림창 확인
+ - [x] 완료페이지 이동 확인
 <br>
+## 영상
 
 ```youtube
 V5vZMGrp-_o
+```
+<br>
+## 소스코드
+```java
+// 회원가입 폼
+	public String doJoinForm(HttpServletRequest request, HttpServletResponse response) {
+
+		HttpSession session = request.getSession();
+
+		// 로그인 여부 확인
+		if (session.getAttribute("loginedMemberId") != null) {
+			request.setAttribute("alertMsg", "이미 로그인된 상태입니다.");
+			request.setAttribute("historyBack", true); // historyBack: 뒤로 돌아가기
+			return "common/redirect";
+		}
+		
+		return "usr/member/doJoinForm";
+	}
+
+	// 회원가입
+	public String doJoin(HttpServletRequest request, HttpServletResponse response) {
+
+		String loginId = request.getParameter("loginId");
+		String loginPw = request.getParameter("loginPw");
+		String name = request.getParameter("name");
+		String nickname = request.getParameter("nickname");
+		String email = request.getParameter("email");
+		String cellPhoneNo = request.getParameter("cellPhoneNo");
+
+		List<Member> members = memberService.getMemberListForPrint();
+
+		// 해당 loginId가 사용가능한지 중복확인
+		for (int i = 0; i < members.size(); i++) {
+			if (members.get(i).getLoginId().equals(loginId) == true) {
+				request.setAttribute("alertMsg", "해당 아이디는 이미 사용중인 아이디입니다.");
+				request.setAttribute("historyBack", true); // historyBack: 뒤로 돌아가기
+				return "common/redirect";
+			}
+		}
+
+		// 해당 nickname이 사용가능한지 중복확인
+		for (int i = 0; i < members.size(); i++) {
+			if (members.get(i).getNickname().equals(nickname) == true) {
+				request.setAttribute("alertMsg", "해당 닉네임는 이미 사용중인 닉네임입니다.");
+				request.setAttribute("historyBack", true); // historyBack: 뒤로 돌아가기
+				return "common/redirect";
+			}
+		}
+
+		Map<String, Object> joinArg = new HashMap<>();
+		joinArg.put("loginId", loginId);
+		joinArg.put("loginPw", loginPw);
+		joinArg.put("name", name);
+		joinArg.put("nickname", nickname);
+		joinArg.put("email", email);
+		joinArg.put("cellPhoneNo", cellPhoneNo);
+
+		// 신규 회원가입
+		int id = memberService.join(joinArg);
+
+		// 생성 알림창 보여주고 회원정보로 이동하기
+		request.setAttribute("alertMsg", id + "번 회원님 반갑습니다.");
+
+		Member member = memberService.getMemberById(id);
+
+		request.setAttribute("member", member);
+
+		return "usr/member/doJoin";
+
+	}
+
+
+
+
 ```</script><div class="article-detail-cell__body height-70p toast-ui-viewer"><div></div></div><br><div class="article-detail-cell__tag flex"></div><br><br>
          <!-- Disqus api 적용 --><!-- 정확한 페이지 경로 알려주는 기능 추가-->
 		 <nav>

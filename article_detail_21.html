@@ -1,0 +1,1083 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+<script data-ad-client="ca-pub-7996879977557531" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-X5RMP83794"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-X5RMP83794');
+</script>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- 구글 검색엔진 등록-소유권 확인 -->
+<meta name="google-site-verification" content="37R4KcEaJU5LfiKL7GI1hu1_spJgWOazN6xy48OHhD4" />
+
+<!-- Meta Tag & Open Graph -->
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<meta name="viewport" content="width=1200">
+<meta name="apple-mobile-web-app-title" content="Dev_J BLOG" />
+<!-- 메타태그정보 //-->
+<!-- META -->
+<link rel="canonical" href="https://blog.devj.me" />
+<meta name="subject" content="P.JSP - 개발일지(회원가입 기능 추가(ajax통신으로 중복체크 ))"/>
+<meta name="title" content="Dev_J BLOG" />
+<meta name="keywords" content="JAVA, HTML, CSS, JavaScript, MySQL" />
+<meta name="copyright" content="Dev_J BLOG" />
+<meta name="pubdate" content="2021-01-22T00:06:23" />
+<meta name="lastmod" content="2021-01-22T00:06:23" />
+<!-- OPENGRAPH -->
+<meta property="og:site_name" content="Dev_J BLOG" />
+<meta property="og:type" content="blog" />
+<meta property="og:title" content="P.JSP - 개발일지(회원가입 기능 추가(ajax통신으로 중복체크 ))" />
+<meta property="og:description" content="
+ 회원가입 기능 추가ajax통신으로 중복체크 
+  x 중복체크 미수행시 알림창
+  x 사용가능 메시지  code 알림창
+  x 사용불가 메시지  code  알림창
+    x 중복일 경우 F1
+    x 공란일 경우 F2
+br
+
+ 영상
+
+youtube
+BmHl7y2W9Rw
+
+br
+ 소스코드
+java
+
+ 회원가입 폼 작성 시 ajax로 중복체크
+public String getLoginIdDupHttpServletRequest request HttpServletResponse response 
+		
+		MapString Object rs  new HashMap
+		
+		String loginId  requestgetParameterloginId
+		
+		Member member  memberServicegetMemberByLoginIdloginId
+		
+		String code  null
+		String msg  null
+		
+		
+		ifmember  null 
+			code  S1   S  success의 약자 숫자는 유형 개념
+							1이면 일반적인 성공 2이면 약간 문제는 있지만 성공 이런 방식
+			msg  해당 ID는 사용이 가능합니다
+		
+		ifmember  null
+			code  F1
+			msg  해당 ID는 이미 사용중입니다
+		
+		ifloginIdtrimlength  0
+			code  F2
+			msg  해당 ID는 사용이 불가능합니다
+		
+		
+		rsputloginId loginId
+		rsputcode code
+		rsputmsg msg
+		
+		rs 맵리스트를 json방식으로 생성해서 data로 보내기
+		requestsetAttributedata UtilgetJsonTextrs
+		
+		return commonpure
+	
+
+
+
+br
+ doJoinFormjsp
+
+html
+
+script
+	
+	변수명과 함수명이 같으면 에러발생
+	let checkedDupId  
+	
+	
+	 중복체크
+	function checkDupIdel
+		가장 근접한 form을 가져오기
+		elparentparentparent 방식으로 부모를 찾아도 됨
+		const form  elclosestformget0
+		
+		const loginId  formloginIdvalue
+		
+		
+		ajax 통신으로 보내고 데이터 받기
+		get
+			getLoginIdDup  요청할 주소
+					
+					loginIdloginId도 맞다
+				 최신 JS에서는 이 방식이 가능함
+				loginIdloginId
+			
+			functiondata
+				if datacodesubstring02  S
+					alertdatamsg     datacode  
+					checkedDupId  dataloginId
+				
+				
+				else
+					alertdatamsg     datacode  
+					alert
+				
+						
+			json
+		
+		
+		
+	
+
+
+	
+	 폼 공백 체크
+	function checkform 
+	
+		if formloginIdvaluetrimlength  0 
+			alertID를 입력해주세요
+			formloginIdfocus
+			
+			return
+		
+		
+		if formloginIdvalue  checkedDupId 
+			alert먼저 ID 중복 검사를 해주세요
+			formdupIdCheckfocus
+			
+			return false
+		
+		
+		if formloginPwvaluetrimlength  0 
+			alertPW를 입력해주세요
+			formloginPwfocus
+			
+			return
+		
+		if formloginPwvalue  formloginPwConfirmvalue 
+			alertPW가 일치하지 않습니다 PW를 확인해 주세요
+			formloginPwConfirmfocus
+			
+			return
+		
+		
+		if formnamevaluetrimlength  0 
+			alert이름을 입력해주세요
+			formnamefocus
+			
+			return
+		
+		if formnicknamevaluetrimlength  0 
+			alert닉네임을 입력해주세요
+			formnicknamefocus
+			
+			return
+		
+		if formemailvaluetrimlength  0 
+			alertemail을 입력해주세요
+			formemailfocus
+			
+			return
+		
+		if formcellPhoneNovaluetrimlength  0 
+			alert연락처를 입력해주세요
+			formcellPhoneNofocus
+			
+			return
+		
+		
+		formsubmit
+	
+script
+
+
+form nameform onsubmitcheckthis return false actiondoJoin methodPOST
+	span로그인 IDspan
+	br 
+	input typetext nameloginId maxlength50 placeholderID 입력
+	button namedupIdCheck onclickcheckDupIdthis type  button중복체크button
+	br 
+	span로그인 PWspan
+	br 
+	input typepassword nameloginPw maxlength50
+		placeholderPW 입력
+	br 
+	span로그인 PW 확인span
+	br 
+	input typepassword nameloginPwConfirm maxlength50
+		placeholderPW 입력
+	br 
+	span이름span
+	br 
+	input typetext namename maxlength50 placeholder이름 입력
+	br 
+	span닉네임span
+	br 
+	input typetext namenickname maxlength50 placeholder닉네임 입력
+	br 
+	spanEMailspan
+	br 
+	input typeemail nameemail maxlength100
+		placeholder이메일 주소 입력
+	br 
+	span연락처span
+	br 
+	input typenumber namecellPhoneNo maxlength50
+		placeholder연락처 입력
+	br 
+	hr 
+	input typesubmit value회원가입
+	button typebutton onclickhistoryback뒤로가기button
+
+form
+
+
+" />
+<meta property="og:locale" content="ko_KR" />
+<meta property="og:image" content="images/Dev_J_logo/logo.png" />
+<meta property="og:image:alt" content="blog.devj.me" />
+<meta property="og:image:width" content="486" />
+<meta property="og:image:height" content="254" />
+<meta property="og:updated_time" content="2021-01-22T00:06:23"/>
+<meta property="og:pubdate" content="2021-01-22T00:06:23" />
+<meta property="og:url" content="https://blog.devj.me" />
+<!-- TWITTER -->
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="P.JSP - 개발일지(회원가입 기능 추가(ajax통신으로 중복체크 ))" />
+<meta name="twitter:site" content="@Dev_J BLOG" />
+<meta name="twitter:creator" content="@Dev_J BLOG" />
+<meta name="twitter:image" content="images/Dev_J_logo/logo.png">
+<meta name="twitter:description" content="
+ 회원가입 기능 추가ajax통신으로 중복체크 
+  x 중복체크 미수행시 알림창
+  x 사용가능 메시지  code 알림창
+  x 사용불가 메시지  code  알림창
+    x 중복일 경우 F1
+    x 공란일 경우 F2
+br
+
+ 영상
+
+youtube
+BmHl7y2W9Rw
+
+br
+ 소스코드
+java
+
+ 회원가입 폼 작성 시 ajax로 중복체크
+public String getLoginIdDupHttpServletRequest request HttpServletResponse response 
+		
+		MapString Object rs  new HashMap
+		
+		String loginId  requestgetParameterloginId
+		
+		Member member  memberServicegetMemberByLoginIdloginId
+		
+		String code  null
+		String msg  null
+		
+		
+		ifmember  null 
+			code  S1   S  success의 약자 숫자는 유형 개념
+							1이면 일반적인 성공 2이면 약간 문제는 있지만 성공 이런 방식
+			msg  해당 ID는 사용이 가능합니다
+		
+		ifmember  null
+			code  F1
+			msg  해당 ID는 이미 사용중입니다
+		
+		ifloginIdtrimlength  0
+			code  F2
+			msg  해당 ID는 사용이 불가능합니다
+		
+		
+		rsputloginId loginId
+		rsputcode code
+		rsputmsg msg
+		
+		rs 맵리스트를 json방식으로 생성해서 data로 보내기
+		requestsetAttributedata UtilgetJsonTextrs
+		
+		return commonpure
+	
+
+
+
+br
+ doJoinFormjsp
+
+html
+
+script
+	
+	변수명과 함수명이 같으면 에러발생
+	let checkedDupId  
+	
+	
+	 중복체크
+	function checkDupIdel
+		가장 근접한 form을 가져오기
+		elparentparentparent 방식으로 부모를 찾아도 됨
+		const form  elclosestformget0
+		
+		const loginId  formloginIdvalue
+		
+		
+		ajax 통신으로 보내고 데이터 받기
+		get
+			getLoginIdDup  요청할 주소
+					
+					loginIdloginId도 맞다
+				 최신 JS에서는 이 방식이 가능함
+				loginIdloginId
+			
+			functiondata
+				if datacodesubstring02  S
+					alertdatamsg     datacode  
+					checkedDupId  dataloginId
+				
+				
+				else
+					alertdatamsg     datacode  
+					alert
+				
+						
+			json
+		
+		
+		
+	
+
+
+	
+	 폼 공백 체크
+	function checkform 
+	
+		if formloginIdvaluetrimlength  0 
+			alertID를 입력해주세요
+			formloginIdfocus
+			
+			return
+		
+		
+		if formloginIdvalue  checkedDupId 
+			alert먼저 ID 중복 검사를 해주세요
+			formdupIdCheckfocus
+			
+			return false
+		
+		
+		if formloginPwvaluetrimlength  0 
+			alertPW를 입력해주세요
+			formloginPwfocus
+			
+			return
+		
+		if formloginPwvalue  formloginPwConfirmvalue 
+			alertPW가 일치하지 않습니다 PW를 확인해 주세요
+			formloginPwConfirmfocus
+			
+			return
+		
+		
+		if formnamevaluetrimlength  0 
+			alert이름을 입력해주세요
+			formnamefocus
+			
+			return
+		
+		if formnicknamevaluetrimlength  0 
+			alert닉네임을 입력해주세요
+			formnicknamefocus
+			
+			return
+		
+		if formemailvaluetrimlength  0 
+			alertemail을 입력해주세요
+			formemailfocus
+			
+			return
+		
+		if formcellPhoneNovaluetrimlength  0 
+			alert연락처를 입력해주세요
+			formcellPhoneNofocus
+			
+			return
+		
+		
+		formsubmit
+	
+script
+
+
+form nameform onsubmitcheckthis return false actiondoJoin methodPOST
+	span로그인 IDspan
+	br 
+	input typetext nameloginId maxlength50 placeholderID 입력
+	button namedupIdCheck onclickcheckDupIdthis type  button중복체크button
+	br 
+	span로그인 PWspan
+	br 
+	input typepassword nameloginPw maxlength50
+		placeholderPW 입력
+	br 
+	span로그인 PW 확인span
+	br 
+	input typepassword nameloginPwConfirm maxlength50
+		placeholderPW 입력
+	br 
+	span이름span
+	br 
+	input typetext namename maxlength50 placeholder이름 입력
+	br 
+	span닉네임span
+	br 
+	input typetext namenickname maxlength50 placeholder닉네임 입력
+	br 
+	spanEMailspan
+	br 
+	input typeemail nameemail maxlength100
+		placeholder이메일 주소 입력
+	br 
+	span연락처span
+	br 
+	input typenumber namecellPhoneNo maxlength50
+		placeholder연락처 입력
+	br 
+	hr 
+	input typesubmit value회원가입
+	button typebutton onclickhistoryback뒤로가기button
+
+form
+
+
+" />
+<!-- GOOGLE+ -->
+<meta itemprop="headline" content="Dev_J BLOG" />
+<meta itemprop="name" content="Dev_J BLOG" />
+<meta itemprop="description" content="
+ 회원가입 기능 추가ajax통신으로 중복체크 
+  x 중복체크 미수행시 알림창
+  x 사용가능 메시지  code 알림창
+  x 사용불가 메시지  code  알림창
+    x 중복일 경우 F1
+    x 공란일 경우 F2
+br
+
+ 영상
+
+youtube
+BmHl7y2W9Rw
+
+br
+ 소스코드
+java
+
+ 회원가입 폼 작성 시 ajax로 중복체크
+public String getLoginIdDupHttpServletRequest request HttpServletResponse response 
+		
+		MapString Object rs  new HashMap
+		
+		String loginId  requestgetParameterloginId
+		
+		Member member  memberServicegetMemberByLoginIdloginId
+		
+		String code  null
+		String msg  null
+		
+		
+		ifmember  null 
+			code  S1   S  success의 약자 숫자는 유형 개념
+							1이면 일반적인 성공 2이면 약간 문제는 있지만 성공 이런 방식
+			msg  해당 ID는 사용이 가능합니다
+		
+		ifmember  null
+			code  F1
+			msg  해당 ID는 이미 사용중입니다
+		
+		ifloginIdtrimlength  0
+			code  F2
+			msg  해당 ID는 사용이 불가능합니다
+		
+		
+		rsputloginId loginId
+		rsputcode code
+		rsputmsg msg
+		
+		rs 맵리스트를 json방식으로 생성해서 data로 보내기
+		requestsetAttributedata UtilgetJsonTextrs
+		
+		return commonpure
+	
+
+
+
+br
+ doJoinFormjsp
+
+html
+
+script
+	
+	변수명과 함수명이 같으면 에러발생
+	let checkedDupId  
+	
+	
+	 중복체크
+	function checkDupIdel
+		가장 근접한 form을 가져오기
+		elparentparentparent 방식으로 부모를 찾아도 됨
+		const form  elclosestformget0
+		
+		const loginId  formloginIdvalue
+		
+		
+		ajax 통신으로 보내고 데이터 받기
+		get
+			getLoginIdDup  요청할 주소
+					
+					loginIdloginId도 맞다
+				 최신 JS에서는 이 방식이 가능함
+				loginIdloginId
+			
+			functiondata
+				if datacodesubstring02  S
+					alertdatamsg     datacode  
+					checkedDupId  dataloginId
+				
+				
+				else
+					alertdatamsg     datacode  
+					alert
+				
+						
+			json
+		
+		
+		
+	
+
+
+	
+	 폼 공백 체크
+	function checkform 
+	
+		if formloginIdvaluetrimlength  0 
+			alertID를 입력해주세요
+			formloginIdfocus
+			
+			return
+		
+		
+		if formloginIdvalue  checkedDupId 
+			alert먼저 ID 중복 검사를 해주세요
+			formdupIdCheckfocus
+			
+			return false
+		
+		
+		if formloginPwvaluetrimlength  0 
+			alertPW를 입력해주세요
+			formloginPwfocus
+			
+			return
+		
+		if formloginPwvalue  formloginPwConfirmvalue 
+			alertPW가 일치하지 않습니다 PW를 확인해 주세요
+			formloginPwConfirmfocus
+			
+			return
+		
+		
+		if formnamevaluetrimlength  0 
+			alert이름을 입력해주세요
+			formnamefocus
+			
+			return
+		
+		if formnicknamevaluetrimlength  0 
+			alert닉네임을 입력해주세요
+			formnicknamefocus
+			
+			return
+		
+		if formemailvaluetrimlength  0 
+			alertemail을 입력해주세요
+			formemailfocus
+			
+			return
+		
+		if formcellPhoneNovaluetrimlength  0 
+			alert연락처를 입력해주세요
+			formcellPhoneNofocus
+			
+			return
+		
+		
+		formsubmit
+	
+script
+
+
+form nameform onsubmitcheckthis return false actiondoJoin methodPOST
+	span로그인 IDspan
+	br 
+	input typetext nameloginId maxlength50 placeholderID 입력
+	button namedupIdCheck onclickcheckDupIdthis type  button중복체크button
+	br 
+	span로그인 PWspan
+	br 
+	input typepassword nameloginPw maxlength50
+		placeholderPW 입력
+	br 
+	span로그인 PW 확인span
+	br 
+	input typepassword nameloginPwConfirm maxlength50
+		placeholderPW 입력
+	br 
+	span이름span
+	br 
+	input typetext namename maxlength50 placeholder이름 입력
+	br 
+	span닉네임span
+	br 
+	input typetext namenickname maxlength50 placeholder닉네임 입력
+	br 
+	spanEMailspan
+	br 
+	input typeemail nameemail maxlength100
+		placeholder이메일 주소 입력
+	br 
+	span연락처span
+	br 
+	input typenumber namecellPhoneNo maxlength50
+		placeholder연락처 입력
+	br 
+	hr 
+	input typesubmit value회원가입
+	button typebutton onclickhistoryback뒤로가기button
+
+form
+
+
+" />
+<meta itemprop="image" content="images/Dev_J_logo/logo.png" />
+
+<!-- 사이트 타이틀 -->
+<title>P.JSP - 개발일지(회원가입 기능 추가(ajax통신으로 중복체크 )) | Dev_J BLOG | ARTICLE DETAIL</title>
+
+
+<!-- 파비콘 -->
+<link rel="shortcut icon" href="images/favicon/favicon.ico" type="image/x-icon">
+<link rel="icon" href="images/favicon/favicon.ico" type="image/x-icon">
+
+<!-- 폰트어썸 불러오기 -->
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+
+<!--모바일에서도 PC와 같은 비율 유지-->
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<!--제이쿼리-->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+<!-- 하이라이트 라이브러리 추가, 토스트 UI 에디터에서 사용됨 -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.4.1/highlight.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.4.1/styles/default.min.css">
+
+<!-- 토스트 UI 에디터, 자바스크립트 코어 -->
+<script
+	src="https://uicdn.toast.com/editor/latest/toastui-editor-all.min.js" defer></script>
+
+<!-- 코드 미러 라이브러리 추가, 토스트 UI 에디터에서 사용됨 -->
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.58.3/codemirror.min.css" />
+<!-- 토스트 UI 에디터, CSS 코어 -->
+<link rel="stylesheet"
+	href="https://uicdn.toast.com/editor/latest/toastui-editor.min.css" />
+
+<!-- 토스트 UI 에디터, 신택스 하이라이트 플러그인 추가 -->
+<script src="https://uicdn.toast.com/editor-plugin-code-syntax-highlight/latest/toastui-editor-plugin-code-syntax-highlight.min.js" defer></script>
+
+<!-- app.css 불러오기 -->
+<link rel="stylesheet" href="app.css">
+<!-- app.js 불러오기 -->
+<script src="app.js" defer></script>
+<!-- index.js 불러오기 -->
+<script src="index.js" defer></script>
+
+</head>
+
+<body>
+<!-- 사이트 박스 시작 -->
+<div class="body-content min-height-100vh flex flex-column">
+  <!-- 로고바 시작 -->
+  <header class="logo-bar con-min-width" id="header">
+    <div class="con height-100p flex flex-jc-c" title="HOME">
+      <a href="index.html" class="logo flex flex-ai-c"> 
+        <img class="logo__img" src="images/Dev_J_logo/logo_transparent.png" alt="">
+        <span>
+          BLOG
+        </span>
+      </a>
+    </div>
+  </header>
+  <!-- 로고바 끝 -->
+
+  <!-- 메뉴바 시작-->
+  <header class="menu-bar con-min-width">
+   <div class="menu-bar__status-icon" title="Menu">
+     <div></div>
+     <div></div>
+     <div></div>
+   </div>
+   <div class="con hide">
+    <nav class="menu-bar__menu">
+      <ul class="flex">
+          <li title="ABOUT">
+            <a href="about.html" class="block">
+              <i class="far fa-address-card"></i>
+              <span>ABOUT</span>
+            </a>
+          </li>
+          <li>
+            <a class="block">
+              <i class="fas fa-list"></i>
+              <span>ARTICLES</span>
+            </a>
+            <ul>
+              <li title="NOTICE"><a href="notice-list-1.html" class="block"><i class="fas fa-bullhorn"></i> <span>NOTICE BOARD</span></a></li><li title="JAVA"><a href="java-list-1.html" class="block"><i class="fab fa-java"></i> <span>JAVA BOARD</span></a></li><li title="HTML"><a href="html-list-1.html" class="block"><i class="fab fa-html5"></i> <span>HTML & CSS & JS BOARD</span></a></li><li title="MYSQL"><a href="mysql-list-1.html" class="block"><i class="fas fa-database"></i> <span>MySQL BOARD</span></a></li><li title="JSP"><a href="jsp-list-1.html" class="block"><i class="fas fa-database"></i> <span>P.JSP BOARD(임시)</span></a></li>
+            </ul>
+          </li>
+          <li>
+            <a class="block">
+              <i class="fas fa-link"></i>
+              <span>LINK</span>
+            </a>
+            <ul>
+              <li title="T-STORY">
+                <a href="https://cjy324.tistory.com/" target="_blank" class="block">
+                  <i class="fas fa-rss-square"></i>
+                  <span>T-STORY</span>
+                </a>
+              </li>
+              <li title="GITHUB">
+                <a href="https://github.com/cjy324/TIL_Jooyoung#til_jooyoung" target="_blank" class="block">
+                  <i class="fab fa-github"></i>
+                  <span>GITHUB</span>
+                </a>
+              </li>
+            </ul>
+          </li>
+          <li title="SEARCH">
+            <a href="search.html" class="block">
+              <i class="fas fa-search"></i>
+              <span>SEARCH</span>
+            </a>
+          </li>
+          <li title="STATISTICS">
+            <a href="statistics.html" class="block">
+              <i class="fas fa-chart-pie"></i>
+              <span>STATISTICS</span>
+            </a>
+          </li>
+        </ul>
+      </nav>
+   </div>
+  </header>
+  <!-- 메뉴바 끝 --> 
+
+  <!-- 메인 컨텐츠 박스 시작 -->
+  <main class="main-box flex-grow-1">
+  <section class="main-box-section con-min-width">
+   <!-- 메인-타이틀바 시작 -->
+	<div class="title-bar con-min-width">
+		<h1 class="con">
+			<i class="fas fa-file-invoice"></i> <span>ARTICLE DETAIL</span>
+		</h1>
+	</div>
+   <!-- 메인-타이틀바 종료 -->
+<!-- Progress-bar -->
+<script type="text/javascript" src="https://rawcdn.githack.com/mburakerman/prognroll/0feda211643153bce2c69de32ea1b39cdc64ffbe/src/prognroll.js"></script> 
+<script type="text/javascript"> $(function() { $("body").prognroll( {height:10, color:"#666666"} ); $(".content").prognroll({ custom:true }); }); </script>
+
+   <!-- 메인-상세페이지 시작 -->
+   <section class="section-2 con-min-width min-height-50vh">
+      <div class="con height-100p">
+        <div class="article-detail-cell height-100p">
+          <div class="article-detail-cell__board-name"><div><span>게시판 : </span><span>P.JSP 게시판</span></div></div><div class="article-detail-cell__id"><div><span>번호 : </span><span>21</span></div></div><div class="article-detail-cell__member-id"><div><span>작성자 : </span><span>Dev_J</span></div></div><div class="article-detail-cell__reg-date"><div><span>작성일 : </span><span>2021-01-22 00:00:42</span></div></div><div class="article-detail-cell__update-date"><div><span>수정일 : </span><span>2021-01-22 00:06:17</span></div></div><br><div class="article-detail-cell__title-contents flex flex-jc-fe"><div class="article-detail-cell__hitsCount"><div><span>조회수 : </span><span>0</span></div></div><div class="article-detail-cell__likesCount"><div><span>추천수 : </span><span>0</span></div></div><div class="article-detail-cell__commentsCount"><div><span>댓글수 : </span><span>0</span></div></div></div><div class="article-detail-cell__title"><div><span>제목 : </span><span>P.JSP - 개발일지(회원가입 기능 추가(ajax통신으로 중복체크 ))</span></div></div><script type"text/x-template">
+# 회원가입 기능 추가(ajax통신으로 중복체크 )
+ - [x] 중복체크 미수행시 알림창
+ - [x] 사용가능 메시지 + code 알림창
+ - [x] 사용불가 메시지 + code  알림창
+   - [x] 중복일 경우 F-1
+   - [x] 공란일 경우 F-2
+<br>
+
+## 영상
+
+```youtube
+BmHl7y2W9Rw
+```
+<br>
+## 소스코드
+```java
+
+// 회원가입 폼 작성 시 ajax로 중복체크
+public String getLoginIdDup(HttpServletRequest request, HttpServletResponse response) {
+		
+		Map<String, Object> rs = new HashMap<>();
+		
+		String loginId = request.getParameter("loginId");
+		
+		Member member = memberService.getMemberByLoginId(loginId);
+		
+		String code = null;
+		String msg = null;
+		
+		
+		if(member == null) {
+			code = "S-1";   //S = success의 약자, 숫자는 유형 개념
+							//1이면 일반적인 성공, 2이면 약간 문제는 있지만 성공? 이런 방식
+			msg = "해당 ID는 사용이 가능합니다.";
+		}
+		if(member != null){
+			code = "F-1";
+			msg = "해당 ID는 이미 사용중입니다.";
+		}
+		if(loginId.trim().length() == 0){
+			code = "F-2";
+			msg = "해당 ID는 사용이 불가능합니다.";
+		}
+		
+		rs.put("loginId", loginId);
+		rs.put("code", code);
+		rs.put("msg", msg);
+		
+		//rs 맵리스트를 json방식으로 생성해서 data로 보내기
+		request.setAttribute("data", Util.getJsonText(rs));
+		
+		return "common/pure";
+	}
+
+
+```
+<br>
+## doJoinForm.jsp
+
+```html
+
+<t-script>
+	
+	//변수명과 함수명이 같으면 에러발생!!
+	let checkedDupId = "";
+	
+	
+	// 중복체크
+	function checkDupId(el){
+		//가장 근접한 'form'을 가져오기
+		//$(el).parent.parent.parent 방식으로 부모를 찾아도 됨
+		const form = $(el).closest('form').get(0);
+		
+		const loginId = form.loginId.value;
+		
+		
+		//ajax 통신으로 보내고 데이터 받기
+		$.get(
+			'getLoginIdDup',  //요청할 주소
+			{		
+				//	loginId:loginId도 맞다
+				// 최신 JS에서는 이 방식이 가능함
+				loginId:loginId
+			},
+			function(data){
+				if( data.code.substring(0,2) == "S-"){
+					alert(data.msg + " (" + data.code + ")");
+					checkedDupId = data.loginId;
+				
+				}
+				else{
+					alert(data.msg + " (" + data.code + ")");
+				//	alert();
+				}
+			},			
+			'json'
+		
+		);
+		
+	};
+
+
+	
+	// 폼 공백 체크
+	function check(form) {
+	
+		if (form.loginId.value.trim().length == 0) {
+			alert("ID를 입력해주세요.");
+			form.loginId.focus();
+			
+			return;
+		}
+		
+		if (form.loginId.value != checkedDupId) {
+			alert("먼저 ID 중복 검사를 해주세요.");
+			form.dupIdCheck.focus();
+			
+			return false;
+		}
+		
+		if (form.loginPw.value.trim().length == 0) {
+			alert("PW를 입력해주세요.");
+			form.loginPw.focus();
+			
+			return;
+		}
+		if (form.loginPw.value != form.loginPwConfirm.value) {
+			alert("PW가 일치하지 않습니다. PW를 확인해 주세요.");
+			form.loginPwConfirm.focus();
+			
+			return;
+		}
+		
+		if (form.name.value.trim().length == 0) {
+			alert("이름을 입력해주세요.");
+			form.name.focus();
+			
+			return;
+		}
+		if (form.nickname.value.trim().length == 0) {
+			alert("닉네임을 입력해주세요.");
+			form.nickname.focus();
+			
+			return;
+		}
+		if (form.email.value.trim().length == 0) {
+			alert("e-mail을 입력해주세요.");
+			form.email.focus();
+			
+			return;
+		}
+		if (form.cellPhoneNo.value.trim().length == 0) {
+			alert("연락처를 입력해주세요.");
+			form.cellPhoneNo.focus();
+			
+			return;
+		}
+		
+		form.submit();
+	};
+</t-script>
+
+
+<form name="form" onsubmit="check(this); return false;" action="doJoin" method="POST">
+	<span>로그인 ID</span>
+	<br />
+	<input type="text" name="loginId" maxlength="50" placeholder="ID 입력">
+	<button name="dupIdCheck" onclick="checkDupId(this);" type = "button">중복체크</button>
+	<br />
+	<span>로그인 PW</span>
+	<br />
+	<input type="password" name="loginPw" maxlength="50"
+		placeholder="PW 입력">
+	<br />
+	<span>로그인 PW 확인</span>
+	<br />
+	<input type="password" name="loginPwConfirm" maxlength="50"
+		placeholder="PW 입력">
+	<br />
+	<span>이름</span>
+	<br />
+	<input type="text" name="name" maxlength="50" placeholder="이름 입력">
+	<br />
+	<span>닉네임</span>
+	<br />
+	<input type="text" name="nickname" maxlength="50" placeholder="닉네임 입력">
+	<br />
+	<span>E-Mail</span>
+	<br />
+	<input type="email" name="email" maxlength="100"
+		placeholder="이메일 주소 입력">
+	<br />
+	<span>연락처</span>
+	<br />
+	<input type="number" name="cellPhoneNo" maxlength="50"
+		placeholder="연락처 입력">
+	<br />
+	<hr />
+	<input type="submit" value="회원가입">
+	<button type="button" onclick="history.back();">뒤로가기</button>
+
+</form>
+
+
+```</script><div class="article-detail-cell__body height-70p toast-ui-viewer"><div></div></div><br><div class="article-detail-cell__tag flex"></div><br><br>
+         <!-- Disqus api 적용 --><!-- 정확한 페이지 경로 알려주는 기능 추가-->
+		 <nav>
+		 	<div id="disqus_thread"></div>
+			<script>
+				
+			var disqus_config = function () {   
+		        this.page.url = 'https://blog.devj.me/article_detail_21.html';
+		        this.page.identifier = 'article_detail_21.html';
+		    };
+					(function() { 
+						//DON'T EDIT BELOW THIS LINE
+						var d = document, s = d.createElement('script');
+						s.src = 'https://devj-blog.disqus.com/embed.js';
+						s.setAttribute('data-timestamp', +new Date());
+						(d.head || d.body).appendChild(s);
+						})();
+			</script>
+			<noscript>Please enable JavaScript to view the 
+				<a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+			</noscript>
+		 </nav>
+        </div>
+      </div>
+    </section>
+   <!-- 메인-상세페이지 끝 -->
+   <!-- 메인-상세 하단 메뉴 시작 -->
+   <section class="section-3 con-min-width">
+      <div class="con">
+        <div class="article-list-bottom-cell flex flex-jc-c">
+          <div class="./"><a href="article_detail_20.html" class="hover-underline">&lt 이전글</a></div><div class="./"><i class="fas fa-th-list"></i><a href="jsp-list-1.html" class="hover-underline"> 목록 </a></div>
+        </div>
+      </div>
+    </section>
+   <!-- 메인-상세 하단 메뉴 끝 -->
+    </section>
+  </main>
+  <!-- 메인 컨텐츠 박스 끝 -->  <!-- 맨 위 버튼 시작 -->
+  <nav class="top-button flex flex-jc-c flex-ai-c">
+    <div class="">
+      <a href="#header">▲ TOP</a> 
+    </div>     
+  </nav>
+  <!-- 맨 위 버튼 끝 -->
+  <!-- 푸터 시작 -->
+  <footer class="bottom-bar con-min-width">
+    <div class="con flex flex-ai-c">
+      <a href="index.html" class="logo logo--mini flex flex-ai-c" title="HOME">
+        <img class="logo--mini__img" src="images/Dev_J_logo/logo_transparent.png" alt="">
+      </a>
+      <div class="bottom-bar__site-info">
+        <span><i class="far fa-envelope"></i> juy32400@gmail.com</span>
+        <br>
+        <br>
+        <span>COPYRIGHT 2020. Dev_J. All rights reserved.</span>
+      </div>
+    </div>
+  </footer>
+  <!-- 푸터 끝 -->
+</div>
+<!-- 사이트 박스 끝 -->
+</body>
+</html>

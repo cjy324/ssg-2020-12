@@ -24,7 +24,7 @@
 <!-- 메타태그정보 //-->
 <!-- META -->
 <link rel="canonical" href="https://blog.devj.me" />
-<meta name="subject" content="P.JSP - 개발일지(회원가입 기능 구현)"/>
+<meta name="subject" content="P.JSP - 개발일지(회원가입시 축하메일 발송 기능 추가)"/>
 <meta name="title" content="Dev_J BLOG" />
 <meta name="keywords" content="JAVA, HTML, CSS, JavaScript, MySQL" />
 <meta name="copyright" content="Dev_J BLOG" />
@@ -33,40 +33,22 @@
 <!-- OPENGRAPH -->
 <meta property="og:site_name" content="Dev_J BLOG" />
 <meta property="og:type" content="blog" />
-<meta property="og:title" content="P.JSP - 개발일지(회원가입 기능 구현)" />
+<meta property="og:title" content="P.JSP - 개발일지(회원가입시 축하메일 발송 기능 추가)" />
 <meta property="og:description" content="
- 회원가입 기능 구현
-  x 아이디 중복 여부 확인
-  x 비밀번호 확인
-    x email연락처 올바른 양식 확인
-  x 공란 여부 확인
-  x 알림창 확인
-  x 완료페이지 이동 확인
+ 회원가입시 축하메일 발송 기능 추가
+ x 회원가입 시 자동발송
 br
+
  영상
 
 youtube
-V5vZMGrpo
+vWfaKVilc04
 
 br
  소스코드
 java
- 회원가입 폼
-	public String doJoinFormHttpServletRequest request HttpServletResponse response 
 
-		HttpSession session  requestgetSession
-
-		 로그인 여부 확인
-		if sessiongetAttributeloginedMemberId  null 
-			requestsetAttributealertMsg 이미 로그인된 상태입니다
-			requestsetAttributehistoryBack true  historyBack 뒤로 돌아가기
-			return commonredirect
-		
-		
-		return usrmemberdoJoinForm
-	
-
-	 회원가입
+ 회원가입
 	public String doJoinHttpServletRequest request HttpServletResponse response 
 
 		String loginId  requestgetParameterloginId
@@ -114,11 +96,60 @@ java
 
 		requestsetAttributemember member
 
+		 회원가입시 축하메일 발송
+		EmailService emailService  ContaineremailService
+
+		emailServicesendemail nickname  님 회원가입을 축하드립니다 nickname  님 회원가입을 축하드립니다
+
 		return usrmemberdoJoin
 
 	
 
 
+
+
+br
+ Utiljava
+
+java
+
+메일 보내는 유틸
+	public static int sendMailString smtpServerId String smtpServerPw String from String fromName String to String title String body 
+		Properties prop  SystemgetProperties
+		propputmailsmtpstarttlsenable true
+		propputmailsmtphost smtpgmailcom
+		propputmailsmtpauth true
+		propputmailsmtpport 587
+
+		Authenticator auth  new MailAuthsmtpServerId smtpServerPw
+
+		Session session  SessiongetDefaultInstanceprop auth
+
+		MimeMessage msg  new MimeMessagesession
+
+		try 
+			msgsetSentDatenew Date
+
+			msgsetFromnew InternetAddressfrom fromName
+			msgsetRecipientMessageRecipientTypeTO new InternetAddressto
+			msgsetSubjecttitle UTF8
+			msgsetContentbody texthtml charsetUTF8
+
+			Transportsendmsg
+
+		 catch AddressException ae 
+			SystemoutprintlnAddressException    aegetMessage
+			return 1
+		 catch MessagingException me 
+			SystemoutprintlnMessagingException    megetMessage
+			return 2
+		 catch UnsupportedEncodingException e 
+			SystemoutprintlnUnsupportedEncodingException    egetMessage
+			return 3
+		
+
+		return 1
+	
 
 
 " />
@@ -132,43 +163,25 @@ java
 <meta property="og:url" content="https://blog.devj.me" />
 <!-- TWITTER -->
 <meta name="twitter:card" content="summary_large_image" />
-<meta name="twitter:title" content="P.JSP - 개발일지(회원가입 기능 구현)" />
+<meta name="twitter:title" content="P.JSP - 개발일지(회원가입시 축하메일 발송 기능 추가)" />
 <meta name="twitter:site" content="@Dev_J BLOG" />
 <meta name="twitter:creator" content="@Dev_J BLOG" />
 <meta name="twitter:image" content="images/Dev_J_logo/logo.png">
 <meta name="twitter:description" content="
- 회원가입 기능 구현
-  x 아이디 중복 여부 확인
-  x 비밀번호 확인
-    x email연락처 올바른 양식 확인
-  x 공란 여부 확인
-  x 알림창 확인
-  x 완료페이지 이동 확인
+ 회원가입시 축하메일 발송 기능 추가
+ x 회원가입 시 자동발송
 br
+
  영상
 
 youtube
-V5vZMGrpo
+vWfaKVilc04
 
 br
  소스코드
 java
- 회원가입 폼
-	public String doJoinFormHttpServletRequest request HttpServletResponse response 
 
-		HttpSession session  requestgetSession
-
-		 로그인 여부 확인
-		if sessiongetAttributeloginedMemberId  null 
-			requestsetAttributealertMsg 이미 로그인된 상태입니다
-			requestsetAttributehistoryBack true  historyBack 뒤로 돌아가기
-			return commonredirect
-		
-		
-		return usrmemberdoJoinForm
-	
-
-	 회원가입
+ 회원가입
 	public String doJoinHttpServletRequest request HttpServletResponse response 
 
 		String loginId  requestgetParameterloginId
@@ -216,11 +229,60 @@ java
 
 		requestsetAttributemember member
 
+		 회원가입시 축하메일 발송
+		EmailService emailService  ContaineremailService
+
+		emailServicesendemail nickname  님 회원가입을 축하드립니다 nickname  님 회원가입을 축하드립니다
+
 		return usrmemberdoJoin
 
 	
 
 
+
+
+br
+ Utiljava
+
+java
+
+메일 보내는 유틸
+	public static int sendMailString smtpServerId String smtpServerPw String from String fromName String to String title String body 
+		Properties prop  SystemgetProperties
+		propputmailsmtpstarttlsenable true
+		propputmailsmtphost smtpgmailcom
+		propputmailsmtpauth true
+		propputmailsmtpport 587
+
+		Authenticator auth  new MailAuthsmtpServerId smtpServerPw
+
+		Session session  SessiongetDefaultInstanceprop auth
+
+		MimeMessage msg  new MimeMessagesession
+
+		try 
+			msgsetSentDatenew Date
+
+			msgsetFromnew InternetAddressfrom fromName
+			msgsetRecipientMessageRecipientTypeTO new InternetAddressto
+			msgsetSubjecttitle UTF8
+			msgsetContentbody texthtml charsetUTF8
+
+			Transportsendmsg
+
+		 catch AddressException ae 
+			SystemoutprintlnAddressException    aegetMessage
+			return 1
+		 catch MessagingException me 
+			SystemoutprintlnMessagingException    megetMessage
+			return 2
+		 catch UnsupportedEncodingException e 
+			SystemoutprintlnUnsupportedEncodingException    egetMessage
+			return 3
+		
+
+		return 1
+	
 
 
 " />
@@ -228,38 +290,20 @@ java
 <meta itemprop="headline" content="Dev_J BLOG" />
 <meta itemprop="name" content="Dev_J BLOG" />
 <meta itemprop="description" content="
- 회원가입 기능 구현
-  x 아이디 중복 여부 확인
-  x 비밀번호 확인
-    x email연락처 올바른 양식 확인
-  x 공란 여부 확인
-  x 알림창 확인
-  x 완료페이지 이동 확인
+ 회원가입시 축하메일 발송 기능 추가
+ x 회원가입 시 자동발송
 br
+
  영상
 
 youtube
-V5vZMGrpo
+vWfaKVilc04
 
 br
  소스코드
 java
- 회원가입 폼
-	public String doJoinFormHttpServletRequest request HttpServletResponse response 
 
-		HttpSession session  requestgetSession
-
-		 로그인 여부 확인
-		if sessiongetAttributeloginedMemberId  null 
-			requestsetAttributealertMsg 이미 로그인된 상태입니다
-			requestsetAttributehistoryBack true  historyBack 뒤로 돌아가기
-			return commonredirect
-		
-		
-		return usrmemberdoJoinForm
-	
-
-	 회원가입
+ 회원가입
 	public String doJoinHttpServletRequest request HttpServletResponse response 
 
 		String loginId  requestgetParameterloginId
@@ -307,6 +351,11 @@ java
 
 		requestsetAttributemember member
 
+		 회원가입시 축하메일 발송
+		EmailService emailService  ContaineremailService
+
+		emailServicesendemail nickname  님 회원가입을 축하드립니다 nickname  님 회원가입을 축하드립니다
+
 		return usrmemberdoJoin
 
 	
@@ -314,11 +363,55 @@ java
 
 
 
+br
+ Utiljava
+
+java
+
+메일 보내는 유틸
+	public static int sendMailString smtpServerId String smtpServerPw String from String fromName String to String title String body 
+		Properties prop  SystemgetProperties
+		propputmailsmtpstarttlsenable true
+		propputmailsmtphost smtpgmailcom
+		propputmailsmtpauth true
+		propputmailsmtpport 587
+
+		Authenticator auth  new MailAuthsmtpServerId smtpServerPw
+
+		Session session  SessiongetDefaultInstanceprop auth
+
+		MimeMessage msg  new MimeMessagesession
+
+		try 
+			msgsetSentDatenew Date
+
+			msgsetFromnew InternetAddressfrom fromName
+			msgsetRecipientMessageRecipientTypeTO new InternetAddressto
+			msgsetSubjecttitle UTF8
+			msgsetContentbody texthtml charsetUTF8
+
+			Transportsendmsg
+
+		 catch AddressException ae 
+			SystemoutprintlnAddressException    aegetMessage
+			return 1
+		 catch MessagingException me 
+			SystemoutprintlnMessagingException    megetMessage
+			return 2
+		 catch UnsupportedEncodingException e 
+			SystemoutprintlnUnsupportedEncodingException    egetMessage
+			return 3
+		
+
+		return 1
+	
+
+
 " />
 <meta itemprop="image" content="images/Dev_J_logo/logo.png" />
 
 <!-- 사이트 타이틀 -->
-<title>P.JSP - 개발일지(회원가입 기능 구현) | Dev_J BLOG | ARTICLE DETAIL</title>
+<title>P.JSP - 개발일지(회원가입시 축하메일 발송 기능 추가) | Dev_J BLOG | ARTICLE DETAIL</title>
 
 
 <!-- 파비콘 -->
@@ -465,39 +558,21 @@ java
    <section class="section-2 con-min-width min-height-50vh">
       <div class="con height-100p">
         <div class="article-detail-cell height-100p">
-          <div class="article-detail-cell__board-name"><div><span>게시판 : </span><span>P.JSP 게시판</span></div></div><div class="article-detail-cell__id"><div><span>번호 : </span><span>17</span></div></div><div class="article-detail-cell__member-id"><div><span>작성자 : </span><span>Dev_J</span></div></div><div class="article-detail-cell__reg-date"><div><span>작성일 : </span><span>2021-01-20 23:45:44</span></div></div><div class="article-detail-cell__update-date"><div><span>수정일 : </span><span>2021-01-24 23:12:58</span></div></div><br><div class="article-detail-cell__title-contents flex flex-jc-fe"><div class="article-detail-cell__hitsCount"><div><span>조회수 : </span><span>0</span></div></div><div class="article-detail-cell__likesCount"><div><span>추천수 : </span><span>0</span></div></div><div class="article-detail-cell__commentsCount"><div><span>댓글수 : </span><span>0</span></div></div></div><div class="article-detail-cell__title"><div><span>제목 : </span><span>P.JSP - 개발일지(회원가입 기능 구현)</span></div></div><script type"text/x-template">
-# 회원가입 기능 구현
- - [x] 아이디 중복 여부 확인
- - [x] 비밀번호 확인
-   - [x] email,연락처 올바른 양식 확인
- - [x] 공란 여부 확인
- - [x] 알림창 확인
- - [x] 완료페이지 이동 확인
+          <div class="article-detail-cell__board-name"><div><span>게시판 : </span><span>P.JSP 게시판</span></div></div><div class="article-detail-cell__id"><div><span>번호 : </span><span>24</span></div></div><div class="article-detail-cell__member-id"><div><span>작성자 : </span><span>Dev_J</span></div></div><div class="article-detail-cell__reg-date"><div><span>작성일 : </span><span>2021-01-24 23:07:18</span></div></div><div class="article-detail-cell__update-date"><div><span>수정일 : </span><span>2021-01-24 23:13:01</span></div></div><br><div class="article-detail-cell__title-contents flex flex-jc-fe"><div class="article-detail-cell__hitsCount"><div><span>조회수 : </span><span>0</span></div></div><div class="article-detail-cell__likesCount"><div><span>추천수 : </span><span>0</span></div></div><div class="article-detail-cell__commentsCount"><div><span>댓글수 : </span><span>0</span></div></div></div><div class="article-detail-cell__title"><div><span>제목 : </span><span>P.JSP - 개발일지(회원가입시 축하메일 발송 기능 추가)</span></div></div><script type"text/x-template">
+# 회원가입시 축하메일 발송 기능 추가
+- [x] 회원가입 시 자동발송
 <br>
+
 ## 영상
 
 ```youtube
-V5vZMGrp-_o
+vWfaKVilc04
 ```
 <br>
 ## 소스코드
 ```java
-// 회원가입 폼
-	public String doJoinForm(HttpServletRequest request, HttpServletResponse response) {
 
-		HttpSession session = request.getSession();
-
-		// 로그인 여부 확인
-		if (session.getAttribute("loginedMemberId") != null) {
-			request.setAttribute("alertMsg", "이미 로그인된 상태입니다.");
-			request.setAttribute("historyBack", true); // historyBack: 뒤로 돌아가기
-			return "common/redirect";
-		}
-		
-		return "usr/member/doJoinForm";
-	}
-
-	// 회원가입
+// 회원가입
 	public String doJoin(HttpServletRequest request, HttpServletResponse response) {
 
 		String loginId = request.getParameter("loginId");
@@ -545,11 +620,60 @@ V5vZMGrp-_o
 
 		request.setAttribute("member", member);
 
+		// 회원가입시 축하메일 발송
+		EmailService emailService = Container.emailService;
+
+		emailService.send(email, nickname + "님, 회원가입을 축하드립니다.", nickname + "님, 회원가입을 축하드립니다.");
+
 		return "usr/member/doJoin";
 
 	}
 
 
+```
+
+<br>
+## Util.java
+
+```java
+
+//메일 보내는 유틸
+	public static int sendMail(String smtpServerId, String smtpServerPw, String from, String fromName, String to, String title, String body) {
+		Properties prop = System.getProperties();
+		prop.put("mail.smtp.starttls.enable", "true");
+		prop.put("mail.smtp.host", "smtp.gmail.com");
+		prop.put("mail.smtp.auth", "true");
+		prop.put("mail.smtp.port", "587");
+
+		Authenticator auth = new MailAuth(smtpServerId, smtpServerPw);
+
+		Session session = Session.getDefaultInstance(prop, auth);
+
+		MimeMessage msg = new MimeMessage(session);
+
+		try {
+			msg.setSentDate(new Date());
+
+			msg.setFrom(new InternetAddress(from, fromName));
+			msg.setRecipient(Message.RecipientType.TO, new InternetAddress(to));
+			msg.setSubject(title, "UTF-8");
+			msg.setContent(body, "text/html; charset=UTF-8");
+
+			Transport.send(msg);
+
+		} catch (AddressException ae) {
+			System.out.println("AddressException : " + ae.getMessage());
+			return -1;
+		} catch (MessagingException me) {
+			System.out.println("MessagingException : " + me.getMessage());
+			return -2;
+		} catch (UnsupportedEncodingException e) {
+			System.out.println("UnsupportedEncodingException : " + e.getMessage());
+			return -3;
+		}
+
+		return 1;
+	}
 
 
 ```</script><div class="article-detail-cell__body height-70p toast-ui-viewer"><div></div></div><br><div class="article-detail-cell__tag flex"><nav># <a href="#" target="_blank">project</a></nav><nav># <a href="#" target="_blank">개발일지</a></nav><nav># <a href="#" target="_blank">JSP</a></nav></div><br><br>
@@ -559,8 +683,8 @@ V5vZMGrp-_o
 			<script>
 				
 			var disqus_config = function () {   
-		        this.page.url = 'https://blog.devj.me/article_detail_17.html';
-		        this.page.identifier = 'article_detail_17.html';
+		        this.page.url = 'https://blog.devj.me/article_detail_24.html';
+		        this.page.identifier = 'article_detail_24.html';
 		    };
 					(function() { 
 						//DON'T EDIT BELOW THIS LINE
@@ -582,7 +706,7 @@ V5vZMGrp-_o
    <section class="section-3 con-min-width">
       <div class="con">
         <div class="article-list-bottom-cell flex flex-jc-c">
-          <div class="./"><i class="fas fa-th-list"></i><a href="p_jsp-list-1.html" class="hover-underline"> 목록 </a></div><div class="./"><a href="article_detail_18.html"class="hover-underline">다음글 &gt</a></div>
+          <div class="./"><a href="article_detail_23.html" class="hover-underline">&lt 이전글</a></div><div class="./"><i class="fas fa-th-list"></i><a href="p_jsp-list-1.html" class="hover-underline"> 목록 </a></div>
         </div>
       </div>
     </section>

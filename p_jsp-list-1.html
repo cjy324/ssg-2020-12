@@ -28,8 +28,8 @@
 <meta name="title" content="Dev_J BLOG" />
 <meta name="keywords" content="JAVA, HTML, CSS, JavaScript, MySQL" />
 <meta name="copyright" content="Dev_J BLOG" />
-<meta name="pubdate" content="2021-01-24T23:13:03" />
-<meta name="lastmod" content="2021-01-24T23:13:03" />
+<meta name="pubdate" content="2021-01-24T23:13:02" />
+<meta name="lastmod" content="2021-01-24T23:13:02" />
 <!-- OPENGRAPH -->
 <meta property="og:site_name" content="Dev_J BLOG" />
 <meta property="og:type" content="blog" />
@@ -40,8 +40,8 @@
 <meta property="og:image:alt" content="blog.devj.me" />
 <meta property="og:image:width" content="486" />
 <meta property="og:image:height" content="254" />
-<meta property="og:updated_time" content="2021-01-24T23:13:03"/>
-<meta property="og:pubdate" content="2021-01-24T23:13:03" />
+<meta property="og:updated_time" content="2021-01-24T23:13:02"/>
+<meta property="og:pubdate" content="2021-01-24T23:13:02" />
 <meta property="og:url" content="https://blog.devj.me" />
 <!-- TWITTER -->
 <meta name="twitter:card" content="summary_large_image" />
@@ -57,7 +57,7 @@
 <meta itemprop="image" content="images/Dev_J_logo/logo.png" />
 
 <!-- 사이트 타이틀 -->
-<title>Dev_J BLOG | SEARCH</title>
+<title>Dev_J BLOG | ARTICLE LIST P JSP</title>
 
 
 <!-- 파비콘 -->
@@ -192,58 +192,43 @@
    <!-- 메인-타이틀바 시작 -->
 	<div class="title-bar con-min-width">
 		<h1 class="con">
-			<i class="fas fa-search"></i> <span>SEARCH</span>
+			
 		</h1>
 	</div>
-   <!-- 메인-타이틀바 종료 --><!-- vue 불러오기 -->
-<!-- 개발버전, 도움되는 콘솔 경고를 포함. -->
-<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
-
-<!-- lodash : debounce 불러오기 -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.20/lodash.min.js"></script>
-
-
-   <!-- 메인-검색 페이지 시작 -->  
-   <section v-cloak  id="article-search-section" class="section-1 con-min-width">
-      <div class="con">
-        <div class="search-div">
-          <form class="search-form flex flex-jc-c">
-            <input class="input" @input="source" v-model="keyword" type="text" placeholder=" Keyword를 입력하세요.">
-          </form>
-        </div>
-        <div class="article-search-list">
-          <header>
-            <div>
-              <div class="article-search-list__cell-id">번호</div>
-              <div class="article-search-list__cell-reg-date">날짜</div>
-              <div class="article-search-list__cell-writer">작성자</div>
-              <div class="article-search-list__cell-title">제목</div>
-            </div>
-          </header>
-          <div class="main">
-            <div v-for="article in filtered">
-              <div class="article-search-list__cell-id">{{article.id}}</div>
-              <div class="article-search-list__cell-reg-date">{{article.regDate}}</div>
-              <div class="article-search-list__cell-writer">{{article.writer}}</div>
-              <div class="article-search-list__cell-title">
-                <a :href="'article_detail_' + article.id + '.html'" class="hover-underline">{{article.title}}</a>
-              </div>
-            </div>
+   <!-- 메인-타이틀바 종료 -->
+   <!-- 메인-리스트페이지 시작 -->  
+   <section class="section-1 con-min-width ">
+    <div class="con">
+      <div class="article-list">
+        <header>
+          <div class="">
+            <div class="article-list__cell-id">번호</div>
+            <div class="article-list__cell-reg-date">작성일</div>
+            <div class="article-list__cell-writer">작성자</div>
+            <div class="article-list__cell-title">제목</div>
+            <div class="article-list__cell-hitsCount">조회수</div>
+            <div class="article-list__cell-likesCount">추천수</div>
           </div>
+        </header>
+        <div class="main article-list__cell-body">
+          <div><div class="article-list__cell-id">24</div><div class="article-list__cell-reg-date">2021-01-24 23:07:18</div><div class="article-list__cell-writer">Dev_J</a></div><div class="article-list__cell-title"><a href="article_detail_24.html" class="hover-underline">P.JSP - 개발일지(회원가입시 축하메일 발송 기능 추가)</a><span>[0]</span></div><div class="article-list__cell-hitsCount">0</div><div class="article-list__cell-likesCount">0</div></div><div><div class="article-list__cell-id">23</div><div class="article-list__cell-reg-date">2021-01-24 23:06:54</div><div class="article-list__cell-writer">Dev_J</a></div><div class="article-list__cell-title"><a href="article_detail_23.html" class="hover-underline">P.JSP - 개발일지(회원정보 페이지 정보별 수정기능 구현, 템플릿 적용)</a><span>[0]</span></div><div class="article-list__cell-hitsCount">0</div><div class="article-list__cell-likesCount">0</div></div><div><div class="article-list__cell-id">21</div><div class="article-list__cell-reg-date">2021-01-22 00:00:42</div><div class="article-list__cell-writer">Dev_J</a></div><div class="article-list__cell-title"><a href="article_detail_21.html" class="hover-underline">P.JSP - 개발일지(회원가입 기능 추가(ajax통신으로 중복체크 ))</a><span>[0]</span></div><div class="article-list__cell-hitsCount">0</div><div class="article-list__cell-likesCount">0</div></div><div><div class="article-list__cell-id">20</div><div class="article-list__cell-reg-date">2021-01-21 23:53:39</div><div class="article-list__cell-writer">Dev_J</a></div><div class="article-list__cell-title"><a href="article_detail_20.html" class="hover-underline">P.JSP - 개발일지(게시판별 CRUD 기능 구현)</a><span>[0]</span></div><div class="article-list__cell-hitsCount">0</div><div class="article-list__cell-likesCount">0</div></div><div><div class="article-list__cell-id">19</div><div class="article-list__cell-reg-date">2021-01-21 23:50:10</div><div class="article-list__cell-writer">Dev_J</a></div><div class="article-list__cell-title"><a href="article_detail_19.html" class="hover-underline">P.JSP - 개발일지(홈-메인화면 임시템플릿 적용)</a><span>[0]</span></div><div class="article-list__cell-hitsCount">0</div><div class="article-list__cell-likesCount">0</div></div><div><div class="article-list__cell-id">18</div><div class="article-list__cell-reg-date">2021-01-20 23:47:40</div><div class="article-list__cell-writer">Dev_J</a></div><div class="article-list__cell-title"><a href="article_detail_18.html" class="hover-underline">P.JSP - 개발일지(로그인 기능 구현)</a><span>[0]</span></div><div class="article-list__cell-hitsCount">0</div><div class="article-list__cell-likesCount">0</div></div><div><div class="article-list__cell-id">17</div><div class="article-list__cell-reg-date">2021-01-20 23:45:44</div><div class="article-list__cell-writer">Dev_J</a></div><div class="article-list__cell-title"><a href="article_detail_17.html" class="hover-underline">P.JSP - 개발일지(회원가입 기능 구현)</a><span>[0]</span></div><div class="article-list__cell-hitsCount">0</div><div class="article-list__cell-likesCount">0</div></div>
         </div>
       </div>
-    </section>
-   <!-- 메인-검색 페이지 끝 -->   
-   <!-- 메인-검색 페이지 하단 메뉴 시작 --> 
-
-   <!-- 메인-검색 페이지 하단 메뉴 끝 --> 
+    </div>
+  </section>
+   <!-- 메인-리스트페이지 끝 -->  
+   <!-- 메인-리스트 하단 메뉴 시작 -->
+   <div class="con"> 
+   	 <div class="article-page-menu">
+          <ul class="flex flex-jc-c">
+            <li><a href="p_jsp-list-1.html" class="page-btn flex flex-ai-c article-page-menu__link--selected">1</a></li>
+          </ul>
+     </div>
+   </div>
+   <!-- 메인-리스트 하단 메뉴 끝 --> 
    </section>
   </main>
   <!-- 메인 컨텐츠 박스 끝 -->
-  
-  <!-- tag.js 불러오기 -->
-<script src="tag.js"></script>
-  
   <!-- 푸터 시작 -->
   <footer class="bottom-bar con-min-width">
     <div class="con flex flex-ai-c">

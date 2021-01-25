@@ -693,6 +693,7 @@ body{ background:url("https://images.unsplash.com/photo-1494088644719-c75cad020c
   font-size:2rem;
   padding:15px 0 15px 30px;
   border-bottom:7px solid black;
+  margin-bottom:20px;
 }
 .article-detail-cell__body .tui-editor-contents{
   font-size:1.1rem;

@@ -1,0 +1,842 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+<script data-ad-client="ca-pub-7996879977557531" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-X5RMP83794"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-X5RMP83794');
+</script>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- 구글 검색엔진 등록-소유권 확인 -->
+<meta name="google-site-verification" content="37R4KcEaJU5LfiKL7GI1hu1_spJgWOazN6xy48OHhD4" />
+
+<!-- Meta Tag & Open Graph -->
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<meta name="viewport" content="width=1200">
+<meta name="apple-mobile-web-app-title" content="Dev_J BLOG" />
+<!-- 메타태그정보 //-->
+<!-- META -->
+<link rel="canonical" href="https://blog.devj.me" />
+<meta name="subject" content="P.BLOG - 개발일지(사이트 메타태그 적용(상세페이지 내용 나오게 하기 등))"/>
+<meta name="title" content="Dev_J BLOG" />
+<meta name="keywords" content="JAVA, HTML, CSS, JavaScript, MySQL" />
+<meta name="copyright" content="Dev_J BLOG" />
+<meta name="pubdate" content="2021-02-17T22:12:07" />
+<meta name="lastmod" content="2021-02-17T22:12:07" />
+<!-- OPENGRAPH -->
+<meta property="og:site_name" content="Dev_J BLOG" />
+<meta property="og:type" content="blog" />
+<meta property="og:title" content="P.BLOG - 개발일지(사이트 메타태그 적용(상세페이지 내용 나오게 하기 등))" />
+<meta property="og:description" content=" 소스코드 사이트 메타태그 적용상세페이지 내용 나오게 하기 등
+
+ headhtml
+html
+
+doctype html
+html langen
+
+head
+script dataadclientcapub7996879977557531 async srchttpspagead2googlesyndicationcompageadjsadsbygooglejsscript
+ Global site tag gtagjs  Google Analytics 
+script async srchttpswwwgoogletagmanagercomgtagjsidGX5RMP83794script
+script
+  windowdataLayer  windowdataLayer  
+  function gtagdataLayerpusharguments
+  gtagjs new Date
+
+  gtagconfig GX5RMP83794
+script
+meta charsetUTF8 
+meta nameviewport contentwidthdevicewidth initialscale1
+ 구글 검색엔진 등록소유권 확인 
+meta namegooglesiteverification content37R4KcEaJU5LfiKL7GI1hu1spJgWOazN6xy48OHhD4 
+
+ Meta Tag  Open Graph 
+meta httpequivxuacompatible contentieedge
+meta nameviewport contentwidth1200
+meta nameapplemobilewebapptitle content사이트 타이틀 
+ 메타태그정보 
+ META 
+link relcanonical href사이트 URL 
+meta namesubject content사이트 주제
+meta nametitle content사이트 타이틀 
+meta namekeywords content사이트 키워드 
+meta namecopyright content사이트 타이틀 
+meta namepubdate content날짜 
+meta namelastmod content날짜 
+ OPENGRAPH 
+meta propertyogsitename content사이트 타이틀 
+meta propertyogtype contentblog 
+meta propertyogtitle content사이트 주제 
+meta propertyogdescription content사이트 설명 
+meta propertyoglocale contentkoKR 
+meta propertyogimage contentimagesDevJlogologopng 
+meta propertyogimagealt content사이트 도메인 
+meta propertyogimagewidth content486 
+meta propertyogimageheight content254 
+meta propertyogupdatedtime content날짜
+meta propertyogpubdate content날짜 
+meta propertyogurl content사이트 URL 
+ TWITTER 
+meta nametwittercard contentsummarylargeimage 
+meta nametwittertitle content사이트 주제 
+meta nametwittersite content사이트 타이틀 
+meta nametwittercreator content사이트 타이틀 
+meta nametwitterimage contentimagesDevJlogologopng
+meta nametwitterdescription content사이트 설명 
+ GOOGLE 
+meta itempropheadline content사이트 타이틀 
+meta itempropname content사이트 타이틀 
+meta itempropdescription content사이트 설명 
+meta itempropimage contentimagesDevJlogologopng 
+
+ 사이트 타이틀 
+title페이지 타이틀title
+
+
+ 파비콘 
+link relshortcut icon hrefimagesfaviconfaviconico typeimagexicon
+link relicon hrefimagesfaviconfaviconico typeimagexicon
+
+
+
+ BulidServicejava
+java
+
+head  headreplace게시판 이름 블록 boardMenuContentHtmltoString
+
+		String titleBarContentHtml  getTitleBarContentByPageNamepageName
+		 입력받은 pageName에 맞는 타이틀바 컨텐츠를 리턴
+
+		head  headreplace타이틀바 컨텐츠 titleBarContentHtml
+		
+		String pageTitle  getPageTitlepageName object
+		 입력받은 pageName에 맞는 페이지의 타이틀을 리턴
+		
+		head  headreplace페이지 타이틀 pageTitle
+	
+		Meta Tag  Open Graph 작업
+		String siteTitle  DevJ BLOG
+		String siteSubject  DevJ의 BLOG
+		String siteKeywords  JAVA HTML CSS JavaScript MySQL
+		String siteDescription  DevJ의 BLOG입니다
+		String siteDomain  blogdevjme 
+		String siteMainUrl  https  siteDomain
+		String currentDate  UtilgetNowDateStrreplace  T
+		
+		
+		게시물 상세페이지마다 내용 나오게 하기
+		if  object instanceof Article  
+			Article article  Article object
+			siteSubject  articletitle
+			siteDescription  articlebody
+			siteDescription  siteDescriptionreplaceAlluAC00uD7A3xfe09azAZs 
+			uAC00uD7A3xfe09azAZs  모든 특수문자 제거
+		
+		
+		
+		head  headreplace사이트 타이틀 siteTitle
+		head  headreplace사이트 주제 siteSubject
+		head  headreplace사이트 키워드 siteKeywords
+		head  headreplace사이트 설명 siteDescription
+		head  headreplace사이트 도메인 siteDomain
+		head  headreplace사이트 URL siteMainUrl
+		head  headreplace날짜 currentDate
+		
+		
+		return head
+
+
+" />
+<meta property="og:locale" content="ko_KR" />
+<meta property="og:image" content="images/Dev_J_logo/logo.png" />
+<meta property="og:image:alt" content="blog.devj.me" />
+<meta property="og:image:width" content="486" />
+<meta property="og:image:height" content="254" />
+<meta property="og:updated_time" content="2021-02-17T22:12:07"/>
+<meta property="og:pubdate" content="2021-02-17T22:12:07" />
+<meta property="og:url" content="https://blog.devj.me" />
+<!-- TWITTER -->
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="P.BLOG - 개발일지(사이트 메타태그 적용(상세페이지 내용 나오게 하기 등))" />
+<meta name="twitter:site" content="@Dev_J BLOG" />
+<meta name="twitter:creator" content="@Dev_J BLOG" />
+<meta name="twitter:image" content="images/Dev_J_logo/logo.png">
+<meta name="twitter:description" content=" 소스코드 사이트 메타태그 적용상세페이지 내용 나오게 하기 등
+
+ headhtml
+html
+
+doctype html
+html langen
+
+head
+script dataadclientcapub7996879977557531 async srchttpspagead2googlesyndicationcompageadjsadsbygooglejsscript
+ Global site tag gtagjs  Google Analytics 
+script async srchttpswwwgoogletagmanagercomgtagjsidGX5RMP83794script
+script
+  windowdataLayer  windowdataLayer  
+  function gtagdataLayerpusharguments
+  gtagjs new Date
+
+  gtagconfig GX5RMP83794
+script
+meta charsetUTF8 
+meta nameviewport contentwidthdevicewidth initialscale1
+ 구글 검색엔진 등록소유권 확인 
+meta namegooglesiteverification content37R4KcEaJU5LfiKL7GI1hu1spJgWOazN6xy48OHhD4 
+
+ Meta Tag  Open Graph 
+meta httpequivxuacompatible contentieedge
+meta nameviewport contentwidth1200
+meta nameapplemobilewebapptitle content사이트 타이틀 
+ 메타태그정보 
+ META 
+link relcanonical href사이트 URL 
+meta namesubject content사이트 주제
+meta nametitle content사이트 타이틀 
+meta namekeywords content사이트 키워드 
+meta namecopyright content사이트 타이틀 
+meta namepubdate content날짜 
+meta namelastmod content날짜 
+ OPENGRAPH 
+meta propertyogsitename content사이트 타이틀 
+meta propertyogtype contentblog 
+meta propertyogtitle content사이트 주제 
+meta propertyogdescription content사이트 설명 
+meta propertyoglocale contentkoKR 
+meta propertyogimage contentimagesDevJlogologopng 
+meta propertyogimagealt content사이트 도메인 
+meta propertyogimagewidth content486 
+meta propertyogimageheight content254 
+meta propertyogupdatedtime content날짜
+meta propertyogpubdate content날짜 
+meta propertyogurl content사이트 URL 
+ TWITTER 
+meta nametwittercard contentsummarylargeimage 
+meta nametwittertitle content사이트 주제 
+meta nametwittersite content사이트 타이틀 
+meta nametwittercreator content사이트 타이틀 
+meta nametwitterimage contentimagesDevJlogologopng
+meta nametwitterdescription content사이트 설명 
+ GOOGLE 
+meta itempropheadline content사이트 타이틀 
+meta itempropname content사이트 타이틀 
+meta itempropdescription content사이트 설명 
+meta itempropimage contentimagesDevJlogologopng 
+
+ 사이트 타이틀 
+title페이지 타이틀title
+
+
+ 파비콘 
+link relshortcut icon hrefimagesfaviconfaviconico typeimagexicon
+link relicon hrefimagesfaviconfaviconico typeimagexicon
+
+
+
+ BulidServicejava
+java
+
+head  headreplace게시판 이름 블록 boardMenuContentHtmltoString
+
+		String titleBarContentHtml  getTitleBarContentByPageNamepageName
+		 입력받은 pageName에 맞는 타이틀바 컨텐츠를 리턴
+
+		head  headreplace타이틀바 컨텐츠 titleBarContentHtml
+		
+		String pageTitle  getPageTitlepageName object
+		 입력받은 pageName에 맞는 페이지의 타이틀을 리턴
+		
+		head  headreplace페이지 타이틀 pageTitle
+	
+		Meta Tag  Open Graph 작업
+		String siteTitle  DevJ BLOG
+		String siteSubject  DevJ의 BLOG
+		String siteKeywords  JAVA HTML CSS JavaScript MySQL
+		String siteDescription  DevJ의 BLOG입니다
+		String siteDomain  blogdevjme 
+		String siteMainUrl  https  siteDomain
+		String currentDate  UtilgetNowDateStrreplace  T
+		
+		
+		게시물 상세페이지마다 내용 나오게 하기
+		if  object instanceof Article  
+			Article article  Article object
+			siteSubject  articletitle
+			siteDescription  articlebody
+			siteDescription  siteDescriptionreplaceAlluAC00uD7A3xfe09azAZs 
+			uAC00uD7A3xfe09azAZs  모든 특수문자 제거
+		
+		
+		
+		head  headreplace사이트 타이틀 siteTitle
+		head  headreplace사이트 주제 siteSubject
+		head  headreplace사이트 키워드 siteKeywords
+		head  headreplace사이트 설명 siteDescription
+		head  headreplace사이트 도메인 siteDomain
+		head  headreplace사이트 URL siteMainUrl
+		head  headreplace날짜 currentDate
+		
+		
+		return head
+
+
+" />
+<!-- GOOGLE+ -->
+<meta itemprop="headline" content="Dev_J BLOG" />
+<meta itemprop="name" content="Dev_J BLOG" />
+<meta itemprop="description" content=" 소스코드 사이트 메타태그 적용상세페이지 내용 나오게 하기 등
+
+ headhtml
+html
+
+doctype html
+html langen
+
+head
+script dataadclientcapub7996879977557531 async srchttpspagead2googlesyndicationcompageadjsadsbygooglejsscript
+ Global site tag gtagjs  Google Analytics 
+script async srchttpswwwgoogletagmanagercomgtagjsidGX5RMP83794script
+script
+  windowdataLayer  windowdataLayer  
+  function gtagdataLayerpusharguments
+  gtagjs new Date
+
+  gtagconfig GX5RMP83794
+script
+meta charsetUTF8 
+meta nameviewport contentwidthdevicewidth initialscale1
+ 구글 검색엔진 등록소유권 확인 
+meta namegooglesiteverification content37R4KcEaJU5LfiKL7GI1hu1spJgWOazN6xy48OHhD4 
+
+ Meta Tag  Open Graph 
+meta httpequivxuacompatible contentieedge
+meta nameviewport contentwidth1200
+meta nameapplemobilewebapptitle content사이트 타이틀 
+ 메타태그정보 
+ META 
+link relcanonical href사이트 URL 
+meta namesubject content사이트 주제
+meta nametitle content사이트 타이틀 
+meta namekeywords content사이트 키워드 
+meta namecopyright content사이트 타이틀 
+meta namepubdate content날짜 
+meta namelastmod content날짜 
+ OPENGRAPH 
+meta propertyogsitename content사이트 타이틀 
+meta propertyogtype contentblog 
+meta propertyogtitle content사이트 주제 
+meta propertyogdescription content사이트 설명 
+meta propertyoglocale contentkoKR 
+meta propertyogimage contentimagesDevJlogologopng 
+meta propertyogimagealt content사이트 도메인 
+meta propertyogimagewidth content486 
+meta propertyogimageheight content254 
+meta propertyogupdatedtime content날짜
+meta propertyogpubdate content날짜 
+meta propertyogurl content사이트 URL 
+ TWITTER 
+meta nametwittercard contentsummarylargeimage 
+meta nametwittertitle content사이트 주제 
+meta nametwittersite content사이트 타이틀 
+meta nametwittercreator content사이트 타이틀 
+meta nametwitterimage contentimagesDevJlogologopng
+meta nametwitterdescription content사이트 설명 
+ GOOGLE 
+meta itempropheadline content사이트 타이틀 
+meta itempropname content사이트 타이틀 
+meta itempropdescription content사이트 설명 
+meta itempropimage contentimagesDevJlogologopng 
+
+ 사이트 타이틀 
+title페이지 타이틀title
+
+
+ 파비콘 
+link relshortcut icon hrefimagesfaviconfaviconico typeimagexicon
+link relicon hrefimagesfaviconfaviconico typeimagexicon
+
+
+
+ BulidServicejava
+java
+
+head  headreplace게시판 이름 블록 boardMenuContentHtmltoString
+
+		String titleBarContentHtml  getTitleBarContentByPageNamepageName
+		 입력받은 pageName에 맞는 타이틀바 컨텐츠를 리턴
+
+		head  headreplace타이틀바 컨텐츠 titleBarContentHtml
+		
+		String pageTitle  getPageTitlepageName object
+		 입력받은 pageName에 맞는 페이지의 타이틀을 리턴
+		
+		head  headreplace페이지 타이틀 pageTitle
+	
+		Meta Tag  Open Graph 작업
+		String siteTitle  DevJ BLOG
+		String siteSubject  DevJ의 BLOG
+		String siteKeywords  JAVA HTML CSS JavaScript MySQL
+		String siteDescription  DevJ의 BLOG입니다
+		String siteDomain  blogdevjme 
+		String siteMainUrl  https  siteDomain
+		String currentDate  UtilgetNowDateStrreplace  T
+		
+		
+		게시물 상세페이지마다 내용 나오게 하기
+		if  object instanceof Article  
+			Article article  Article object
+			siteSubject  articletitle
+			siteDescription  articlebody
+			siteDescription  siteDescriptionreplaceAlluAC00uD7A3xfe09azAZs 
+			uAC00uD7A3xfe09azAZs  모든 특수문자 제거
+		
+		
+		
+		head  headreplace사이트 타이틀 siteTitle
+		head  headreplace사이트 주제 siteSubject
+		head  headreplace사이트 키워드 siteKeywords
+		head  headreplace사이트 설명 siteDescription
+		head  headreplace사이트 도메인 siteDomain
+		head  headreplace사이트 URL siteMainUrl
+		head  headreplace날짜 currentDate
+		
+		
+		return head
+
+
+" />
+<meta itemprop="image" content="images/Dev_J_logo/logo.png" />
+
+<!-- 사이트 타이틀 -->
+<title>P.BLOG - 개발일지(사이트 메타태그 적용(상세페이지 내용 나오게 하기 등)) | Dev_J BLOG | ARTICLE DETAIL</title>
+
+
+<!-- 파비콘 -->
+<link rel="shortcut icon" href="images/favicon/favicon.ico" type="image/x-icon">
+<link rel="icon" href="images/favicon/favicon.ico" type="image/x-icon">
+
+<!-- 폰트어썸 불러오기 -->
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+
+<!--모바일에서도 PC와 같은 비율 유지-->
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<!--제이쿼리-->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+<!-- 하이라이트 라이브러리 추가, 토스트 UI 에디터에서 사용됨 -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.4.1/highlight.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.4.1/styles/default.min.css">
+
+<!-- 토스트 UI 에디터, 자바스크립트 코어 -->
+<script
+	src="https://uicdn.toast.com/editor/latest/toastui-editor-all.min.js" defer></script>
+
+<!-- 코드 미러 라이브러리 추가, 토스트 UI 에디터에서 사용됨 -->
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.58.3/codemirror.min.css" />
+<!-- 토스트 UI 에디터, CSS 코어 -->
+<link rel="stylesheet"
+	href="https://uicdn.toast.com/editor/latest/toastui-editor.min.css" />
+
+<!-- 토스트 UI 에디터, 신택스 하이라이트 플러그인 추가 -->
+<script src="https://uicdn.toast.com/editor-plugin-code-syntax-highlight/latest/toastui-editor-plugin-code-syntax-highlight.min.js" defer></script>
+
+<!-- app.css 불러오기 -->
+<link rel="stylesheet" href="app.css">
+<!-- app.js 불러오기 -->
+<script src="app.js" defer></script>
+<!-- index.js 불러오기 
+<script src="index.js" defer></script>
+-->
+</head>
+
+<body>
+<!-- 사이트 박스 시작 -->
+<div class="body-content min-height-100vh flex flex-column">
+  <!-- 로고바 시작 -->
+  <header class="logo-bar con-min-width" id="header">
+    <div class="con height-100p flex flex-jc-c" title="HOME">
+      <a href="index.html" class="logo flex flex-ai-c"> 
+        <img class="logo__img" src="images/Dev_J_logo/logo_transparent.png" alt="">
+        <span>
+          BLOG
+        </span>
+      </a>
+    </div>
+  </header>
+  <!-- 로고바 끝 -->
+
+  <!-- 메뉴바 시작-->
+  <header class="menu-bar con-min-width visible-md-up">
+    <div class="flex flex-jc-sb">
+   	 <div class="menu-bar__status-icon" title="Menu">
+      <div></div>
+      <div></div>
+      <div></div>
+     </div>
+     <a class="search-icon" title="search" href="search.html">
+        <i class="fa fa-search"></i>
+     </a>
+   </div>
+   <div class="con hide">
+    <nav class="menu-bar__menu">
+      <ul class="flex">
+          <li title="ABOUT">
+            <a href="about.html" class="block">
+              <i class="far fa-address-card"></i>
+              <span>ABOUT</span>
+            </a>
+          </li>
+          <li>
+            <a class="block">
+              <i class="fas fa-list"></i>
+              <span>ARTICLES</span>
+            </a>
+            <ul>
+              <li title="NOTICE"><a href="notice-list-1.html" class="block"><i class="fas fa-bullhorn"></i> <span>NOTICE BOARD</span></a></li><li title="JAVA"><a href="java-list-1.html" class="block"><i class="fab fa-java"></i> <span>JAVA BOARD</span></a></li><li title="HTML"><a href="html-list-1.html" class="block"><i class="fab fa-html5"></i> <span>HTML & CSS & JS BOARD</span></a></li><li title="MYSQL"><a href="mysql-list-1.html" class="block"><i class="fas fa-database"></i> <span>MySQL BOARD</span></a></li>
+            </ul>
+          </li>
+          <li>
+            <a class="block">
+              <i class="fas fa-project-diagram"></i>
+              <span>PROJECT</span>
+            </a>
+            <ul>
+              <li title="P_BLOG"><a href="p_blog-list-1.html" class="block"><i class="fab fa-blogger"></i> <span>P.BLOG PROJECT</span></a></li><li title="P_JSP"><a href="p_jsp-list-1.html" class="block"><i class="fas fa-file-word"></i> <span>P.JSP PROJECT</span></a></li>
+            </ul>
+          </li>
+          <li>
+            <a class="block">
+              <i class="fas fa-link"></i>
+              <span>LINK</span>
+            </a>
+            <ul>
+              <li title="T-STORY">
+                <a href="https://cjy324.tistory.com/" target="_blank" class="block">
+                  <i class="fas fa-rss-square"></i>
+                  <span>T-STORY</span>
+                </a>
+              </li>
+              <li title="GITHUB">
+                <a href="https://github.com/cjy324/TIL_Jooyoung#til_jooyoung" target="_blank" class="block">
+                  <i class="fab fa-github"></i>
+                  <span>GITHUB</span>
+                </a>
+              </li>
+            </ul>
+          </li>
+          <li title="STATISTICS">
+            <a href="statistics.html" class="block">
+              <i class="fas fa-chart-pie"></i>
+              <span>STATISTICS</span>
+            </a>
+          </li>
+        </ul>
+      </nav>
+   </div>
+  </header>
+  <!-- 메뉴바 끝 -->
+  
+  <!-- 모바일 사이드 메뉴바 시작 -->
+  <header class="mobile-menu-bar con-min-width visible-sm-down">
+    <div class="flex flex-jc-sb">
+   <div class="mobile-menu-bar__status-icon" title="Menu">
+     <div></div>
+     <div></div>
+     <div></div>
+   </div>
+    <a class="search-icon" title="search" href="search.html">
+        <i class="fa fa-search"></i>
+      </a>
+   </div>
+   <div class="con ">
+    <aside class="mobile-side-bar flex flex-column flex-jc-c ">
+      <div class="mobile-side-bar_X"><i class="fas fa-times"></i></div>
+      <span>MENU</span>
+      <nav class="mobile-side-bar_menu flex flex-jc-c">
+      <ul class="">
+          <li title="ABOUT">
+            <a href="about.html" class="block">
+              <i class="far fa-address-card"></i>
+              <span>ABOUT</span>
+            </a>
+          </li>
+          <li>
+            <a class="block">
+              <i class="fas fa-list"></i>
+              <span>ARTICLES</span>
+            </a>
+            <ul class="hide2">
+              <li title="NOTICE"><a href="notice-list-1.html" class="block"><i class="fas fa-bullhorn"></i> <span>NOTICE BOARD</span></a></li><li title="JAVA"><a href="java-list-1.html" class="block"><i class="fab fa-java"></i> <span>JAVA BOARD</span></a></li><li title="HTML"><a href="html-list-1.html" class="block"><i class="fab fa-html5"></i> <span>HTML & CSS & JS BOARD</span></a></li><li title="MYSQL"><a href="mysql-list-1.html" class="block"><i class="fas fa-database"></i> <span>MySQL BOARD</span></a></li>
+            </ul>
+          </li>
+          <li>
+            <a class="block">
+              <i class="fas fa-project-diagram"></i>
+              <span>PROJECT</span>
+            </a>
+            <ul class="hide2">
+              <li title="P_BLOG"><a href="p_blog-list-1.html" class="block"><i class="fab fa-blogger"></i> <span>P.BLOG PROJECT</span></a></li><li title="P_JSP"><a href="p_jsp-list-1.html" class="block"><i class="fas fa-file-word"></i> <span>P.JSP PROJECT</span></a></li>
+            </ul>
+          </li>
+          <li>
+            <a class="block">
+              <i class="fas fa-link"></i>
+              <span>LINK</span>
+            </a>
+            <ul class="hide2">
+              <li title="T-STORY">
+                <a href="https://cjy324.tistory.com/" target="_blank" class="block">
+                  <i class="fas fa-rss-square"></i>
+                  <span>T-STORY</span>
+                </a>
+              </li>
+              <li title="GITHUB">
+                <a href="https://github.com/cjy324/TIL_Jooyoung#til_jooyoung" target="_blank" class="block">
+                  <i class="fab fa-github"></i>
+                  <span>GITHUB</span>
+                </a>
+              </li>
+            </ul>
+          </li>
+          <li title="STATISTICS">
+            <a href="statistics.html" class="block">
+              <i class="fas fa-chart-pie"></i>
+              <span>STATISTICS</span>
+            </a>
+          </li>
+        </ul>
+      </nav>  
+      </aside>
+   </div>
+  </header>
+  
+  <!-- 모바일 사이드 메뉴바 끝 --> 
+   
+
+  <!-- 메인 컨텐츠 박스 시작 -->
+  <main class="main-box flex-grow-1">
+  <section class="main-box-section con-min-width">
+   <!-- 메인-타이틀바 시작 -->
+	<div class="title-bar con-min-width">
+		<h1 class="con">
+			<i class="fas fa-file-invoice"></i> <span>ARTICLE</span>
+		</h1>
+	</div>
+   <!-- 메인-타이틀바 종료 -->
+<!-- Progress-bar -->
+<script type="text/javascript"
+	src="https://rawcdn.githack.com/mburakerman/prognroll/0feda211643153bce2c69de32ea1b39cdc64ffbe/src/prognroll.js"></script>
+<script type="text/javascript">
+	$(function() {
+		$("body").prognroll({
+			height : 10,
+			color : "#666666"
+		});
+		$(".content").prognroll({
+			custom : true
+		});
+	});
+</script>
+
+<!-- 메인-상세페이지 시작 -->
+<section class="section-2 con-min-width min-height-50vh">
+	<div class="con height-100p">
+		<div class="article-detail-cell height-100p">
+			<div class="article-detail-cell__board-name"><div><span>게시판 : </span><span>P.BLOG 게시판</span></div></div><div class="article-detail-cell__id"><div><span>번호 : </span><span>37</span></div></div><div class="article-detail-cell__member-id"><div><span>작성자 : </span><span>Dev_J</span></div></div><div class="article-detail-cell__reg-date"><div><span>작성일 : </span><span>2021-02-17 21:53:43</span></div></div><div class="article-detail-cell__update-date"><div><span>수정일 : </span><span>2021-02-17 22:12:03</span></div></div><br><div class="article-detail-cell__title-contents flex flex-jc-fe"><div class="article-detail-cell__hitsCount"><div><span>조회수 : </span><span>0</span></div></div><div class="article-detail-cell__likesCount"><div><span>추천수 : </span><span>0</span></div></div><div class="article-detail-cell__commentsCount"><div><span>댓글수 : </span><span>0</span></div></div></div><div class="article-detail-cell__title"><div><span>제목 : </span><span>P.BLOG - 개발일지(사이트 메타태그 적용(상세페이지 내용 나오게 하기 등))</span></div></div><!-- 구글 애드센스2 --><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script><!-- 수평 반응형2 --><ins class="adsbygoogle" style="display: block" data-ad-client="ca-pub-7996879977557531" data-ad-slot="2278060237" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle = window.adsbygoogle || []).push({});</script><script type"text/x-template"># 소스코드: 사이트 메타태그 적용(상세페이지 내용 나오게 하기 등)
+
+### <head.html>
+```html
+
+<!doctype html>
+<html lang="en">
+
+<head>
+<t-script data-ad-client="ca-pub-7996879977557531" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></t-script>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<t-script async src="https://www.googletagmanager.com/gtag/js?id=G-X5RMP83794"></t-script>
+<t-script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-X5RMP83794');
+</t-script>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- 구글 검색엔진 등록-소유권 확인 -->
+<meta name="google-site-verification" content="37R4KcEaJU5LfiKL7GI1hu1_spJgWOazN6xy48OHhD4" />
+
+<!-- Meta Tag & Open Graph -->
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<meta name="viewport" content="width=1200">
+<meta name="apple-mobile-web-app-title" content="[사이트 타이틀]" />
+<!-- 메타태그정보 //-->
+<!-- META -->
+<link rel="canonical" href="[사이트 URL]" />
+<meta name="subject" content="[사이트 주제]"/>
+<meta name="title" content="[사이트 타이틀]" />
+<meta name="keywords" content="[사이트 키워드]" />
+<meta name="copyright" content="[사이트 타이틀]" />
+<meta name="pubdate" content="[날짜]" />
+<meta name="lastmod" content="[날짜]" />
+<!-- OPENGRAPH -->
+<meta property="og:site_name" content="[사이트 타이틀]" />
+<meta property="og:type" content="blog" />
+<meta property="og:title" content="[사이트 주제]" />
+<meta property="og:det-scription" content="[사이트 설명]" />
+<meta property="og:locale" content="ko_KR" />
+<meta property="og:image" content="images/Dev_J_logo/logo.png" />
+<meta property="og:image:alt" content="blog.devj.me" />
+<meta property="og:image:width" content="486" />
+<meta property="og:image:height" content="254" />
+<meta property="og:updated_time" content="[날짜]"/>
+<meta property="og:pubdate" content="[날짜]" />
+<meta property="og:url" content="[사이트 URL]" />
+<!-- TWITTER -->
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="[사이트 주제]" />
+<meta name="twitter:site" content="@[사이트 타이틀]" />
+<meta name="twitter:creator" content="@[사이트 타이틀]" />
+<meta name="twitter:image" content="images/Dev_J_logo/logo.png">
+<meta name="twitter:det-scription" content="[사이트 설명]" />
+<!-- GOOGLE+ -->
+<meta itemprop="headline" content="[사이트 타이틀]" />
+<meta itemprop="name" content="[사이트 타이틀]" />
+<meta itemprop="det-scription" content="[사이트 설명]" />
+<meta itemprop="image" content="images/Dev_J_logo/logo.png" />
+
+<!-- 사이트 타이틀 -->
+<title>[페이지 타이틀]</title>
+
+
+<!-- 파비콘 -->
+<link rel="shortcut icon" href="images/favicon/favicon.ico" type="image/x-icon">
+<link rel="icon" href="images/favicon/favicon.ico" type="image/x-icon">
+
+```
+
+### <BulidService.java>
+```java
+
+head = head.replace("[게시판 이름 블록]", boardMenuContentHtml.toString());
+
+		String titleBarContentHtml = getTitleBarContentByPageName(pageName);
+		// 입력받은 pageName에 맞는 타이틀바 컨텐츠를 리턴
+
+		head = head.replace("[타이틀바 컨텐츠]", titleBarContentHtml);
+		
+		String pageTitle = getPageTitle(pageName, object);
+		// 입력받은 pageName에 맞는 페이지의 타이틀을 리턴
+		
+		head = head.replace("[페이지 타이틀]", pageTitle);
+	
+		//Meta Tag & Open Graph 작업
+		String siteTitle = "Dev_J BLOG";
+		String siteSubject = "Dev_J의 BLOG";
+		String siteKeywords = "JAVA, HTML, CSS, JavaScript, MySQL";
+		String siteDet-scription = "Dev_J의 BLOG입니다.";
+		String siteDomain = "blog.devj.me"; 
+		String siteMainUrl = "https://" + siteDomain;
+		String currentDate = Util.getNowDateStr().replace(" ", "T");
+		
+		
+		//게시물 상세페이지마다 내용 나오게 하기
+		if ( object instanceof Article ) {
+			Article article = (Article) object;
+			siteSubject = article.title;
+			siteDet-scription = article.body;
+			siteDet-scription = siteDet-scription.replaceAll("[^\uAC00-\uD7A3xfe0-9a-zA-Z\\s]", "");
+			//[^\uAC00-\uD7A3xfe0-9a-zA-Z\\s] => 모든 특수문자 제거
+		}
+		
+		
+		head = head.replace("[사이트 타이틀]", siteTitle);
+		head = head.replace("[사이트 주제]", siteSubject);
+		head = head.replace("[사이트 키워드]", siteKeywords);
+		head = head.replace("[사이트 설명]", siteDet-scription);
+		head = head.replace("blog.devj.me", siteDomain);
+		head = head.replace("[사이트 URL]", siteMainUrl);
+		head = head.replace("[날짜]", currentDate);
+		
+		
+		return head;
+
+```
+</script><div class="article-detail-cell__body height-70p toast-ui-viewer"><div></div></div><br><div class="article-detail-cell__tag flex flex-wrap"><nav># <a href="#" target="_blank">project</a></nav><nav># <a href="#" target="_blank">개발일지</a></nav><nav># <a href="#" target="_blank">blog</a></nav></div><br><br><!-- 구글 애드센스1 --><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script><!-- 수평 반응형1 --><ins class="adsbygoogle" style="display: block" data-ad-client="ca-pub-7996879977557531" data-ad-slot="6812185708" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+			<!-- Disqus api 적용 -->
+			<!-- 정확한 페이지 경로 알려주는 기능 추가-->
+			<nav>
+				<div id="disqus_thread"></div>
+				<script>
+					var disqus_config = function() {
+						this.page.url = 'https://blog.devj.me/article_detail_37.html';
+						this.page.identifier = 'article_detail_37.html';
+					};
+					(function() {
+						//DON'T EDIT BELOW THIS LINE
+						var d = document, s = d.createElement('script');
+						s.src = 'https://devj-blog.disqus.com/embed.js';
+						s.setAttribute('data-timestamp', +new Date());
+						(d.head || d.body).appendChild(s);
+					})();
+				</script>
+				<noscript>
+					Please enable JavaScript to view the
+					<a href="https://disqus.com/?ref_noscript">comments powered by
+						Disqus.</a>
+				</noscript>
+			</nav>
+		</div>
+	</div>
+</section>
+<!-- 메인-상세페이지 끝 -->
+<!-- 메인-상세 하단 메뉴 시작 -->
+<section class="section-3 con-min-width">
+	<div class="con">
+		<div class="article-list-bottom-cell flex flex-jc-c"><div class="./"><a href="article_detail_36.html" class="hover-underline">&lt 이전글</a></div><div class="./"><i class="fas fa-th-list"></i><a href="p_blog-list-1.html" class="hover-underline"> 목록 </a></div><div class="./"><a href="article_detail_38.html"class="hover-underline">다음글 &gt</a></div></div>
+	</div>
+</section>
+<!-- 메인-상세 하단 메뉴 끝 -->
+</section>
+</main>
+<!-- 메인 컨텐츠 박스 끝 -->
+  <!-- 맨 위 버튼 시작 -->
+  <nav class="top-button flex flex-jc-c flex-ai-c">
+    <div class="">
+      <a href="#header">▲ TOP</a> 
+    </div>     
+  </nav>
+  <!-- 맨 위 버튼 끝 -->
+
+
+  <!-- 푸터 시작 -->
+  <footer class="bottom-bar con-min-width">
+    <div class="con flex flex-ai-c">
+      <a href="index.html" class="logo logo--mini flex flex-ai-c" title="HOME">
+        <img class="logo--mini__img" src="images/Dev_J_logo/logo_transparent.png" alt="">
+      </a>
+      <div class="bottom-bar__site-info">
+        <span><i class="far fa-envelope"></i> juy32400@gmail.com</span>
+        <br>
+        <br>
+        <span>COPYRIGHT 2020. Dev_J. All rights reserved.</span>
+      </div>
+    </div>
+  </footer>
+  <!-- 푸터 끝 -->
+</div>
+<!-- 사이트 박스 끝 -->
+</body>
+</html>

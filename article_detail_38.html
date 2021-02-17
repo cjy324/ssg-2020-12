@@ -1,0 +1,934 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+<script data-ad-client="ca-pub-7996879977557531" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-X5RMP83794"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-X5RMP83794');
+</script>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- 구글 검색엔진 등록-소유권 확인 -->
+<meta name="google-site-verification" content="37R4KcEaJU5LfiKL7GI1hu1_spJgWOazN6xy48OHhD4" />
+
+<!-- Meta Tag & Open Graph -->
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<meta name="viewport" content="width=1200">
+<meta name="apple-mobile-web-app-title" content="Dev_J BLOG" />
+<!-- 메타태그정보 //-->
+<!-- META -->
+<link rel="canonical" href="https://blog.devj.me" />
+<meta name="subject" content="P.BLOG - 개발일지(Disqus api 적용 - 댓글수, 추천수 동기화 기능 추가( + 이모지 적용)(feat.jackson))"/>
+<meta name="title" content="Dev_J BLOG" />
+<meta name="keywords" content="JAVA, HTML, CSS, JavaScript, MySQL" />
+<meta name="copyright" content="Dev_J BLOG" />
+<meta name="pubdate" content="2021-02-17T22:12:07" />
+<meta name="lastmod" content="2021-02-17T22:12:07" />
+<!-- OPENGRAPH -->
+<meta property="og:site_name" content="Dev_J BLOG" />
+<meta property="og:type" content="blog" />
+<meta property="og:title" content="P.BLOG - 개발일지(Disqus api 적용 - 댓글수, 추천수 동기화 기능 추가( + 이모지 적용)(feat.jackson))" />
+<meta property="og:description" content=" 소스코드 Disqus api 적용  댓글수 추천수 동기화 기능 추가  이모지 적용featjackson
+
+ BuildServicejava
+java
+
+public void builSite 
+		Systemoutprintln site 폴더 생성 
+
+		 Utilrmdirsite  기존 site 폴더 삭제
+		Utilmkdirsite  신규 site 폴더 생성
+
+		 sitetemplate에 있는 appcss원본를 복사해 site폴더 생성시 그 안에 복사본 붙여넣기
+		Utilcopysitetemplateappcss siteappcss
+		Utilcopysitetemplateappjs siteappjs
+
+		 sitetemplate에 있는 images원본폴더를 복사해 site폴더 생성시 그 안에 복사본 붙여넣기
+		UtilcopyDirsitetemplateimages siteimages
+
+		 사이트 생성 전 Discus Data 가져오기
+		loadDiscusData
+
+		buildIndexPage  인덱스 페이지 생성
+		buildArticleListPages  각 게시판 별 게시물리스트 페이지 생성
+		buildArticleDetailPages  게시판 별 게시물 상세페이지 생성
+
+	
+
+	 Discus Data 가져오기
+	private void loadDiscusData 
+		ListArticle articles  articleServicegetArticlesForPrint
+
+		for Article article  articles 
+			MapString Object discusArticleData  discusApiServicegetArticleDataarticle
+			
+			if discusArticleData  null 
+				int likesCount  int discusArticleDatagetlikesCount
+				int commentsCount  int discusArticleDatagetcommentsCount
+				
+				MapString Object modifyArgs  new HashMap
+				modifyArgsputid articleid
+				modifyArgsputlikesCount likesCount
+				modifyArgsputcommentsCount commentsCount
+
+				articleServicearticleModifymodifyArgs
+				
+			
+
+		
+
+	
+
+
+
+ DiscusApiServicejava
+java
+
+package comsbsexamplemysqlTextBoardservice
+
+import javautilHashMap
+import javautilList
+import javautilMap
+
+import comsbsexamplemysqlTextBoardapiDtoDisqusApiDataListThread
+import comsbsexamplemysqlTextBoardcontainerContainer
+import comsbsexamplemysqlTextBoarddtoArticle
+import comsbsexamplemysqlTextBoardutilUtil
+
+public class DiscusApiService 
+
+	public MapString Object getArticleDataArticle article 
+		String fileName  ContainerbuildServicegetArticleFileNamearticle
+		String url  httpsdisquscomapi30forumslistThreadsjson
+
+		DisqusApiDataListThread disqusApiDataListThread  DisqusApiDataListThread UtilcallApiResponseToDisqusApiDataListThreadclass
+				url apikey  ContainerappConfiggetDisqusApiKey forum  ContainerappConfiggetDisqusForumName
+				threadident  fileName
+		
+		ifdisqusApiDataListThread  null 
+			return null
+		
+		
+		MapString Object rs  new HashMap
+		rsputlikesCount disqusApiDataListThreadresponseget0likes
+		rsputcommentsCount disqusApiDataListThreadresponseget0posts
+		Systemoutprintlnrs
+		
+		return rs
+	
+
+
+
+
+
+ DisqusApiDataListThreadjava
+java
+
+package comsbsexamplemysqlTextBoardapiDto
+
+import javautilList
+
+import comfasterxmljacksonannotationJsonIgnoreProperties
+
+JsonIgnorePropertiesignoreUnknown  true
+public class DisqusApiDataListThread 
+	
+	public int code
+	public ListResponse response
+	
+	JsonIgnorePropertiesignoreUnknown  true
+	public static class Response
+		public int likes
+		public int posts
+	
+
+
+
+
+ AppConfigjava
+
+java
+
+package comsbsexamplemysqlTextBoard
+
+public class AppConfig 
+
+	public String getSiteDomain 
+		return blogdevjme
+	
+	
+	
+	public String getDisqusApiKey 
+		return mr5Mv3I4DJ893SADMVmxOu7iUzXrkL3GvNnWxJ4dBy5ZBHvd32lKlEw0qYI5x76F
+		
+	
+	
+	public String getDisqusForumName 
+		return devjblog
+		
+	
+
+
+
+
+" />
+<meta property="og:locale" content="ko_KR" />
+<meta property="og:image" content="images/Dev_J_logo/logo.png" />
+<meta property="og:image:alt" content="blog.devj.me" />
+<meta property="og:image:width" content="486" />
+<meta property="og:image:height" content="254" />
+<meta property="og:updated_time" content="2021-02-17T22:12:07"/>
+<meta property="og:pubdate" content="2021-02-17T22:12:07" />
+<meta property="og:url" content="https://blog.devj.me" />
+<!-- TWITTER -->
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="P.BLOG - 개발일지(Disqus api 적용 - 댓글수, 추천수 동기화 기능 추가( + 이모지 적용)(feat.jackson))" />
+<meta name="twitter:site" content="@Dev_J BLOG" />
+<meta name="twitter:creator" content="@Dev_J BLOG" />
+<meta name="twitter:image" content="images/Dev_J_logo/logo.png">
+<meta name="twitter:description" content=" 소스코드 Disqus api 적용  댓글수 추천수 동기화 기능 추가  이모지 적용featjackson
+
+ BuildServicejava
+java
+
+public void builSite 
+		Systemoutprintln site 폴더 생성 
+
+		 Utilrmdirsite  기존 site 폴더 삭제
+		Utilmkdirsite  신규 site 폴더 생성
+
+		 sitetemplate에 있는 appcss원본를 복사해 site폴더 생성시 그 안에 복사본 붙여넣기
+		Utilcopysitetemplateappcss siteappcss
+		Utilcopysitetemplateappjs siteappjs
+
+		 sitetemplate에 있는 images원본폴더를 복사해 site폴더 생성시 그 안에 복사본 붙여넣기
+		UtilcopyDirsitetemplateimages siteimages
+
+		 사이트 생성 전 Discus Data 가져오기
+		loadDiscusData
+
+		buildIndexPage  인덱스 페이지 생성
+		buildArticleListPages  각 게시판 별 게시물리스트 페이지 생성
+		buildArticleDetailPages  게시판 별 게시물 상세페이지 생성
+
+	
+
+	 Discus Data 가져오기
+	private void loadDiscusData 
+		ListArticle articles  articleServicegetArticlesForPrint
+
+		for Article article  articles 
+			MapString Object discusArticleData  discusApiServicegetArticleDataarticle
+			
+			if discusArticleData  null 
+				int likesCount  int discusArticleDatagetlikesCount
+				int commentsCount  int discusArticleDatagetcommentsCount
+				
+				MapString Object modifyArgs  new HashMap
+				modifyArgsputid articleid
+				modifyArgsputlikesCount likesCount
+				modifyArgsputcommentsCount commentsCount
+
+				articleServicearticleModifymodifyArgs
+				
+			
+
+		
+
+	
+
+
+
+ DiscusApiServicejava
+java
+
+package comsbsexamplemysqlTextBoardservice
+
+import javautilHashMap
+import javautilList
+import javautilMap
+
+import comsbsexamplemysqlTextBoardapiDtoDisqusApiDataListThread
+import comsbsexamplemysqlTextBoardcontainerContainer
+import comsbsexamplemysqlTextBoarddtoArticle
+import comsbsexamplemysqlTextBoardutilUtil
+
+public class DiscusApiService 
+
+	public MapString Object getArticleDataArticle article 
+		String fileName  ContainerbuildServicegetArticleFileNamearticle
+		String url  httpsdisquscomapi30forumslistThreadsjson
+
+		DisqusApiDataListThread disqusApiDataListThread  DisqusApiDataListThread UtilcallApiResponseToDisqusApiDataListThreadclass
+				url apikey  ContainerappConfiggetDisqusApiKey forum  ContainerappConfiggetDisqusForumName
+				threadident  fileName
+		
+		ifdisqusApiDataListThread  null 
+			return null
+		
+		
+		MapString Object rs  new HashMap
+		rsputlikesCount disqusApiDataListThreadresponseget0likes
+		rsputcommentsCount disqusApiDataListThreadresponseget0posts
+		Systemoutprintlnrs
+		
+		return rs
+	
+
+
+
+
+
+ DisqusApiDataListThreadjava
+java
+
+package comsbsexamplemysqlTextBoardapiDto
+
+import javautilList
+
+import comfasterxmljacksonannotationJsonIgnoreProperties
+
+JsonIgnorePropertiesignoreUnknown  true
+public class DisqusApiDataListThread 
+	
+	public int code
+	public ListResponse response
+	
+	JsonIgnorePropertiesignoreUnknown  true
+	public static class Response
+		public int likes
+		public int posts
+	
+
+
+
+
+ AppConfigjava
+
+java
+
+package comsbsexamplemysqlTextBoard
+
+public class AppConfig 
+
+	public String getSiteDomain 
+		return blogdevjme
+	
+	
+	
+	public String getDisqusApiKey 
+		return mr5Mv3I4DJ893SADMVmxOu7iUzXrkL3GvNnWxJ4dBy5ZBHvd32lKlEw0qYI5x76F
+		
+	
+	
+	public String getDisqusForumName 
+		return devjblog
+		
+	
+
+
+
+
+" />
+<!-- GOOGLE+ -->
+<meta itemprop="headline" content="Dev_J BLOG" />
+<meta itemprop="name" content="Dev_J BLOG" />
+<meta itemprop="description" content=" 소스코드 Disqus api 적용  댓글수 추천수 동기화 기능 추가  이모지 적용featjackson
+
+ BuildServicejava
+java
+
+public void builSite 
+		Systemoutprintln site 폴더 생성 
+
+		 Utilrmdirsite  기존 site 폴더 삭제
+		Utilmkdirsite  신규 site 폴더 생성
+
+		 sitetemplate에 있는 appcss원본를 복사해 site폴더 생성시 그 안에 복사본 붙여넣기
+		Utilcopysitetemplateappcss siteappcss
+		Utilcopysitetemplateappjs siteappjs
+
+		 sitetemplate에 있는 images원본폴더를 복사해 site폴더 생성시 그 안에 복사본 붙여넣기
+		UtilcopyDirsitetemplateimages siteimages
+
+		 사이트 생성 전 Discus Data 가져오기
+		loadDiscusData
+
+		buildIndexPage  인덱스 페이지 생성
+		buildArticleListPages  각 게시판 별 게시물리스트 페이지 생성
+		buildArticleDetailPages  게시판 별 게시물 상세페이지 생성
+
+	
+
+	 Discus Data 가져오기
+	private void loadDiscusData 
+		ListArticle articles  articleServicegetArticlesForPrint
+
+		for Article article  articles 
+			MapString Object discusArticleData  discusApiServicegetArticleDataarticle
+			
+			if discusArticleData  null 
+				int likesCount  int discusArticleDatagetlikesCount
+				int commentsCount  int discusArticleDatagetcommentsCount
+				
+				MapString Object modifyArgs  new HashMap
+				modifyArgsputid articleid
+				modifyArgsputlikesCount likesCount
+				modifyArgsputcommentsCount commentsCount
+
+				articleServicearticleModifymodifyArgs
+				
+			
+
+		
+
+	
+
+
+
+ DiscusApiServicejava
+java
+
+package comsbsexamplemysqlTextBoardservice
+
+import javautilHashMap
+import javautilList
+import javautilMap
+
+import comsbsexamplemysqlTextBoardapiDtoDisqusApiDataListThread
+import comsbsexamplemysqlTextBoardcontainerContainer
+import comsbsexamplemysqlTextBoarddtoArticle
+import comsbsexamplemysqlTextBoardutilUtil
+
+public class DiscusApiService 
+
+	public MapString Object getArticleDataArticle article 
+		String fileName  ContainerbuildServicegetArticleFileNamearticle
+		String url  httpsdisquscomapi30forumslistThreadsjson
+
+		DisqusApiDataListThread disqusApiDataListThread  DisqusApiDataListThread UtilcallApiResponseToDisqusApiDataListThreadclass
+				url apikey  ContainerappConfiggetDisqusApiKey forum  ContainerappConfiggetDisqusForumName
+				threadident  fileName
+		
+		ifdisqusApiDataListThread  null 
+			return null
+		
+		
+		MapString Object rs  new HashMap
+		rsputlikesCount disqusApiDataListThreadresponseget0likes
+		rsputcommentsCount disqusApiDataListThreadresponseget0posts
+		Systemoutprintlnrs
+		
+		return rs
+	
+
+
+
+
+
+ DisqusApiDataListThreadjava
+java
+
+package comsbsexamplemysqlTextBoardapiDto
+
+import javautilList
+
+import comfasterxmljacksonannotationJsonIgnoreProperties
+
+JsonIgnorePropertiesignoreUnknown  true
+public class DisqusApiDataListThread 
+	
+	public int code
+	public ListResponse response
+	
+	JsonIgnorePropertiesignoreUnknown  true
+	public static class Response
+		public int likes
+		public int posts
+	
+
+
+
+
+ AppConfigjava
+
+java
+
+package comsbsexamplemysqlTextBoard
+
+public class AppConfig 
+
+	public String getSiteDomain 
+		return blogdevjme
+	
+	
+	
+	public String getDisqusApiKey 
+		return mr5Mv3I4DJ893SADMVmxOu7iUzXrkL3GvNnWxJ4dBy5ZBHvd32lKlEw0qYI5x76F
+		
+	
+	
+	public String getDisqusForumName 
+		return devjblog
+		
+	
+
+
+
+
+" />
+<meta itemprop="image" content="images/Dev_J_logo/logo.png" />
+
+<!-- 사이트 타이틀 -->
+<title>P.BLOG - 개발일지(Disqus api 적용 - 댓글수, 추천수 동기화 기능 추가( + 이모지 적용)(feat.jackson)) | Dev_J BLOG | ARTICLE DETAIL</title>
+
+
+<!-- 파비콘 -->
+<link rel="shortcut icon" href="images/favicon/favicon.ico" type="image/x-icon">
+<link rel="icon" href="images/favicon/favicon.ico" type="image/x-icon">
+
+<!-- 폰트어썸 불러오기 -->
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+
+<!--모바일에서도 PC와 같은 비율 유지-->
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<!--제이쿼리-->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+<!-- 하이라이트 라이브러리 추가, 토스트 UI 에디터에서 사용됨 -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.4.1/highlight.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.4.1/styles/default.min.css">
+
+<!-- 토스트 UI 에디터, 자바스크립트 코어 -->
+<script
+	src="https://uicdn.toast.com/editor/latest/toastui-editor-all.min.js" defer></script>
+
+<!-- 코드 미러 라이브러리 추가, 토스트 UI 에디터에서 사용됨 -->
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.58.3/codemirror.min.css" />
+<!-- 토스트 UI 에디터, CSS 코어 -->
+<link rel="stylesheet"
+	href="https://uicdn.toast.com/editor/latest/toastui-editor.min.css" />
+
+<!-- 토스트 UI 에디터, 신택스 하이라이트 플러그인 추가 -->
+<script src="https://uicdn.toast.com/editor-plugin-code-syntax-highlight/latest/toastui-editor-plugin-code-syntax-highlight.min.js" defer></script>
+
+<!-- app.css 불러오기 -->
+<link rel="stylesheet" href="app.css">
+<!-- app.js 불러오기 -->
+<script src="app.js" defer></script>
+<!-- index.js 불러오기 
+<script src="index.js" defer></script>
+-->
+</head>
+
+<body>
+<!-- 사이트 박스 시작 -->
+<div class="body-content min-height-100vh flex flex-column">
+  <!-- 로고바 시작 -->
+  <header class="logo-bar con-min-width" id="header">
+    <div class="con height-100p flex flex-jc-c" title="HOME">
+      <a href="index.html" class="logo flex flex-ai-c"> 
+        <img class="logo__img" src="images/Dev_J_logo/logo_transparent.png" alt="">
+        <span>
+          BLOG
+        </span>
+      </a>
+    </div>
+  </header>
+  <!-- 로고바 끝 -->
+
+  <!-- 메뉴바 시작-->
+  <header class="menu-bar con-min-width visible-md-up">
+    <div class="flex flex-jc-sb">
+   	 <div class="menu-bar__status-icon" title="Menu">
+      <div></div>
+      <div></div>
+      <div></div>
+     </div>
+     <a class="search-icon" title="search" href="search.html">
+        <i class="fa fa-search"></i>
+     </a>
+   </div>
+   <div class="con hide">
+    <nav class="menu-bar__menu">
+      <ul class="flex">
+          <li title="ABOUT">
+            <a href="about.html" class="block">
+              <i class="far fa-address-card"></i>
+              <span>ABOUT</span>
+            </a>
+          </li>
+          <li>
+            <a class="block">
+              <i class="fas fa-list"></i>
+              <span>ARTICLES</span>
+            </a>
+            <ul>
+              <li title="NOTICE"><a href="notice-list-1.html" class="block"><i class="fas fa-bullhorn"></i> <span>NOTICE BOARD</span></a></li><li title="JAVA"><a href="java-list-1.html" class="block"><i class="fab fa-java"></i> <span>JAVA BOARD</span></a></li><li title="HTML"><a href="html-list-1.html" class="block"><i class="fab fa-html5"></i> <span>HTML & CSS & JS BOARD</span></a></li><li title="MYSQL"><a href="mysql-list-1.html" class="block"><i class="fas fa-database"></i> <span>MySQL BOARD</span></a></li>
+            </ul>
+          </li>
+          <li>
+            <a class="block">
+              <i class="fas fa-project-diagram"></i>
+              <span>PROJECT</span>
+            </a>
+            <ul>
+              <li title="P_BLOG"><a href="p_blog-list-1.html" class="block"><i class="fab fa-blogger"></i> <span>P.BLOG PROJECT</span></a></li><li title="P_JSP"><a href="p_jsp-list-1.html" class="block"><i class="fas fa-file-word"></i> <span>P.JSP PROJECT</span></a></li>
+            </ul>
+          </li>
+          <li>
+            <a class="block">
+              <i class="fas fa-link"></i>
+              <span>LINK</span>
+            </a>
+            <ul>
+              <li title="T-STORY">
+                <a href="https://cjy324.tistory.com/" target="_blank" class="block">
+                  <i class="fas fa-rss-square"></i>
+                  <span>T-STORY</span>
+                </a>
+              </li>
+              <li title="GITHUB">
+                <a href="https://github.com/cjy324/TIL_Jooyoung#til_jooyoung" target="_blank" class="block">
+                  <i class="fab fa-github"></i>
+                  <span>GITHUB</span>
+                </a>
+              </li>
+            </ul>
+          </li>
+          <li title="STATISTICS">
+            <a href="statistics.html" class="block">
+              <i class="fas fa-chart-pie"></i>
+              <span>STATISTICS</span>
+            </a>
+          </li>
+        </ul>
+      </nav>
+   </div>
+  </header>
+  <!-- 메뉴바 끝 -->
+  
+  <!-- 모바일 사이드 메뉴바 시작 -->
+  <header class="mobile-menu-bar con-min-width visible-sm-down">
+    <div class="flex flex-jc-sb">
+   <div class="mobile-menu-bar__status-icon" title="Menu">
+     <div></div>
+     <div></div>
+     <div></div>
+   </div>
+    <a class="search-icon" title="search" href="search.html">
+        <i class="fa fa-search"></i>
+      </a>
+   </div>
+   <div class="con ">
+    <aside class="mobile-side-bar flex flex-column flex-jc-c ">
+      <div class="mobile-side-bar_X"><i class="fas fa-times"></i></div>
+      <span>MENU</span>
+      <nav class="mobile-side-bar_menu flex flex-jc-c">
+      <ul class="">
+          <li title="ABOUT">
+            <a href="about.html" class="block">
+              <i class="far fa-address-card"></i>
+              <span>ABOUT</span>
+            </a>
+          </li>
+          <li>
+            <a class="block">
+              <i class="fas fa-list"></i>
+              <span>ARTICLES</span>
+            </a>
+            <ul class="hide2">
+              <li title="NOTICE"><a href="notice-list-1.html" class="block"><i class="fas fa-bullhorn"></i> <span>NOTICE BOARD</span></a></li><li title="JAVA"><a href="java-list-1.html" class="block"><i class="fab fa-java"></i> <span>JAVA BOARD</span></a></li><li title="HTML"><a href="html-list-1.html" class="block"><i class="fab fa-html5"></i> <span>HTML & CSS & JS BOARD</span></a></li><li title="MYSQL"><a href="mysql-list-1.html" class="block"><i class="fas fa-database"></i> <span>MySQL BOARD</span></a></li>
+            </ul>
+          </li>
+          <li>
+            <a class="block">
+              <i class="fas fa-project-diagram"></i>
+              <span>PROJECT</span>
+            </a>
+            <ul class="hide2">
+              <li title="P_BLOG"><a href="p_blog-list-1.html" class="block"><i class="fab fa-blogger"></i> <span>P.BLOG PROJECT</span></a></li><li title="P_JSP"><a href="p_jsp-list-1.html" class="block"><i class="fas fa-file-word"></i> <span>P.JSP PROJECT</span></a></li>
+            </ul>
+          </li>
+          <li>
+            <a class="block">
+              <i class="fas fa-link"></i>
+              <span>LINK</span>
+            </a>
+            <ul class="hide2">
+              <li title="T-STORY">
+                <a href="https://cjy324.tistory.com/" target="_blank" class="block">
+                  <i class="fas fa-rss-square"></i>
+                  <span>T-STORY</span>
+                </a>
+              </li>
+              <li title="GITHUB">
+                <a href="https://github.com/cjy324/TIL_Jooyoung#til_jooyoung" target="_blank" class="block">
+                  <i class="fab fa-github"></i>
+                  <span>GITHUB</span>
+                </a>
+              </li>
+            </ul>
+          </li>
+          <li title="STATISTICS">
+            <a href="statistics.html" class="block">
+              <i class="fas fa-chart-pie"></i>
+              <span>STATISTICS</span>
+            </a>
+          </li>
+        </ul>
+      </nav>  
+      </aside>
+   </div>
+  </header>
+  
+  <!-- 모바일 사이드 메뉴바 끝 --> 
+   
+
+  <!-- 메인 컨텐츠 박스 시작 -->
+  <main class="main-box flex-grow-1">
+  <section class="main-box-section con-min-width">
+   <!-- 메인-타이틀바 시작 -->
+	<div class="title-bar con-min-width">
+		<h1 class="con">
+			<i class="fas fa-file-invoice"></i> <span>ARTICLE</span>
+		</h1>
+	</div>
+   <!-- 메인-타이틀바 종료 -->
+<!-- Progress-bar -->
+<script type="text/javascript"
+	src="https://rawcdn.githack.com/mburakerman/prognroll/0feda211643153bce2c69de32ea1b39cdc64ffbe/src/prognroll.js"></script>
+<script type="text/javascript">
+	$(function() {
+		$("body").prognroll({
+			height : 10,
+			color : "#666666"
+		});
+		$(".content").prognroll({
+			custom : true
+		});
+	});
+</script>
+
+<!-- 메인-상세페이지 시작 -->
+<section class="section-2 con-min-width min-height-50vh">
+	<div class="con height-100p">
+		<div class="article-detail-cell height-100p">
+			<div class="article-detail-cell__board-name"><div><span>게시판 : </span><span>P.BLOG 게시판</span></div></div><div class="article-detail-cell__id"><div><span>번호 : </span><span>38</span></div></div><div class="article-detail-cell__member-id"><div><span>작성자 : </span><span>Dev_J</span></div></div><div class="article-detail-cell__reg-date"><div><span>작성일 : </span><span>2021-02-17 21:56:42</span></div></div><div class="article-detail-cell__update-date"><div><span>수정일 : </span><span>2021-02-17 22:12:04</span></div></div><br><div class="article-detail-cell__title-contents flex flex-jc-fe"><div class="article-detail-cell__hitsCount"><div><span>조회수 : </span><span>0</span></div></div><div class="article-detail-cell__likesCount"><div><span>추천수 : </span><span>0</span></div></div><div class="article-detail-cell__commentsCount"><div><span>댓글수 : </span><span>0</span></div></div></div><div class="article-detail-cell__title"><div><span>제목 : </span><span>P.BLOG - 개발일지(Disqus api 적용 - 댓글수, 추천수 동기화 기능 추가( + 이모지 적용)(feat.jackson))</span></div></div><!-- 구글 애드센스2 --><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script><!-- 수평 반응형2 --><ins class="adsbygoogle" style="display: block" data-ad-client="ca-pub-7996879977557531" data-ad-slot="2278060237" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle = window.adsbygoogle || []).push({});</script><script type"text/x-template"># 소스코드: Disqus api 적용 - 댓글수, 추천수 동기화 기능 추가( + 이모지 적용)(feat.jackson)
+
+### <BuildService.java>
+```java
+
+public void builSite() {
+		System.out.println("= site 폴더 생성 =");
+
+		// Util.rmdir("site"); // 기존 site 폴더 삭제
+		Util.mkdir("site"); // 신규 site 폴더 생성
+
+		// site_template에 있는 app.css(원본)를 복사해 site폴더 생성시 그 안에 복사본 붙여넣기
+		Util.copy("site_template/app.css", "site/app.css");
+		Util.copy("site_template/app.js", "site/app.js");
+
+		// site_template에 있는 images(원본)폴더를 복사해 site폴더 생성시 그 안에 복사본 붙여넣기
+		Util.copyDir("site_template/images", "site/images");
+
+		// 사이트 생성 전 Discus Data 가져오기
+		loadDiscusData();
+
+		buildIndexPage(); // 인덱스 페이지 생성
+		buildArticleListPages(); // 각 게시판 별 게시물리스트 페이지 생성
+		buildArticleDetailPages(); // 게시판 별 게시물 상세페이지 생성
+
+	}
+
+	// Discus Data 가져오기
+	private void loadDiscusData() {
+		List<Article> articles = articleService.getArticlesForPrint();
+
+		for (Article article : articles) {
+			Map<String, Object> discusArticleData = discusApiService.getArticleData(article);
+			
+			if (discusArticleData != null) {
+				int likesCount = (int) discusArticleData.get("likesCount");
+				int commentsCount = (int) discusArticleData.get("commentsCount");
+				
+				Map<String, Object> modifyArgs = new HashMap<>();
+				modifyArgs.put("id", article.id);
+				modifyArgs.put("likesCount", likesCount);
+				modifyArgs.put("commentsCount", commentsCount);
+
+				articleService.articleModify(modifyArgs);
+				
+			}
+
+		}
+
+	}
+
+```
+
+### <DiscusApiService.java>
+```java
+
+package com.sbs.example.mysqlTextBoard.service;
+
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import com.sbs.example.mysqlTextBoard.apiDto.DisqusApiDataListThread;
+import com.sbs.example.mysqlTextBoard.container.Container;
+import com.sbs.example.mysqlTextBoard.dto.Article;
+import com.sbs.example.mysqlTextBoard.util.Util;
+
+public class DiscusApiService {
+
+	public Map<String, Object> getArticleData(Article article) {
+		String fileName = Container.buildService.getArticleFileName(article);
+		String url = "https://disqus.com/api/3.0/forums/listThreads.json";
+
+		DisqusApiDataListThread disqusApiDataListThread = (DisqusApiDataListThread) Util.callApiResponseTo(DisqusApiDataListThread.class,
+				url, "api_key=" + Container.appConfig.getDisqusApiKey(), "forum=" + Container.appConfig.getDisqusForumName(),
+				"thread:ident=" + fileName);
+		
+		if(disqusApiDataListThread == null) {
+			return null;
+		}
+		
+		Map<String, Object> rs = new HashMap<>();
+		rs.put("likesCount", disqusApiDataListThread.response.get(0).likes);
+		rs.put("commentsCount", disqusApiDataListThread.response.get(0).posts);
+		System.out.println(rs);
+		
+		return rs;
+	}
+
+}
+
+```
+
+### <DisqusApiDataListThread.java>
+```java
+
+package com.sbs.example.mysqlTextBoard.apiDto;
+
+import java.util.List;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
+@JsonIgnoreProperties(ignoreUnknown = true)
+public class DisqusApiDataListThread {
+	
+	public int code;
+	public List<Response> response;
+	
+	@JsonIgnoreProperties(ignoreUnknown = true)
+	public static class Response{
+		public int likes;
+		public int posts;
+	}
+}
+
+```
+
+### <AppConfig.java>
+
+```java
+
+package com.sbs.example.mysqlTextBoard;
+
+public class AppConfig {
+
+	public String getSiteDomain() {
+		return "blog.devj.me";
+	}
+	
+	
+	public String getDisqusApiKey() {
+		return "mr5Mv3I4DJ893SADMVmxOu7iUzXrkL3GvNnWxJ4dBy5ZBHvd32lKlEw0qYI5x76F";
+		
+	}
+	
+	public String getDisqusForumName() {
+		return "devj-blog";
+		
+	}
+
+}
+
+```
+</script><div class="article-detail-cell__body height-70p toast-ui-viewer"><div></div></div><br><div class="article-detail-cell__tag flex flex-wrap"><nav># <a href="#" target="_blank">project</a></nav><nav># <a href="#" target="_blank">개발일지</a></nav><nav># <a href="#" target="_blank">blog</a></nav></div><br><br><!-- 구글 애드센스1 --><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script><!-- 수평 반응형1 --><ins class="adsbygoogle" style="display: block" data-ad-client="ca-pub-7996879977557531" data-ad-slot="6812185708" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+			<!-- Disqus api 적용 -->
+			<!-- 정확한 페이지 경로 알려주는 기능 추가-->
+			<nav>
+				<div id="disqus_thread"></div>
+				<script>
+					var disqus_config = function() {
+						this.page.url = 'https://blog.devj.me/article_detail_38.html';
+						this.page.identifier = 'article_detail_38.html';
+					};
+					(function() {
+						//DON'T EDIT BELOW THIS LINE
+						var d = document, s = d.createElement('script');
+						s.src = 'https://devj-blog.disqus.com/embed.js';
+						s.setAttribute('data-timestamp', +new Date());
+						(d.head || d.body).appendChild(s);
+					})();
+				</script>
+				<noscript>
+					Please enable JavaScript to view the
+					<a href="https://disqus.com/?ref_noscript">comments powered by
+						Disqus.</a>
+				</noscript>
+			</nav>
+		</div>
+	</div>
+</section>
+<!-- 메인-상세페이지 끝 -->
+<!-- 메인-상세 하단 메뉴 시작 -->
+<section class="section-3 con-min-width">
+	<div class="con">
+		<div class="article-list-bottom-cell flex flex-jc-c"><div class="./"><a href="article_detail_37.html" class="hover-underline">&lt 이전글</a></div><div class="./"><i class="fas fa-th-list"></i><a href="p_blog-list-1.html" class="hover-underline"> 목록 </a></div><div class="./"><a href="article_detail_39.html"class="hover-underline">다음글 &gt</a></div></div>
+	</div>
+</section>
+<!-- 메인-상세 하단 메뉴 끝 -->
+</section>
+</main>
+<!-- 메인 컨텐츠 박스 끝 -->
+  <!-- 맨 위 버튼 시작 -->
+  <nav class="top-button flex flex-jc-c flex-ai-c">
+    <div class="">
+      <a href="#header">▲ TOP</a> 
+    </div>     
+  </nav>
+  <!-- 맨 위 버튼 끝 -->
+
+
+  <!-- 푸터 시작 -->
+  <footer class="bottom-bar con-min-width">
+    <div class="con flex flex-ai-c">
+      <a href="index.html" class="logo logo--mini flex flex-ai-c" title="HOME">
+        <img class="logo--mini__img" src="images/Dev_J_logo/logo_transparent.png" alt="">
+      </a>
+      <div class="bottom-bar__site-info">
+        <span><i class="far fa-envelope"></i> juy32400@gmail.com</span>
+        <br>
+        <br>
+        <span>COPYRIGHT 2020. Dev_J. All rights reserved.</span>
+      </div>
+    </div>
+  </footer>
+  <!-- 푸터 끝 -->
+</div>
+<!-- 사이트 박스 끝 -->
+</body>
+</html>

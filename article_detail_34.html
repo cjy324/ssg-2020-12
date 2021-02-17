@@ -24,7 +24,7 @@
 <!-- 메타태그정보 //-->
 <!-- META -->
 <link rel="canonical" href="https://blog.devj.me" />
-<meta name="subject" content="1강. STS 개발툴 간단 소개"/>
+<meta name="subject" content="P.BLOG - 개발일지(Github 페이지 도메인 연결, toastui-viewer 적용)"/>
 <meta name="title" content="Dev_J BLOG" />
 <meta name="keywords" content="JAVA, HTML, CSS, JavaScript, MySQL" />
 <meta name="copyright" content="Dev_J BLOG" />
@@ -33,58 +33,99 @@
 <!-- OPENGRAPH -->
 <meta property="og:site_name" content="Dev_J BLOG" />
 <meta property="og:type" content="blog" />
-<meta property="og:title" content="1강. STS 개발툴 간단 소개" />
-<meta property="og:description" content="  Spring Tool Suite 
- 스프링 툴 스위트STS Spring Tool Suite란 이클립스 기반 스프링 애플리케이션을 개발 하기 위한 개발 환경툴이다
+<meta property="og:title" content="P.BLOG - 개발일지(Github 페이지 도메인 연결, toastui-viewer 적용)" />
+<meta property="og:description" content=" Github 페이지 도메인 연결 toastuiviewer 적용
 
- Project
+ 사이트 게시글 상세보기에 toastuiviewer 적용된 화면
+imagehttpsimg1daumcdnnetthumbR1280x0scodemtistory2fnamehttps3A2F2Fblogkakaocdnnet2Fdn2FdwlTB92FbtqQnZyc4Sd2FJ6YH0XTEouTx2qH7OcO2fk2Fimgpng
 
- 프로그램을 만들기 위한 파일들을 모아놓은 폴더
+ 소스코드
 
- src
+ appjs
 
- 패키지들을 모아놓는 폴더
+java
 
- package
+function ArticleDetailBodyinit 
+		iftoastui  undefined
+			return
+		
+		
+		var body  documentquerySelectorarticledetailcellbody  div  span
+		var initValue  bodyinnerHTMLtrim
+		
+		var viewer  new toastuiEditorfactory
+			el  body
+			initialValue  initValue
+			viewer  true
+			plugins toastuiEditorplugincodeSyntaxHighlight
+		
+	
 
- 각각의 기능을 수행하는 클래스들을 모아놓은 폴더
-
- class
-
- 각각의 기능을 수행하는 소스코드 묶음
-
-
-
-  기본 단축어 정리 
-
- 새 프로젝트 만들기 단축키 altshiftN
- 자동 완성 기능 ctrlspace
- 저장 ctrlS
- 자동 줄맞춤 ctrlshiftF
- 블록 주석  ctrlshift
- 주석 풀기 ctrlshift
- 코드 실행 ctrlF11
- import java util ctrlshiftO
- 문장 맨 앞으로 Home
- 문장 맨 뒤로 End
- 빨간줄 발생시 커서 위치시키고 ctrl1
- 동일 변수명 한번에 바꾸기 단축키 altshiftr
- Home  줄에서 맨 앞으로 이동
- End  줄에서 맨 뒤으로 이동
- Ctrl  Home  맨 위으로 이동
- Ctrl  End  맨 아래으로 이동
- Ctrl  Z  이전 히스토리로 한 단계 이동
- Ctrl  Y  이후 히스토리로 한 단계 이동
+	ArticleDetailBodyinit
 
 
-  그 외 소소한 Tips 
- 파일명은 무조건 대문자 띄어쓰기는 불가 문자별 첫문자는 대문자
 
- 프로그램의 시작 폴더는 Main 하나 만들고 시작
+ detailhtml
+html
 
- 왼쪽의 녹색 점Break point이 생성되면 다시 더블 클릭해서 삭제 가능참고로 break point를 찍고 디버깅을 실시하면 그 포인트에서 진행이 걸리게 되는데 소스코드의 문제점 등을 파악할 때 유용하다
+ 하이라이트 라이브러리 추가 토스트 UI 에디터에서 사용됨 
+script srchttpscdnjscloudflarecomajaxlibshighlightjs1041highlightminjsscript
+link relstylesheet hrefhttpscdnjscloudflarecomajaxlibshighlightjs1041stylesdefaultmincss
 
- Systemout 은 출력 개념 Systemin은 입력 개념
+ 토스트 UI 에디터 자바스크립트 코어 
+script
+	srchttpsuicdntoastcomeditorlatesttoastuieditorallminjsscript
+
+ 코드 미러 라이브러리 추가 토스트 UI 에디터에서 사용됨 
+link relstylesheet
+	hrefhttpscdnjscloudflarecomajaxlibscodemirror5583codemirrormincss 
+ 토스트 UI 에디터 CSS 코어 
+link relstylesheet
+	hrefhttpsuicdntoastcomeditorlatesttoastuieditormincss 
+
+ 토스트 UI 에디터 신택스 하이라이트 플러그인 추가 
+script srchttpsuicdntoastcomeditorplugincodesyntaxhighlightlatesttoastuieditorplugincodesyntaxhighlightminjsscript
+
+
+    메인상세페이지 시작 
+    section classsection2 conminwidth minheight70vh
+      div classcon height100p
+        div classarticledetailcell height100p
+	  	상세페이지 블록
+        div
+      div
+    section
+    
+   메인상세페이지 끝 
+  
+
+
+ foothtml
+html
+
+main
+
+footer classbottombar conminwidth
+	div classcon flex flexaic
+		a hrefindexhtml classlogo logomini flex flexaic i
+			classfab fajenkinsi span Develospanpspaners
+		span
+		a
+
+		div classbottombarsiteinfoLorem ipsum dolor sit amet
+			consectetur adipisicing elit Dolorum eos ipsum necessitatibus
+			doloremque quos voluptate debitis earum aut a consequuntur explicabo
+			deleniti qui eius facere harum error eveniet vel laudantiumdiv
+	div
+footer
+div
+ appjs 불러오기 
+script srcappjsscript
+body
+html
+
+
+
 
 " />
 <meta property="og:locale" content="ko_KR" />
@@ -97,123 +138,205 @@
 <meta property="og:url" content="https://blog.devj.me" />
 <!-- TWITTER -->
 <meta name="twitter:card" content="summary_large_image" />
-<meta name="twitter:title" content="1강. STS 개발툴 간단 소개" />
+<meta name="twitter:title" content="P.BLOG - 개발일지(Github 페이지 도메인 연결, toastui-viewer 적용)" />
 <meta name="twitter:site" content="@Dev_J BLOG" />
 <meta name="twitter:creator" content="@Dev_J BLOG" />
 <meta name="twitter:image" content="images/Dev_J_logo/logo.png">
-<meta name="twitter:description" content="  Spring Tool Suite 
- 스프링 툴 스위트STS Spring Tool Suite란 이클립스 기반 스프링 애플리케이션을 개발 하기 위한 개발 환경툴이다
+<meta name="twitter:description" content=" Github 페이지 도메인 연결 toastuiviewer 적용
 
- Project
+ 사이트 게시글 상세보기에 toastuiviewer 적용된 화면
+imagehttpsimg1daumcdnnetthumbR1280x0scodemtistory2fnamehttps3A2F2Fblogkakaocdnnet2Fdn2FdwlTB92FbtqQnZyc4Sd2FJ6YH0XTEouTx2qH7OcO2fk2Fimgpng
 
- 프로그램을 만들기 위한 파일들을 모아놓은 폴더
+ 소스코드
 
- src
+ appjs
 
- 패키지들을 모아놓는 폴더
+java
 
- package
+function ArticleDetailBodyinit 
+		iftoastui  undefined
+			return
+		
+		
+		var body  documentquerySelectorarticledetailcellbody  div  span
+		var initValue  bodyinnerHTMLtrim
+		
+		var viewer  new toastuiEditorfactory
+			el  body
+			initialValue  initValue
+			viewer  true
+			plugins toastuiEditorplugincodeSyntaxHighlight
+		
+	
 
- 각각의 기능을 수행하는 클래스들을 모아놓은 폴더
-
- class
-
- 각각의 기능을 수행하는 소스코드 묶음
-
-
-
-  기본 단축어 정리 
-
- 새 프로젝트 만들기 단축키 altshiftN
- 자동 완성 기능 ctrlspace
- 저장 ctrlS
- 자동 줄맞춤 ctrlshiftF
- 블록 주석  ctrlshift
- 주석 풀기 ctrlshift
- 코드 실행 ctrlF11
- import java util ctrlshiftO
- 문장 맨 앞으로 Home
- 문장 맨 뒤로 End
- 빨간줄 발생시 커서 위치시키고 ctrl1
- 동일 변수명 한번에 바꾸기 단축키 altshiftr
- Home  줄에서 맨 앞으로 이동
- End  줄에서 맨 뒤으로 이동
- Ctrl  Home  맨 위으로 이동
- Ctrl  End  맨 아래으로 이동
- Ctrl  Z  이전 히스토리로 한 단계 이동
- Ctrl  Y  이후 히스토리로 한 단계 이동
+	ArticleDetailBodyinit
 
 
-  그 외 소소한 Tips 
- 파일명은 무조건 대문자 띄어쓰기는 불가 문자별 첫문자는 대문자
 
- 프로그램의 시작 폴더는 Main 하나 만들고 시작
+ detailhtml
+html
 
- 왼쪽의 녹색 점Break point이 생성되면 다시 더블 클릭해서 삭제 가능참고로 break point를 찍고 디버깅을 실시하면 그 포인트에서 진행이 걸리게 되는데 소스코드의 문제점 등을 파악할 때 유용하다
+ 하이라이트 라이브러리 추가 토스트 UI 에디터에서 사용됨 
+script srchttpscdnjscloudflarecomajaxlibshighlightjs1041highlightminjsscript
+link relstylesheet hrefhttpscdnjscloudflarecomajaxlibshighlightjs1041stylesdefaultmincss
 
- Systemout 은 출력 개념 Systemin은 입력 개념
+ 토스트 UI 에디터 자바스크립트 코어 
+script
+	srchttpsuicdntoastcomeditorlatesttoastuieditorallminjsscript
+
+ 코드 미러 라이브러리 추가 토스트 UI 에디터에서 사용됨 
+link relstylesheet
+	hrefhttpscdnjscloudflarecomajaxlibscodemirror5583codemirrormincss 
+ 토스트 UI 에디터 CSS 코어 
+link relstylesheet
+	hrefhttpsuicdntoastcomeditorlatesttoastuieditormincss 
+
+ 토스트 UI 에디터 신택스 하이라이트 플러그인 추가 
+script srchttpsuicdntoastcomeditorplugincodesyntaxhighlightlatesttoastuieditorplugincodesyntaxhighlightminjsscript
+
+
+    메인상세페이지 시작 
+    section classsection2 conminwidth minheight70vh
+      div classcon height100p
+        div classarticledetailcell height100p
+	  	상세페이지 블록
+        div
+      div
+    section
+    
+   메인상세페이지 끝 
+  
+
+
+ foothtml
+html
+
+main
+
+footer classbottombar conminwidth
+	div classcon flex flexaic
+		a hrefindexhtml classlogo logomini flex flexaic i
+			classfab fajenkinsi span Develospanpspaners
+		span
+		a
+
+		div classbottombarsiteinfoLorem ipsum dolor sit amet
+			consectetur adipisicing elit Dolorum eos ipsum necessitatibus
+			doloremque quos voluptate debitis earum aut a consequuntur explicabo
+			deleniti qui eius facere harum error eveniet vel laudantiumdiv
+	div
+footer
+div
+ appjs 불러오기 
+script srcappjsscript
+body
+html
+
+
+
 
 " />
 <!-- GOOGLE+ -->
 <meta itemprop="headline" content="Dev_J BLOG" />
 <meta itemprop="name" content="Dev_J BLOG" />
-<meta itemprop="description" content="  Spring Tool Suite 
- 스프링 툴 스위트STS Spring Tool Suite란 이클립스 기반 스프링 애플리케이션을 개발 하기 위한 개발 환경툴이다
+<meta itemprop="description" content=" Github 페이지 도메인 연결 toastuiviewer 적용
 
- Project
+ 사이트 게시글 상세보기에 toastuiviewer 적용된 화면
+imagehttpsimg1daumcdnnetthumbR1280x0scodemtistory2fnamehttps3A2F2Fblogkakaocdnnet2Fdn2FdwlTB92FbtqQnZyc4Sd2FJ6YH0XTEouTx2qH7OcO2fk2Fimgpng
 
- 프로그램을 만들기 위한 파일들을 모아놓은 폴더
+ 소스코드
 
- src
+ appjs
 
- 패키지들을 모아놓는 폴더
+java
 
- package
+function ArticleDetailBodyinit 
+		iftoastui  undefined
+			return
+		
+		
+		var body  documentquerySelectorarticledetailcellbody  div  span
+		var initValue  bodyinnerHTMLtrim
+		
+		var viewer  new toastuiEditorfactory
+			el  body
+			initialValue  initValue
+			viewer  true
+			plugins toastuiEditorplugincodeSyntaxHighlight
+		
+	
 
- 각각의 기능을 수행하는 클래스들을 모아놓은 폴더
-
- class
-
- 각각의 기능을 수행하는 소스코드 묶음
-
-
-
-  기본 단축어 정리 
-
- 새 프로젝트 만들기 단축키 altshiftN
- 자동 완성 기능 ctrlspace
- 저장 ctrlS
- 자동 줄맞춤 ctrlshiftF
- 블록 주석  ctrlshift
- 주석 풀기 ctrlshift
- 코드 실행 ctrlF11
- import java util ctrlshiftO
- 문장 맨 앞으로 Home
- 문장 맨 뒤로 End
- 빨간줄 발생시 커서 위치시키고 ctrl1
- 동일 변수명 한번에 바꾸기 단축키 altshiftr
- Home  줄에서 맨 앞으로 이동
- End  줄에서 맨 뒤으로 이동
- Ctrl  Home  맨 위으로 이동
- Ctrl  End  맨 아래으로 이동
- Ctrl  Z  이전 히스토리로 한 단계 이동
- Ctrl  Y  이후 히스토리로 한 단계 이동
+	ArticleDetailBodyinit
 
 
-  그 외 소소한 Tips 
- 파일명은 무조건 대문자 띄어쓰기는 불가 문자별 첫문자는 대문자
 
- 프로그램의 시작 폴더는 Main 하나 만들고 시작
+ detailhtml
+html
 
- 왼쪽의 녹색 점Break point이 생성되면 다시 더블 클릭해서 삭제 가능참고로 break point를 찍고 디버깅을 실시하면 그 포인트에서 진행이 걸리게 되는데 소스코드의 문제점 등을 파악할 때 유용하다
+ 하이라이트 라이브러리 추가 토스트 UI 에디터에서 사용됨 
+script srchttpscdnjscloudflarecomajaxlibshighlightjs1041highlightminjsscript
+link relstylesheet hrefhttpscdnjscloudflarecomajaxlibshighlightjs1041stylesdefaultmincss
 
- Systemout 은 출력 개념 Systemin은 입력 개념
+ 토스트 UI 에디터 자바스크립트 코어 
+script
+	srchttpsuicdntoastcomeditorlatesttoastuieditorallminjsscript
+
+ 코드 미러 라이브러리 추가 토스트 UI 에디터에서 사용됨 
+link relstylesheet
+	hrefhttpscdnjscloudflarecomajaxlibscodemirror5583codemirrormincss 
+ 토스트 UI 에디터 CSS 코어 
+link relstylesheet
+	hrefhttpsuicdntoastcomeditorlatesttoastuieditormincss 
+
+ 토스트 UI 에디터 신택스 하이라이트 플러그인 추가 
+script srchttpsuicdntoastcomeditorplugincodesyntaxhighlightlatesttoastuieditorplugincodesyntaxhighlightminjsscript
+
+
+    메인상세페이지 시작 
+    section classsection2 conminwidth minheight70vh
+      div classcon height100p
+        div classarticledetailcell height100p
+	  	상세페이지 블록
+        div
+      div
+    section
+    
+   메인상세페이지 끝 
+  
+
+
+ foothtml
+html
+
+main
+
+footer classbottombar conminwidth
+	div classcon flex flexaic
+		a hrefindexhtml classlogo logomini flex flexaic i
+			classfab fajenkinsi span Develospanpspaners
+		span
+		a
+
+		div classbottombarsiteinfoLorem ipsum dolor sit amet
+			consectetur adipisicing elit Dolorum eos ipsum necessitatibus
+			doloremque quos voluptate debitis earum aut a consequuntur explicabo
+			deleniti qui eius facere harum error eveniet vel laudantiumdiv
+	div
+footer
+div
+ appjs 불러오기 
+script srcappjsscript
+body
+html
+
+
+
 
 " />
 <meta itemprop="image" content="images/Dev_J_logo/logo.png" />
 
 <!-- 사이트 타이틀 -->
-<title>1강. STS 개발툴 간단 소개 | Dev_J BLOG | ARTICLE DETAIL</title>
+<title>P.BLOG - 개발일지(Github 페이지 도메인 연결, toastui-viewer 적용) | Dev_J BLOG | ARTICLE DETAIL</title>
 
 
 <!-- 파비콘 -->
@@ -450,67 +573,108 @@
 <section class="section-2 con-min-width min-height-50vh">
 	<div class="con height-100p">
 		<div class="article-detail-cell height-100p">
-			<div class="article-detail-cell__board-name"><div><span>게시판 : </span><span>JAVA 게시판</span></div></div><div class="article-detail-cell__id"><div><span>번호 : </span><span>2</span></div></div><div class="article-detail-cell__member-id"><div><span>작성자 : </span><span>Dev_J</span></div></div><div class="article-detail-cell__reg-date"><div><span>작성일 : </span><span>2020-12-17 18:07:18</span></div></div><div class="article-detail-cell__update-date"><div><span>수정일 : </span><span>2021-02-17 21:47:27</span></div></div><br><div class="article-detail-cell__title-contents flex flex-jc-fe"><div class="article-detail-cell__hitsCount"><div><span>조회수 : </span><span>1</span></div></div><div class="article-detail-cell__likesCount"><div><span>추천수 : </span><span>1</span></div></div><div class="article-detail-cell__commentsCount"><div><span>댓글수 : </span><span>0</span></div></div></div><div class="article-detail-cell__title"><div><span>제목 : </span><span>1강. STS 개발툴 간단 소개</span></div></div><!-- 구글 애드센스2 --><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script><!-- 수평 반응형2 --><ins class="adsbygoogle" style="display: block" data-ad-client="ca-pub-7996879977557531" data-ad-slot="2278060237" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle = window.adsbygoogle || []).push({});</script><script type"text/x-template"># < Spring Tool Suite >
-: 스프링 툴 스위트(STS, Spring Tool Suite)란 이클립스 기반 스프링 애플리케이션을 개발 하기 위한 개발 환경(툴)이다.
+			<div class="article-detail-cell__board-name"><div><span>게시판 : </span><span>P.BLOG 게시판</span></div></div><div class="article-detail-cell__id"><div><span>번호 : </span><span>34</span></div></div><div class="article-detail-cell__member-id"><div><span>작성자 : </span><span>Dev_J</span></div></div><div class="article-detail-cell__reg-date"><div><span>작성일 : </span><span>2021-02-17 21:37:42</span></div></div><div class="article-detail-cell__update-date"><div><span>수정일 : </span><span>2021-02-17 21:47:37</span></div></div><br><div class="article-detail-cell__title-contents flex flex-jc-fe"><div class="article-detail-cell__hitsCount"><div><span>조회수 : </span><span>0</span></div></div><div class="article-detail-cell__likesCount"><div><span>추천수 : </span><span>0</span></div></div><div class="article-detail-cell__commentsCount"><div><span>댓글수 : </span><span>0</span></div></div></div><div class="article-detail-cell__title"><div><span>제목 : </span><span>P.BLOG - 개발일지(Github 페이지 도메인 연결, toastui-viewer 적용)</span></div></div><!-- 구글 애드센스2 --><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script><!-- 수평 반응형2 --><ins class="adsbygoogle" style="display: block" data-ad-client="ca-pub-7996879977557531" data-ad-slot="2278060237" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle = window.adsbygoogle || []).push({});</script><script type"text/x-template"># Github 페이지 도메인 연결, toastui-viewer 적용
 
-### Project
+### <사이트 게시글 상세보기에 toastui-viewer 적용된 화면>
+![image](https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FdwlTB9%2FbtqQnZyc4Sd%2FJ6YH0XTEouTx2qH7OcO2fk%2Fimg.png)
 
-- 프로그램을 만들기 위한 파일들을 모아놓은 폴더
+# 소스코드
 
-### src
+### <app.js>
 
-- 패키지들을 모아놓는 폴더
+```java
 
-### package
+function ArticleDetail__Body__init() {
+		if(toastui === undefined){
+			return;
+		}
+		
+		var body = document.querySelector('.article-detail-cell__body > div > span');
+		var initValue = body.innerHTML.trim();
+		
+		var viewer = new toastui.Editor.factory({
+			el : body,
+			initialValue : initValue,
+			viewer : true,
+			plugins: [toastui.Editor.plugin.codeSyntaxHighlight]
+		});
+	};
 
-- 각각의 기능을 수행하는 클래스들을 모아놓은 폴더
+	ArticleDetail__Body__init();
 
-### class
+```
 
-- 각각의 기능을 수행하는 소스코드 묶음
+### <detail.html>
+```html
 
+<!-- 하이라이트 라이브러리 추가, 토스트 UI 에디터에서 사용됨 -->
+<t-script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.4.1/highlight.min.js"></t-script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.4.1/styles/default.min.css">
 
+<!-- 토스트 UI 에디터, 자바스크립트 코어 -->
+<t-script
+	src="https://uicdn.toast.com/editor/latest/toastui-editor-all.min.js"></t-script>
 
-# < 기본 단축어 정리 >
+<!-- 코드 미러 라이브러리 추가, 토스트 UI 에디터에서 사용됨 -->
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.58.3/codemirror.min.css" />
+<!-- 토스트 UI 에디터, CSS 코어 -->
+<link rel="stylesheet"
+	href="https://uicdn.toast.com/editor/latest/toastui-editor.min.css" />
 
-* 새 프로젝트 만들기 단축키: alt+shift+N
-* **자동 완성 기능: ctrl+space**
-* **저장: ctrl+S**
-* **자동 줄맞춤: ctrl+shift+F**
-* **블록 주석:  ctrl+shift+/**
-* **주석 풀기: ctrl+shift+\\**
-* **코드 실행: ctrl+F11**
-* **import java util: ctrl+shift+O**
-* 문장 맨 앞으로: Home
-* 문장 맨 뒤로: End
-* 빨간줄 발생시 커서 위치시키고 ctrl+1
-* **동일 변수명 한번에 바꾸기 단축키: alt+shift+r**
-* Home : 줄에서 맨 앞으로 이동
-* End : 줄에서 맨 뒤으로 이동
-* Ctrl + Home : 맨 위으로 이동
-* Ctrl + End : 맨 아래으로 이동
-* Ctrl + Z : 이전 히스토리로 한 단계 이동
-* Ctrl + Y : 이후 히스토리로 한 단계 이동
+<!-- 토스트 UI 에디터, 신택스 하이라이트 플러그인 추가 -->
+<t-script src="https://uicdn.toast.com/editor-plugin-code-syntax-highlight/latest/toastui-editor-plugin-code-syntax-highlight.min.js"></t-script>
 
 
-# < 그 외 소소한 Tip's >
-- 파일명은 무조건 대문자, 띄어쓰기는 불가, 문자별 첫문자는 대문자
+   <!-- 메인-상세페이지 시작 -->
+    <section class="section-2 con-min-width min-height-70vh">
+      <div class="con height-100p">
+        <div class="article-detail-cell height-100p">
+	  	[상세페이지 블록]
+        </div>
+      </div>
+    </section>
+    
+  <!-- 메인-상세페이지 끝 -->
+  
+```
 
-- 프로그램의 시작 폴더는 "Main" 하나 만들고 시작
+### <foot.html>
+```html
 
-- 왼쪽의 녹색 점(Break point)이 생성되면 다시 더블 클릭해서 삭제 가능(참고로 break point를 찍고 디버깅을 실시하면 그 포인트에서 진행이 걸리게(?) 되는데 소스코드의 문제점 등을 파악할 때 유용하다)
+</main>
 
-- System.out 은 출력 개념, System.in은 입력 개념
+<footer class="bottom-bar con-min-width">
+	<div class="con flex flex-ai-c">
+		<a href="index.html" class="logo logo--mini flex flex-ai-c"> <i
+			class="fab fa-jenkins"></i> <span> Develo<span>p</span>ers
+		</span>
+		</a>
 
-</script><div class="article-detail-cell__body height-70p toast-ui-viewer"><div></div></div><br><div class="article-detail-cell__tag flex flex-wrap"><nav># <a href="#" target="_blank">JAVA</a></nav><nav># <a href="#" target="_blank">STS</a></nav></div><br><br><!-- 구글 애드센스1 --><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script><!-- 수평 반응형1 --><ins class="adsbygoogle" style="display: block" data-ad-client="ca-pub-7996879977557531" data-ad-slot="6812185708" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+		<div class="bottom-bar__site-info">Lorem ipsum dolor sit amet
+			consectetur adipisicing elit. Dolorum eos ipsum necessitatibus
+			doloremque quos voluptate debitis earum aut a consequuntur explicabo
+			deleniti qui eius facere, harum error eveniet vel laudantium.</div>
+	</div>
+</footer>
+</div>
+<!-- app.js 불러오기 -->
+<t-script src="app.js"></t-script>
+</body>
+</html>
+
+```
+
+
+</script><div class="article-detail-cell__body height-70p toast-ui-viewer"><div></div></div><br><div class="article-detail-cell__tag flex flex-wrap"><nav># <a href="#" target="_blank">project</a></nav><nav># <a href="#" target="_blank">개발일지</a></nav><nav># <a href="#" target="_blank">blog</a></nav></div><br><br><!-- 구글 애드센스1 --><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script><!-- 수평 반응형1 --><ins class="adsbygoogle" style="display: block" data-ad-client="ca-pub-7996879977557531" data-ad-slot="6812185708" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
 			<!-- Disqus api 적용 -->
 			<!-- 정확한 페이지 경로 알려주는 기능 추가-->
 			<nav>
 				<div id="disqus_thread"></div>
 				<script>
 					var disqus_config = function() {
-						this.page.url = 'https://blog.devj.me/article_detail_2.html';
-						this.page.identifier = 'article_detail_2.html';
+						this.page.url = 'https://blog.devj.me/article_detail_34.html';
+						this.page.identifier = 'article_detail_34.html';
 					};
 					(function() {
 						//DON'T EDIT BELOW THIS LINE
@@ -533,7 +697,7 @@
 <!-- 메인-상세 하단 메뉴 시작 -->
 <section class="section-3 con-min-width">
 	<div class="con">
-		<div class="article-list-bottom-cell flex flex-jc-c"><div class="./"><i class="fas fa-th-list"></i><a href="java-list-1.html" class="hover-underline"> 목록 </a></div><div class="./"><a href="article_detail_3.html"class="hover-underline">다음글 &gt</a></div></div>
+		<div class="article-list-bottom-cell flex flex-jc-c"><div class="./"><a href="article_detail_33.html" class="hover-underline">&lt 이전글</a></div><div class="./"><i class="fas fa-th-list"></i><a href="p_blog-list-1.html" class="hover-underline"> 목록 </a></div><div class="./"><a href="article_detail_35.html"class="hover-underline">다음글 &gt</a></div></div>
 	</div>
 </section>
 <!-- 메인-상세 하단 메뉴 끝 -->

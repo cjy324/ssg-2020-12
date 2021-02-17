@@ -24,7 +24,7 @@
 <!-- 메타태그정보 //-->
 <!-- META -->
 <link rel="canonical" href="https://blog.devj.me" />
-<meta name="subject" content="P.BLOG - 개발일지(타이블바 콘텐츠 반환 함수 만들어서 전체 페이지 생성에 적용)"/>
+<meta name="subject" content="P.BLOG - 개발일지(게시판 리스트,상세보기 템플릿 적용, 게시판 별 게시물 상세보기 페이지 이전글, 다음글 추가)"/>
 <meta name="title" content="Dev_J BLOG" />
 <meta name="keywords" content="JAVA, HTML, CSS, JavaScript, MySQL" />
 <meta name="copyright" content="Dev_J BLOG" />
@@ -33,8 +33,8 @@
 <!-- OPENGRAPH -->
 <meta property="og:site_name" content="Dev_J BLOG" />
 <meta property="og:type" content="blog" />
-<meta property="og:title" content="P.BLOG - 개발일지(타이블바 콘텐츠 반환 함수 만들어서 전체 페이지 생성에 적용)" />
-<meta property="og:description" content=" 소스코드 타이블바 콘텐츠 반환 함수 만들어서 전체 페이지 생성에 적용
+<meta property="og:title" content="P.BLOG - 개발일지(게시판 리스트,상세보기 템플릿 적용, 게시판 별 게시물 상세보기 페이지 이전글, 다음글 추가)" />
+<meta property="og:description" content=" 소스코드 게시판 리스트상세보기 템플릿 적용 게시판 별 게시물 상세보기 페이지 이전글 다음글 추가
 
 java
 
@@ -65,7 +65,49 @@ public class BuildService
 		Utilcopysitetemplateappcss siteappcss
 
 		buildIndexPage  함수로 정리
-		buildArticleDetailPages  함수로 정리
+		buildArticleListPages
+		buildArticleDetailPages
+
+	
+
+	 각 게시판 별 게시물리스트 페이지 생성
+	private void buildArticleListPages 
+
+		Systemoutprintln article 리스트 페이지 생성 
+
+		String foot  UtilgetFileContentssitetemplatefoothtml
+
+		ListBoard boards  articleServicegetBoards
+
+		for Board board  boards 
+			String head  getHeadHtmlarticlelist  boardcode
+			String fileName  boardcode  list1html
+
+			String html  
+
+			ListArticle articles  articleServicegetBoardArticlesByCodeForPrintboardcode
+
+			String template  UtilgetFileContentssitetemplatelisthtml
+
+			for Article article  articles 
+
+				html  div
+				html  div classarticlelistcellid  articleid  div
+				html  div classarticlelistcellregdate  articleregDate  div
+				html  div classarticlelistcellwriter  articleextramemberName  adiv
+				html  div classarticlelistcelltitlea href  articleid
+						 html classhoverunderline  articletitle  adiv
+				html  div
+			
+
+			html  templatereplace게시물 리스트 블록 html
+
+			html  head  html  foot
+
+			UtilwriteFilesite  fileName html
+		
+
+		Systemoutprintln article 리스트 페이지 생성 종료 
 	
 
 	private void buildIndexPage 
@@ -86,52 +128,93 @@ public class BuildService
 		UtilwriteFilepath htmltoString
 	
 
-	 게시물 상세페이지 생성
+	 게시판 별 게시물 상세페이지 생성
 	private void buildArticleDetailPages 
-		ListArticle articles  articleServicegetArticlesForPrint
+		ListBoard boards  articleServicegetBoards
 
-		String head  getHeadHtmlarticledetail
-		String foot  UtilgetFileContentssitetemplatefoothtml  foothtml 가져오기
-
-		Systemoutprintln article 상세페이지 생성 
-		int articleIndex  0
-		for Article article  articles 
-			StringBuilder html  new StringBuilder
-
-			 게시물 1개당 1개의 html 작성
-
-			 headhtml을 따로 생성해 위쪽에 붙임
-			htmlappendhead
-
-			htmlappenddiv
-			htmlappend번호    articleid  br
-			htmlappend작성일    articleregDate  br
-			htmlappend수정일    articleupdateDate  br
-			htmlappend제목    articletitle  br
-			htmlappend작성자    articleextramemberName  br
-			htmlappend내용    articlebody  br
-			if articleIndex  0 
-				htmlappenda href  articleid  1  html  이전글abr
+		for Board board  boards 
+			ListArticle articles  articleServicegetBoardArticlesByCodeForPrintboardcode
+			int articlesSize  articlessize
+			ifarticlesSize  0 
+				break
 			
-			if articleIndex  articlessize  1 
-				htmlappenda href  articleid  1  html  다음글abr
+			int beforeArticleIndex  0
+			int x  beforeArticleIndex
+			int beforeArticleId  articlesgetxid
+
+			String head  getHeadHtmlarticledetail
+			String foot  UtilgetFileContentssitetemplatefoothtml
+
+			String template  UtilgetFileContentssitetemplatedetailhtml
+
+			Systemoutprintln article 상세페이지 생성 
+
+			for Article article  articles 
+
+				StringBuilder html  new StringBuilder
+
+				htmlappendhead
+
+				String html2  
+
+				html2  div classarticledetailcellid
+				html2  div
+				html2  span번호  spanspan  articleid  span
+				html2  div
+				html2  div
+				html2  div classarticledetailcelltitle
+				html2  div
+				html2  span제목  spanspan  articletitle  span
+				html2  div
+				html2  div
+				html2  div classarticledetailcelltitle
+				html2  div
+				html2  span작성자  spanspan  articleextramemberName  span
+				html2  div
+				html2  div
+				html2  div classarticledetailcelltitle
+				html2  div
+				html2  span작성일  spanspan  articleregDate  span
+				html2  div
+				html2  divbr
+				html2  div classarticledetailcellbody height70p 
+				html2  div
+				html2  span  articlebody  span
+				html2  div
+				html2  divbrbr
+
+				html2  divsectionsection classsection3 conminwidthdiv classcondiv classarticlelistbottomcell flex flexjcc
+
+				if articleid  beforeArticleId 
+					html2  div classa href  articlesgetx  1id  html
+							  classhoverunderlinelt 이전글adiv
+				
+
+				html2  div classi classfas fathlistia href  boardcode  list1html
+						  classhoverunderline 목록 adiv
+				if x  articlesSize  1 
+					html2  div classa href  articlesgetx  1id  html
+							 classhoverunderline다음글 gtadiv
+				
+
+				html2  templatereplace상세페이지 블록 html2
+
+				htmlappendhtml2
+				htmlappendfoot
+
+				String fileName  articleid  html
+				String path  site  fileName
+
+				UtilwriteFilepath htmltoString
+
+				Systemoutprintlnpath   생성
+				x
+				beforeArticleId  articlesgetx  1id
+
 			
-			htmlappenddiv
-
-			 headhtml과 마찬가지로 foothtml을 따로 생성해 아래쪽에 붙임
-			htmlappendfoot
-
-			String fileName  articleid  html
-			String path  site  fileName
-
-			UtilwriteFilepath htmltoString
-
-			Systemoutprintlnpath   생성
-			articleIndex
+			Systemoutprintln article 상세페이지 생성 종료 
 
 		
-		Systemoutprintln article 상세페이지 생성 종료 
-
 	
 
 	 headhtml 가져오기
@@ -150,16 +233,6 @@ public class BuildService
 
 			boardMenuContentHtmlappendgetTitleBarContentByPageNamearticlelist  boardcode
 
-			
-			  String iClass  fas faclipboardlist  defult 아이콘
-			  
-			  if boardcodecontainsnotice   공지사항 게시판 아이콘 iClass 
-			  fas faexclamation  else if boardcodecontainsfree   자유 게시판 아이콘
-			  iClass  fas fausers 
-			  
-			  boardMenuContentHtmlappendi class  iClass  i
-			  boardMenuContentHtmlappend span  boardname  span
-			 
 			boardMenuContentHtmlappenda
 
 			boardMenuContentHtmlappendli
@@ -179,11 +252,9 @@ public class BuildService
 	private String getTitleBarContentByPageNameString pageName 
 		if pageNameequalsindex 
 			return i classfas fahomei spanHOMEspan
-		
-		else if pageNameequalsarticledetail 
+		 else if pageNameequalsarticledetail 
 			return i classfas fafileinvoicei spanARTICLE DETAILspan
-		
-		else if pageNamestartsWitharticlelistnotice 
+		 else if pageNamestartsWitharticlelistnotice 
 			return i classfas faexclamationi spanNOTICE LISTspan
 		 else if pageNamestartsWitharticlelistfree 
 			return i classfas fausersi spanFREE LISTspan
@@ -206,11 +277,11 @@ public class BuildService
 <meta property="og:url" content="https://blog.devj.me" />
 <!-- TWITTER -->
 <meta name="twitter:card" content="summary_large_image" />
-<meta name="twitter:title" content="P.BLOG - 개발일지(타이블바 콘텐츠 반환 함수 만들어서 전체 페이지 생성에 적용)" />
+<meta name="twitter:title" content="P.BLOG - 개발일지(게시판 리스트,상세보기 템플릿 적용, 게시판 별 게시물 상세보기 페이지 이전글, 다음글 추가)" />
 <meta name="twitter:site" content="@Dev_J BLOG" />
 <meta name="twitter:creator" content="@Dev_J BLOG" />
 <meta name="twitter:image" content="images/Dev_J_logo/logo.png">
-<meta name="twitter:description" content=" 소스코드 타이블바 콘텐츠 반환 함수 만들어서 전체 페이지 생성에 적용
+<meta name="twitter:description" content=" 소스코드 게시판 리스트상세보기 템플릿 적용 게시판 별 게시물 상세보기 페이지 이전글 다음글 추가
 
 java
 
@@ -241,7 +312,49 @@ public class BuildService
 		Utilcopysitetemplateappcss siteappcss
 
 		buildIndexPage  함수로 정리
-		buildArticleDetailPages  함수로 정리
+		buildArticleListPages
+		buildArticleDetailPages
+
+	
+
+	 각 게시판 별 게시물리스트 페이지 생성
+	private void buildArticleListPages 
+
+		Systemoutprintln article 리스트 페이지 생성 
+
+		String foot  UtilgetFileContentssitetemplatefoothtml
+
+		ListBoard boards  articleServicegetBoards
+
+		for Board board  boards 
+			String head  getHeadHtmlarticlelist  boardcode
+			String fileName  boardcode  list1html
+
+			String html  
+
+			ListArticle articles  articleServicegetBoardArticlesByCodeForPrintboardcode
+
+			String template  UtilgetFileContentssitetemplatelisthtml
+
+			for Article article  articles 
+
+				html  div
+				html  div classarticlelistcellid  articleid  div
+				html  div classarticlelistcellregdate  articleregDate  div
+				html  div classarticlelistcellwriter  articleextramemberName  adiv
+				html  div classarticlelistcelltitlea href  articleid
+						 html classhoverunderline  articletitle  adiv
+				html  div
+			
+
+			html  templatereplace게시물 리스트 블록 html
+
+			html  head  html  foot
+
+			UtilwriteFilesite  fileName html
+		
+
+		Systemoutprintln article 리스트 페이지 생성 종료 
 	
 
 	private void buildIndexPage 
@@ -262,52 +375,93 @@ public class BuildService
 		UtilwriteFilepath htmltoString
 	
 
-	 게시물 상세페이지 생성
+	 게시판 별 게시물 상세페이지 생성
 	private void buildArticleDetailPages 
-		ListArticle articles  articleServicegetArticlesForPrint
+		ListBoard boards  articleServicegetBoards
 
-		String head  getHeadHtmlarticledetail
-		String foot  UtilgetFileContentssitetemplatefoothtml  foothtml 가져오기
-
-		Systemoutprintln article 상세페이지 생성 
-		int articleIndex  0
-		for Article article  articles 
-			StringBuilder html  new StringBuilder
-
-			 게시물 1개당 1개의 html 작성
-
-			 headhtml을 따로 생성해 위쪽에 붙임
-			htmlappendhead
-
-			htmlappenddiv
-			htmlappend번호    articleid  br
-			htmlappend작성일    articleregDate  br
-			htmlappend수정일    articleupdateDate  br
-			htmlappend제목    articletitle  br
-			htmlappend작성자    articleextramemberName  br
-			htmlappend내용    articlebody  br
-			if articleIndex  0 
-				htmlappenda href  articleid  1  html  이전글abr
+		for Board board  boards 
+			ListArticle articles  articleServicegetBoardArticlesByCodeForPrintboardcode
+			int articlesSize  articlessize
+			ifarticlesSize  0 
+				break
 			
-			if articleIndex  articlessize  1 
-				htmlappenda href  articleid  1  html  다음글abr
+			int beforeArticleIndex  0
+			int x  beforeArticleIndex
+			int beforeArticleId  articlesgetxid
+
+			String head  getHeadHtmlarticledetail
+			String foot  UtilgetFileContentssitetemplatefoothtml
+
+			String template  UtilgetFileContentssitetemplatedetailhtml
+
+			Systemoutprintln article 상세페이지 생성 
+
+			for Article article  articles 
+
+				StringBuilder html  new StringBuilder
+
+				htmlappendhead
+
+				String html2  
+
+				html2  div classarticledetailcellid
+				html2  div
+				html2  span번호  spanspan  articleid  span
+				html2  div
+				html2  div
+				html2  div classarticledetailcelltitle
+				html2  div
+				html2  span제목  spanspan  articletitle  span
+				html2  div
+				html2  div
+				html2  div classarticledetailcelltitle
+				html2  div
+				html2  span작성자  spanspan  articleextramemberName  span
+				html2  div
+				html2  div
+				html2  div classarticledetailcelltitle
+				html2  div
+				html2  span작성일  spanspan  articleregDate  span
+				html2  div
+				html2  divbr
+				html2  div classarticledetailcellbody height70p 
+				html2  div
+				html2  span  articlebody  span
+				html2  div
+				html2  divbrbr
+
+				html2  divsectionsection classsection3 conminwidthdiv classcondiv classarticlelistbottomcell flex flexjcc
+
+				if articleid  beforeArticleId 
+					html2  div classa href  articlesgetx  1id  html
+							  classhoverunderlinelt 이전글adiv
+				
+
+				html2  div classi classfas fathlistia href  boardcode  list1html
+						  classhoverunderline 목록 adiv
+				if x  articlesSize  1 
+					html2  div classa href  articlesgetx  1id  html
+							 classhoverunderline다음글 gtadiv
+				
+
+				html2  templatereplace상세페이지 블록 html2
+
+				htmlappendhtml2
+				htmlappendfoot
+
+				String fileName  articleid  html
+				String path  site  fileName
+
+				UtilwriteFilepath htmltoString
+
+				Systemoutprintlnpath   생성
+				x
+				beforeArticleId  articlesgetx  1id
+
 			
-			htmlappenddiv
-
-			 headhtml과 마찬가지로 foothtml을 따로 생성해 아래쪽에 붙임
-			htmlappendfoot
-
-			String fileName  articleid  html
-			String path  site  fileName
-
-			UtilwriteFilepath htmltoString
-
-			Systemoutprintlnpath   생성
-			articleIndex
+			Systemoutprintln article 상세페이지 생성 종료 
 
 		
-		Systemoutprintln article 상세페이지 생성 종료 
-
 	
 
 	 headhtml 가져오기
@@ -326,16 +480,6 @@ public class BuildService
 
 			boardMenuContentHtmlappendgetTitleBarContentByPageNamearticlelist  boardcode
 
-			
-			  String iClass  fas faclipboardlist  defult 아이콘
-			  
-			  if boardcodecontainsnotice   공지사항 게시판 아이콘 iClass 
-			  fas faexclamation  else if boardcodecontainsfree   자유 게시판 아이콘
-			  iClass  fas fausers 
-			  
-			  boardMenuContentHtmlappendi class  iClass  i
-			  boardMenuContentHtmlappend span  boardname  span
-			 
 			boardMenuContentHtmlappenda
 
 			boardMenuContentHtmlappendli
@@ -355,11 +499,9 @@ public class BuildService
 	private String getTitleBarContentByPageNameString pageName 
 		if pageNameequalsindex 
 			return i classfas fahomei spanHOMEspan
-		
-		else if pageNameequalsarticledetail 
+		 else if pageNameequalsarticledetail 
 			return i classfas fafileinvoicei spanARTICLE DETAILspan
-		
-		else if pageNamestartsWitharticlelistnotice 
+		 else if pageNamestartsWitharticlelistnotice 
 			return i classfas faexclamationi spanNOTICE LISTspan
 		 else if pageNamestartsWitharticlelistfree 
 			return i classfas fausersi spanFREE LISTspan
@@ -375,7 +517,7 @@ public class BuildService
 <!-- GOOGLE+ -->
 <meta itemprop="headline" content="Dev_J BLOG" />
 <meta itemprop="name" content="Dev_J BLOG" />
-<meta itemprop="description" content=" 소스코드 타이블바 콘텐츠 반환 함수 만들어서 전체 페이지 생성에 적용
+<meta itemprop="description" content=" 소스코드 게시판 리스트상세보기 템플릿 적용 게시판 별 게시물 상세보기 페이지 이전글 다음글 추가
 
 java
 
@@ -406,7 +548,49 @@ public class BuildService
 		Utilcopysitetemplateappcss siteappcss
 
 		buildIndexPage  함수로 정리
-		buildArticleDetailPages  함수로 정리
+		buildArticleListPages
+		buildArticleDetailPages
+
+	
+
+	 각 게시판 별 게시물리스트 페이지 생성
+	private void buildArticleListPages 
+
+		Systemoutprintln article 리스트 페이지 생성 
+
+		String foot  UtilgetFileContentssitetemplatefoothtml
+
+		ListBoard boards  articleServicegetBoards
+
+		for Board board  boards 
+			String head  getHeadHtmlarticlelist  boardcode
+			String fileName  boardcode  list1html
+
+			String html  
+
+			ListArticle articles  articleServicegetBoardArticlesByCodeForPrintboardcode
+
+			String template  UtilgetFileContentssitetemplatelisthtml
+
+			for Article article  articles 
+
+				html  div
+				html  div classarticlelistcellid  articleid  div
+				html  div classarticlelistcellregdate  articleregDate  div
+				html  div classarticlelistcellwriter  articleextramemberName  adiv
+				html  div classarticlelistcelltitlea href  articleid
+						 html classhoverunderline  articletitle  adiv
+				html  div
+			
+
+			html  templatereplace게시물 리스트 블록 html
+
+			html  head  html  foot
+
+			UtilwriteFilesite  fileName html
+		
+
+		Systemoutprintln article 리스트 페이지 생성 종료 
 	
 
 	private void buildIndexPage 
@@ -427,52 +611,93 @@ public class BuildService
 		UtilwriteFilepath htmltoString
 	
 
-	 게시물 상세페이지 생성
+	 게시판 별 게시물 상세페이지 생성
 	private void buildArticleDetailPages 
-		ListArticle articles  articleServicegetArticlesForPrint
+		ListBoard boards  articleServicegetBoards
 
-		String head  getHeadHtmlarticledetail
-		String foot  UtilgetFileContentssitetemplatefoothtml  foothtml 가져오기
-
-		Systemoutprintln article 상세페이지 생성 
-		int articleIndex  0
-		for Article article  articles 
-			StringBuilder html  new StringBuilder
-
-			 게시물 1개당 1개의 html 작성
-
-			 headhtml을 따로 생성해 위쪽에 붙임
-			htmlappendhead
-
-			htmlappenddiv
-			htmlappend번호    articleid  br
-			htmlappend작성일    articleregDate  br
-			htmlappend수정일    articleupdateDate  br
-			htmlappend제목    articletitle  br
-			htmlappend작성자    articleextramemberName  br
-			htmlappend내용    articlebody  br
-			if articleIndex  0 
-				htmlappenda href  articleid  1  html  이전글abr
+		for Board board  boards 
+			ListArticle articles  articleServicegetBoardArticlesByCodeForPrintboardcode
+			int articlesSize  articlessize
+			ifarticlesSize  0 
+				break
 			
-			if articleIndex  articlessize  1 
-				htmlappenda href  articleid  1  html  다음글abr
+			int beforeArticleIndex  0
+			int x  beforeArticleIndex
+			int beforeArticleId  articlesgetxid
+
+			String head  getHeadHtmlarticledetail
+			String foot  UtilgetFileContentssitetemplatefoothtml
+
+			String template  UtilgetFileContentssitetemplatedetailhtml
+
+			Systemoutprintln article 상세페이지 생성 
+
+			for Article article  articles 
+
+				StringBuilder html  new StringBuilder
+
+				htmlappendhead
+
+				String html2  
+
+				html2  div classarticledetailcellid
+				html2  div
+				html2  span번호  spanspan  articleid  span
+				html2  div
+				html2  div
+				html2  div classarticledetailcelltitle
+				html2  div
+				html2  span제목  spanspan  articletitle  span
+				html2  div
+				html2  div
+				html2  div classarticledetailcelltitle
+				html2  div
+				html2  span작성자  spanspan  articleextramemberName  span
+				html2  div
+				html2  div
+				html2  div classarticledetailcelltitle
+				html2  div
+				html2  span작성일  spanspan  articleregDate  span
+				html2  div
+				html2  divbr
+				html2  div classarticledetailcellbody height70p 
+				html2  div
+				html2  span  articlebody  span
+				html2  div
+				html2  divbrbr
+
+				html2  divsectionsection classsection3 conminwidthdiv classcondiv classarticlelistbottomcell flex flexjcc
+
+				if articleid  beforeArticleId 
+					html2  div classa href  articlesgetx  1id  html
+							  classhoverunderlinelt 이전글adiv
+				
+
+				html2  div classi classfas fathlistia href  boardcode  list1html
+						  classhoverunderline 목록 adiv
+				if x  articlesSize  1 
+					html2  div classa href  articlesgetx  1id  html
+							 classhoverunderline다음글 gtadiv
+				
+
+				html2  templatereplace상세페이지 블록 html2
+
+				htmlappendhtml2
+				htmlappendfoot
+
+				String fileName  articleid  html
+				String path  site  fileName
+
+				UtilwriteFilepath htmltoString
+
+				Systemoutprintlnpath   생성
+				x
+				beforeArticleId  articlesgetx  1id
+
 			
-			htmlappenddiv
-
-			 headhtml과 마찬가지로 foothtml을 따로 생성해 아래쪽에 붙임
-			htmlappendfoot
-
-			String fileName  articleid  html
-			String path  site  fileName
-
-			UtilwriteFilepath htmltoString
-
-			Systemoutprintlnpath   생성
-			articleIndex
+			Systemoutprintln article 상세페이지 생성 종료 
 
 		
-		Systemoutprintln article 상세페이지 생성 종료 
-
 	
 
 	 headhtml 가져오기
@@ -491,16 +716,6 @@ public class BuildService
 
 			boardMenuContentHtmlappendgetTitleBarContentByPageNamearticlelist  boardcode
 
-			
-			  String iClass  fas faclipboardlist  defult 아이콘
-			  
-			  if boardcodecontainsnotice   공지사항 게시판 아이콘 iClass 
-			  fas faexclamation  else if boardcodecontainsfree   자유 게시판 아이콘
-			  iClass  fas fausers 
-			  
-			  boardMenuContentHtmlappendi class  iClass  i
-			  boardMenuContentHtmlappend span  boardname  span
-			 
 			boardMenuContentHtmlappenda
 
 			boardMenuContentHtmlappendli
@@ -520,11 +735,9 @@ public class BuildService
 	private String getTitleBarContentByPageNameString pageName 
 		if pageNameequalsindex 
 			return i classfas fahomei spanHOMEspan
-		
-		else if pageNameequalsarticledetail 
+		 else if pageNameequalsarticledetail 
 			return i classfas fafileinvoicei spanARTICLE DETAILspan
-		
-		else if pageNamestartsWitharticlelistnotice 
+		 else if pageNamestartsWitharticlelistnotice 
 			return i classfas faexclamationi spanNOTICE LISTspan
 		 else if pageNamestartsWitharticlelistfree 
 			return i classfas fausersi spanFREE LISTspan
@@ -540,7 +753,7 @@ public class BuildService
 <meta itemprop="image" content="images/Dev_J_logo/logo.png" />
 
 <!-- 사이트 타이틀 -->
-<title>P.BLOG - 개발일지(타이블바 콘텐츠 반환 함수 만들어서 전체 페이지 생성에 적용) | Dev_J BLOG | ARTICLE DETAIL</title>
+<title>P.BLOG - 개발일지(게시판 리스트,상세보기 템플릿 적용, 게시판 별 게시물 상세보기 페이지 이전글, 다음글 추가) | Dev_J BLOG | ARTICLE DETAIL</title>
 
 
 <!-- 파비콘 -->
@@ -777,7 +990,7 @@ public class BuildService
 <section class="section-2 con-min-width min-height-50vh">
 	<div class="con height-100p">
 		<div class="article-detail-cell height-100p">
-			<div class="article-detail-cell__board-name"><div><span>게시판 : </span><span>P.BLOG 게시판</span></div></div><div class="article-detail-cell__id"><div><span>번호 : </span><span>31</span></div></div><div class="article-detail-cell__member-id"><div><span>작성자 : </span><span>Dev_J</span></div></div><div class="article-detail-cell__reg-date"><div><span>작성일 : </span><span>2021-02-04 18:30:07</span></div></div><div class="article-detail-cell__update-date"><div><span>수정일 : </span><span>2021-02-17 21:47:36</span></div></div><br><div class="article-detail-cell__title-contents flex flex-jc-fe"><div class="article-detail-cell__hitsCount"><div><span>조회수 : </span><span>0</span></div></div><div class="article-detail-cell__likesCount"><div><span>추천수 : </span><span>0</span></div></div><div class="article-detail-cell__commentsCount"><div><span>댓글수 : </span><span>0</span></div></div></div><div class="article-detail-cell__title"><div><span>제목 : </span><span>P.BLOG - 개발일지(타이블바 콘텐츠 반환 함수 만들어서 전체 페이지 생성에 적용)</span></div></div><!-- 구글 애드센스2 --><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script><!-- 수평 반응형2 --><ins class="adsbygoogle" style="display: block" data-ad-client="ca-pub-7996879977557531" data-ad-slot="2278060237" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle = window.adsbygoogle || []).push({});</script><script type"text/x-template"># 소스코드: 타이블바 콘텐츠 반환 함수 만들어서 전체 페이지 생성에 적용
+			<div class="article-detail-cell__board-name"><div><span>게시판 : </span><span>P.BLOG 게시판</span></div></div><div class="article-detail-cell__id"><div><span>번호 : </span><span>32</span></div></div><div class="article-detail-cell__member-id"><div><span>작성자 : </span><span>Dev_J</span></div></div><div class="article-detail-cell__reg-date"><div><span>작성일 : </span><span>2021-02-17 21:29:22</span></div></div><div class="article-detail-cell__update-date"><div><span>수정일 : </span><span>2021-02-17 21:47:36</span></div></div><br><div class="article-detail-cell__title-contents flex flex-jc-fe"><div class="article-detail-cell__hitsCount"><div><span>조회수 : </span><span>0</span></div></div><div class="article-detail-cell__likesCount"><div><span>추천수 : </span><span>0</span></div></div><div class="article-detail-cell__commentsCount"><div><span>댓글수 : </span><span>0</span></div></div></div><div class="article-detail-cell__title"><div><span>제목 : </span><span>P.BLOG - 개발일지(게시판 리스트,상세보기 템플릿 적용, 게시판 별 게시물 상세보기 페이지 이전글, 다음글 추가)</span></div></div><!-- 구글 애드센스2 --><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script><!-- 수평 반응형2 --><ins class="adsbygoogle" style="display: block" data-ad-client="ca-pub-7996879977557531" data-ad-slot="2278060237" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle = window.adsbygoogle || []).push({});</script><script type"text/x-template"># 소스코드: 게시판 리스트,상세보기 템플릿 적용, 게시판 별 게시물 상세보기 페이지 이전글, 다음글 추가
 
 ```java
 
@@ -808,7 +1021,49 @@ public class BuildService {
 		Util.copy("site_template/app.css", "site/app.css");
 
 		buildIndexPage(); // 함수로 정리
-		buildArticleDetailPages(); // 함수로 정리
+		buildArticleListPages();
+		buildArticleDetailPages();
+
+	}
+
+	// 각 게시판 별 게시물리스트 페이지 생성
+	private void buildArticleListPages() {
+
+		System.out.println("= article 리스트 페이지 생성 =");
+
+		String foot = Util.getFileContents("site_template/foot.html");
+
+		List<Board> boards = articleService.getBoards();
+
+		for (Board board : boards) {
+			String head = getHeadHtml("article_list_" + board.code);
+			String fileName = board.code + "-list-1.html";
+
+			String html = "";
+
+			List<Article> articles = articleService.getBoardArticlesByCodeForPrint(board.code);
+
+			String template = Util.getFileContents("site_template/list.html");
+
+			for (Article article : articles) {
+
+				html += "<div>";
+				html += "<div class=\"article-list__cell-id\">" + article.id + "</div>";
+				html += "<div class=\"article-list__cell-reg-date\">" + article.regDate + "</div>";
+				html += "<div class=\"article-list__cell-writer\">" + article.extra_memberName + "</a></div>";
+				html += "<div class=\"article-list__cell-title\"><a href=\"" + article.id
+						+ ".html\" class=\"hover-underline\">" + article.title + "</a></div>";
+				html += "</div>";
+			}
+
+			html = template.replace("[게시물 리스트 블록]", html);
+
+			html = head + html + foot;
+
+			Util.writeFile("site/" + fileName, html);
+		}
+
+		System.out.println("= article 리스트 페이지 생성 종료 =");
 	}
 
 	private void buildIndexPage() {
@@ -829,52 +1084,93 @@ public class BuildService {
 		Util.writeFile(path, html.toString());
 	}
 
-	// 게시물 상세페이지 생성
+	// 게시판 별 게시물 상세페이지 생성
 	private void buildArticleDetailPages() {
-		List<Article> articles = articleService.getArticlesForPrint();
+		List<Board> boards = articleService.getBoards();
 
-		String head = getHeadHtml("article_detail");
-		String foot = Util.getFileContents("site_template/foot.html"); // foot.html 가져오기
-
-		System.out.println("= article 상세페이지 생성 =");
-		int articleIndex = 0;
-		for (Article article : articles) {
-			StringBuilder html = new StringBuilder();
-
-			// 게시물 1개당 1개의 html 작성
-
-			// head.html을 따로 생성해 위쪽에 붙임
-			html.append(head);
-
-			html.append("<div>");
-			html.append("번호 : " + article.id + "<br>");
-			html.append("작성일 : " + article.regDate + "<br>");
-			html.append("수정일 : " + article.updateDate + "<br>");
-			html.append("제목 : " + article.title + "<br>");
-			html.append("작성자 : " + article.extra_memberName + "<br>");
-			html.append("내용 : " + article.body + "<br>");
-			if (articleIndex > 0) {
-				html.append("<a href=\"" + (article.id - 1) + ".html" + "\">이전글</a><br>");
+		for (Board board : boards) {
+			List<Article> articles = articleService.getBoardArticlesByCodeForPrint(board.code);
+			int articlesSize = articles.size();
+			if(articlesSize <= 0) {
+				break;
 			}
-			if (articleIndex < articles.size() - 1) {
-				html.append("<a href=\"" + (article.id + 1) + ".html" + "\">다음글</a><br>");
+			int beforeArticleIndex = 0;
+			int x = beforeArticleIndex;
+			int beforeArticleId = articles.get(x).id;
+
+			String head = getHeadHtml("article_detail");
+			String foot = Util.getFileContents("site_template/foot.html");
+
+			String template = Util.getFileContents("site_template/detail.html");
+
+			System.out.println("= article 상세페이지 생성 =");
+
+			for (Article article : articles) {
+
+				StringBuilder html = new StringBuilder();
+
+				html.append(head);
+
+				String html2 = "";
+
+				html2 += "<div class=\"article-detail-cell__id\">";
+				html2 += "<div>";
+				html2 += "<span>번호 : </span><span>" + article.id + "</span>";
+				html2 += "</div>";
+				html2 += "</div>";
+				html2 += "<div class=\"article-detail-cell__title\">";
+				html2 += "<div>";
+				html2 += "<span>제목 : </span><span>" + article.title + "</span>";
+				html2 += "</div>";
+				html2 += "</div>";
+				html2 += "<div class=\"article-detail-cell__title\">";
+				html2 += "<div>";
+				html2 += "<span>작성자 : </span><span>" + article.extra_memberName + "</span>";
+				html2 += "</div>";
+				html2 += "</div>";
+				html2 += "<div class=\"article-detail-cell__title\">";
+				html2 += "<div>";
+				html2 += "<span>작성일 : </span><span>" + article.regDate + "</span>";
+				html2 += "</div>";
+				html2 += "</div><br>";
+				html2 += "<div class=\"article-detail-cell__body height-70p \">";
+				html2 += "<div>";
+				html2 += "<span>" + article.body + "</span>";
+				html2 += "</div>";
+				html2 += "</div><br><br>";
+
+				html2 += "</div></section><section class=\"section-3 con-min-width\"><div class=\"con\"><div class=\"article-list-bottom-cell flex flex-jc-c\">";
+
+				if (article.id > beforeArticleId) {
+					html2 += "<div class=\"./\"><a href=\"" + articles.get(x - 1).id + ".html"
+							+ "\" class=\"hover-underline\">&lt 이전글</a></div>";
+				}
+
+				html2 += "<div class=\"./\"><i class=\"fas fa-th-list\"></i><a href=\"" + board.code + "-list-1.html"
+						+ "\" class=\"hover-underline\"> 목록 </a></div>";
+				if (x < articlesSize - 1) {
+					html2 += "<div class=\"./\"><a href=\"" + articles.get(x + 1).id + ".html"
+							+ "\"class=\"hover-underline\">다음글 &gt</a></div>";
+				}
+
+				html2 = template.replace("[상세페이지 블록]", html2);
+
+				html.append(html2);
+				html.append(foot);
+
+				String fileName = article.id + ".html";
+				String path = "site/" + fileName;
+
+				Util.writeFile(path, html.toString());
+
+				System.out.println(path + " 생성");
+				x++;
+				beforeArticleId = articles.get(x - 1).id;
+
 			}
-			html.append("</div>");
-
-			// head.html과 마찬가지로 foot.html을 따로 생성해 아래쪽에 붙임
-			html.append(foot);
-
-			String fileName = article.id + ".html";
-			String path = "site/" + fileName;
-
-			Util.writeFile(path, html.toString());
-
-			System.out.println(path + " 생성");
-			articleIndex++;
+			System.out.println("= article 상세페이지 생성 종료 =");
 
 		}
-		System.out.println("= article 상세페이지 생성 종료 =");
-
 	}
 
 	// head.html 가져오기
@@ -893,16 +1189,6 @@ public class BuildService {
 
 			boardMenuContentHtml.append(getTitleBarContentByPageName("article_list_" + board.code));
 
-			/*
-			 * String iClass = "fas fa-clipboard-list"; // defult 아이콘
-			 * 
-			 * if (board.code.contains("notice")) { // 공지사항 게시판 아이콘 iClass =
-			 * "fas fa-exclamation"; } else if (board.code.contains("free")) { // 자유 게시판 아이콘
-			 * iClass = "fas fa-users"; }
-			 * 
-			 * boardMenuContentHtml.append("<i class=\"" + iClass + "\"></i>");
-			 * boardMenuContentHtml.append(" <span>" + board.name + "</span>");
-			 */
 			boardMenuContentHtml.append("</a>");
 
 			boardMenuContentHtml.append("</li>");
@@ -922,11 +1208,9 @@ public class BuildService {
 	private String getTitleBarContentByPageName(String pageName) {
 		if (pageName.equals("index")) {
 			return "<i class=\"fas fa-home\"></i> <span>HOME</span>";
-		}
-		else if (pageName.equals("article_detail")) {
+		} else if (pageName.equals("article_detail")) {
 			return "<i class=\"fas fa-file-invoice\"></i> <span>ARTICLE DETAIL</span>";
-		}
-		else if (pageName.startsWith("article_list_notice")) {
+		} else if (pageName.startsWith("article_list_notice")) {
 			return "<i class=\"fas fa-exclamation\"></i> <span>NOTICE LIST</span>";
 		} else if (pageName.startsWith("article_list_free")) {
 			return "<i class=\"fas fa-users\"></i> <span>FREE LIST</span>";
@@ -945,8 +1229,8 @@ public class BuildService {
 				<div id="disqus_thread"></div>
 				<script>
 					var disqus_config = function() {
-						this.page.url = 'https://blog.devj.me/article_detail_31.html';
-						this.page.identifier = 'article_detail_31.html';
+						this.page.url = 'https://blog.devj.me/article_detail_32.html';
+						this.page.identifier = 'article_detail_32.html';
 					};
 					(function() {
 						//DON'T EDIT BELOW THIS LINE
@@ -969,7 +1253,7 @@ public class BuildService {
 <!-- 메인-상세 하단 메뉴 시작 -->
 <section class="section-3 con-min-width">
 	<div class="con">
-		<div class="article-list-bottom-cell flex flex-jc-c"><div class="./"><a href="article_detail_30.html" class="hover-underline">&lt 이전글</a></div><div class="./"><i class="fas fa-th-list"></i><a href="p_blog-list-1.html" class="hover-underline"> 목록 </a></div><div class="./"><a href="article_detail_32.html"class="hover-underline">다음글 &gt</a></div></div>
+		<div class="article-list-bottom-cell flex flex-jc-c"><div class="./"><a href="article_detail_31.html" class="hover-underline">&lt 이전글</a></div><div class="./"><i class="fas fa-th-list"></i><a href="p_blog-list-1.html" class="hover-underline"> 목록 </a></div><div class="./"><a href="article_detail_33.html"class="hover-underline">다음글 &gt</a></div></div>
 	</div>
 </section>
 <!-- 메인-상세 하단 메뉴 끝 -->

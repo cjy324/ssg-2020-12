@@ -1,0 +1,798 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+<script data-ad-client="ca-pub-7996879977557531" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-X5RMP83794"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-X5RMP83794');
+</script>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- 구글 검색엔진 등록-소유권 확인 -->
+<meta name="google-site-verification" content="37R4KcEaJU5LfiKL7GI1hu1_spJgWOazN6xy48OHhD4" />
+
+<!-- Meta Tag & Open Graph -->
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<meta name="viewport" content="width=1200">
+<meta name="apple-mobile-web-app-title" content="Dev_J BLOG" />
+<!-- 메타태그정보 //-->
+<!-- META -->
+<link rel="canonical" href="https://blog.devj.me" />
+<meta name="subject" content="3강. display"/>
+<meta name="title" content="Dev_J BLOG" />
+<meta name="keywords" content="JAVA, HTML, CSS, JavaScript, MySQL" />
+<meta name="copyright" content="Dev_J BLOG" />
+<meta name="pubdate" content="2021-02-18T14:14:15" />
+<meta name="lastmod" content="2021-02-18T14:14:15" />
+<!-- OPENGRAPH -->
+<meta property="og:site_name" content="Dev_J BLOG" />
+<meta property="og:type" content="blog" />
+<meta property="og:title" content="3강. display" />
+<meta property="og:description" content=" 1 display 개념
+
+ display란
+
+  display 속성은 요소를 어떻게 보여줄지를 결정한다
+  주로 4가지 속성값이 쓰이는데 태그마다 기본값이 다르다
+
+
+none  보이지 않음
+block  블록 박스
+inline  인라인 박스
+inlineblock  block과 inline의 중간 형태
+
+br
+
+ 2 display 속성
+ none
+ 요소를 렌더링하지 않도록 설정한다 즉 해당 요소를 보이지 않게한다
+ visibility 속성을 hidden으로 설정한 것과 달리 영역도 차지하지 않는다
+ 즉 visibility hidden 은 눈에 보이진 않지만 자리를 차지하고 있어 주변 엘리먼트들에게 영향을 미치는 반면 displaynone 는 아예 자리도 차지하지 않는다는 차이점이 있다
+visibility hidden 과 displaynone은 자주 사용하는 속성이니 차이를 잘 알아두도록 하자
+br
+ block
+  기본적으로 가로 영역을 모두 꽉 채우며 block 요소 다음에 등장하는 엘리먼트는 줄바꿈이 된 것처럼 보인다 
+  즉 말그대로 블록하나가 가로를 모두 채우면서 자리를 차지하는 것이다
+   width height 속성을 지정 할 수 있으며 block 요소 뒤에 등장하는 엘리먼가 그 이전 block 요소에 오른쪽에 배치될 수 있어도 항상 다음 줄에 렌더링된다
+br
+ inline
+  block 과 달리 줄 바꿈이 되지 않고 width와 height를 지정 할 수 없다 
+  inline 요소 뒤에 나오는 엘리먼트는 줄바꿈 되지 않고 바로 오른쪽에 붙는다
+  a img span 엘리먼트는 기본적으로 display가 inline 이다
+  inline요소에는 margin padding 속성이 제대로 적용되지 않는다
+ br
+ inlineblock
+  block과 inline의 중간 형태라고 볼 수 있는데 줄 바꿈이 되지 않지만 크기를 지정 할 수 있다
+  Internet Explorer 7 이하에서는 사용할 수 없다
+br
+
+ 3 block vs inlineblock 비교쉬운 ver
+ block vs inlineblock
+
+block
+너비  지정되지 않은 경우 자동으로 최대한 유연하게 늘어난다
+높이 지정되어 있지 않은 경우 최소한으로 유연하게 줄어든다
+줄사용 혼자 무조건 한 줄을 혼자 사용한다
+
+
+inlineblock
+너비  지정되어 있지 않은 경우 최소한으로 유연하게 줄어든다
+높이 지정되어 있지 않은 경우 최소한으로 유연하게 줄어든다
+줄사용 혼자 가능하다면 한 줄을 여럿이 쓴다 불가능하면 줄바꿈
+
+
+
+
+ block inlineblock 예제
+
+imagehttpsimg1daumcdnnetthumbR1280x0scodemtistory2fnamehttps3A2F2Fblogkakaocdnnet2Fdn2FLTPdj2FbtqN8eWN5st2FtpCDaHDV7sf2X89u0CkHx12Fimgpng
+
+  HTML 
+html
+
+div1div
+div22div2
+section3section
+nav4nav
+
+
+
+  CSS 
+
+css
+
+div section article nav 
+    height100px
+    width100px
+
+
+div 
+    backgroundcolorred
+
+
+div2 
+    backgroundcolorgreen
+    displayinlineblock 
+
+
+section 
+    backgroundcolorblue
+    displayinlineblock
+
+
+nav 
+  backgroundcoloryellow
+
+
+
+
+
+ 4 display 속성 정리표
+
+ 종류  inlineblockinline  block  none 
+        
+ 너비  최소한으로 줄어든다  최대한으로 넓어진다  없어진다 
+ 본질  글자화  블록화   
+ 줄 차지  한 줄에 최대한 여러개가 나온다  한 줄을 무조건 혼자 쓴다   
+ 정렬  부모의 textalign에 의해서 정렬  스스로 marginleft marginright를 사용해서 정렬   
+
+
+참고 httpsofcoursekrcsscoursedisplay속성" />
+<meta property="og:locale" content="ko_KR" />
+<meta property="og:image" content="images/Dev_J_logo/logo.png" />
+<meta property="og:image:alt" content="blog.devj.me" />
+<meta property="og:image:width" content="486" />
+<meta property="og:image:height" content="254" />
+<meta property="og:updated_time" content="2021-02-18T14:14:15"/>
+<meta property="og:pubdate" content="2021-02-18T14:14:15" />
+<meta property="og:url" content="https://blog.devj.me" />
+<!-- TWITTER -->
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="3강. display" />
+<meta name="twitter:site" content="@Dev_J BLOG" />
+<meta name="twitter:creator" content="@Dev_J BLOG" />
+<meta name="twitter:image" content="images/Dev_J_logo/logo.png">
+<meta name="twitter:description" content=" 1 display 개념
+
+ display란
+
+  display 속성은 요소를 어떻게 보여줄지를 결정한다
+  주로 4가지 속성값이 쓰이는데 태그마다 기본값이 다르다
+
+
+none  보이지 않음
+block  블록 박스
+inline  인라인 박스
+inlineblock  block과 inline의 중간 형태
+
+br
+
+ 2 display 속성
+ none
+ 요소를 렌더링하지 않도록 설정한다 즉 해당 요소를 보이지 않게한다
+ visibility 속성을 hidden으로 설정한 것과 달리 영역도 차지하지 않는다
+ 즉 visibility hidden 은 눈에 보이진 않지만 자리를 차지하고 있어 주변 엘리먼트들에게 영향을 미치는 반면 displaynone 는 아예 자리도 차지하지 않는다는 차이점이 있다
+visibility hidden 과 displaynone은 자주 사용하는 속성이니 차이를 잘 알아두도록 하자
+br
+ block
+  기본적으로 가로 영역을 모두 꽉 채우며 block 요소 다음에 등장하는 엘리먼트는 줄바꿈이 된 것처럼 보인다 
+  즉 말그대로 블록하나가 가로를 모두 채우면서 자리를 차지하는 것이다
+   width height 속성을 지정 할 수 있으며 block 요소 뒤에 등장하는 엘리먼가 그 이전 block 요소에 오른쪽에 배치될 수 있어도 항상 다음 줄에 렌더링된다
+br
+ inline
+  block 과 달리 줄 바꿈이 되지 않고 width와 height를 지정 할 수 없다 
+  inline 요소 뒤에 나오는 엘리먼트는 줄바꿈 되지 않고 바로 오른쪽에 붙는다
+  a img span 엘리먼트는 기본적으로 display가 inline 이다
+  inline요소에는 margin padding 속성이 제대로 적용되지 않는다
+ br
+ inlineblock
+  block과 inline의 중간 형태라고 볼 수 있는데 줄 바꿈이 되지 않지만 크기를 지정 할 수 있다
+  Internet Explorer 7 이하에서는 사용할 수 없다
+br
+
+ 3 block vs inlineblock 비교쉬운 ver
+ block vs inlineblock
+
+block
+너비  지정되지 않은 경우 자동으로 최대한 유연하게 늘어난다
+높이 지정되어 있지 않은 경우 최소한으로 유연하게 줄어든다
+줄사용 혼자 무조건 한 줄을 혼자 사용한다
+
+
+inlineblock
+너비  지정되어 있지 않은 경우 최소한으로 유연하게 줄어든다
+높이 지정되어 있지 않은 경우 최소한으로 유연하게 줄어든다
+줄사용 혼자 가능하다면 한 줄을 여럿이 쓴다 불가능하면 줄바꿈
+
+
+
+
+ block inlineblock 예제
+
+imagehttpsimg1daumcdnnetthumbR1280x0scodemtistory2fnamehttps3A2F2Fblogkakaocdnnet2Fdn2FLTPdj2FbtqN8eWN5st2FtpCDaHDV7sf2X89u0CkHx12Fimgpng
+
+  HTML 
+html
+
+div1div
+div22div2
+section3section
+nav4nav
+
+
+
+  CSS 
+
+css
+
+div section article nav 
+    height100px
+    width100px
+
+
+div 
+    backgroundcolorred
+
+
+div2 
+    backgroundcolorgreen
+    displayinlineblock 
+
+
+section 
+    backgroundcolorblue
+    displayinlineblock
+
+
+nav 
+  backgroundcoloryellow
+
+
+
+
+
+ 4 display 속성 정리표
+
+ 종류  inlineblockinline  block  none 
+        
+ 너비  최소한으로 줄어든다  최대한으로 넓어진다  없어진다 
+ 본질  글자화  블록화   
+ 줄 차지  한 줄에 최대한 여러개가 나온다  한 줄을 무조건 혼자 쓴다   
+ 정렬  부모의 textalign에 의해서 정렬  스스로 marginleft marginright를 사용해서 정렬   
+
+
+참고 httpsofcoursekrcsscoursedisplay속성" />
+<!-- GOOGLE+ -->
+<meta itemprop="headline" content="Dev_J BLOG" />
+<meta itemprop="name" content="Dev_J BLOG" />
+<meta itemprop="description" content=" 1 display 개념
+
+ display란
+
+  display 속성은 요소를 어떻게 보여줄지를 결정한다
+  주로 4가지 속성값이 쓰이는데 태그마다 기본값이 다르다
+
+
+none  보이지 않음
+block  블록 박스
+inline  인라인 박스
+inlineblock  block과 inline의 중간 형태
+
+br
+
+ 2 display 속성
+ none
+ 요소를 렌더링하지 않도록 설정한다 즉 해당 요소를 보이지 않게한다
+ visibility 속성을 hidden으로 설정한 것과 달리 영역도 차지하지 않는다
+ 즉 visibility hidden 은 눈에 보이진 않지만 자리를 차지하고 있어 주변 엘리먼트들에게 영향을 미치는 반면 displaynone 는 아예 자리도 차지하지 않는다는 차이점이 있다
+visibility hidden 과 displaynone은 자주 사용하는 속성이니 차이를 잘 알아두도록 하자
+br
+ block
+  기본적으로 가로 영역을 모두 꽉 채우며 block 요소 다음에 등장하는 엘리먼트는 줄바꿈이 된 것처럼 보인다 
+  즉 말그대로 블록하나가 가로를 모두 채우면서 자리를 차지하는 것이다
+   width height 속성을 지정 할 수 있으며 block 요소 뒤에 등장하는 엘리먼가 그 이전 block 요소에 오른쪽에 배치될 수 있어도 항상 다음 줄에 렌더링된다
+br
+ inline
+  block 과 달리 줄 바꿈이 되지 않고 width와 height를 지정 할 수 없다 
+  inline 요소 뒤에 나오는 엘리먼트는 줄바꿈 되지 않고 바로 오른쪽에 붙는다
+  a img span 엘리먼트는 기본적으로 display가 inline 이다
+  inline요소에는 margin padding 속성이 제대로 적용되지 않는다
+ br
+ inlineblock
+  block과 inline의 중간 형태라고 볼 수 있는데 줄 바꿈이 되지 않지만 크기를 지정 할 수 있다
+  Internet Explorer 7 이하에서는 사용할 수 없다
+br
+
+ 3 block vs inlineblock 비교쉬운 ver
+ block vs inlineblock
+
+block
+너비  지정되지 않은 경우 자동으로 최대한 유연하게 늘어난다
+높이 지정되어 있지 않은 경우 최소한으로 유연하게 줄어든다
+줄사용 혼자 무조건 한 줄을 혼자 사용한다
+
+
+inlineblock
+너비  지정되어 있지 않은 경우 최소한으로 유연하게 줄어든다
+높이 지정되어 있지 않은 경우 최소한으로 유연하게 줄어든다
+줄사용 혼자 가능하다면 한 줄을 여럿이 쓴다 불가능하면 줄바꿈
+
+
+
+
+ block inlineblock 예제
+
+imagehttpsimg1daumcdnnetthumbR1280x0scodemtistory2fnamehttps3A2F2Fblogkakaocdnnet2Fdn2FLTPdj2FbtqN8eWN5st2FtpCDaHDV7sf2X89u0CkHx12Fimgpng
+
+  HTML 
+html
+
+div1div
+div22div2
+section3section
+nav4nav
+
+
+
+  CSS 
+
+css
+
+div section article nav 
+    height100px
+    width100px
+
+
+div 
+    backgroundcolorred
+
+
+div2 
+    backgroundcolorgreen
+    displayinlineblock 
+
+
+section 
+    backgroundcolorblue
+    displayinlineblock
+
+
+nav 
+  backgroundcoloryellow
+
+
+
+
+
+ 4 display 속성 정리표
+
+ 종류  inlineblockinline  block  none 
+        
+ 너비  최소한으로 줄어든다  최대한으로 넓어진다  없어진다 
+ 본질  글자화  블록화   
+ 줄 차지  한 줄에 최대한 여러개가 나온다  한 줄을 무조건 혼자 쓴다   
+ 정렬  부모의 textalign에 의해서 정렬  스스로 marginleft marginright를 사용해서 정렬   
+
+
+참고 httpsofcoursekrcsscoursedisplay속성" />
+<meta itemprop="image" content="images/Dev_J_logo/logo.png" />
+
+<!-- 사이트 타이틀 -->
+<title>3강. display | Dev_J BLOG | ARTICLE DETAIL</title>
+
+
+<!-- 파비콘 -->
+<link rel="shortcut icon" href="images/favicon/favicon.ico" type="image/x-icon">
+<link rel="icon" href="images/favicon/favicon.ico" type="image/x-icon">
+
+<!-- 폰트어썸 불러오기 -->
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+
+<!--모바일에서도 PC와 같은 비율 유지-->
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<!--제이쿼리-->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+<!-- 하이라이트 라이브러리 추가, 토스트 UI 에디터에서 사용됨 -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.4.1/highlight.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.4.1/styles/default.min.css">
+
+<!-- 토스트 UI 에디터, 자바스크립트 코어 -->
+<script
+	src="https://uicdn.toast.com/editor/latest/toastui-editor-all.min.js" defer></script>
+
+<!-- 코드 미러 라이브러리 추가, 토스트 UI 에디터에서 사용됨 -->
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.58.3/codemirror.min.css" />
+<!-- 토스트 UI 에디터, CSS 코어 -->
+<link rel="stylesheet"
+	href="https://uicdn.toast.com/editor/latest/toastui-editor.min.css" />
+
+<!-- 토스트 UI 에디터, 신택스 하이라이트 플러그인 추가 -->
+<script src="https://uicdn.toast.com/editor-plugin-code-syntax-highlight/latest/toastui-editor-plugin-code-syntax-highlight.min.js" defer></script>
+
+<!-- app.css 불러오기 -->
+<link rel="stylesheet" href="app.css">
+<!-- app.js 불러오기 -->
+<script src="app.js" defer></script>
+<!-- index.js 불러오기 
+<script src="index.js" defer></script>
+-->
+</head>
+
+<body>
+<!-- 사이트 박스 시작 -->
+<div class="body-content min-height-100vh flex flex-column">
+  <!-- 로고바 시작 -->
+  <header class="logo-bar con-min-width" id="header">
+    <div class="con height-100p flex flex-jc-c" title="HOME">
+      <a href="index.html" class="logo flex flex-ai-c"> 
+        <img class="logo__img" src="images/Dev_J_logo/logo_transparent.png" alt="">
+        <span>
+          BLOG
+        </span>
+      </a>
+    </div>
+  </header>
+  <!-- 로고바 끝 -->
+
+  <!-- 메뉴바 시작-->
+  <header class="menu-bar con-min-width visible-md-up">
+    <div class="flex flex-jc-sb">
+   	 <div class="menu-bar__status-icon" title="Menu">
+      <div></div>
+      <div></div>
+      <div></div>
+     </div>
+     <a class="search-icon" title="search" href="search.html">
+        <i class="fa fa-search"></i>
+     </a>
+   </div>
+   <div class="con hide">
+    <nav class="menu-bar__menu">
+      <ul class="flex">
+          <li title="ABOUT">
+            <a href="about.html" class="block">
+              <i class="far fa-address-card"></i>
+              <span>ABOUT</span>
+            </a>
+          </li>
+          <li>
+            <a class="block">
+              <i class="fas fa-list"></i>
+              <span>ARTICLES</span>
+            </a>
+            <ul>
+              <li title="NOTICE"><a href="notice-list-1.html" class="block"><i class="fas fa-bullhorn"></i> <span>NOTICE BOARD</span></a></li><li title="JAVA"><a href="java-list-1.html" class="block"><i class="fab fa-java"></i> <span>JAVA BOARD</span></a></li><li title="HTML"><a href="html-list-1.html" class="block"><i class="fab fa-html5"></i> <span>HTML & CSS & JS BOARD</span></a></li><li title="MYSQL"><a href="mysql-list-1.html" class="block"><i class="fas fa-database"></i> <span>MySQL BOARD</span></a></li>
+            </ul>
+          </li>
+          <li>
+            <a class="block">
+              <i class="fas fa-project-diagram"></i>
+              <span>PROJECT</span>
+            </a>
+            <ul>
+              <li title="P_BLOG"><a href="p_blog-list-1.html" class="block"><i class="fab fa-blogger"></i> <span>P.BLOG PROJECT</span></a></li><li title="P_JSP"><a href="p_jsp-list-1.html" class="block"><i class="fas fa-file-word"></i> <span>P.JSP PROJECT</span></a></li>
+            </ul>
+          </li>
+          <li>
+            <a class="block">
+              <i class="fas fa-link"></i>
+              <span>LINK</span>
+            </a>
+            <ul>
+              <li title="T-STORY">
+                <a href="https://cjy324.tistory.com/" target="_blank" class="block">
+                  <i class="fas fa-rss-square"></i>
+                  <span>T-STORY</span>
+                </a>
+              </li>
+              <li title="GITHUB">
+                <a href="https://github.com/cjy324/TIL_Jooyoung#til_jooyoung" target="_blank" class="block">
+                  <i class="fab fa-github"></i>
+                  <span>GITHUB</span>
+                </a>
+              </li>
+            </ul>
+          </li>
+          <li title="STATISTICS">
+            <a href="statistics.html" class="block">
+              <i class="fas fa-chart-pie"></i>
+              <span>STATISTICS</span>
+            </a>
+          </li>
+        </ul>
+      </nav>
+   </div>
+  </header>
+  <!-- 메뉴바 끝 -->
+  
+  <!-- 모바일 사이드 메뉴바 시작 -->
+  <header class="mobile-menu-bar con-min-width visible-sm-down">
+    <div class="flex flex-jc-sb">
+   <div class="mobile-menu-bar__status-icon" title="Menu">
+     <div></div>
+     <div></div>
+     <div></div>
+   </div>
+    <a class="search-icon" title="search" href="search.html">
+        <i class="fa fa-search"></i>
+      </a>
+   </div>
+   <div class="con ">
+    <aside class="mobile-side-bar flex flex-column flex-jc-c ">
+      <div class="mobile-side-bar_X"><i class="fas fa-times"></i></div>
+      <span>MENU</span>
+      <nav class="mobile-side-bar_menu flex flex-jc-c">
+      <ul class="">
+          <li title="ABOUT">
+            <a href="about.html" class="block">
+              <i class="far fa-address-card"></i>
+              <span>ABOUT</span>
+            </a>
+          </li>
+          <li>
+            <a class="block">
+              <i class="fas fa-list"></i>
+              <span>ARTICLES</span>
+            </a>
+            <ul class="hide2">
+              <li title="NOTICE"><a href="notice-list-1.html" class="block"><i class="fas fa-bullhorn"></i> <span>NOTICE BOARD</span></a></li><li title="JAVA"><a href="java-list-1.html" class="block"><i class="fab fa-java"></i> <span>JAVA BOARD</span></a></li><li title="HTML"><a href="html-list-1.html" class="block"><i class="fab fa-html5"></i> <span>HTML & CSS & JS BOARD</span></a></li><li title="MYSQL"><a href="mysql-list-1.html" class="block"><i class="fas fa-database"></i> <span>MySQL BOARD</span></a></li>
+            </ul>
+          </li>
+          <li>
+            <a class="block">
+              <i class="fas fa-project-diagram"></i>
+              <span>PROJECT</span>
+            </a>
+            <ul class="hide2">
+              <li title="P_BLOG"><a href="p_blog-list-1.html" class="block"><i class="fab fa-blogger"></i> <span>P.BLOG PROJECT</span></a></li><li title="P_JSP"><a href="p_jsp-list-1.html" class="block"><i class="fas fa-file-word"></i> <span>P.JSP PROJECT</span></a></li>
+            </ul>
+          </li>
+          <li>
+            <a class="block">
+              <i class="fas fa-link"></i>
+              <span>LINK</span>
+            </a>
+            <ul class="hide2">
+              <li title="T-STORY">
+                <a href="https://cjy324.tistory.com/" target="_blank" class="block">
+                  <i class="fas fa-rss-square"></i>
+                  <span>T-STORY</span>
+                </a>
+              </li>
+              <li title="GITHUB">
+                <a href="https://github.com/cjy324/TIL_Jooyoung#til_jooyoung" target="_blank" class="block">
+                  <i class="fab fa-github"></i>
+                  <span>GITHUB</span>
+                </a>
+              </li>
+            </ul>
+          </li>
+          <li title="STATISTICS">
+            <a href="statistics.html" class="block">
+              <i class="fas fa-chart-pie"></i>
+              <span>STATISTICS</span>
+            </a>
+          </li>
+        </ul>
+      </nav>  
+      </aside>
+   </div>
+  </header>
+  
+  <!-- 모바일 사이드 메뉴바 끝 --> 
+   
+
+  <!-- 메인 컨텐츠 박스 시작 -->
+  <main class="main-box flex-grow-1">
+  <section class="main-box-section con-min-width">
+   <!-- 메인-타이틀바 시작 -->
+	<div class="title-bar con-min-width">
+		<h1 class="con">
+			<i class="fas fa-file-invoice"></i> <span>ARTICLE</span>
+		</h1>
+	</div>
+   <!-- 메인-타이틀바 종료 -->
+<!-- Progress-bar -->
+<script type="text/javascript"
+	src="https://rawcdn.githack.com/mburakerman/prognroll/0feda211643153bce2c69de32ea1b39cdc64ffbe/src/prognroll.js"></script>
+<script type="text/javascript">
+	$(function() {
+		$("body").prognroll({
+			height : 10,
+			color : "#666666"
+		});
+		$(".content").prognroll({
+			custom : true
+		});
+	});
+</script>
+
+<!-- 메인-상세페이지 시작 -->
+<section class="section-2 con-min-width min-height-50vh">
+	<div class="con height-100p">
+		<div class="article-detail-cell height-100p">
+			<div class="article-detail-cell__board-name"><div><span>게시판 : </span><span>HTML & CSS & JS 게시판</span></div></div><div class="article-detail-cell__id"><div><span>번호 : </span><span>44</span></div></div><div class="article-detail-cell__member-id"><div><span>작성자 : </span><span>Dev_J</span></div></div><div class="article-detail-cell__reg-date"><div><span>작성일 : </span><span>2021-02-17 22:52:06</span></div></div><div class="article-detail-cell__update-date"><div><span>수정일 : </span><span>2021-02-18 14:14:15</span></div></div><br><div class="article-detail-cell__title-contents flex flex-jc-fe"><div class="article-detail-cell__hitsCount"><div><span>조회수 : </span><span>0</span></div></div><div class="article-detail-cell__likesCount"><div><span>추천수 : </span><span>0</span></div></div><div class="article-detail-cell__commentsCount"><div><span>댓글수 : </span><span>0</span></div></div></div><div class="article-detail-cell__title"><div><span>제목 : </span><span>3강. display</span></div></div><!-- 구글 애드센스2 --><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script><!-- 수평 반응형2 --><ins class="adsbygoogle" style="display: block" data-ad-client="ca-pub-7996879977557531" data-ad-slot="2278060237" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle = window.adsbygoogle || []).push({});</script><script type"text/x-template"># 1. display 개념
+
+## display란?
+
+ - **display** 속성은 **요소를 어떻게 보여줄지를 결정**한다.
+ - 주로 **4가지 속성값**이 쓰이는데, 태그마다 기본값이 다르다.
+
+```
+none : 보이지 않음
+block : 블록 박스
+inline : 인라인 박스
+inline-block : block과 inline의 중간 형태
+```
+<br>
+
+# 2. display 속성
+## none
+- 요소를 렌더링하지 않도록 설정한다. 즉, 해당 요소를 **보이지 않게**한다.
+- visibility 속성을 hidden으로 설정한 것과 달리, **영역도 차지하지 않는다.**
+- 즉, **visibility: hidden;** 은 **눈에 보이진 않지만 자리를 차지**하고 있어 주변 엘리먼트들에게 **영향을 미치는** 반면 **display:none;** 는 아예 **자리도 차지하지 않는다**는 차이점이 있다.
+(visibility: hidden; 과 display:none;은 자주 사용하는 속성이니 차이를 잘 알아두도록 하자)
+<br>
+## block
+ - 기본적으로 **가로 영역을 모두 꽉 채우며**, block 요소 다음에 등장하는 엘리먼트는 **줄바꿈**이 된 것처럼 보인다. 
+ - 즉, 말그대로 블록하나가 가로를 모두 채우면서 자리를 차지하는 것이다.
+ -  **width, height 속성을 지정 할 수 있으며**, block 요소 뒤에 등장하는 엘리먼가 그 이전 block 요소에 오른쪽에 배치될 수 있어도 항상 다음 줄에 렌더링된다.
+<br>
+## inline
+ - block 과 달리 **줄 바꿈이 되지 않고**, **width와 height를 지정 할 수 없다.** 
+ - inline 요소 뒤에 나오는 엘리먼트는 줄바꿈 되지 않고 **바로 오른쪽에 붙는다.**
+ - **a, img, span** 엘리먼트는 기본적으로 display가 inline 이다.
+ - inline요소에는 **margin, padding** 속성이 제대로 적용되지 않는다.
+ <br>
+## inline-block
+ - block과 inline의 중간 형태라고 볼 수 있는데, **줄 바꿈이 되지 않지만 크기를 지정 할 수 있다.**
+ - Internet Explorer 7 이하에서는 사용할 수 없다.
+<br>
+
+# 3. block vs inline-block 비교(쉬운 ver.)
+## block vs inline-block
+```
+block
+-너비 : 지정되지 않은 경우 자동으로 최대한 유연하게 늘어난다
+-높이: 지정되어 있지 않은 경우 최소한으로 유연하게 줄어든다.
+-줄사용 혼자: 무조건 한 줄을 혼자 사용한다.
+
+
+inline-block
+-너비 : 지정되어 있지 않은 경우 최소한으로 유연하게 줄어든다.
+-높이: 지정되어 있지 않은 경우 최소한으로 유연하게 줄어든다.
+-줄사용 혼자: 가능하다면 한 줄을 여럿이 쓴다. 불가능하면 줄바꿈
+
+
+```
+
+## block, inline-block 예제
+
+![image](https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FLTPdj%2FbtqN8eWN5st%2FtpCDaHDV7sf2X89u0CkHx1%2Fimg.png)
+
+### < HTML >
+```html
+
+<div>1</div>
+<div2>2</div2>
+<section>3</section>
+<nav>4</nav>
+
+```
+
+### < CSS >
+
+```css
+
+div, section, article, nav {
+    height:100px;
+    width:100px;
+}
+
+div {
+    background-color:red;
+}
+
+div2 {
+    background-color:green;
+    display:inline-block; 
+}
+
+section {
+    background-color:blue;
+    display:inline-block;
+}
+
+nav {
+  background-color:yellow;
+
+}
+
+```
+
+# 4. display 속성 정리표
+
+| 종류 | inline-block(=inline) | block | none |
+| --- | --- | --- | --- |
+| 너비 | 최소한으로 줄어든다. | 최대한으로 넓어진다. | 없어진다. |
+| 본질 | 글자화 | 블록화 | - |
+| 줄 차지 | 한 줄에 최대한 여러개가 나온다. | 한 줄을 무조건 혼자 쓴다. | - |
+| 정렬 | 부모의 text-align에 의해서 정렬 | 스스로 margin-left, margin-right를 사용해서 정렬 | - |
+
+
+(참고: https://ofcourse.kr/css-course/display-속성)</script><div class="article-detail-cell__body height-70p toast-ui-viewer"><div></div></div><br><div class="article-detail-cell__tag flex flex-wrap"><nav># <a href="#" target="_blank">HTML</a></nav><nav># <a href="#" target="_blank">CSS</a></nav><nav># <a href="#" target="_blank">display</a></nav></div><br><br><!-- 구글 애드센스1 --><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script><!-- 수평 반응형1 --><ins class="adsbygoogle" style="display: block" data-ad-client="ca-pub-7996879977557531" data-ad-slot="6812185708" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+			<!-- Disqus api 적용 -->
+			<!-- 정확한 페이지 경로 알려주는 기능 추가-->
+			<nav>
+				<div id="disqus_thread"></div>
+				<script>
+					var disqus_config = function() {
+						this.page.url = 'https://blog.devj.me/article_detail_44.html';
+						this.page.identifier = 'article_detail_44.html';
+					};
+					(function() {
+						//DON'T EDIT BELOW THIS LINE
+						var d = document, s = d.createElement('script');
+						s.src = 'https://devj-blog.disqus.com/embed.js';
+						s.setAttribute('data-timestamp', +new Date());
+						(d.head || d.body).appendChild(s);
+					})();
+				</script>
+				<noscript>
+					Please enable JavaScript to view the
+					<a href="https://disqus.com/?ref_noscript">comments powered by
+						Disqus.</a>
+				</noscript>
+			</nav>
+		</div>
+	</div>
+</section>
+<!-- 메인-상세페이지 끝 -->
+<!-- 메인-상세 하단 메뉴 시작 -->
+<section class="section-3 con-min-width">
+	<div class="con">
+		<div class="article-list-bottom-cell flex flex-jc-c"><div class="./"><a href="article_detail_12.html" class="hover-underline">&lt 이전글</a></div><div class="./"><i class="fas fa-th-list"></i><a href="html-list-1.html" class="hover-underline"> 목록 </a></div></div>
+	</div>
+</section>
+<!-- 메인-상세 하단 메뉴 끝 -->
+</section>
+</main>
+<!-- 메인 컨텐츠 박스 끝 -->
+  <!-- 맨 위 버튼 시작 -->
+  <nav class="top-button flex flex-jc-c flex-ai-c">
+    <div class="">
+      <a href="#header">▲ TOP</a> 
+    </div>     
+  </nav>
+  <!-- 맨 위 버튼 끝 -->
+
+
+  <!-- 푸터 시작 -->
+  <footer class="bottom-bar con-min-width">
+    <div class="con flex flex-ai-c">
+      <a href="index.html" class="logo logo--mini flex flex-ai-c" title="HOME">
+        <img class="logo--mini__img" src="images/Dev_J_logo/logo_transparent.png" alt="">
+      </a>
+      <div class="bottom-bar__site-info">
+        <span><i class="far fa-envelope"></i> juy32400@gmail.com</span>
+        <br>
+        <br>
+        <span>COPYRIGHT 2020. Dev_J. All rights reserved.</span>
+      </div>
+    </div>
+  </footer>
+  <!-- 푸터 끝 -->
+</div>
+<!-- 사이트 박스 끝 -->
+</body>
+</html>

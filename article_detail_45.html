@@ -1,0 +1,1069 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+<script data-ad-client="ca-pub-7996879977557531" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-X5RMP83794"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-X5RMP83794');
+</script>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- 구글 검색엔진 등록-소유권 확인 -->
+<meta name="google-site-verification" content="37R4KcEaJU5LfiKL7GI1hu1_spJgWOazN6xy48OHhD4" />
+
+<!-- Meta Tag & Open Graph -->
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<meta name="viewport" content="width=1200">
+<meta name="apple-mobile-web-app-title" content="Dev_J BLOG" />
+<!-- 메타태그정보 //-->
+<!-- META -->
+<link rel="canonical" href="https://blog.devj.me" />
+<meta name="subject" content="P.JSP - 개발일지(회원 비밀번호 관련 알림)"/>
+<meta name="title" content="Dev_J BLOG" />
+<meta name="keywords" content="JAVA, HTML, CSS, JavaScript, MySQL" />
+<meta name="copyright" content="Dev_J BLOG" />
+<meta name="pubdate" content="2021-02-22T19:02:27" />
+<meta name="lastmod" content="2021-02-22T19:02:27" />
+<!-- OPENGRAPH -->
+<meta property="og:site_name" content="Dev_J BLOG" />
+<meta property="og:type" content="blog" />
+<meta property="og:title" content="P.JSP - 개발일지(회원 비밀번호 관련 알림)" />
+<meta property="og:description" content="
+ 회원 비밀번호 관련 알림 기능 구현
+
+ x 회원이 임시비밀번호 사용중인 경우 상단에 알림바 상시 노출
+   x  알림창 노출 후 회원정보 페이지로 자동 이동
+   x 임시비밀번호 사용 회원이 비밀번호 변경하면 알림바 노출 중지
+
+ x 회원이 비밀번호 변경 후 90일 지났을 경우 로그인 시 알림창 노출
+   x 회원이 비밀번호 변경하면 알림창 노출 중지
+br
+
+ 영상
+
+youtube
+U40oxdto1dE
+
+br
+ 주요소스코드
+
+ DispatcherServletjava
+java
+
+ 세션에 로그인 정보 담기 시작 
+		int loginedMemberId  0
+		boolean isLogined  false
+		Member loginedMember  null
+		boolean isUsingTempPassword  false
+
+		HttpSession session  requestgetSession
+
+
+		if sessiongetAttributeloginedMemberId  null  int sessiongetAttributeloginedMemberId  0 
+			loginedMemberId  int sessiongetAttributeloginedMemberId
+			isLogined  true
+			loginedMember  ContainermemberServicegetMemberByIdloginedMemberId
+			
+			
+			 임시패스워드 사용 여부 확인
+			isUsingTempPassword  ContainermemberServicegetIsUsingTempPasswordloginedMemberId
+			 세션에 임시패스워드 사용중인 회원 정보 담기
+			ifisUsingTempPassword 
+				isUsingTempPassword  true
+			
+
+		
+
+		requestsetAttributeloginedMemberId loginedMemberId
+		requestsetAttributeisLogined isLogined
+		requestsetAttributeloginedMember loginedMember
+		requestsetAttributeisUsingTempPassword isUsingTempPassword
+		
+		 세션에 로그인 정보 담기 끝 
+
+
+
+
+
+br
+ MemberServicejava
+java
+
+ 로그인
+	public String doLoginHttpServletRequest request HttpServletResponse response 
+		String loginId  requestgetParameterloginId
+		if UtilisEmptyloginId 
+			return msgAndBackrequest 아이디를 입력하세요
+		
+		 String loginPw  requestgetParameterloginPw
+		 암호화된 비밀번호 값을 받기
+		String loginPw  requestgetParameterloginPwReal
+		if UtilisEmptyloginPw 
+			return msgAndBackrequest 비밀번호를 입력하세요
+		
+
+		Member member  memberServicegetMemberByLoginIdloginId
+
+		 해당 loginId가 등록된 id인지 확인
+		if member  null 
+			return msgAndBackrequest 해당 아이디는 없는 아이디입니다 아이디를 확인하세요
+		
+
+		 해당 loginPw가 일치하는지 확인
+		if membergetLoginPwequalsloginPw  false 
+			return msgAndBackrequest 비밀번호가 틀렸습니다
+		
+
+		 로그인 여부를 세션에 저장
+		HttpSession session  requestgetSession
+		sessionsetAttributeloginedMemberId membergetId
+
+		 임시패스워드 사용 여부 확인개선 시작 
+		boolean isUsingTempPassword  memberServicegetIsUsingTempPasswordmembergetId
+
+		 임시패스워드 사용중이면 알림창 보여주고 회원정보로 이동
+		if isUsingTempPassword 
+			return msgAndReplaceUrlrequest 현재 임시비밀번호를 사용 중입니다 비밀번호를 변경해 주세요 membershowMyPage
+		
+		 임시패스워드 사용 여부 확인개선 끝 
+
+		 비밀번호 변경날짜 90일 이상 지났는지 여부 확인 시작 
+		String limitDate  ContainerattrServicegetValuemember  membergetId  extraisPwChangeDateLimit
+
+		 날짜 포멧 셋팅
+		SimpleDateFormat sdf  new SimpleDateFormatyyMMdd
+		 Calendar생성
+		Calendar cal  CalendargetInstance
+		 오늘 날짜 가져오기
+		Date date  new Date
+		 오늘 날짜 셋팅
+		calsetTimedate
+		String todayDate  sdfformatcalgetTime
+
+		 오늘 날짜와 제한기간 날짜 비교
+		int compare  todayDatecompareTolimitDate
+
+		 비밀번호 변경날짜 90일 이상 지났는지 여부 확인 끝 
+
+		
+		 로그인 알림창 보여주고 화면으로 이동
+		String replaceUrl  homemain
+
+		if UtilisEmptyrequestgetParameternextUrlAfterLogin  false 
+			replaceUrl  requestgetParameternextUrlAfterLogin
+		
+		
+		if UtilisEmptyrequestgetParameterbeforeUrl  false 
+			replaceUrl  requestgetParameterbeforeUrl
+		
+		
+		 만약 오늘날짜가 지정날짜보다 크거나 같으면 기간만료 알림창 보여주고 메인으로 이동
+		if compare  0 
+			return msgAndReplaceUrlrequest 비밀번호 변경 후 90일이 지났습니다 비밀번호를 변경해 주세요 replaceUrl
+		
+
+		return msgAndReplaceUrlrequest membergetNickname   님 반갑습니다 replaceUrl
+
+	
+
+   
+br    
+ headjsp
+html
+
+ 탑 헤더 시작 
+		section classheadbarsection visiblemdup headnav navdown
+			div classheadbar con flex flexjcfe
+				cif testisLogined
+				cif testisUsingTempPassword
+					div stylecolorred fontweightbold width50
+						임시 비밀번호를 사용중입니다 비밀번호를 변경해 주세요
+					div
+				cif
+					div classheadbarbutton
+						a hrefhomemain titleHome홈a
+					div
+					div classheadbarbutton
+						a hrefmembershowMyPage titleMyPage회원정보a
+					div
+					div classheadbarbutton titleLogout
+						a hrefmemberdoLogoutbeforeUrlencodedCurrentUrl로그아웃a
+					div
+				cif
+				cif testisLogined  false
+					div classheadbarbutton titleHome
+						a hrefhomemain홈a
+					div
+					div classheadbarbutton titleLogin
+						a hrefmemberdoLoginFormbeforeUrlencodedCurrentUrl로그인a
+					div
+					div classheadbarbutton titleSignup
+						a hrefmemberdoJoinForm회원가입a
+					div
+				cif
+			div
+		section
+ 탑 헤더 끝 
+
+" />
+<meta property="og:locale" content="ko_KR" />
+<meta property="og:image" content="images/Dev_J_logo/logo.png" />
+<meta property="og:image:alt" content="blog.devj.me" />
+<meta property="og:image:width" content="486" />
+<meta property="og:image:height" content="254" />
+<meta property="og:updated_time" content="2021-02-22T19:02:27"/>
+<meta property="og:pubdate" content="2021-02-22T19:02:27" />
+<meta property="og:url" content="https://blog.devj.me" />
+<!-- TWITTER -->
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="P.JSP - 개발일지(회원 비밀번호 관련 알림)" />
+<meta name="twitter:site" content="@Dev_J BLOG" />
+<meta name="twitter:creator" content="@Dev_J BLOG" />
+<meta name="twitter:image" content="images/Dev_J_logo/logo.png">
+<meta name="twitter:description" content="
+ 회원 비밀번호 관련 알림 기능 구현
+
+ x 회원이 임시비밀번호 사용중인 경우 상단에 알림바 상시 노출
+   x  알림창 노출 후 회원정보 페이지로 자동 이동
+   x 임시비밀번호 사용 회원이 비밀번호 변경하면 알림바 노출 중지
+
+ x 회원이 비밀번호 변경 후 90일 지났을 경우 로그인 시 알림창 노출
+   x 회원이 비밀번호 변경하면 알림창 노출 중지
+br
+
+ 영상
+
+youtube
+U40oxdto1dE
+
+br
+ 주요소스코드
+
+ DispatcherServletjava
+java
+
+ 세션에 로그인 정보 담기 시작 
+		int loginedMemberId  0
+		boolean isLogined  false
+		Member loginedMember  null
+		boolean isUsingTempPassword  false
+
+		HttpSession session  requestgetSession
+
+
+		if sessiongetAttributeloginedMemberId  null  int sessiongetAttributeloginedMemberId  0 
+			loginedMemberId  int sessiongetAttributeloginedMemberId
+			isLogined  true
+			loginedMember  ContainermemberServicegetMemberByIdloginedMemberId
+			
+			
+			 임시패스워드 사용 여부 확인
+			isUsingTempPassword  ContainermemberServicegetIsUsingTempPasswordloginedMemberId
+			 세션에 임시패스워드 사용중인 회원 정보 담기
+			ifisUsingTempPassword 
+				isUsingTempPassword  true
+			
+
+		
+
+		requestsetAttributeloginedMemberId loginedMemberId
+		requestsetAttributeisLogined isLogined
+		requestsetAttributeloginedMember loginedMember
+		requestsetAttributeisUsingTempPassword isUsingTempPassword
+		
+		 세션에 로그인 정보 담기 끝 
+
+
+
+
+
+br
+ MemberServicejava
+java
+
+ 로그인
+	public String doLoginHttpServletRequest request HttpServletResponse response 
+		String loginId  requestgetParameterloginId
+		if UtilisEmptyloginId 
+			return msgAndBackrequest 아이디를 입력하세요
+		
+		 String loginPw  requestgetParameterloginPw
+		 암호화된 비밀번호 값을 받기
+		String loginPw  requestgetParameterloginPwReal
+		if UtilisEmptyloginPw 
+			return msgAndBackrequest 비밀번호를 입력하세요
+		
+
+		Member member  memberServicegetMemberByLoginIdloginId
+
+		 해당 loginId가 등록된 id인지 확인
+		if member  null 
+			return msgAndBackrequest 해당 아이디는 없는 아이디입니다 아이디를 확인하세요
+		
+
+		 해당 loginPw가 일치하는지 확인
+		if membergetLoginPwequalsloginPw  false 
+			return msgAndBackrequest 비밀번호가 틀렸습니다
+		
+
+		 로그인 여부를 세션에 저장
+		HttpSession session  requestgetSession
+		sessionsetAttributeloginedMemberId membergetId
+
+		 임시패스워드 사용 여부 확인개선 시작 
+		boolean isUsingTempPassword  memberServicegetIsUsingTempPasswordmembergetId
+
+		 임시패스워드 사용중이면 알림창 보여주고 회원정보로 이동
+		if isUsingTempPassword 
+			return msgAndReplaceUrlrequest 현재 임시비밀번호를 사용 중입니다 비밀번호를 변경해 주세요 membershowMyPage
+		
+		 임시패스워드 사용 여부 확인개선 끝 
+
+		 비밀번호 변경날짜 90일 이상 지났는지 여부 확인 시작 
+		String limitDate  ContainerattrServicegetValuemember  membergetId  extraisPwChangeDateLimit
+
+		 날짜 포멧 셋팅
+		SimpleDateFormat sdf  new SimpleDateFormatyyMMdd
+		 Calendar생성
+		Calendar cal  CalendargetInstance
+		 오늘 날짜 가져오기
+		Date date  new Date
+		 오늘 날짜 셋팅
+		calsetTimedate
+		String todayDate  sdfformatcalgetTime
+
+		 오늘 날짜와 제한기간 날짜 비교
+		int compare  todayDatecompareTolimitDate
+
+		 비밀번호 변경날짜 90일 이상 지났는지 여부 확인 끝 
+
+		
+		 로그인 알림창 보여주고 화면으로 이동
+		String replaceUrl  homemain
+
+		if UtilisEmptyrequestgetParameternextUrlAfterLogin  false 
+			replaceUrl  requestgetParameternextUrlAfterLogin
+		
+		
+		if UtilisEmptyrequestgetParameterbeforeUrl  false 
+			replaceUrl  requestgetParameterbeforeUrl
+		
+		
+		 만약 오늘날짜가 지정날짜보다 크거나 같으면 기간만료 알림창 보여주고 메인으로 이동
+		if compare  0 
+			return msgAndReplaceUrlrequest 비밀번호 변경 후 90일이 지났습니다 비밀번호를 변경해 주세요 replaceUrl
+		
+
+		return msgAndReplaceUrlrequest membergetNickname   님 반갑습니다 replaceUrl
+
+	
+
+   
+br    
+ headjsp
+html
+
+ 탑 헤더 시작 
+		section classheadbarsection visiblemdup headnav navdown
+			div classheadbar con flex flexjcfe
+				cif testisLogined
+				cif testisUsingTempPassword
+					div stylecolorred fontweightbold width50
+						임시 비밀번호를 사용중입니다 비밀번호를 변경해 주세요
+					div
+				cif
+					div classheadbarbutton
+						a hrefhomemain titleHome홈a
+					div
+					div classheadbarbutton
+						a hrefmembershowMyPage titleMyPage회원정보a
+					div
+					div classheadbarbutton titleLogout
+						a hrefmemberdoLogoutbeforeUrlencodedCurrentUrl로그아웃a
+					div
+				cif
+				cif testisLogined  false
+					div classheadbarbutton titleHome
+						a hrefhomemain홈a
+					div
+					div classheadbarbutton titleLogin
+						a hrefmemberdoLoginFormbeforeUrlencodedCurrentUrl로그인a
+					div
+					div classheadbarbutton titleSignup
+						a hrefmemberdoJoinForm회원가입a
+					div
+				cif
+			div
+		section
+ 탑 헤더 끝 
+
+" />
+<!-- GOOGLE+ -->
+<meta itemprop="headline" content="Dev_J BLOG" />
+<meta itemprop="name" content="Dev_J BLOG" />
+<meta itemprop="description" content="
+ 회원 비밀번호 관련 알림 기능 구현
+
+ x 회원이 임시비밀번호 사용중인 경우 상단에 알림바 상시 노출
+   x  알림창 노출 후 회원정보 페이지로 자동 이동
+   x 임시비밀번호 사용 회원이 비밀번호 변경하면 알림바 노출 중지
+
+ x 회원이 비밀번호 변경 후 90일 지났을 경우 로그인 시 알림창 노출
+   x 회원이 비밀번호 변경하면 알림창 노출 중지
+br
+
+ 영상
+
+youtube
+U40oxdto1dE
+
+br
+ 주요소스코드
+
+ DispatcherServletjava
+java
+
+ 세션에 로그인 정보 담기 시작 
+		int loginedMemberId  0
+		boolean isLogined  false
+		Member loginedMember  null
+		boolean isUsingTempPassword  false
+
+		HttpSession session  requestgetSession
+
+
+		if sessiongetAttributeloginedMemberId  null  int sessiongetAttributeloginedMemberId  0 
+			loginedMemberId  int sessiongetAttributeloginedMemberId
+			isLogined  true
+			loginedMember  ContainermemberServicegetMemberByIdloginedMemberId
+			
+			
+			 임시패스워드 사용 여부 확인
+			isUsingTempPassword  ContainermemberServicegetIsUsingTempPasswordloginedMemberId
+			 세션에 임시패스워드 사용중인 회원 정보 담기
+			ifisUsingTempPassword 
+				isUsingTempPassword  true
+			
+
+		
+
+		requestsetAttributeloginedMemberId loginedMemberId
+		requestsetAttributeisLogined isLogined
+		requestsetAttributeloginedMember loginedMember
+		requestsetAttributeisUsingTempPassword isUsingTempPassword
+		
+		 세션에 로그인 정보 담기 끝 
+
+
+
+
+
+br
+ MemberServicejava
+java
+
+ 로그인
+	public String doLoginHttpServletRequest request HttpServletResponse response 
+		String loginId  requestgetParameterloginId
+		if UtilisEmptyloginId 
+			return msgAndBackrequest 아이디를 입력하세요
+		
+		 String loginPw  requestgetParameterloginPw
+		 암호화된 비밀번호 값을 받기
+		String loginPw  requestgetParameterloginPwReal
+		if UtilisEmptyloginPw 
+			return msgAndBackrequest 비밀번호를 입력하세요
+		
+
+		Member member  memberServicegetMemberByLoginIdloginId
+
+		 해당 loginId가 등록된 id인지 확인
+		if member  null 
+			return msgAndBackrequest 해당 아이디는 없는 아이디입니다 아이디를 확인하세요
+		
+
+		 해당 loginPw가 일치하는지 확인
+		if membergetLoginPwequalsloginPw  false 
+			return msgAndBackrequest 비밀번호가 틀렸습니다
+		
+
+		 로그인 여부를 세션에 저장
+		HttpSession session  requestgetSession
+		sessionsetAttributeloginedMemberId membergetId
+
+		 임시패스워드 사용 여부 확인개선 시작 
+		boolean isUsingTempPassword  memberServicegetIsUsingTempPasswordmembergetId
+
+		 임시패스워드 사용중이면 알림창 보여주고 회원정보로 이동
+		if isUsingTempPassword 
+			return msgAndReplaceUrlrequest 현재 임시비밀번호를 사용 중입니다 비밀번호를 변경해 주세요 membershowMyPage
+		
+		 임시패스워드 사용 여부 확인개선 끝 
+
+		 비밀번호 변경날짜 90일 이상 지났는지 여부 확인 시작 
+		String limitDate  ContainerattrServicegetValuemember  membergetId  extraisPwChangeDateLimit
+
+		 날짜 포멧 셋팅
+		SimpleDateFormat sdf  new SimpleDateFormatyyMMdd
+		 Calendar생성
+		Calendar cal  CalendargetInstance
+		 오늘 날짜 가져오기
+		Date date  new Date
+		 오늘 날짜 셋팅
+		calsetTimedate
+		String todayDate  sdfformatcalgetTime
+
+		 오늘 날짜와 제한기간 날짜 비교
+		int compare  todayDatecompareTolimitDate
+
+		 비밀번호 변경날짜 90일 이상 지났는지 여부 확인 끝 
+
+		
+		 로그인 알림창 보여주고 화면으로 이동
+		String replaceUrl  homemain
+
+		if UtilisEmptyrequestgetParameternextUrlAfterLogin  false 
+			replaceUrl  requestgetParameternextUrlAfterLogin
+		
+		
+		if UtilisEmptyrequestgetParameterbeforeUrl  false 
+			replaceUrl  requestgetParameterbeforeUrl
+		
+		
+		 만약 오늘날짜가 지정날짜보다 크거나 같으면 기간만료 알림창 보여주고 메인으로 이동
+		if compare  0 
+			return msgAndReplaceUrlrequest 비밀번호 변경 후 90일이 지났습니다 비밀번호를 변경해 주세요 replaceUrl
+		
+
+		return msgAndReplaceUrlrequest membergetNickname   님 반갑습니다 replaceUrl
+
+	
+
+   
+br    
+ headjsp
+html
+
+ 탑 헤더 시작 
+		section classheadbarsection visiblemdup headnav navdown
+			div classheadbar con flex flexjcfe
+				cif testisLogined
+				cif testisUsingTempPassword
+					div stylecolorred fontweightbold width50
+						임시 비밀번호를 사용중입니다 비밀번호를 변경해 주세요
+					div
+				cif
+					div classheadbarbutton
+						a hrefhomemain titleHome홈a
+					div
+					div classheadbarbutton
+						a hrefmembershowMyPage titleMyPage회원정보a
+					div
+					div classheadbarbutton titleLogout
+						a hrefmemberdoLogoutbeforeUrlencodedCurrentUrl로그아웃a
+					div
+				cif
+				cif testisLogined  false
+					div classheadbarbutton titleHome
+						a hrefhomemain홈a
+					div
+					div classheadbarbutton titleLogin
+						a hrefmemberdoLoginFormbeforeUrlencodedCurrentUrl로그인a
+					div
+					div classheadbarbutton titleSignup
+						a hrefmemberdoJoinForm회원가입a
+					div
+				cif
+			div
+		section
+ 탑 헤더 끝 
+
+" />
+<meta itemprop="image" content="images/Dev_J_logo/logo.png" />
+
+<!-- 사이트 타이틀 -->
+<title>P.JSP - 개발일지(회원 비밀번호 관련 알림) | Dev_J BLOG | ARTICLE DETAIL</title>
+
+
+<!-- 파비콘 -->
+<link rel="shortcut icon" href="images/favicon/favicon.ico" type="image/x-icon">
+<link rel="icon" href="images/favicon/favicon.ico" type="image/x-icon">
+
+<!-- 폰트어썸 불러오기 -->
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+
+<!--모바일에서도 PC와 같은 비율 유지-->
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<!--제이쿼리-->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+<!-- 하이라이트 라이브러리 추가, 토스트 UI 에디터에서 사용됨 -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.4.1/highlight.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.4.1/styles/default.min.css">
+
+<!-- 토스트 UI 에디터, 자바스크립트 코어 -->
+<script
+	src="https://uicdn.toast.com/editor/latest/toastui-editor-all.min.js" defer></script>
+
+<!-- 코드 미러 라이브러리 추가, 토스트 UI 에디터에서 사용됨 -->
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.58.3/codemirror.min.css" />
+<!-- 토스트 UI 에디터, CSS 코어 -->
+<link rel="stylesheet"
+	href="https://uicdn.toast.com/editor/latest/toastui-editor.min.css" />
+
+<!-- 토스트 UI 에디터, 신택스 하이라이트 플러그인 추가 -->
+<script src="https://uicdn.toast.com/editor-plugin-code-syntax-highlight/latest/toastui-editor-plugin-code-syntax-highlight.min.js" defer></script>
+
+<!-- app.css 불러오기 -->
+<link rel="stylesheet" href="app.css">
+<!-- app.js 불러오기 -->
+<script src="app.js" defer></script>
+<!-- index.js 불러오기 
+<script src="index.js" defer></script>
+-->
+</head>
+
+<body>
+<!-- 사이트 박스 시작 -->
+<div class="body-content min-height-100vh flex flex-column">
+  <!-- 로고바 시작 -->
+  <header class="logo-bar con-min-width" id="header">
+    <div class="con height-100p flex flex-jc-c" title="HOME">
+      <a href="index.html" class="logo flex flex-ai-c"> 
+        <img class="logo__img" src="images/Dev_J_logo/logo_transparent.png" alt="">
+        <span>
+          BLOG
+        </span>
+      </a>
+    </div>
+  </header>
+  <!-- 로고바 끝 -->
+
+  <!-- 메뉴바 시작-->
+  <header class="menu-bar con-min-width visible-md-up">
+    <div class="flex flex-jc-sb">
+   	 <div class="menu-bar__status-icon" title="Menu">
+      <div></div>
+      <div></div>
+      <div></div>
+     </div>
+     <a class="search-icon" title="search" href="search.html">
+        <i class="fa fa-search"></i>
+     </a>
+   </div>
+   <div class="con hide">
+    <nav class="menu-bar__menu">
+      <ul class="flex">
+          <li title="ABOUT">
+            <a href="about.html" class="block">
+              <i class="far fa-address-card"></i>
+              <span>ABOUT</span>
+            </a>
+          </li>
+          <li>
+            <a class="block">
+              <i class="fas fa-list"></i>
+              <span>ARTICLES</span>
+            </a>
+            <ul>
+              <li title="NOTICE"><a href="notice-list-1.html" class="block"><i class="fas fa-bullhorn"></i> <span>NOTICE BOARD</span></a></li><li title="JAVA"><a href="java-list-1.html" class="block"><i class="fab fa-java"></i> <span>JAVA BOARD</span></a></li><li title="HTML"><a href="html-list-1.html" class="block"><i class="fab fa-html5"></i> <span>HTML & CSS & JS BOARD</span></a></li><li title="MYSQL"><a href="mysql-list-1.html" class="block"><i class="fas fa-database"></i> <span>MySQL BOARD</span></a></li>
+            </ul>
+          </li>
+          <li>
+            <a class="block">
+              <i class="fas fa-project-diagram"></i>
+              <span>PROJECT</span>
+            </a>
+            <ul>
+              <li title="P_BLOG"><a href="p_blog-list-1.html" class="block"><i class="fab fa-blogger"></i> <span>P.BLOG PROJECT</span></a></li><li title="P_JSP"><a href="p_jsp-list-1.html" class="block"><i class="fas fa-file-word"></i> <span>P.JSP PROJECT</span></a></li>
+            </ul>
+          </li>
+          <li>
+            <a class="block">
+              <i class="fas fa-link"></i>
+              <span>LINK</span>
+            </a>
+            <ul>
+              <li title="T-STORY">
+                <a href="https://cjy324.tistory.com/" target="_blank" class="block">
+                  <i class="fas fa-rss-square"></i>
+                  <span>T-STORY</span>
+                </a>
+              </li>
+              <li title="GITHUB">
+                <a href="https://github.com/cjy324/TIL_Jooyoung#til_jooyoung" target="_blank" class="block">
+                  <i class="fab fa-github"></i>
+                  <span>GITHUB</span>
+                </a>
+              </li>
+            </ul>
+          </li>
+          <li title="STATISTICS">
+            <a href="statistics.html" class="block">
+              <i class="fas fa-chart-pie"></i>
+              <span>STATISTICS</span>
+            </a>
+          </li>
+        </ul>
+      </nav>
+   </div>
+  </header>
+  <!-- 메뉴바 끝 -->
+  
+  <!-- 모바일 사이드 메뉴바 시작 -->
+  <header class="mobile-menu-bar con-min-width visible-sm-down">
+    <div class="flex flex-jc-sb">
+   <div class="mobile-menu-bar__status-icon" title="Menu">
+     <div></div>
+     <div></div>
+     <div></div>
+   </div>
+    <a class="search-icon" title="search" href="search.html">
+        <i class="fa fa-search"></i>
+      </a>
+   </div>
+   <div class="con ">
+    <aside class="mobile-side-bar flex flex-column flex-jc-c ">
+      <div class="mobile-side-bar_X"><i class="fas fa-times"></i></div>
+      <nav class="mobile-side-bar_menu flex">
+      <ul class="">
+          <li title="ABOUT">
+            <a href="about.html" class="block">
+              <i class="far fa-address-card"></i>
+              <span>ABOUT</span>
+            </a>
+          </li>
+          <li>
+            <a class="block">
+              <i class="fas fa-list"></i>
+              <span>ARTICLES</span>
+            </a>
+            <ul class="hide2">
+              <li title="NOTICE"><a href="notice-list-1.html" class="block"><i class="fas fa-bullhorn"></i> <span>NOTICE BOARD</span></a></li><li title="JAVA"><a href="java-list-1.html" class="block"><i class="fab fa-java"></i> <span>JAVA BOARD</span></a></li><li title="HTML"><a href="html-list-1.html" class="block"><i class="fab fa-html5"></i> <span>HTML & CSS & JS BOARD</span></a></li><li title="MYSQL"><a href="mysql-list-1.html" class="block"><i class="fas fa-database"></i> <span>MySQL BOARD</span></a></li>
+            </ul>
+          </li>
+          <li>
+            <a class="block">
+              <i class="fas fa-project-diagram"></i>
+              <span>PROJECT</span>
+            </a>
+            <ul class="hide2">
+              <li title="P_BLOG"><a href="p_blog-list-1.html" class="block"><i class="fab fa-blogger"></i> <span>P.BLOG PROJECT</span></a></li><li title="P_JSP"><a href="p_jsp-list-1.html" class="block"><i class="fas fa-file-word"></i> <span>P.JSP PROJECT</span></a></li>
+            </ul>
+          </li>
+          <li>
+            <a class="block">
+              <i class="fas fa-link"></i>
+              <span>LINK</span>
+            </a>
+            <ul class="hide2">
+              <li title="T-STORY">
+                <a href="https://cjy324.tistory.com/" target="_blank" class="block">
+                  <i class="fas fa-rss-square"></i>
+                  <span>T-STORY</span>
+                </a>
+              </li>
+              <li title="GITHUB">
+                <a href="https://github.com/cjy324/TIL_Jooyoung#til_jooyoung" target="_blank" class="block">
+                  <i class="fab fa-github"></i>
+                  <span>GITHUB</span>
+                </a>
+              </li>
+            </ul>
+          </li>
+          <li title="STATISTICS">
+            <a href="statistics.html" class="block">
+              <i class="fas fa-chart-pie"></i>
+              <span>STATISTICS</span>
+            </a>
+          </li>
+        </ul>
+      </nav>  
+      </aside>
+   </div>
+  </header>
+  
+  <!-- 모바일 사이드 메뉴바 끝 --> 
+   
+
+  <!-- 메인 컨텐츠 박스 시작 -->
+  <main class="main-box flex-grow-1">
+  <section class="main-box-section con-min-width">
+   <!-- 메인-타이틀바 시작 -->
+	<div class="title-bar con-min-width">
+		<h1 class="con">
+			<i class="fas fa-file-invoice"></i> <span>ARTICLE</span>
+		</h1>
+	</div>
+   <!-- 메인-타이틀바 종료 -->
+<!-- Progress-bar -->
+<script type="text/javascript"
+	src="https://rawcdn.githack.com/mburakerman/prognroll/0feda211643153bce2c69de32ea1b39cdc64ffbe/src/prognroll.js"></script>
+<script type="text/javascript">
+	$(function() {
+		$("body").prognroll({
+			height : 10,
+			color : "#666666"
+		});
+		$(".content").prognroll({
+			custom : true
+		});
+	});
+</script>
+
+<!-- 메인-상세페이지 시작 -->
+<section class="section-2 con-min-width min-height-50vh">
+	<div class="con height-100p">
+		<div class="article-detail-cell height-100p">
+			<div class="article-detail-cell__board-name"><div><span>게시판 : </span><span>P.JSP 게시판</span></div></div><div class="article-detail-cell__id"><div><span>번호 : </span><span>45</span></div></div><div class="article-detail-cell__member-id"><div><span>작성자 : </span><span>Dev_J</span></div></div><div class="article-detail-cell__reg-date"><div><span>작성일 : </span><span>2021-02-22 18:48:06</span></div></div><div class="article-detail-cell__update-date"><div><span>수정일 : </span><span>2021-02-22 19:02:26</span></div></div><br><div class="article-detail-cell__title-contents flex flex-jc-fe"><div class="article-detail-cell__hitsCount"><div><span>조회수 : </span><span>0</span></div></div><div class="article-detail-cell__likesCount"><div><span>추천수 : </span><span>0</span></div></div><div class="article-detail-cell__commentsCount"><div><span>댓글수 : </span><span>0</span></div></div></div><div class="article-detail-cell__title"><div><span>제목 : </span><span>P.JSP - 개발일지(회원 비밀번호 관련 알림)</span></div></div><nav class="ad"><!-- 구글 애드센스2 --><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script><!-- 수평 반응형2 --><ins class="adsbygoogle" style="display: block" data-ad-client="ca-pub-7996879977557531" data-ad-slot="2278060237" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle = window.adsbygoogle || []).push({});</script></nav><script type"text/x-template">
+# 회원 비밀번호 관련 알림 기능 구현
+
+- [x] 회원이 임시비밀번호 사용중인 경우 상단에 알림바 상시 노출
+  - [x] + 알림창 노출 후 회원정보 페이지로 자동 이동
+  - [x] 임시비밀번호 사용 회원이 비밀번호 변경하면 알림바 노출 중지
+
+- [x] 회원이 비밀번호 변경 후 90일 지났을 경우 로그인 시 알림창 노출
+  - [x] 회원이 비밀번호 변경하면 알림창 노출 중지
+<br>
+
+## 영상
+
+```youtube
+U40oxdto1dE
+```
+<br>
+## 주요소스코드
+
+### DispatcherServlet.java
+```java
+
+/* 세션에 로그인 정보 담기 시작 */
+		int loginedMemberId = 0;
+		boolean isLogined = false;
+		Member loginedMember = null;
+		boolean isUsingTempPassword = false;
+
+		HttpSession session = request.getSession();
+
+
+		if (session.getAttribute("loginedMemberId") != null && (int) session.getAttribute("loginedMemberId") > 0) {
+			loginedMemberId = (int) session.getAttribute("loginedMemberId");
+			isLogined = true;
+			loginedMember = Container.memberService.getMemberById(loginedMemberId);
+			
+			
+			/// 임시패스워드 사용 여부 확인
+			isUsingTempPassword = Container.memberService.getIsUsingTempPassword(loginedMemberId);
+			/// 세션에 임시패스워드 사용중인 회원 정보 담기
+			if(isUsingTempPassword) {
+				isUsingTempPassword = true;
+			}
+
+		}
+
+		request.setAttribute("loginedMemberId", loginedMemberId);
+		request.setAttribute("isLogined", isLogined);
+		request.setAttribute("loginedMember", loginedMember);
+		request.setAttribute("isUsingTempPassword", isUsingTempPassword);
+		
+		/* 세션에 로그인 정보 담기 끝 */
+
+
+```
+
+
+<br>
+### MemberService.java
+```java
+
+// 로그인
+	public String doLogin(HttpServletRequest request, HttpServletResponse response) {
+		String loginId = request.getParameter("loginId");
+		if (Util.isEmpty(loginId)) {
+			return msgAndBack(request, "아이디를 입력하세요.");
+		}
+		// String loginPw = request.getParameter("loginPw");
+		// 암호화된 비밀번호 값을 받기
+		String loginPw = request.getParameter("loginPwReal");
+		if (Util.isEmpty(loginPw)) {
+			return msgAndBack(request, "비밀번호를 입력하세요.");
+		}
+
+		Member member = memberService.getMemberByLoginId(loginId);
+
+		// 해당 loginId가 등록된 id인지 확인
+		if (member == null) {
+			return msgAndBack(request, "해당 아이디는 없는 아이디입니다. 아이디를 확인하세요.");
+		}
+
+		// 해당 loginPw가 일치하는지 확인
+		if (member.getLoginPw().equals(loginPw) == false) {
+			return msgAndBack(request, "비밀번호가 틀렸습니다.");
+		}
+
+		// 로그인 여부를 세션에 저장
+		HttpSession session = request.getSession();
+		session.setAttribute("loginedMemberId", member.getId());
+
+		/* 임시패스워드 사용 여부 확인(개선) 시작 */
+		boolean isUsingTempPassword = memberService.getIsUsingTempPassword(member.getId());
+
+		// 임시패스워드 사용중이면 알림창 보여주고 회원정보로 이동
+		if (isUsingTempPassword) {
+			return msgAndReplaceUrl(request, "현재 임시비밀번호를 사용 중입니다. 비밀번호를 변경해 주세요.", "../member/showMyPage");
+		}
+		/* 임시패스워드 사용 여부 확인(개선) 끝 */
+
+		/* 비밀번호 변경날짜 90일 이상 지났는지 여부 확인 시작 */
+		String limitDate = Container.attrService.getValue("member__" + member.getId() + "__extra__isPwChangeDateLimit");
+
+		// 날짜 포멧 셋팅
+		SimpleDateFormat sdf = new SimpleDateFormat("yyMMdd");
+		// Calendar생성
+		Calendar cal = Calendar.getInstance();
+		// 오늘 날짜 가져오기
+		Date date = new Date();
+		// 오늘 날짜 셋팅
+		cal.setTime(date);
+		String todayDate = sdf.format(cal.getTime());
+
+		// 오늘 날짜와 제한기간 날짜 비교
+		int compare = todayDate.compareTo(limitDate);
+
+		/* 비밀번호 변경날짜 90일 이상 지났는지 여부 확인 끝 */
+
+		
+		// 로그인 알림창 보여주고 화면으로 이동
+		String replaceUrl = "../home/main";
+
+		if (Util.isEmpty(request.getParameter("nextUrlAfterLogin")) == false) {
+			replaceUrl = request.getParameter("nextUrlAfterLogin");
+		}
+		
+		if (Util.isEmpty(request.getParameter("beforeUrl")) == false) {
+			replaceUrl = request.getParameter("beforeUrl");
+		}
+		
+		// 만약 오늘날짜가 지정날짜보다 크거나 같으면 기간만료 알림창 보여주고 메인으로 이동
+		if (compare >= 0) {
+			return msgAndReplaceUrl(request, "비밀번호 변경 후 90일이 지났습니다. 비밀번호를 변경해 주세요.", replaceUrl);
+		}
+
+		return msgAndReplaceUrl(request, member.getNickname() + ", 님 반갑습니다.", replaceUrl);
+
+	}
+
+```   
+<br>    
+### head.jsp
+```html
+
+<!-- 탑 헤더 시작 -->
+		<section class="head-bar-section visible-md-up head-nav nav-down">
+			<div class="head-bar con flex flex-jc-fe">
+				<c:if test="${isLogined}">
+				<c:if test="${isUsingTempPassword}">
+					<div style="color:red; font-weight:bold; width:50%;">
+						임시 비밀번호를 사용중입니다. 비밀번호를 변경해 주세요.
+					</div>
+				</c:if>
+					<div class="head-bar-button">
+						<a href="../home/main" title="Home">홈</a>
+					</div>
+					<div class="head-bar-button">
+						<a href="../member/showMyPage" title="MyPage">회원정보</a>
+					</div>
+					<div class="head-bar-button" title="Logout">
+						<a href="../member/doLogout?beforeUrl=${encodedCurrentUrl}">로그아웃</a>
+					</div>
+				</c:if>
+				<c:if test="${isLogined == false}">
+					<div class="head-bar-button" title="Home">
+						<a href="../home/main">홈</a>
+					</div>
+					<div class="head-bar-button" title="Login">
+						<a href="../member/doLoginForm?beforeUrl=${encodedCurrentUrl}">로그인</a>
+					</div>
+					<div class="head-bar-button" title="Sign-up">
+						<a href="../member/doJoinForm">회원가입</a>
+					</div>
+				</c:if>
+			</div>
+		</section>
+<!-- 탑 헤더 끝 -->
+
+```</script><div class="article-detail-cell__body height-70p toast-ui-viewer"><div></div></div><br><div class="article-detail-cell__tag flex flex-wrap"><nav># <a href="#" target="_blank">project</a></nav><nav># <a href="#" target="_blank">개발일지</a></nav><nav># <a href="#" target="_blank">JSP</a></nav></div><br><br><nav class="ad"><!-- 구글 애드센스1 --><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script><!-- 수평 반응형1 --><ins class="adsbygoogle" style="display: block" data-ad-client="ca-pub-7996879977557531" data-ad-slot="6812185708" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle = window.adsbygoogle || []).push({});</script></nav>
+			<!-- Disqus api 적용 -->
+			<!-- 정확한 페이지 경로 알려주는 기능 추가-->
+			<nav>
+				<div id="disqus_thread"></div>
+				<script>
+					var disqus_config = function() {
+						this.page.url = 'https://blog.devj.me/article_detail_45.html';
+						this.page.identifier = 'article_detail_45.html';
+					};
+					(function() {
+						//DON'T EDIT BELOW THIS LINE
+						var d = document, s = d.createElement('script');
+						s.src = 'https://devj-blog.disqus.com/embed.js';
+						s.setAttribute('data-timestamp', +new Date());
+						(d.head || d.body).appendChild(s);
+					})();
+				</script>
+				<noscript>
+					Please enable JavaScript to view the
+					<a href="https://disqus.com/?ref_noscript">comments powered by
+						Disqus.</a>
+				</noscript>
+			</nav>
+		</div>
+	</div>
+</section>
+<!-- 메인-상세페이지 끝 -->
+<!-- 메인-상세 하단 메뉴 시작 -->
+<section class="section-3 con-min-width">
+	<div class="con">
+		<div class="article-list-bottom-cell flex flex-jc-c"><div class="./"><a href="article_detail_26.html" class="hover-underline">&lt 이전글</a></div><div class="./"><i class="fas fa-th-list"></i><a href="p_jsp-list-1.html" class="hover-underline"> 목록 </a></div><div class="./"><a href="article_detail_46.html"class="hover-underline">다음글 &gt</a></div></div>
+	</div>
+</section>
+<!-- 메인-상세 하단 메뉴 끝 -->
+</section>
+</main>
+<!-- 메인 컨텐츠 박스 끝 -->
+  <!-- 맨 위 버튼 시작 -->
+  <nav class="top-button flex flex-jc-c flex-ai-c">
+    <div class="">
+      <a href="#header">▲ TOP</a> 
+    </div>     
+  </nav>
+  <!-- 맨 위 버튼 끝 -->
+
+
+  <!-- 푸터 시작 -->
+  <footer class="bottom-bar con-min-width">
+    <div class="con flex flex-ai-c">
+      <a href="index.html" class="logo logo--mini flex flex-ai-c" title="HOME">
+        <img class="logo--mini__img" src="images/Dev_J_logo/logo_transparent.png" alt="">
+      </a>
+      <div class="bottom-bar__site-info">
+        <span><i class="far fa-envelope"></i> juy32400@gmail.com</span>
+        <br>
+        <br>
+        <span>COPYRIGHT 2020. Dev_J. All rights reserved.</span>
+      </div>
+    </div>
+  </footer>
+  <!-- 푸터 끝 -->
+</div>
+<!-- 사이트 박스 끝 -->
+</body>
+</html>

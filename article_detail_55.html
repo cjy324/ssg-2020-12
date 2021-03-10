@@ -24,256 +24,73 @@
 <!-- 메타태그정보 //-->
 <!-- META -->
 <link rel="canonical" href="https://blog.devj.me" />
-<meta name="subject" content="P.BLOG - 개발일지(ajax 통신 연계 통한 블로그 게시물 검색 페이지 생성(+인덱스 게시판 디자인 개편))"/>
+<meta name="subject" content="LINK 메뉴에 "GetIT" 링크를 추가했습니다."/>
 <meta name="title" content="Dev_J BLOG" />
 <meta name="keywords" content="JAVA, HTML, CSS, JavaScript, MySQL" />
 <meta name="copyright" content="Dev_J BLOG" />
-<meta name="pubdate" content="2021-03-10T12:48:09" />
-<meta name="lastmod" content="2021-03-10T12:48:09" />
+<meta name="pubdate" content="2021-03-10T12:48:08" />
+<meta name="lastmod" content="2021-03-10T12:48:08" />
 <!-- OPENGRAPH -->
 <meta property="og:site_name" content="Dev_J BLOG" />
 <meta property="og:type" content="blog" />
-<meta property="og:title" content="P.BLOG - 개발일지(ajax 통신 연계 통한 블로그 게시물 검색 페이지 생성(+인덱스 게시판 디자인 개편))" />
-<meta property="og:description" content=" ajax 통신 연계 통한 블로그 게시물 검색 페이지 생성인덱스 게시판 디자인 개편
+<meta property="og:title" content="LINK 메뉴에 "GetIT" 링크를 추가했습니다." />
+<meta property="og:description" content="PJSP 프로젝트의 결과물로 GetIT 사이트를 서비스하게 되었습니다
 
- search 페이지
-imagehttpsimg1daumcdnnetthumbR1280x0scodemtistory2fnamehttps3A2F2Fblogkakaocdnnet2Fdn2Fo9LTS2FbtqSSdyUT9q2FK52ckkobeyIJNUTCprmjbK2Fimgpng
+GetIT 사이트에 대해 간략히 소개드리자면
+아이폰 갤럭시 아이패드 갤럭시탭 그리고 스마트워치 등 다양한 스마트기기들과 관련된
+최신 소식들 유용한 Tip들을 공유하고자 개설한 커뮤니티 사이트입니다
 
+JSP를 기반으로 개발하였으며
+CentOS7 기반 Linux서버에 연결해 서비스중입니다
 
- 소스코드
+많은 관심 부탁드립니다
 
- searchjs
-javascript
-
-consoleclear
-const articleList  
-
-const apiURL  articlelistjson
-
-get
-    apiURL
-    
-    functiondata 
-        dataforEachrow index  
-
-        const article  
-        idrowid
-        regDaterowregDate
-        writerrowextramemberName
-        titlerowtitle
-        bodyrowbody
-            
-          
-          articleListpusharticle
-        
-    
-    json
-
-
-const articleListBox  new Vue
-  elarticlesearchsection
-  data
-    articleListarticleList
-    keyword
-  
-    methods
-    sourcedebouncefunctionevent
-      thiskeyword  eventtargetvalue
-     500
-  
-  computed
-    filteredKeywordfunction
-      return thiskeywordtoLowerCase
-    
-    filteredfunction
-      ifthisfilteredKeywordlength  0
-        return thisarticleList
-      
-      
-      return thisarticleListfilterrow
-        const keys  title writer body regDate
-        
-        const match  keyssomekey
-          ifrowkeytoLowerCaseindexOfthisfilteredKeyword  1
-          return true
-        
-          
-        
-        return match
-         
-    
-  
-
-
-
-" />
+감사합니다   " />
 <meta property="og:locale" content="ko_KR" />
 <meta property="og:image" content="images/Dev_J_logo/logo.png" />
 <meta property="og:image:alt" content="blog.devj.me" />
 <meta property="og:image:width" content="486" />
 <meta property="og:image:height" content="254" />
-<meta property="og:updated_time" content="2021-03-10T12:48:09"/>
-<meta property="og:pubdate" content="2021-03-10T12:48:09" />
+<meta property="og:updated_time" content="2021-03-10T12:48:08"/>
+<meta property="og:pubdate" content="2021-03-10T12:48:08" />
 <meta property="og:url" content="https://blog.devj.me" />
 <!-- TWITTER -->
 <meta name="twitter:card" content="summary_large_image" />
-<meta name="twitter:title" content="P.BLOG - 개발일지(ajax 통신 연계 통한 블로그 게시물 검색 페이지 생성(+인덱스 게시판 디자인 개편))" />
+<meta name="twitter:title" content="LINK 메뉴에 "GetIT" 링크를 추가했습니다." />
 <meta name="twitter:site" content="@Dev_J BLOG" />
 <meta name="twitter:creator" content="@Dev_J BLOG" />
 <meta name="twitter:image" content="images/Dev_J_logo/logo.png">
-<meta name="twitter:description" content=" ajax 통신 연계 통한 블로그 게시물 검색 페이지 생성인덱스 게시판 디자인 개편
+<meta name="twitter:description" content="PJSP 프로젝트의 결과물로 GetIT 사이트를 서비스하게 되었습니다
 
- search 페이지
-imagehttpsimg1daumcdnnetthumbR1280x0scodemtistory2fnamehttps3A2F2Fblogkakaocdnnet2Fdn2Fo9LTS2FbtqSSdyUT9q2FK52ckkobeyIJNUTCprmjbK2Fimgpng
+GetIT 사이트에 대해 간략히 소개드리자면
+아이폰 갤럭시 아이패드 갤럭시탭 그리고 스마트워치 등 다양한 스마트기기들과 관련된
+최신 소식들 유용한 Tip들을 공유하고자 개설한 커뮤니티 사이트입니다
 
+JSP를 기반으로 개발하였으며
+CentOS7 기반 Linux서버에 연결해 서비스중입니다
 
- 소스코드
+많은 관심 부탁드립니다
 
- searchjs
-javascript
-
-consoleclear
-const articleList  
-
-const apiURL  articlelistjson
-
-get
-    apiURL
-    
-    functiondata 
-        dataforEachrow index  
-
-        const article  
-        idrowid
-        regDaterowregDate
-        writerrowextramemberName
-        titlerowtitle
-        bodyrowbody
-            
-          
-          articleListpusharticle
-        
-    
-    json
-
-
-const articleListBox  new Vue
-  elarticlesearchsection
-  data
-    articleListarticleList
-    keyword
-  
-    methods
-    sourcedebouncefunctionevent
-      thiskeyword  eventtargetvalue
-     500
-  
-  computed
-    filteredKeywordfunction
-      return thiskeywordtoLowerCase
-    
-    filteredfunction
-      ifthisfilteredKeywordlength  0
-        return thisarticleList
-      
-      
-      return thisarticleListfilterrow
-        const keys  title writer body regDate
-        
-        const match  keyssomekey
-          ifrowkeytoLowerCaseindexOfthisfilteredKeyword  1
-          return true
-        
-          
-        
-        return match
-         
-    
-  
-
-
-
-" />
+감사합니다   " />
 <!-- GOOGLE+ -->
 <meta itemprop="headline" content="Dev_J BLOG" />
 <meta itemprop="name" content="Dev_J BLOG" />
-<meta itemprop="description" content=" ajax 통신 연계 통한 블로그 게시물 검색 페이지 생성인덱스 게시판 디자인 개편
+<meta itemprop="description" content="PJSP 프로젝트의 결과물로 GetIT 사이트를 서비스하게 되었습니다
 
- search 페이지
-imagehttpsimg1daumcdnnetthumbR1280x0scodemtistory2fnamehttps3A2F2Fblogkakaocdnnet2Fdn2Fo9LTS2FbtqSSdyUT9q2FK52ckkobeyIJNUTCprmjbK2Fimgpng
+GetIT 사이트에 대해 간략히 소개드리자면
+아이폰 갤럭시 아이패드 갤럭시탭 그리고 스마트워치 등 다양한 스마트기기들과 관련된
+최신 소식들 유용한 Tip들을 공유하고자 개설한 커뮤니티 사이트입니다
 
+JSP를 기반으로 개발하였으며
+CentOS7 기반 Linux서버에 연결해 서비스중입니다
 
- 소스코드
+많은 관심 부탁드립니다
 
- searchjs
-javascript
-
-consoleclear
-const articleList  
-
-const apiURL  articlelistjson
-
-get
-    apiURL
-    
-    functiondata 
-        dataforEachrow index  
-
-        const article  
-        idrowid
-        regDaterowregDate
-        writerrowextramemberName
-        titlerowtitle
-        bodyrowbody
-            
-          
-          articleListpusharticle
-        
-    
-    json
-
-
-const articleListBox  new Vue
-  elarticlesearchsection
-  data
-    articleListarticleList
-    keyword
-  
-    methods
-    sourcedebouncefunctionevent
-      thiskeyword  eventtargetvalue
-     500
-  
-  computed
-    filteredKeywordfunction
-      return thiskeywordtoLowerCase
-    
-    filteredfunction
-      ifthisfilteredKeywordlength  0
-        return thisarticleList
-      
-      
-      return thisarticleListfilterrow
-        const keys  title writer body regDate
-        
-        const match  keyssomekey
-          ifrowkeytoLowerCaseindexOfthisfilteredKeyword  1
-          return true
-        
-          
-        
-        return match
-         
-    
-  
-
-
-
-" />
+감사합니다   " />
 <meta itemprop="image" content="images/Dev_J_logo/logo.png" />
 
 <!-- 사이트 타이틀 -->
-<title>P.BLOG - 개발일지(ajax 통신 연계 통한 블로그 게시물 검색 페이지 생성(+인덱스 게시판 디자인 개편)) | Dev_J BLOG | ARTICLE DETAIL</title>
+<title>LINK 메뉴에 "GetIT" 링크를 추가했습니다. | Dev_J BLOG | ARTICLE DETAIL</title>
 
 
 <!-- 파비콘 -->
@@ -521,87 +338,26 @@ const articleListBox  new Vue
 <section class="section-2 con-min-width min-height-50vh">
 	<div class="con height-100p">
 		<div class="article-detail-cell height-100p">
-			<div class="article-detail-cell__board-name"><div><span>게시판 : </span><span>P.BLOG 게시판</span></div></div><div class="article-detail-cell__id"><div><span>번호 : </span><span>41</span></div></div><div class="article-detail-cell__member-id"><div><span>작성자 : </span><span>Dev_J</span></div></div><div class="article-detail-cell__reg-date"><div><span>작성일 : </span><span>2021-02-17 22:03:52</span></div></div><div class="article-detail-cell__update-date"><div><span>수정일 : </span><span>2021-03-10 12:47:58</span></div></div><br><div class="article-detail-cell__title-contents flex flex-jc-fe"><div class="article-detail-cell__hitsCount"><div><span>조회수 : </span><span>0</span></div></div><div class="article-detail-cell__likesCount"><div><span>추천수 : </span><span>0</span></div></div><div class="article-detail-cell__commentsCount"><div><span>댓글수 : </span><span>0</span></div></div></div><div class="article-detail-cell__title"><div><span>제목 : </span><span>P.BLOG - 개발일지(ajax 통신 연계 통한 블로그 게시물 검색 페이지 생성(+인덱스 게시판 디자인 개편))</span></div></div><nav class="ad"><!-- 구글 애드센스2 --><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script><!-- 수평 반응형2 --><ins class="adsbygoogle" style="display: block" data-ad-client="ca-pub-7996879977557531" data-ad-slot="2278060237" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle = window.adsbygoogle || []).push({});</script></nav><script type"text/x-template"># ajax 통신 연계 통한 블로그 게시물 검색 페이지 생성(+인덱스 게시판 디자인 개편)
+			<div class="article-detail-cell__board-name"><div><span>게시판 : </span><span>공지사항 게시판</span></div></div><div class="article-detail-cell__id"><div><span>번호 : </span><span>55</span></div></div><div class="article-detail-cell__member-id"><div><span>작성자 : </span><span>Dev_J</span></div></div><div class="article-detail-cell__reg-date"><div><span>작성일 : </span><span>2021-03-10 12:44:31</span></div></div><div class="article-detail-cell__update-date"><div><span>수정일 : </span><span>2021-03-10 12:48:07</span></div></div><br><div class="article-detail-cell__title-contents flex flex-jc-fe"><div class="article-detail-cell__hitsCount"><div><span>조회수 : </span><span>0</span></div></div><div class="article-detail-cell__likesCount"><div><span>추천수 : </span><span>0</span></div></div><div class="article-detail-cell__commentsCount"><div><span>댓글수 : </span><span>0</span></div></div></div><div class="article-detail-cell__title"><div><span>제목 : </span><span>LINK 메뉴에 "GetIT" 링크를 추가했습니다.</span></div></div><nav class="ad"><!-- 구글 애드센스2 --><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script><!-- 수평 반응형2 --><ins class="adsbygoogle" style="display: block" data-ad-client="ca-pub-7996879977557531" data-ad-slot="2278060237" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle = window.adsbygoogle || []).push({});</script></nav><script type"text/x-template">**P.JSP 프로젝트**의 결과물로 **GetIT 사이트**를 서비스하게 되었습니다!
 
-## <search 페이지>
-![image](https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2Fo9LTS%2FbtqSSdyUT9q%2FK52ckkobeyIJNUTCprmjbK%2Fimg.png)
+GetIT 사이트에 대해 간략히 소개드리자면,
+아이폰, 갤럭시, 아이패드, 갤럭시탭 그리고 스마트워치 등 다양한 스마트기기들과 관련된
+'최신 소식'들, '유용한 Tip'들을 공유하고자 개설한 커뮤니티 사이트입니다.
 
+**JSP**를 기반으로 개발하였으며,
+**CentOS7 기반 Linux서버**에 연결해 서비스중입니다.
 
-## 소스코드
+많은 관심 부탁드립니다~!
 
-### <search.js>
-```javat-script
-
-console.clear();
-const articleList = [];
-
-const apiURL = 'article_list.json';
-
-$.get(
-    apiURL,
-    {},
-    function(data) {
-        data.forEach((row, index) => {
-
-        const article = {
-        id:row.id,
-        regDate:row.regDate,
-        writer:row.extra_memberName,
-        title:row.title,
-        body:row.body
-            
-          };
-          articleList.push(article);
-        });
-    },
-    'json'
-);
-
-const articleListBox = new Vue({
-  el:"#article-search-section",
-  data:{
-    articleList:articleList,
-    keyword:''
-  },
-    methods:{
-    source:_.debounce(function(event){
-      this.keyword = event.target.value;
-    }, 500)
-  },
-  computed:{
-    filteredKeyword:function(){
-      return this.keyword.toLowerCase();
-    },
-    filtered:function(){
-      if(this.filteredKeyword.length == 0){
-        return this.articleList;
-      }
-      
-      return this.articleList.filter((row)=>{
-        const keys = ['title', 'writer', 'body', 'regDate'];
-        
-        const match = keys.some((key)=>{
-          if(row[key].toLowerCase().indexOf(this.filteredKeyword) > -1){
-          return true;
-        }
-          
-        });
-        return match;
-      });   
-    }
-  }
-});
-
-```
-</script><div class="article-detail-cell__body height-70p toast-ui-viewer"><div></div></div><br><div class="article-detail-cell__tag flex flex-wrap"><nav># <a href="#" target="_blank">project</a></nav><nav># <a href="#" target="_blank">개발일지</a></nav><nav># <a href="#" target="_blank">blog</a></nav></div><br><br><nav class="ad"><!-- 구글 애드센스1 --><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script><!-- 수평 반응형1 --><ins class="adsbygoogle" style="display: block" data-ad-client="ca-pub-7996879977557531" data-ad-slot="6812185708" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle = window.adsbygoogle || []).push({});</script></nav>
+감사합니다.( _ _ )</script><div class="article-detail-cell__body height-70p toast-ui-viewer"><div></div></div><br><div class="article-detail-cell__tag flex flex-wrap"></div><br><br><nav class="ad"><!-- 구글 애드센스1 --><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script><!-- 수평 반응형1 --><ins class="adsbygoogle" style="display: block" data-ad-client="ca-pub-7996879977557531" data-ad-slot="6812185708" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle = window.adsbygoogle || []).push({});</script></nav>
 			<!-- Disqus api 적용 -->
 			<!-- 정확한 페이지 경로 알려주는 기능 추가-->
 			<nav>
 				<div id="disqus_thread"></div>
 				<script>
 					var disqus_config = function() {
-						this.page.url = 'https://blog.devj.me/article_detail_41.html';
-						this.page.identifier = 'article_detail_41.html';
+						this.page.url = 'https://blog.devj.me/article_detail_55.html';
+						this.page.identifier = 'article_detail_55.html';
 					};
 					(function() {
 						//DON'T EDIT BELOW THIS LINE
@@ -624,7 +380,7 @@ const articleListBox = new Vue({
 <!-- 메인-상세 하단 메뉴 시작 -->
 <section class="section-3 con-min-width">
 	<div class="con">
-		<div class="article-list-bottom-cell flex flex-jc-c"><div class="./"><a href="article_detail_40.html" class="hover-underline">&lt 이전글</a></div><div class="./"><i class="fas fa-th-list"></i><a href="p_blog-list-1.html" class="hover-underline"> 목록 </a></div><div class="./"><a href="article_detail_42.html"class="hover-underline">다음글 &gt</a></div></div>
+		<div class="article-list-bottom-cell flex flex-jc-c"><div class="./"><a href="article_detail_54.html" class="hover-underline">&lt 이전글</a></div><div class="./"><i class="fas fa-th-list"></i><a href="notice-list-1.html" class="hover-underline"> 목록 </a></div></div>
 	</div>
 </section>
 <!-- 메인-상세 하단 메뉴 끝 -->

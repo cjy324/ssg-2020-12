@@ -1,0 +1,733 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+<script data-ad-client="ca-pub-7996879977557531" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-X5RMP83794"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-X5RMP83794');
+</script>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- 구글 검색엔진 등록-소유권 확인 -->
+<meta name="google-site-verification" content="37R4KcEaJU5LfiKL7GI1hu1_spJgWOazN6xy48OHhD4" />
+
+<!-- Meta Tag & Open Graph -->
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<meta name="viewport" content="width=1200">
+<meta name="apple-mobile-web-app-title" content="Dev_J BLOG" />
+<!-- 메타태그정보 //-->
+<!-- META -->
+<link rel="canonical" href="https://blog.devj.me" />
+<meta name="subject" content="[Compiler] 컴파일러(feat. 인터프리터)"/>
+<meta name="title" content="Dev_J BLOG" />
+<meta name="keywords" content="JAVA, HTML, CSS, JavaScript, MySQL" />
+<meta name="copyright" content="Dev_J BLOG" />
+<meta name="pubdate" content="2021-03-10T12:01:36" />
+<meta name="lastmod" content="2021-03-10T12:01:36" />
+<!-- OPENGRAPH -->
+<meta property="og:site_name" content="Dev_J BLOG" />
+<meta property="og:type" content="blog" />
+<meta property="og:title" content="[Compiler] 컴파일러(feat. 인터프리터)" />
+<meta property="og:description" content=" 컴파일러feat 인터프리터
+
+ 1 컴파일러란
+  프로그램을 짠다는 것은 사용하는 프로그래밍 언어의 문법에 맞게 명령들을 작성하는 것이다
+  이렇게 언어의 문법에 맞게 명령들을 기술한 파일을 원시 파일소스파일 source file 이라고 한다
+  이런 소스코드들은 고급언어로 작성되어 있기 때문에 0과 1이라는 이진수로 구성된 저급언어 즉 기계어로 통신하는 컴퓨터는 소스코드를 바로 이해할 수 없다
+  그래서 소스코드를 컴퓨터가 이해할 수 있게 기계어로 번역하는 작업을 컴파일Compile 이라 하며 이러한 작업을 수행하는 프로그램을 컴파일러Compiler 라고 한다 
+
+개발과정
+
+소스코드작성  오브젝트파일목적파일  실행파일  실행
+
+br
+ 2 컴파일러 구조
+  컴파일러는 크게 1어휘 분석 2구문 분석 3의미 분석 4코드 생성 단계로 나뉜다그림 참고  일반적인 컴파일러의 구조
+
+imagehttpsimg1daumcdnnetthumbR1280x0scodemtistory2fnamehttps3A2F2Fblogkakaocdnnet2Fdn2FK5vMn2FbtqLuBa6AY32F864sKLjBjVqRTcbQDEOkcK2Fimgpng
+
+ 1단계 어휘 분석Lexical analysis
+  컴파일러의 첫 번째 단계는 소스 코드를 정규 문법regular grammar에 따라 토큰token의 집합으로 변환하는 것이다 이를 어휘 분석 또는 스캐닝scanning 이라 한다
+  예를 들어 Lexical analysis is the first step of compiler라는 문장에서 f i r s t를 따로 놓으면 어떠한 의미도 없지만 first라는 하나의 문자열로 보면 첫번째라는 의미를 갖게 된다
+  쉽게 말해 어휘 분석은 소스 코드에서 first step과 같이 의미 있는 조각을 검출하는 단계이다
+
+어휘 분석 단계에서 검출된 의미 있는 조각을 어휘항목lexeme이라고 하며 어휘 분석기는 검출된 어휘항목을 참조하여 토큰을 생성한다
+
+
+
+ 2단계 구문 분석Syntax analysis
+
+ 어휘 분석 다음 단계는 소스 코드의 문법을 검사하는 구문 분석 또는 파싱parsing 이라 한다
+ 구문 분석기는 어휘 분석기에서 출력한 토큰들을 이용하여 소스 코드의 문법 구조를 서술하는 구문 트리syntax tree를 생성한다 구문 트리는 어휘 분석기에서 생성한 토큰들을 노드로 갖는 트리로써 토큰 간의 우선순위 및 토큰간의 결합 관계 등과 같은 속성을 나타낸다
+ 구문 분석의 목적은 토큰 간의 관계가 올바르게 생성되었는지를 검사하는 것이다 예를 들어 I is a student라는 문장이 입력되었을 때 어휘 분석기는 1인칭 주어 1과 3인칭 동사 2라는 토큰을 생성하고 구문 분석기에 전달한다 구문 분석기에서는 1인칭 주어와 3인칭 동사가 사용된 것이 잘못되었음을 인식하여 구문 에러를 출력한다
+
+
+즉 토큰 간의 관계를 서술하고 소스 코드에 잘못된 토큰 간의 관계가 있는지를 검사하는 것이 구문 분석의 목적이다
+
+
+ 3단계 의미 분석Semantic analysis
+
+ 의미 분석 단계에서는 구문 트리와 심볼 테이블에 있는 정보를 이용하여 소스 코드가 언어 정의에 의미적으로 부합하는지를 검사한다 
+ 의미 분석의 중요한 기능은 타입 검사type checking 이다 컴파일러는 타입 검사를 수행하면서 피연산자가 연산자에 부합하는지를 검사한다
+ 의미 분석기는 정수와 문자열의 덧셈 값을 0으로 나누는 행동 등과 같이 의미적으로 올바르지 않은 코드의 존재 유무를 검사한다 
+ 예를 들어 The earth revolves around the moon라는 문장은 영어라는 인간언어에 존재하는 어휘항목만을 사용하였고 주어와 동사가 일치하며 revolve 다음에 올 수 있는 around라는 부사까지 올바르게 사용하였지만 의미적으로는 지구가 달을 공전한다는 틀린 문장이다
+
+
+의미 분석 단계에서는 구문 트리와 심볼 테이블에 있는 정보를 이용하여 소스 코드가 언어 정의에 의미적으로 부합하는지를 검사한다 
+
+ 
+ 4단계 코드 생성 Code generation
+
+ 123 단계를 통해 분석된 소스 코드를 목표 기계에 맞는 어셈블리어나 기계어로 변환하는 단계이다 
+ 컴파일 타임 바인딩을 이용하는 시스템의 경우에는 코드 생성 단계에서 프로그램의 기억 장소 할당이 이루어진다
+
+
+123 단계를 통해 분석된 소스 코드를 목표 기계에 맞는 어셈블리어나 기계어로 변환하는 단계이다 
+
+
+
+ 3 컴파일러 언어 vs 인터프리터 언어
+
+ 모든 프로그래밍 언어는 컴파일러 언어 또는 인터프리터 언어를 사용한다 쉽게 말해 언어를 처리하는 방식이 크게 2가지로 나뉘는 것이다
+
+
+ 1 컴파일러 언어
+  소개  명령들을 한꺼번에 실행하는 방식 프로그램 코드를 다 적은 후 한꺼번에 검사하는 방식
+  Good  한번 컴파일한 이후에는 실행이 빠르고 더 이상의 변환이 필요없기 때문에 효율적임
+  Bad  한번에 모두 처리하는 방식이기 때문에 최초 컴파일시에는 오래 걸릴 수 있고 메모리도 많이 차지할 수 있음
+  종류  C C Java와 같은 언어가 대표적인 컴파일 언어
+
+ 2 인프리리터 언어
+  소개  코드를 한줄씩 읽어가면서 명령을 처리하는 방식 한줄이 바뀔 때마다 즉시 검사를 수행하는 방식
+  Good  명령을 잘못 입력하면 바로 수정이 가능하다는 장점이 있음
+  Bad  한문장씩 명령을 내리는 방식이므로 속도는 컴파일러에 비해 느린편
+  종류  python R Ruby와 같은 언어가 대표적인 인터프리터 언어
+
+
+
+참고1  httpsto2krbHr
+참고2  httpsto2krbHs
+참고3  httpsuntitledtblogtistorycom9
+참고4  httpsblognavercomzosl1004221242373322
+
+
+
+
+
+
+
+
+
+
+
+
+" />
+<meta property="og:locale" content="ko_KR" />
+<meta property="og:image" content="images/Dev_J_logo/logo.png" />
+<meta property="og:image:alt" content="blog.devj.me" />
+<meta property="og:image:width" content="486" />
+<meta property="og:image:height" content="254" />
+<meta property="og:updated_time" content="2021-03-10T12:01:36"/>
+<meta property="og:pubdate" content="2021-03-10T12:01:36" />
+<meta property="og:url" content="https://blog.devj.me" />
+<!-- TWITTER -->
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="[Compiler] 컴파일러(feat. 인터프리터)" />
+<meta name="twitter:site" content="@Dev_J BLOG" />
+<meta name="twitter:creator" content="@Dev_J BLOG" />
+<meta name="twitter:image" content="images/Dev_J_logo/logo.png">
+<meta name="twitter:description" content=" 컴파일러feat 인터프리터
+
+ 1 컴파일러란
+  프로그램을 짠다는 것은 사용하는 프로그래밍 언어의 문법에 맞게 명령들을 작성하는 것이다
+  이렇게 언어의 문법에 맞게 명령들을 기술한 파일을 원시 파일소스파일 source file 이라고 한다
+  이런 소스코드들은 고급언어로 작성되어 있기 때문에 0과 1이라는 이진수로 구성된 저급언어 즉 기계어로 통신하는 컴퓨터는 소스코드를 바로 이해할 수 없다
+  그래서 소스코드를 컴퓨터가 이해할 수 있게 기계어로 번역하는 작업을 컴파일Compile 이라 하며 이러한 작업을 수행하는 프로그램을 컴파일러Compiler 라고 한다 
+
+개발과정
+
+소스코드작성  오브젝트파일목적파일  실행파일  실행
+
+br
+ 2 컴파일러 구조
+  컴파일러는 크게 1어휘 분석 2구문 분석 3의미 분석 4코드 생성 단계로 나뉜다그림 참고  일반적인 컴파일러의 구조
+
+imagehttpsimg1daumcdnnetthumbR1280x0scodemtistory2fnamehttps3A2F2Fblogkakaocdnnet2Fdn2FK5vMn2FbtqLuBa6AY32F864sKLjBjVqRTcbQDEOkcK2Fimgpng
+
+ 1단계 어휘 분석Lexical analysis
+  컴파일러의 첫 번째 단계는 소스 코드를 정규 문법regular grammar에 따라 토큰token의 집합으로 변환하는 것이다 이를 어휘 분석 또는 스캐닝scanning 이라 한다
+  예를 들어 Lexical analysis is the first step of compiler라는 문장에서 f i r s t를 따로 놓으면 어떠한 의미도 없지만 first라는 하나의 문자열로 보면 첫번째라는 의미를 갖게 된다
+  쉽게 말해 어휘 분석은 소스 코드에서 first step과 같이 의미 있는 조각을 검출하는 단계이다
+
+어휘 분석 단계에서 검출된 의미 있는 조각을 어휘항목lexeme이라고 하며 어휘 분석기는 검출된 어휘항목을 참조하여 토큰을 생성한다
+
+
+
+ 2단계 구문 분석Syntax analysis
+
+ 어휘 분석 다음 단계는 소스 코드의 문법을 검사하는 구문 분석 또는 파싱parsing 이라 한다
+ 구문 분석기는 어휘 분석기에서 출력한 토큰들을 이용하여 소스 코드의 문법 구조를 서술하는 구문 트리syntax tree를 생성한다 구문 트리는 어휘 분석기에서 생성한 토큰들을 노드로 갖는 트리로써 토큰 간의 우선순위 및 토큰간의 결합 관계 등과 같은 속성을 나타낸다
+ 구문 분석의 목적은 토큰 간의 관계가 올바르게 생성되었는지를 검사하는 것이다 예를 들어 I is a student라는 문장이 입력되었을 때 어휘 분석기는 1인칭 주어 1과 3인칭 동사 2라는 토큰을 생성하고 구문 분석기에 전달한다 구문 분석기에서는 1인칭 주어와 3인칭 동사가 사용된 것이 잘못되었음을 인식하여 구문 에러를 출력한다
+
+
+즉 토큰 간의 관계를 서술하고 소스 코드에 잘못된 토큰 간의 관계가 있는지를 검사하는 것이 구문 분석의 목적이다
+
+
+ 3단계 의미 분석Semantic analysis
+
+ 의미 분석 단계에서는 구문 트리와 심볼 테이블에 있는 정보를 이용하여 소스 코드가 언어 정의에 의미적으로 부합하는지를 검사한다 
+ 의미 분석의 중요한 기능은 타입 검사type checking 이다 컴파일러는 타입 검사를 수행하면서 피연산자가 연산자에 부합하는지를 검사한다
+ 의미 분석기는 정수와 문자열의 덧셈 값을 0으로 나누는 행동 등과 같이 의미적으로 올바르지 않은 코드의 존재 유무를 검사한다 
+ 예를 들어 The earth revolves around the moon라는 문장은 영어라는 인간언어에 존재하는 어휘항목만을 사용하였고 주어와 동사가 일치하며 revolve 다음에 올 수 있는 around라는 부사까지 올바르게 사용하였지만 의미적으로는 지구가 달을 공전한다는 틀린 문장이다
+
+
+의미 분석 단계에서는 구문 트리와 심볼 테이블에 있는 정보를 이용하여 소스 코드가 언어 정의에 의미적으로 부합하는지를 검사한다 
+
+ 
+ 4단계 코드 생성 Code generation
+
+ 123 단계를 통해 분석된 소스 코드를 목표 기계에 맞는 어셈블리어나 기계어로 변환하는 단계이다 
+ 컴파일 타임 바인딩을 이용하는 시스템의 경우에는 코드 생성 단계에서 프로그램의 기억 장소 할당이 이루어진다
+
+
+123 단계를 통해 분석된 소스 코드를 목표 기계에 맞는 어셈블리어나 기계어로 변환하는 단계이다 
+
+
+
+ 3 컴파일러 언어 vs 인터프리터 언어
+
+ 모든 프로그래밍 언어는 컴파일러 언어 또는 인터프리터 언어를 사용한다 쉽게 말해 언어를 처리하는 방식이 크게 2가지로 나뉘는 것이다
+
+
+ 1 컴파일러 언어
+  소개  명령들을 한꺼번에 실행하는 방식 프로그램 코드를 다 적은 후 한꺼번에 검사하는 방식
+  Good  한번 컴파일한 이후에는 실행이 빠르고 더 이상의 변환이 필요없기 때문에 효율적임
+  Bad  한번에 모두 처리하는 방식이기 때문에 최초 컴파일시에는 오래 걸릴 수 있고 메모리도 많이 차지할 수 있음
+  종류  C C Java와 같은 언어가 대표적인 컴파일 언어
+
+ 2 인프리리터 언어
+  소개  코드를 한줄씩 읽어가면서 명령을 처리하는 방식 한줄이 바뀔 때마다 즉시 검사를 수행하는 방식
+  Good  명령을 잘못 입력하면 바로 수정이 가능하다는 장점이 있음
+  Bad  한문장씩 명령을 내리는 방식이므로 속도는 컴파일러에 비해 느린편
+  종류  python R Ruby와 같은 언어가 대표적인 인터프리터 언어
+
+
+
+참고1  httpsto2krbHr
+참고2  httpsto2krbHs
+참고3  httpsuntitledtblogtistorycom9
+참고4  httpsblognavercomzosl1004221242373322
+
+
+
+
+
+
+
+
+
+
+
+
+" />
+<!-- GOOGLE+ -->
+<meta itemprop="headline" content="Dev_J BLOG" />
+<meta itemprop="name" content="Dev_J BLOG" />
+<meta itemprop="description" content=" 컴파일러feat 인터프리터
+
+ 1 컴파일러란
+  프로그램을 짠다는 것은 사용하는 프로그래밍 언어의 문법에 맞게 명령들을 작성하는 것이다
+  이렇게 언어의 문법에 맞게 명령들을 기술한 파일을 원시 파일소스파일 source file 이라고 한다
+  이런 소스코드들은 고급언어로 작성되어 있기 때문에 0과 1이라는 이진수로 구성된 저급언어 즉 기계어로 통신하는 컴퓨터는 소스코드를 바로 이해할 수 없다
+  그래서 소스코드를 컴퓨터가 이해할 수 있게 기계어로 번역하는 작업을 컴파일Compile 이라 하며 이러한 작업을 수행하는 프로그램을 컴파일러Compiler 라고 한다 
+
+개발과정
+
+소스코드작성  오브젝트파일목적파일  실행파일  실행
+
+br
+ 2 컴파일러 구조
+  컴파일러는 크게 1어휘 분석 2구문 분석 3의미 분석 4코드 생성 단계로 나뉜다그림 참고  일반적인 컴파일러의 구조
+
+imagehttpsimg1daumcdnnetthumbR1280x0scodemtistory2fnamehttps3A2F2Fblogkakaocdnnet2Fdn2FK5vMn2FbtqLuBa6AY32F864sKLjBjVqRTcbQDEOkcK2Fimgpng
+
+ 1단계 어휘 분석Lexical analysis
+  컴파일러의 첫 번째 단계는 소스 코드를 정규 문법regular grammar에 따라 토큰token의 집합으로 변환하는 것이다 이를 어휘 분석 또는 스캐닝scanning 이라 한다
+  예를 들어 Lexical analysis is the first step of compiler라는 문장에서 f i r s t를 따로 놓으면 어떠한 의미도 없지만 first라는 하나의 문자열로 보면 첫번째라는 의미를 갖게 된다
+  쉽게 말해 어휘 분석은 소스 코드에서 first step과 같이 의미 있는 조각을 검출하는 단계이다
+
+어휘 분석 단계에서 검출된 의미 있는 조각을 어휘항목lexeme이라고 하며 어휘 분석기는 검출된 어휘항목을 참조하여 토큰을 생성한다
+
+
+
+ 2단계 구문 분석Syntax analysis
+
+ 어휘 분석 다음 단계는 소스 코드의 문법을 검사하는 구문 분석 또는 파싱parsing 이라 한다
+ 구문 분석기는 어휘 분석기에서 출력한 토큰들을 이용하여 소스 코드의 문법 구조를 서술하는 구문 트리syntax tree를 생성한다 구문 트리는 어휘 분석기에서 생성한 토큰들을 노드로 갖는 트리로써 토큰 간의 우선순위 및 토큰간의 결합 관계 등과 같은 속성을 나타낸다
+ 구문 분석의 목적은 토큰 간의 관계가 올바르게 생성되었는지를 검사하는 것이다 예를 들어 I is a student라는 문장이 입력되었을 때 어휘 분석기는 1인칭 주어 1과 3인칭 동사 2라는 토큰을 생성하고 구문 분석기에 전달한다 구문 분석기에서는 1인칭 주어와 3인칭 동사가 사용된 것이 잘못되었음을 인식하여 구문 에러를 출력한다
+
+
+즉 토큰 간의 관계를 서술하고 소스 코드에 잘못된 토큰 간의 관계가 있는지를 검사하는 것이 구문 분석의 목적이다
+
+
+ 3단계 의미 분석Semantic analysis
+
+ 의미 분석 단계에서는 구문 트리와 심볼 테이블에 있는 정보를 이용하여 소스 코드가 언어 정의에 의미적으로 부합하는지를 검사한다 
+ 의미 분석의 중요한 기능은 타입 검사type checking 이다 컴파일러는 타입 검사를 수행하면서 피연산자가 연산자에 부합하는지를 검사한다
+ 의미 분석기는 정수와 문자열의 덧셈 값을 0으로 나누는 행동 등과 같이 의미적으로 올바르지 않은 코드의 존재 유무를 검사한다 
+ 예를 들어 The earth revolves around the moon라는 문장은 영어라는 인간언어에 존재하는 어휘항목만을 사용하였고 주어와 동사가 일치하며 revolve 다음에 올 수 있는 around라는 부사까지 올바르게 사용하였지만 의미적으로는 지구가 달을 공전한다는 틀린 문장이다
+
+
+의미 분석 단계에서는 구문 트리와 심볼 테이블에 있는 정보를 이용하여 소스 코드가 언어 정의에 의미적으로 부합하는지를 검사한다 
+
+ 
+ 4단계 코드 생성 Code generation
+
+ 123 단계를 통해 분석된 소스 코드를 목표 기계에 맞는 어셈블리어나 기계어로 변환하는 단계이다 
+ 컴파일 타임 바인딩을 이용하는 시스템의 경우에는 코드 생성 단계에서 프로그램의 기억 장소 할당이 이루어진다
+
+
+123 단계를 통해 분석된 소스 코드를 목표 기계에 맞는 어셈블리어나 기계어로 변환하는 단계이다 
+
+
+
+ 3 컴파일러 언어 vs 인터프리터 언어
+
+ 모든 프로그래밍 언어는 컴파일러 언어 또는 인터프리터 언어를 사용한다 쉽게 말해 언어를 처리하는 방식이 크게 2가지로 나뉘는 것이다
+
+
+ 1 컴파일러 언어
+  소개  명령들을 한꺼번에 실행하는 방식 프로그램 코드를 다 적은 후 한꺼번에 검사하는 방식
+  Good  한번 컴파일한 이후에는 실행이 빠르고 더 이상의 변환이 필요없기 때문에 효율적임
+  Bad  한번에 모두 처리하는 방식이기 때문에 최초 컴파일시에는 오래 걸릴 수 있고 메모리도 많이 차지할 수 있음
+  종류  C C Java와 같은 언어가 대표적인 컴파일 언어
+
+ 2 인프리리터 언어
+  소개  코드를 한줄씩 읽어가면서 명령을 처리하는 방식 한줄이 바뀔 때마다 즉시 검사를 수행하는 방식
+  Good  명령을 잘못 입력하면 바로 수정이 가능하다는 장점이 있음
+  Bad  한문장씩 명령을 내리는 방식이므로 속도는 컴파일러에 비해 느린편
+  종류  python R Ruby와 같은 언어가 대표적인 인터프리터 언어
+
+
+
+참고1  httpsto2krbHr
+참고2  httpsto2krbHs
+참고3  httpsuntitledtblogtistorycom9
+참고4  httpsblognavercomzosl1004221242373322
+
+
+
+
+
+
+
+
+
+
+
+
+" />
+<meta itemprop="image" content="images/Dev_J_logo/logo.png" />
+
+<!-- 사이트 타이틀 -->
+<title>[Compiler] 컴파일러(feat. 인터프리터) | Dev_J BLOG | ARTICLE DETAIL</title>
+
+
+<!-- 파비콘 -->
+<link rel="shortcut icon" href="images/favicon/favicon.ico" type="image/x-icon">
+<link rel="icon" href="images/favicon/favicon.ico" type="image/x-icon">
+
+<!-- 폰트어썸 불러오기 -->
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+
+<!--모바일에서도 PC와 같은 비율 유지-->
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<!--제이쿼리-->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+<!-- 하이라이트 라이브러리 추가, 토스트 UI 에디터에서 사용됨 -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.4.1/highlight.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.4.1/styles/default.min.css">
+
+<!-- 토스트 UI 에디터, 자바스크립트 코어 -->
+<script
+	src="https://uicdn.toast.com/editor/latest/toastui-editor-all.min.js" defer></script>
+
+<!-- 코드 미러 라이브러리 추가, 토스트 UI 에디터에서 사용됨 -->
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.58.3/codemirror.min.css" />
+<!-- 토스트 UI 에디터, CSS 코어 -->
+<link rel="stylesheet"
+	href="https://uicdn.toast.com/editor/latest/toastui-editor.min.css" />
+
+<!-- 토스트 UI 에디터, 신택스 하이라이트 플러그인 추가 -->
+<script src="https://uicdn.toast.com/editor-plugin-code-syntax-highlight/latest/toastui-editor-plugin-code-syntax-highlight.min.js" defer></script>
+
+<!-- app.css 불러오기 -->
+<link rel="stylesheet" href="app.css">
+<!-- app.js 불러오기 -->
+<script src="app.js" defer></script>
+<!-- index.js 불러오기 
+<script src="index.js" defer></script>
+-->
+</head>
+
+<body>
+<!-- 사이트 박스 시작 -->
+<div class="body-content min-height-100vh flex flex-column">
+  <!-- 로고바 시작 -->
+  <header class="logo-bar con-min-width" id="header">
+    <div class="con height-100p flex flex-jc-c" title="HOME">
+      <a href="index.html" class="logo flex flex-ai-c"> 
+        <img class="logo__img" src="images/Dev_J_logo/logo_transparent.png" alt="">
+        <span>
+          BLOG
+        </span>
+      </a>
+    </div>
+  </header>
+  <!-- 로고바 끝 -->
+
+  <!-- 메뉴바 시작-->
+  <header class="menu-bar con-min-width visible-md-up">
+    <div class="flex flex-jc-sb">
+   	 <div class="menu-bar__status-icon" title="Menu">
+      <div></div>
+      <div></div>
+      <div></div>
+     </div>
+     <a class="search-icon" title="search" href="search.html">
+        <i class="fa fa-search"></i>
+     </a>
+   </div>
+   <div class="con hide">
+    <nav class="menu-bar__menu">
+      <ul class="flex">
+          <li title="ABOUT">
+            <a href="about.html" class="block">
+              <i class="far fa-address-card"></i>
+              <span>ABOUT</span>
+            </a>
+          </li>
+          <li>
+            <a class="block">
+              <i class="fas fa-list"></i>
+              <span>ARTICLES</span>
+            </a>
+            <ul>
+              <li title="NOTICE"><a href="notice-list-1.html" class="block"><i class="fas fa-bullhorn"></i> <span>NOTICE BOARD</span></a></li><li title="JAVA"><a href="java-list-1.html" class="block"><i class="fab fa-java"></i> <span>JAVA BOARD</span></a></li><li title="HTML"><a href="html-list-1.html" class="block"><i class="fab fa-html5"></i> <span>HTML & CSS & JS BOARD</span></a></li><li title="MYSQL"><a href="mysql-list-1.html" class="block"><i class="fas fa-database"></i> <span>MySQL BOARD</span></a></li><li title="ETC"><a href="etc-list-1.html" class="block"><i class="fas fa-mouse-pointer"></i> <span>ETC BOARD</span></a></li>
+            </ul>
+          </li>
+          <li>
+            <a class="block">
+              <i class="fas fa-project-diagram"></i>
+              <span>PROJECT</span>
+            </a>
+            <ul>
+              <li title="P_BLOG"><a href="p_blog-list-1.html" class="block"><i class="fab fa-blogger"></i> <span>P.BLOG PROJECT</span></a></li><li title="P_JSP"><a href="p_jsp-list-1.html" class="block"><i class="fas fa-file-word"></i> <span>P.JSP PROJECT</span></a></li>
+            </ul>
+          </li>
+          <li>
+            <a class="block">
+              <i class="fas fa-link"></i>
+              <span>LINK</span>
+            </a>
+            <ul>
+              <li title="T-STORY">
+                <a href="https://cjy324.tistory.com/" target="_blank" class="block">
+                  <i class="fas fa-rss-square"></i>
+                  <span>T-STORY</span>
+                </a>
+              </li>
+              <li title="GITHUB">
+                <a href="https://github.com/cjy324/TIL_Jooyoung#til_jooyoung" target="_blank" class="block">
+                  <i class="fab fa-github"></i>
+                  <span>GITHUB</span>
+                </a>
+              </li>
+            </ul>
+          </li>
+          <li title="STATISTICS">
+            <a href="statistics.html" class="block">
+              <i class="fas fa-chart-pie"></i>
+              <span>STATISTICS</span>
+            </a>
+          </li>
+        </ul>
+      </nav>
+   </div>
+  </header>
+  <!-- 메뉴바 끝 -->
+  
+  <!-- 모바일 사이드 메뉴바 시작 -->
+  <header class="mobile-menu-bar con-min-width visible-sm-down">
+    <div class="flex flex-jc-sb">
+   <div class="mobile-menu-bar__status-icon" title="Menu">
+     <div></div>
+     <div></div>
+     <div></div>
+   </div>
+    <a class="search-icon" title="search" href="search.html">
+        <i class="fa fa-search"></i>
+      </a>
+   </div>
+   <div class="con ">
+    <aside class="mobile-side-bar flex flex-column flex-jc-c ">
+      <div class="mobile-side-bar_X"><i class="fas fa-times"></i></div>
+      <nav class="mobile-side-bar_menu flex">
+      <ul class="">
+          <li title="ABOUT">
+            <a href="about.html" class="block">
+              <i class="far fa-address-card"></i>
+              <span>ABOUT</span>
+            </a>
+          </li>
+          <li>
+            <a class="block">
+              <i class="fas fa-list"></i>
+              <span>ARTICLES</span>
+            </a>
+            <ul class="hide2">
+              <li title="NOTICE"><a href="notice-list-1.html" class="block"><i class="fas fa-bullhorn"></i> <span>NOTICE BOARD</span></a></li><li title="JAVA"><a href="java-list-1.html" class="block"><i class="fab fa-java"></i> <span>JAVA BOARD</span></a></li><li title="HTML"><a href="html-list-1.html" class="block"><i class="fab fa-html5"></i> <span>HTML & CSS & JS BOARD</span></a></li><li title="MYSQL"><a href="mysql-list-1.html" class="block"><i class="fas fa-database"></i> <span>MySQL BOARD</span></a></li><li title="ETC"><a href="etc-list-1.html" class="block"><i class="fas fa-mouse-pointer"></i> <span>ETC BOARD</span></a></li>
+            </ul>
+          </li>
+          <li>
+            <a class="block">
+              <i class="fas fa-project-diagram"></i>
+              <span>PROJECT</span>
+            </a>
+            <ul class="hide2">
+              <li title="P_BLOG"><a href="p_blog-list-1.html" class="block"><i class="fab fa-blogger"></i> <span>P.BLOG PROJECT</span></a></li><li title="P_JSP"><a href="p_jsp-list-1.html" class="block"><i class="fas fa-file-word"></i> <span>P.JSP PROJECT</span></a></li>
+            </ul>
+          </li>
+          <li>
+            <a class="block">
+              <i class="fas fa-link"></i>
+              <span>LINK</span>
+            </a>
+            <ul class="hide2">
+              <li title="T-STORY">
+                <a href="https://cjy324.tistory.com/" target="_blank" class="block">
+                  <i class="fas fa-rss-square"></i>
+                  <span>T-STORY</span>
+                </a>
+              </li>
+              <li title="GITHUB">
+                <a href="https://github.com/cjy324/TIL_Jooyoung#til_jooyoung" target="_blank" class="block">
+                  <i class="fab fa-github"></i>
+                  <span>GITHUB</span>
+                </a>
+              </li>
+            </ul>
+          </li>
+          <li title="STATISTICS">
+            <a href="statistics.html" class="block">
+              <i class="fas fa-chart-pie"></i>
+              <span>STATISTICS</span>
+            </a>
+          </li>
+        </ul>
+      </nav>  
+      </aside>
+   </div>
+  </header>
+  
+  <!-- 모바일 사이드 메뉴바 끝 --> 
+   
+
+  <!-- 메인 컨텐츠 박스 시작 -->
+  <main class="main-box flex-grow-1">
+  <section class="main-box-section con-min-width">
+   <!-- 메인-타이틀바 시작 -->
+	<div class="title-bar con-min-width">
+		<h1 class="con">
+			<i class="fas fa-file-invoice"></i> <span>ARTICLE</span>
+		</h1>
+	</div>
+   <!-- 메인-타이틀바 종료 -->
+<!-- Progress-bar -->
+<script type="text/javascript"
+	src="https://rawcdn.githack.com/mburakerman/prognroll/0feda211643153bce2c69de32ea1b39cdc64ffbe/src/prognroll.js"></script>
+<script type="text/javascript">
+	$(function() {
+		$("body").prognroll({
+			height : 10,
+			color : "#666666"
+		});
+		$(".content").prognroll({
+			custom : true
+		});
+	});
+</script>
+
+<!-- 메인-상세페이지 시작 -->
+<section class="section-2 con-min-width min-height-50vh">
+	<div class="con height-100p">
+		<div class="article-detail-cell height-100p">
+			<div class="article-detail-cell__board-name"><div><span>게시판 : </span><span>ETC 게시판</span></div></div><div class="article-detail-cell__id"><div><span>번호 : </span><span>48</span></div></div><div class="article-detail-cell__member-id"><div><span>작성자 : </span><span>Dev_J</span></div></div><div class="article-detail-cell__reg-date"><div><span>작성일 : </span><span>2021-03-10 11:37:56</span></div></div><div class="article-detail-cell__update-date"><div><span>수정일 : </span><span>2021-03-10 12:01:34</span></div></div><br><div class="article-detail-cell__title-contents flex flex-jc-fe"><div class="article-detail-cell__hitsCount"><div><span>조회수 : </span><span>0</span></div></div><div class="article-detail-cell__likesCount"><div><span>추천수 : </span><span>0</span></div></div><div class="article-detail-cell__commentsCount"><div><span>댓글수 : </span><span>0</span></div></div></div><div class="article-detail-cell__title"><div><span>제목 : </span><span>[Compiler] 컴파일러(feat. 인터프리터)</span></div></div><nav class="ad"><!-- 구글 애드센스2 --><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script><!-- 수평 반응형2 --><ins class="adsbygoogle" style="display: block" data-ad-client="ca-pub-7996879977557531" data-ad-slot="2278060237" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle = window.adsbygoogle || []).push({});</script></nav><script type"text/x-template"># 컴파일러(feat. 인터프리터)
+
+# 1. 컴파일러란?
+ - 프로그램을 짠다는 것은 사용하는 **프로그래밍 언어의 문법에 맞게 명령들을 작성하는 것**이다.
+ - 이렇게 언어의 문법에 맞게 명령들을 기술한 파일을 **원시 파일(소스파일; source file)** 이라고 한다.
+ - 이런 소스코드들은 **고급언어**로 작성되어 있기 때문에 “0”과 “1”이라는 이진수로 구성된 **저급언어**, 즉, **기계어**로 통신하는 컴퓨터는 소스코드를 바로 이해할 수 없다.
+ - 그래서 **소스코드를 컴퓨터가 이해할 수 있게 기계어로 번역하는 작업을 컴파일(Compile)** 이라 하며, 이러한 **작업을 수행하는 프로그램을 컴파일러(Compiler)** 라고 한다. 
+```
+<개발과정>
+
+소스코드작성 -> 오브젝트파일(목적파일) -> 실행파일 -> 실행
+```
+<br>
+# 2. 컴파일러 구조
+ - 컴파일러는 크게 **1)어휘 분석, 2)구문 분석, 3)의미 분석, 4)코드 생성** 단계로 나뉜다.(그림 참고 - 일반적인 컴파일러의 구조)
+
+![image](https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FK5vMn%2FbtqLuBa6AY3%2F864sKLjBjVqRTcbQDEOkcK%2Fimg.png)
+
+## 1단계) 어휘 분석(Lexical analysis)
+ - 컴파일러의 **첫 번째 단계**는 소스 코드를 **정규 문법(regular grammar)에 따라 토큰(token)의 집합으로 변환하는 것**이다. 이를 **어휘 분석** 또는 **스캐닝(scanning)** 이라 한다.
+ - 예를 들어, "Lexical analysis is the first step of compiler"라는 문장에서 'f', 'i', 'r', 's', 't'를 따로 놓으면 어떠한 의미도 없지만, "first"라는 하나의 문자열로 보면 "첫번째"라는 의미를 갖게 된다.
+ - 쉽게 말해, 어휘 분석은 소스 코드에서 "first", ”step”과 같이 의미 있는 조각을 검출하는 단계이다.
+```
+어휘 분석 단계에서 검출된 의미 있는 조각을 어휘항목(lexeme)이라고 하며, 어휘 분석기는 검출된 어휘항목을 참조하여 토큰을 생성한다.
+```
+
+
+## 2단계) 구문 분석(Syntax analysis)
+
+- 어휘 분석 다음 단계는 **소스 코드의 문법을 검사**하는 **구문 분석** 또는 **파싱(parsing)** 이라 한다.
+- 구문 분석기는 어휘 분석기에서 출력한 토큰들을 이용하여 소스 코드의 문법 구조를 서술하는 구문 트리(syntax tree)를 생성한다. 구문 트리는 어휘 분석기에서 생성한 토큰들을 노드로 갖는 트리로써, 토큰 간의 우선순위 및 토큰간의 결합 관계 등과 같은 속성을 나타낸다.
+- 구문 분석의 목적은 토큰 간의 관계가 올바르게 생성되었는지를 검사하는 것이다. 예를 들어, "I is a student"라는 문장이 입력되었을 때, 어휘 분석기는 <1인칭 주어, 1>과 <3인칭 동사, 2>라는 토큰을 생성하고, 구문 분석기에 전달한다. 구문 분석기에서는 1인칭 주어와 3인칭 동사가 사용된 것이 잘못되었음을 인식하여 구문 에러를 출력한다.
+
+```
+즉, 토큰 간의 관계를 서술하고, 소스 코드에 잘못된 토큰 간의 관계가 있는지를 검사하는 것이 구문 분석의 목적이다.
+```
+
+## 3단계) 의미 분석(Semantic analysis)
+
+- 의미 분석 단계에서는 구문 트리와 심볼 테이블에 있는 정보를 이용하여 **소스 코드가 언어 정의에 의미적으로 부합하는지를 검사**한다. 
+- 의미 분석의 중요한 기능은 **타입 검사(type checking)** 이다. 컴파일러는 타입 검사를 수행하면서 피연산자가 연산자에 부합하는지를 검사한다.
+- 의미 분석기는 정수와 문자열의 덧셈, 값을 0으로 나누는 행동 등과 같이 의미적으로 올바르지 않은 코드의 존재 유무를 검사한다. 
+- 예를 들어, "The earth revolves around the moon"라는 문장은 영어라는 인간언어에 존재하는 어휘항목만을 사용하였고, 주어와 동사가 일치하며 "revolve" 다음에 올 수 있는 "around"라는 부사까지 올바르게 사용하였지만, 의미적으로는 "지구가 달을 공전한다"는 틀린 문장이다.
+
+```
+의미 분석 단계에서는 구문 트리와 심볼 테이블에 있는 정보를 이용하여 소스 코드가 언어 정의에 의미적으로 부합하는지를 검사한다. 
+```
+ 
+## 4단계) 코드 생성 (Code generation)
+
+- 1,2,3 단계를 통해 분석된 소스 코드를 **목표 기계에 맞는 어셈블리어나 기계어로 변환하는 단계**이다. 
+- 컴파일 타임 바인딩을 이용하는 시스템의 경우에는 코드 생성 단계에서 프로그램의 기억 장소 할당이 이루어진다.
+
+```
+1,2,3 단계를 통해 분석된 소스 코드를 목표 기계에 맞는 어셈블리어나 기계어로 변환하는 단계이다. 
+```
+
+
+# 3. 컴파일러 언어 vs 인터프리터 언어
+
+##### 모든 프로그래밍 언어는 ‘컴파일러 언어’ 또는 ‘인터프리터 언어’를 사용한다. 쉽게 말해 언어를 처리하는 방식이 크게 2가지로 나뉘는 것이다.
+
+
+## 1) 컴파일러 언어
+ - 소개 : **명령들을 한꺼번에 실행하는 방식**, 프로그램 코드를 다 적은 후 한꺼번에 검사하는 방식
+ - Good : 한번 컴파일한 이후에는 **실행이 빠르고** 더 이상의 변환이 필요없기 때문에 **효율적임**
+ - Bad : 한번에 모두 처리하는 방식이기 때문에 **최초 컴파일시에는 오래 걸릴 수 있고**, **메모리도 많이 차지**할 수 있음
+ - 종류 : **C, C++, Java**와 같은 언어가 대표적인 컴파일 언어
+
+## 2) 인프리리터 언어
+ - 소개 : **코드를 한줄씩 읽어가면서 명령을 처리하는 방식**, 한줄이 바뀔 때마다 즉시 검사를 수행하는 방식
+ - Good : 명령을 잘못 입력하면 **바로 수정이 가능**하다는 장점이 있음
+ - Bad : 한문장씩 명령을 내리는 방식이므로 **속도는 컴파일러에 비해 느린편**
+ - 종류 : **python, R, Ruby**와 같은 언어가 대표적인 인터프리터 언어
+
+
+
+[참고1 : https://to2.kr/bHr]
+[참고2 : https://to2.kr/bHs]
+[참고3 : https://untitledtblog.tistory.com/9]
+[참고4 : https://blog.naver.com/zosl1004/221242373322]
+
+
+
+
+
+
+
+
+
+
+
+
+</script><div class="article-detail-cell__body height-70p toast-ui-viewer"><div></div></div><br><div class="article-detail-cell__tag flex flex-wrap"><nav># <a href="#" target="_blank">etc</a></nav><nav># <a href="#" target="_blank">컴파일러</a></nav><nav># <a href="#" target="_blank">인터프리터</a></nav></div><br><br><nav class="ad"><!-- 구글 애드센스1 --><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script><!-- 수평 반응형1 --><ins class="adsbygoogle" style="display: block" data-ad-client="ca-pub-7996879977557531" data-ad-slot="6812185708" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle = window.adsbygoogle || []).push({});</script></nav>
+			<!-- Disqus api 적용 -->
+			<!-- 정확한 페이지 경로 알려주는 기능 추가-->
+			<nav>
+				<div id="disqus_thread"></div>
+				<script>
+					var disqus_config = function() {
+						this.page.url = 'https://blog.devj.me/article_detail_48.html';
+						this.page.identifier = 'article_detail_48.html';
+					};
+					(function() {
+						//DON'T EDIT BELOW THIS LINE
+						var d = document, s = d.createElement('script');
+						s.src = 'https://devj-blog.disqus.com/embed.js';
+						s.setAttribute('data-timestamp', +new Date());
+						(d.head || d.body).appendChild(s);
+					})();
+				</script>
+				<noscript>
+					Please enable JavaScript to view the
+					<a href="https://disqus.com/?ref_noscript">comments powered by
+						Disqus.</a>
+				</noscript>
+			</nav>
+		</div>
+	</div>
+</section>
+<!-- 메인-상세페이지 끝 -->
+<!-- 메인-상세 하단 메뉴 시작 -->
+<section class="section-3 con-min-width">
+	<div class="con">
+		<div class="article-list-bottom-cell flex flex-jc-c"><div class="./"><a href="article_detail_47.html" class="hover-underline">&lt 이전글</a></div><div class="./"><i class="fas fa-th-list"></i><a href="etc-list-1.html" class="hover-underline"> 목록 </a></div><div class="./"><a href="article_detail_49.html"class="hover-underline">다음글 &gt</a></div></div>
+	</div>
+</section>
+<!-- 메인-상세 하단 메뉴 끝 -->
+</section>
+</main>
+<!-- 메인 컨텐츠 박스 끝 -->
+  <!-- 맨 위 버튼 시작 -->
+  <nav class="top-button flex flex-jc-c flex-ai-c">
+    <div class="">
+      <a href="#header">▲ TOP</a> 
+    </div>     
+  </nav>
+  <!-- 맨 위 버튼 끝 -->
+
+
+  <!-- 푸터 시작 -->
+  <footer class="bottom-bar con-min-width">
+    <div class="con flex flex-ai-c">
+      <a href="index.html" class="logo logo--mini flex flex-ai-c" title="HOME">
+        <img class="logo--mini__img" src="images/Dev_J_logo/logo_transparent.png" alt="">
+      </a>
+      <div class="bottom-bar__site-info">
+        <span><i class="far fa-envelope"></i> juy32400@gmail.com</span>
+        <br>
+        <br>
+        <span>COPYRIGHT 2020. Dev_J. All rights reserved.</span>
+      </div>
+    </div>
+  </footer>
+  <!-- 푸터 끝 -->
+</div>
+<!-- 사이트 박스 끝 -->
+</body>
+</html>

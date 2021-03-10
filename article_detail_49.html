@@ -1,0 +1,677 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+<script data-ad-client="ca-pub-7996879977557531" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-X5RMP83794"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-X5RMP83794');
+</script>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- 구글 검색엔진 등록-소유권 확인 -->
+<meta name="google-site-verification" content="37R4KcEaJU5LfiKL7GI1hu1_spJgWOazN6xy48OHhD4" />
+
+<!-- Meta Tag & Open Graph -->
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<meta name="viewport" content="width=1200">
+<meta name="apple-mobile-web-app-title" content="Dev_J BLOG" />
+<!-- 메타태그정보 //-->
+<!-- META -->
+<link rel="canonical" href="https://blog.devj.me" />
+<meta name="subject" content="[HTTP, HTTPS, SSL] HTTP, HTTPS 그리고 SSL"/>
+<meta name="title" content="Dev_J BLOG" />
+<meta name="keywords" content="JAVA, HTML, CSS, JavaScript, MySQL" />
+<meta name="copyright" content="Dev_J BLOG" />
+<meta name="pubdate" content="2021-03-10T12:01:36" />
+<meta name="lastmod" content="2021-03-10T12:01:36" />
+<!-- OPENGRAPH -->
+<meta property="og:site_name" content="Dev_J BLOG" />
+<meta property="og:type" content="blog" />
+<meta property="og:title" content="[HTTP, HTTPS, SSL] HTTP, HTTPS 그리고 SSL" />
+<meta property="og:description" content=" HTTP HTTPS
+
+ HTTP
+  Hypertext Transfer Protocol
+  Hypertext 문서와 문서간 링크로 연결된 체계양식  html
+  즉 html을 전송하기 위한 통신규약이다  HTTP
+
+ HTTPS
+  HTTP와 유사 S는 Over Secure Socket Layer의 Secure
+  즉 보안Secure이 강화된 HTTP라고 생각하면 된다
+  제 3자가 정보를 변조하거나 감청하기 어려움
+
+
+HTTPS vs HTTP
+HTTPS는 HTTP와 유사하지만 보안이 더 강화된 것이다
+
+
+ SSL
+
+ SSL
+  HTTP와 SSL은 크게 보면 같지만 세부적으론 다르다
+  HTTP와 SSL의 계층은 서로 다르다
+  SSL이 더 포괄적인 개념이고 그 위에서 동작하는 서비스가 HTTP이다
+  HTTP가 SSL을 이용하게 되면 HTTPS가 되는 개념이다
+
+
+SSL vs TLS
+SSL이 TLS로 이름이 바뀌었지만 SSL이 더 잘 사용되는 명칭
+결론적으로 SSL과 TLS는 같은 말이다
+
+
+ SSL 디지털 인증서
+ 클라이언트와 서버간의 통신을 제3자가 보증해주는 전자화된 문서
+ 이점암호화
+   통신내용이 공격자에게 노출되는 것을 방지
+   클라이언트의 접속하려는 서버가 신뢰할 수 있는 서버인지 판단 가능
+   통신 내용의 악의적인 변경 방지
+ 기능
+   클라이언트가 접속한 서버가 신뢰할 수 있는 서버임을 보장한다
+   SSL통신에 사용할 공개키를 클라이언트에게 제공한다
+ 암호화
+
+대칭키 
+
+  암호화를 하는 쪽과 복호화를 하는 쪽이 동일한 키를 이용하는 암호화 기법 
+
+공개키비대칭키 
+
+  암호화를 하는 쪽과 복호화를 하는 쪽이 서로 다른 키를 이용하는 암호화 기법 이러한 특징으로 공개키 방식은 2개의 키비공개키공개키를 갖음 
+
+
+ 인증서
+
+ 인증서 내용
+
+  서비스의 정보인증서 발급 CA 도메인 등
+  서버 측 공개키공개키 내용 암호화 방법 등
+
+
+ CA에 의해 암호화 될 때 공개키 방식을 사용한다
+ CA는 자신의 비공개키를 이용해 서버가 제출한 인증서를 암호화한다
+ 따라서 비공개키는 절대로 유출되어서는 안된다
+
+
+CACertificate authority
+
+클라이언트가 의도한 서버가 맞는지를 보장하는 역할을 하는 공인된 민간기업들
+ex Symantec Comodo 등
+
+SSL을 통해 암호화된 통신을 제공하려는 서비스는 CA를 통해 인증서를 구입해야 한다
+
+자신이 직접 인증서를 이용할 수도 있지만 공인된 인증서는 아니기 때문에 브라우저에서 경고를 출력한다
+
+
+ SSL인증서가 서비스를 보증하는 방법
+1 브라우저는 내부적으로 CA의 리스트를 미리 파악하고 있다
+2 웹브라우저가 서버에 접속할 때 서버는 인증서를 제공한다
+3 브라우저는 이 인증서를 발급한 CA가 자신이 갖고 있는 CA 리스트에 있는지 확인한다
+5 확인 후 브라우저는 해당 CA의 공개키를 이용해 인증서를 복호화한다 
+6 이 과정을 통해 복호화가 된다면 해당 서비스는 신뢰 할 수 있다는 것을 의미하게 된다 " />
+<meta property="og:locale" content="ko_KR" />
+<meta property="og:image" content="images/Dev_J_logo/logo.png" />
+<meta property="og:image:alt" content="blog.devj.me" />
+<meta property="og:image:width" content="486" />
+<meta property="og:image:height" content="254" />
+<meta property="og:updated_time" content="2021-03-10T12:01:36"/>
+<meta property="og:pubdate" content="2021-03-10T12:01:36" />
+<meta property="og:url" content="https://blog.devj.me" />
+<!-- TWITTER -->
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="[HTTP, HTTPS, SSL] HTTP, HTTPS 그리고 SSL" />
+<meta name="twitter:site" content="@Dev_J BLOG" />
+<meta name="twitter:creator" content="@Dev_J BLOG" />
+<meta name="twitter:image" content="images/Dev_J_logo/logo.png">
+<meta name="twitter:description" content=" HTTP HTTPS
+
+ HTTP
+  Hypertext Transfer Protocol
+  Hypertext 문서와 문서간 링크로 연결된 체계양식  html
+  즉 html을 전송하기 위한 통신규약이다  HTTP
+
+ HTTPS
+  HTTP와 유사 S는 Over Secure Socket Layer의 Secure
+  즉 보안Secure이 강화된 HTTP라고 생각하면 된다
+  제 3자가 정보를 변조하거나 감청하기 어려움
+
+
+HTTPS vs HTTP
+HTTPS는 HTTP와 유사하지만 보안이 더 강화된 것이다
+
+
+ SSL
+
+ SSL
+  HTTP와 SSL은 크게 보면 같지만 세부적으론 다르다
+  HTTP와 SSL의 계층은 서로 다르다
+  SSL이 더 포괄적인 개념이고 그 위에서 동작하는 서비스가 HTTP이다
+  HTTP가 SSL을 이용하게 되면 HTTPS가 되는 개념이다
+
+
+SSL vs TLS
+SSL이 TLS로 이름이 바뀌었지만 SSL이 더 잘 사용되는 명칭
+결론적으로 SSL과 TLS는 같은 말이다
+
+
+ SSL 디지털 인증서
+ 클라이언트와 서버간의 통신을 제3자가 보증해주는 전자화된 문서
+ 이점암호화
+   통신내용이 공격자에게 노출되는 것을 방지
+   클라이언트의 접속하려는 서버가 신뢰할 수 있는 서버인지 판단 가능
+   통신 내용의 악의적인 변경 방지
+ 기능
+   클라이언트가 접속한 서버가 신뢰할 수 있는 서버임을 보장한다
+   SSL통신에 사용할 공개키를 클라이언트에게 제공한다
+ 암호화
+
+대칭키 
+
+  암호화를 하는 쪽과 복호화를 하는 쪽이 동일한 키를 이용하는 암호화 기법 
+
+공개키비대칭키 
+
+  암호화를 하는 쪽과 복호화를 하는 쪽이 서로 다른 키를 이용하는 암호화 기법 이러한 특징으로 공개키 방식은 2개의 키비공개키공개키를 갖음 
+
+
+ 인증서
+
+ 인증서 내용
+
+  서비스의 정보인증서 발급 CA 도메인 등
+  서버 측 공개키공개키 내용 암호화 방법 등
+
+
+ CA에 의해 암호화 될 때 공개키 방식을 사용한다
+ CA는 자신의 비공개키를 이용해 서버가 제출한 인증서를 암호화한다
+ 따라서 비공개키는 절대로 유출되어서는 안된다
+
+
+CACertificate authority
+
+클라이언트가 의도한 서버가 맞는지를 보장하는 역할을 하는 공인된 민간기업들
+ex Symantec Comodo 등
+
+SSL을 통해 암호화된 통신을 제공하려는 서비스는 CA를 통해 인증서를 구입해야 한다
+
+자신이 직접 인증서를 이용할 수도 있지만 공인된 인증서는 아니기 때문에 브라우저에서 경고를 출력한다
+
+
+ SSL인증서가 서비스를 보증하는 방법
+1 브라우저는 내부적으로 CA의 리스트를 미리 파악하고 있다
+2 웹브라우저가 서버에 접속할 때 서버는 인증서를 제공한다
+3 브라우저는 이 인증서를 발급한 CA가 자신이 갖고 있는 CA 리스트에 있는지 확인한다
+5 확인 후 브라우저는 해당 CA의 공개키를 이용해 인증서를 복호화한다 
+6 이 과정을 통해 복호화가 된다면 해당 서비스는 신뢰 할 수 있다는 것을 의미하게 된다 " />
+<!-- GOOGLE+ -->
+<meta itemprop="headline" content="Dev_J BLOG" />
+<meta itemprop="name" content="Dev_J BLOG" />
+<meta itemprop="description" content=" HTTP HTTPS
+
+ HTTP
+  Hypertext Transfer Protocol
+  Hypertext 문서와 문서간 링크로 연결된 체계양식  html
+  즉 html을 전송하기 위한 통신규약이다  HTTP
+
+ HTTPS
+  HTTP와 유사 S는 Over Secure Socket Layer의 Secure
+  즉 보안Secure이 강화된 HTTP라고 생각하면 된다
+  제 3자가 정보를 변조하거나 감청하기 어려움
+
+
+HTTPS vs HTTP
+HTTPS는 HTTP와 유사하지만 보안이 더 강화된 것이다
+
+
+ SSL
+
+ SSL
+  HTTP와 SSL은 크게 보면 같지만 세부적으론 다르다
+  HTTP와 SSL의 계층은 서로 다르다
+  SSL이 더 포괄적인 개념이고 그 위에서 동작하는 서비스가 HTTP이다
+  HTTP가 SSL을 이용하게 되면 HTTPS가 되는 개념이다
+
+
+SSL vs TLS
+SSL이 TLS로 이름이 바뀌었지만 SSL이 더 잘 사용되는 명칭
+결론적으로 SSL과 TLS는 같은 말이다
+
+
+ SSL 디지털 인증서
+ 클라이언트와 서버간의 통신을 제3자가 보증해주는 전자화된 문서
+ 이점암호화
+   통신내용이 공격자에게 노출되는 것을 방지
+   클라이언트의 접속하려는 서버가 신뢰할 수 있는 서버인지 판단 가능
+   통신 내용의 악의적인 변경 방지
+ 기능
+   클라이언트가 접속한 서버가 신뢰할 수 있는 서버임을 보장한다
+   SSL통신에 사용할 공개키를 클라이언트에게 제공한다
+ 암호화
+
+대칭키 
+
+  암호화를 하는 쪽과 복호화를 하는 쪽이 동일한 키를 이용하는 암호화 기법 
+
+공개키비대칭키 
+
+  암호화를 하는 쪽과 복호화를 하는 쪽이 서로 다른 키를 이용하는 암호화 기법 이러한 특징으로 공개키 방식은 2개의 키비공개키공개키를 갖음 
+
+
+ 인증서
+
+ 인증서 내용
+
+  서비스의 정보인증서 발급 CA 도메인 등
+  서버 측 공개키공개키 내용 암호화 방법 등
+
+
+ CA에 의해 암호화 될 때 공개키 방식을 사용한다
+ CA는 자신의 비공개키를 이용해 서버가 제출한 인증서를 암호화한다
+ 따라서 비공개키는 절대로 유출되어서는 안된다
+
+
+CACertificate authority
+
+클라이언트가 의도한 서버가 맞는지를 보장하는 역할을 하는 공인된 민간기업들
+ex Symantec Comodo 등
+
+SSL을 통해 암호화된 통신을 제공하려는 서비스는 CA를 통해 인증서를 구입해야 한다
+
+자신이 직접 인증서를 이용할 수도 있지만 공인된 인증서는 아니기 때문에 브라우저에서 경고를 출력한다
+
+
+ SSL인증서가 서비스를 보증하는 방법
+1 브라우저는 내부적으로 CA의 리스트를 미리 파악하고 있다
+2 웹브라우저가 서버에 접속할 때 서버는 인증서를 제공한다
+3 브라우저는 이 인증서를 발급한 CA가 자신이 갖고 있는 CA 리스트에 있는지 확인한다
+5 확인 후 브라우저는 해당 CA의 공개키를 이용해 인증서를 복호화한다 
+6 이 과정을 통해 복호화가 된다면 해당 서비스는 신뢰 할 수 있다는 것을 의미하게 된다 " />
+<meta itemprop="image" content="images/Dev_J_logo/logo.png" />
+
+<!-- 사이트 타이틀 -->
+<title>[HTTP, HTTPS, SSL] HTTP, HTTPS 그리고 SSL | Dev_J BLOG | ARTICLE DETAIL</title>
+
+
+<!-- 파비콘 -->
+<link rel="shortcut icon" href="images/favicon/favicon.ico" type="image/x-icon">
+<link rel="icon" href="images/favicon/favicon.ico" type="image/x-icon">
+
+<!-- 폰트어썸 불러오기 -->
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+
+<!--모바일에서도 PC와 같은 비율 유지-->
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<!--제이쿼리-->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+<!-- 하이라이트 라이브러리 추가, 토스트 UI 에디터에서 사용됨 -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.4.1/highlight.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.4.1/styles/default.min.css">
+
+<!-- 토스트 UI 에디터, 자바스크립트 코어 -->
+<script
+	src="https://uicdn.toast.com/editor/latest/toastui-editor-all.min.js" defer></script>
+
+<!-- 코드 미러 라이브러리 추가, 토스트 UI 에디터에서 사용됨 -->
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.58.3/codemirror.min.css" />
+<!-- 토스트 UI 에디터, CSS 코어 -->
+<link rel="stylesheet"
+	href="https://uicdn.toast.com/editor/latest/toastui-editor.min.css" />
+
+<!-- 토스트 UI 에디터, 신택스 하이라이트 플러그인 추가 -->
+<script src="https://uicdn.toast.com/editor-plugin-code-syntax-highlight/latest/toastui-editor-plugin-code-syntax-highlight.min.js" defer></script>
+
+<!-- app.css 불러오기 -->
+<link rel="stylesheet" href="app.css">
+<!-- app.js 불러오기 -->
+<script src="app.js" defer></script>
+<!-- index.js 불러오기 
+<script src="index.js" defer></script>
+-->
+</head>
+
+<body>
+<!-- 사이트 박스 시작 -->
+<div class="body-content min-height-100vh flex flex-column">
+  <!-- 로고바 시작 -->
+  <header class="logo-bar con-min-width" id="header">
+    <div class="con height-100p flex flex-jc-c" title="HOME">
+      <a href="index.html" class="logo flex flex-ai-c"> 
+        <img class="logo__img" src="images/Dev_J_logo/logo_transparent.png" alt="">
+        <span>
+          BLOG
+        </span>
+      </a>
+    </div>
+  </header>
+  <!-- 로고바 끝 -->
+
+  <!-- 메뉴바 시작-->
+  <header class="menu-bar con-min-width visible-md-up">
+    <div class="flex flex-jc-sb">
+   	 <div class="menu-bar__status-icon" title="Menu">
+      <div></div>
+      <div></div>
+      <div></div>
+     </div>
+     <a class="search-icon" title="search" href="search.html">
+        <i class="fa fa-search"></i>
+     </a>
+   </div>
+   <div class="con hide">
+    <nav class="menu-bar__menu">
+      <ul class="flex">
+          <li title="ABOUT">
+            <a href="about.html" class="block">
+              <i class="far fa-address-card"></i>
+              <span>ABOUT</span>
+            </a>
+          </li>
+          <li>
+            <a class="block">
+              <i class="fas fa-list"></i>
+              <span>ARTICLES</span>
+            </a>
+            <ul>
+              <li title="NOTICE"><a href="notice-list-1.html" class="block"><i class="fas fa-bullhorn"></i> <span>NOTICE BOARD</span></a></li><li title="JAVA"><a href="java-list-1.html" class="block"><i class="fab fa-java"></i> <span>JAVA BOARD</span></a></li><li title="HTML"><a href="html-list-1.html" class="block"><i class="fab fa-html5"></i> <span>HTML & CSS & JS BOARD</span></a></li><li title="MYSQL"><a href="mysql-list-1.html" class="block"><i class="fas fa-database"></i> <span>MySQL BOARD</span></a></li><li title="ETC"><a href="etc-list-1.html" class="block"><i class="fas fa-mouse-pointer"></i> <span>ETC BOARD</span></a></li>
+            </ul>
+          </li>
+          <li>
+            <a class="block">
+              <i class="fas fa-project-diagram"></i>
+              <span>PROJECT</span>
+            </a>
+            <ul>
+              <li title="P_BLOG"><a href="p_blog-list-1.html" class="block"><i class="fab fa-blogger"></i> <span>P.BLOG PROJECT</span></a></li><li title="P_JSP"><a href="p_jsp-list-1.html" class="block"><i class="fas fa-file-word"></i> <span>P.JSP PROJECT</span></a></li>
+            </ul>
+          </li>
+          <li>
+            <a class="block">
+              <i class="fas fa-link"></i>
+              <span>LINK</span>
+            </a>
+            <ul>
+              <li title="T-STORY">
+                <a href="https://cjy324.tistory.com/" target="_blank" class="block">
+                  <i class="fas fa-rss-square"></i>
+                  <span>T-STORY</span>
+                </a>
+              </li>
+              <li title="GITHUB">
+                <a href="https://github.com/cjy324/TIL_Jooyoung#til_jooyoung" target="_blank" class="block">
+                  <i class="fab fa-github"></i>
+                  <span>GITHUB</span>
+                </a>
+              </li>
+            </ul>
+          </li>
+          <li title="STATISTICS">
+            <a href="statistics.html" class="block">
+              <i class="fas fa-chart-pie"></i>
+              <span>STATISTICS</span>
+            </a>
+          </li>
+        </ul>
+      </nav>
+   </div>
+  </header>
+  <!-- 메뉴바 끝 -->
+  
+  <!-- 모바일 사이드 메뉴바 시작 -->
+  <header class="mobile-menu-bar con-min-width visible-sm-down">
+    <div class="flex flex-jc-sb">
+   <div class="mobile-menu-bar__status-icon" title="Menu">
+     <div></div>
+     <div></div>
+     <div></div>
+   </div>
+    <a class="search-icon" title="search" href="search.html">
+        <i class="fa fa-search"></i>
+      </a>
+   </div>
+   <div class="con ">
+    <aside class="mobile-side-bar flex flex-column flex-jc-c ">
+      <div class="mobile-side-bar_X"><i class="fas fa-times"></i></div>
+      <nav class="mobile-side-bar_menu flex">
+      <ul class="">
+          <li title="ABOUT">
+            <a href="about.html" class="block">
+              <i class="far fa-address-card"></i>
+              <span>ABOUT</span>
+            </a>
+          </li>
+          <li>
+            <a class="block">
+              <i class="fas fa-list"></i>
+              <span>ARTICLES</span>
+            </a>
+            <ul class="hide2">
+              <li title="NOTICE"><a href="notice-list-1.html" class="block"><i class="fas fa-bullhorn"></i> <span>NOTICE BOARD</span></a></li><li title="JAVA"><a href="java-list-1.html" class="block"><i class="fab fa-java"></i> <span>JAVA BOARD</span></a></li><li title="HTML"><a href="html-list-1.html" class="block"><i class="fab fa-html5"></i> <span>HTML & CSS & JS BOARD</span></a></li><li title="MYSQL"><a href="mysql-list-1.html" class="block"><i class="fas fa-database"></i> <span>MySQL BOARD</span></a></li><li title="ETC"><a href="etc-list-1.html" class="block"><i class="fas fa-mouse-pointer"></i> <span>ETC BOARD</span></a></li>
+            </ul>
+          </li>
+          <li>
+            <a class="block">
+              <i class="fas fa-project-diagram"></i>
+              <span>PROJECT</span>
+            </a>
+            <ul class="hide2">
+              <li title="P_BLOG"><a href="p_blog-list-1.html" class="block"><i class="fab fa-blogger"></i> <span>P.BLOG PROJECT</span></a></li><li title="P_JSP"><a href="p_jsp-list-1.html" class="block"><i class="fas fa-file-word"></i> <span>P.JSP PROJECT</span></a></li>
+            </ul>
+          </li>
+          <li>
+            <a class="block">
+              <i class="fas fa-link"></i>
+              <span>LINK</span>
+            </a>
+            <ul class="hide2">
+              <li title="T-STORY">
+                <a href="https://cjy324.tistory.com/" target="_blank" class="block">
+                  <i class="fas fa-rss-square"></i>
+                  <span>T-STORY</span>
+                </a>
+              </li>
+              <li title="GITHUB">
+                <a href="https://github.com/cjy324/TIL_Jooyoung#til_jooyoung" target="_blank" class="block">
+                  <i class="fab fa-github"></i>
+                  <span>GITHUB</span>
+                </a>
+              </li>
+            </ul>
+          </li>
+          <li title="STATISTICS">
+            <a href="statistics.html" class="block">
+              <i class="fas fa-chart-pie"></i>
+              <span>STATISTICS</span>
+            </a>
+          </li>
+        </ul>
+      </nav>  
+      </aside>
+   </div>
+  </header>
+  
+  <!-- 모바일 사이드 메뉴바 끝 --> 
+   
+
+  <!-- 메인 컨텐츠 박스 시작 -->
+  <main class="main-box flex-grow-1">
+  <section class="main-box-section con-min-width">
+   <!-- 메인-타이틀바 시작 -->
+	<div class="title-bar con-min-width">
+		<h1 class="con">
+			<i class="fas fa-file-invoice"></i> <span>ARTICLE</span>
+		</h1>
+	</div>
+   <!-- 메인-타이틀바 종료 -->
+<!-- Progress-bar -->
+<script type="text/javascript"
+	src="https://rawcdn.githack.com/mburakerman/prognroll/0feda211643153bce2c69de32ea1b39cdc64ffbe/src/prognroll.js"></script>
+<script type="text/javascript">
+	$(function() {
+		$("body").prognroll({
+			height : 10,
+			color : "#666666"
+		});
+		$(".content").prognroll({
+			custom : true
+		});
+	});
+</script>
+
+<!-- 메인-상세페이지 시작 -->
+<section class="section-2 con-min-width min-height-50vh">
+	<div class="con height-100p">
+		<div class="article-detail-cell height-100p">
+			<div class="article-detail-cell__board-name"><div><span>게시판 : </span><span>ETC 게시판</span></div></div><div class="article-detail-cell__id"><div><span>번호 : </span><span>49</span></div></div><div class="article-detail-cell__member-id"><div><span>작성자 : </span><span>Dev_J</span></div></div><div class="article-detail-cell__reg-date"><div><span>작성일 : </span><span>2021-03-10 11:58:45</span></div></div><div class="article-detail-cell__update-date"><div><span>수정일 : </span><span>2021-03-10 12:01:35</span></div></div><br><div class="article-detail-cell__title-contents flex flex-jc-fe"><div class="article-detail-cell__hitsCount"><div><span>조회수 : </span><span>0</span></div></div><div class="article-detail-cell__likesCount"><div><span>추천수 : </span><span>0</span></div></div><div class="article-detail-cell__commentsCount"><div><span>댓글수 : </span><span>0</span></div></div></div><div class="article-detail-cell__title"><div><span>제목 : </span><span>[HTTP, HTTPS, SSL] HTTP, HTTPS 그리고 SSL</span></div></div><nav class="ad"><!-- 구글 애드센스2 --><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script><!-- 수평 반응형2 --><ins class="adsbygoogle" style="display: block" data-ad-client="ca-pub-7996879977557531" data-ad-slot="2278060237" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle = window.adsbygoogle || []).push({});</script></nav><script type"text/x-template"># HTTP, HTTPS
+
+## HTTP
+ - Hypertext Transfer Protocol
+ - Hypertext: 문서와 문서간 링크로 연결된 체계,양식 -> html
+ - **즉, html을 전송하기 위한 통신규약이다. => HTTP**
+
+## HTTPS
+ - HTTP와 유사, S는 Over Secure Socket Layer의 Secure
+ - **즉, 보안(Secure)이 강화된 HTTP라고 생각하면 된다.**
+ - 제 3자가 정보를 변조하거나 감청하기 어려움
+
+```
+<HTTPS vs HTTP>
+HTTPS는 HTTP와 유사하지만 보안이 더 강화된 것이다.
+```
+
+# SSL
+
+## SSL
+ - HTTP와 SSL은 크게 보면 같지만 세부적으론 다르다.
+ - HTTP와 SSL의 계층은 서로 다르다.
+ - SSL이 더 포괄적인 개념이고 그 위에서 동작하는 서비스가 HTTP이다.
+ - **HTTP가 SSL을 이용하게 되면 HTTPS가 되는 개념이다.**
+
+```
+<SSL vs TLS>
+SSL이 TLS로 이름이 바뀌었지만 SSL이 더 잘 사용되는 명칭
+결론적으로, SSL과 TLS는 같은 말이다.
+```
+
+## SSL 디지털 인증서
+- 클라이언트와 서버간의 통신을 제3자가 보증해주는 전자화된 문서
+- 이점(암호화)
+  - 통신내용이 공격자에게 노출되는 것을 방지
+  - 클라이언트의 접속하려는 서버가 신뢰할 수 있는 서버인지 판단 가능
+  - 통신 내용의 악의적인 변경 방지
+- 기능
+  - 클라이언트가 접속한 서버가 신뢰할 수 있는 서버임을 보장한다.
+  - SSL통신에 사용할 공개키를 클라이언트에게 제공한다.
+- 암호화
+```
+-대칭키 
+
+  암호화를 하는 쪽과 복호화를 하는 쪽이 동일한 키를 이용하는 암호화 기법 
+
+-공개키(=비대칭키) 
+
+  암호화를 하는 쪽과 복호화를 하는 쪽이 서로 다른 키를 이용하는 암호화 기법, 이러한 특징으로 공개키 방식은 2개의 키(비공개키-공개키)를 갖음 
+```
+
+# 인증서
+
+## 인증서 내용
+```
+ - 서비스의 정보(인증서 발급 CA, 도메인 등)
+ - 서버 측 공개키(공개키 내용, 암호화 방법 등)
+```
+
+- CA에 의해 암호화 될 때 공개키 방식을 사용한다.
+- CA는 자신의 비공개키를 이용해 서버가 제출한 인증서를 암호화한다.
+- 따라서 비공개키는 절대로 유출되어서는 안된다.
+
+```
+CA(Certificate authority)
+
+-클라이언트가 의도한 서버가 맞는지를 보장하는 역할을 하는 공인된 민간기업들
+ex) Symantec, Comodo 등
+
+SSL을 통해 암호화된 통신을 제공하려는 서비스는 CA를 통해 인증서를 구입해야 한다.
+
+자신이 직접 인증서를 이용할 수도 있지만 공인된 인증서는 아니기 때문에 브라우저에서 경고를 출력한다.
+```
+
+## SSL인증서가 서비스를 보증하는 방법
+1. 브라우저는 내부적으로 CA의 리스트를 미리 파악하고 있다.
+2. 웹브라우저가 서버에 접속할 때 서버는 인증서를 제공한다.
+3. 브라우저는 이 인증서를 발급한 CA가 자신이 갖고 있는 CA 리스트에 있는지 확인한다.
+5. 확인 후 브라우저는 해당 CA의 공개키를 이용해 인증서를 복호화한다. 
+6. 이 과정을 통해 복호화가 된다면 해당 서비스는 신뢰 할 수 있다는 것을 의미하게 된다. </script><div class="article-detail-cell__body height-70p toast-ui-viewer"><div></div></div><br><div class="article-detail-cell__tag flex flex-wrap"><nav># <a href="#" target="_blank">etc</a></nav><nav># <a href="#" target="_blank">HTTP</a></nav><nav># <a href="#" target="_blank">HTTPS</a></nav><nav># <a href="#" target="_blank">SSL</a></nav><nav># <a href="#" target="_blank">인증서</a></nav></div><br><br><nav class="ad"><!-- 구글 애드센스1 --><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script><!-- 수평 반응형1 --><ins class="adsbygoogle" style="display: block" data-ad-client="ca-pub-7996879977557531" data-ad-slot="6812185708" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle = window.adsbygoogle || []).push({});</script></nav>
+			<!-- Disqus api 적용 -->
+			<!-- 정확한 페이지 경로 알려주는 기능 추가-->
+			<nav>
+				<div id="disqus_thread"></div>
+				<script>
+					var disqus_config = function() {
+						this.page.url = 'https://blog.devj.me/article_detail_49.html';
+						this.page.identifier = 'article_detail_49.html';
+					};
+					(function() {
+						//DON'T EDIT BELOW THIS LINE
+						var d = document, s = d.createElement('script');
+						s.src = 'https://devj-blog.disqus.com/embed.js';
+						s.setAttribute('data-timestamp', +new Date());
+						(d.head || d.body).appendChild(s);
+					})();
+				</script>
+				<noscript>
+					Please enable JavaScript to view the
+					<a href="https://disqus.com/?ref_noscript">comments powered by
+						Disqus.</a>
+				</noscript>
+			</nav>
+		</div>
+	</div>
+</section>
+<!-- 메인-상세페이지 끝 -->
+<!-- 메인-상세 하단 메뉴 시작 -->
+<section class="section-3 con-min-width">
+	<div class="con">
+		<div class="article-list-bottom-cell flex flex-jc-c"><div class="./"><a href="article_detail_48.html" class="hover-underline">&lt 이전글</a></div><div class="./"><i class="fas fa-th-list"></i><a href="etc-list-1.html" class="hover-underline"> 목록 </a></div></div>
+	</div>
+</section>
+<!-- 메인-상세 하단 메뉴 끝 -->
+</section>
+</main>
+<!-- 메인 컨텐츠 박스 끝 -->
+  <!-- 맨 위 버튼 시작 -->
+  <nav class="top-button flex flex-jc-c flex-ai-c">
+    <div class="">
+      <a href="#header">▲ TOP</a> 
+    </div>     
+  </nav>
+  <!-- 맨 위 버튼 끝 -->
+
+
+  <!-- 푸터 시작 -->
+  <footer class="bottom-bar con-min-width">
+    <div class="con flex flex-ai-c">
+      <a href="index.html" class="logo logo--mini flex flex-ai-c" title="HOME">
+        <img class="logo--mini__img" src="images/Dev_J_logo/logo_transparent.png" alt="">
+      </a>
+      <div class="bottom-bar__site-info">
+        <span><i class="far fa-envelope"></i> juy32400@gmail.com</span>
+        <br>
+        <br>
+        <span>COPYRIGHT 2020. Dev_J. All rights reserved.</span>
+      </div>
+    </div>
+  </footer>
+  <!-- 푸터 끝 -->
+</div>
+<!-- 사이트 박스 끝 -->
+</body>
+</html>

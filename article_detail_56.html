@@ -1,0 +1,965 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+<script data-ad-client="ca-pub-7996879977557531" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-X5RMP83794"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-X5RMP83794');
+</script>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- 구글 검색엔진 등록-소유권 확인 -->
+<meta name="google-site-verification" content="37R4KcEaJU5LfiKL7GI1hu1_spJgWOazN6xy48OHhD4" />
+
+<!-- Meta Tag & Open Graph -->
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<meta name="viewport" content="width=1200">
+<meta name="apple-mobile-web-app-title" content="Dev_J BLOG" />
+<!-- 메타태그정보 //-->
+<!-- META -->
+<link rel="canonical" href="https://blog.devj.me" />
+<meta name="subject" content="3강. JOIN(feat. INNER, LEFT, RIGHT, OUTER)"/>
+<meta name="title" content="Dev_J BLOG" />
+<meta name="keywords" content="JAVA, HTML, CSS, JavaScript, MySQL" />
+<meta name="copyright" content="Dev_J BLOG" />
+<meta name="pubdate" content="2021-03-23T19:38:55" />
+<meta name="lastmod" content="2021-03-23T19:38:55" />
+<!-- OPENGRAPH -->
+<meta property="og:site_name" content="Dev_J BLOG" />
+<meta property="og:type" content="blog" />
+<meta property="og:title" content="3강. JOIN(feat. INNER, LEFT, RIGHT, OUTER)" />
+<meta property="og:description" content=" JOINfeat INNER LEFT RIGHT OUTER
+  DB를 다루다보면 서로 다른 Table의 데이터를 조합해야할 경우가 있다 
+  이때 유용하게 사용할 수 있는 쿼리가 바로 JOIN이다 
+  JOIN에는 크게 INNER JOIN LEFT JOIN RIGHT JOIN 그리고 OUTER JOIN이 있다
+  JOIN은 DB를 다루는데 있어 매우 중요한 쿼리이므로 잘 익혀둘 필요가 있다
+br
+지금부터 아래 테스트 데이터를 베이스로 각 JOIN들의 활용법을 살펴보도록 하자
+ Test Data
+SQL
+
+ a5 데이터베이스 삭제생성선택
+
+DROP DATABASE IF EXISTS a5
+CREATE DATABASE a5
+USE a5
+SHOW DATABASES
+
+
+people테이블 생성
+
+CREATE TABLE people
+    name CHAR100 NOT NULL
+    phone CHAR100 NOT NULL
+    pid INT10 NOT NULL 
+
+DESC people
+
+
+INSERT INTO people
+SET name  Mr b
+phone  01225708225
+pid  1
+
+INSERT INTO people
+SET name  Miss a
+phone  01333444444
+pid  2
+
+INSERT INTO people
+SET name  Mr c
+phone  55555546525
+pid  3
+
+SELECT  FROM people
+
+
+property테이블 생성
+
+CREATE TABLE property
+    pid INT10 NOT NULL
+    spid INT10 NOT NULL
+    selling CHAR100 NOT NULL
+
+DESC property
+
+INSERT INTO property
+SET spid  1
+selling  old
+pid  1
+
+INSERT INTO property
+SET spid  2
+selling  will
+pid  3
+
+INSERT INTO property
+SET spid  3
+selling  tail
+pid  3
+
+INSERT INTO property
+SET spid  4
+selling  flo
+pid  3
+ 
+INSERT INTO property
+SET spid  5
+selling  dum
+pid  4
+ 
+SELECT  FROM property
+
+
+br
+ INNER JOIN
+  INNER 조인은 MySQL에서는 간략히 JOIN으로 나타낸다 일반적으로 사용하는 JOIN 이다
+
+  핵심은 JOIN뒤에 ON인데 두 테이블이 결합하는 조건을 나타낸다 
+
+   ON 대신 WHERE를 쓸 수도 있다
+
+SQL
+SELECT peoplename
+peoplephone
+propertyselling
+FROM people
+INNER JOIN property
+ON peoplepid  propertypid
+
+ 결과
+imagehttpsimg1daumcdnnetthumbR1280x0scodemtistory2fnamehttps3A2F2Fblogkakaocdnnet2Fdn2FdHBGj12FbtqNMOdaLwL2FOXv1Gn0kRoxzoXQI5RmLdK2Fimgpng
+
+br
+ LEFT JOIN
+  왼쪽 테이블을 중심으로 오른쪽의 테이블을 매치시킨다
+
+  왼쪽 테이블의 한개의 레코드에 여러개의 오른쪽 테이블 레코드가 일치할 경우
+
+  해당 왼쪽 레코드를 여러번 표시하게 된다
+
+  왼쪽은 무조건 표시하고 매치되는 레코드가 오른쪽에 없으면 NULL을 표시한다
+
+SQL
+SELECT peoplename
+peoplephone
+propertyselling
+FROM people
+LEFT JOIN property
+ON peoplepid  propertypid
+
+
+ 결과
+imagehttpsimg1daumcdnnetthumbR1280x0scodemtistory2fnamehttps3A2F2Fblogkakaocdnnet2Fdn2Fm6jJh2FbtqNLoTNRu92FWpov71s0FDGIenpmDBkKrK2Fimgpng
+
+br
+ RIGHT JOIN
+  오른쪽 테이블을 중심으로 왼쪽 테이블을 매치시킨다
+
+  LEFT JOIN에서 방향을 오른쪽으로만 바꾼것이므로 역시 해당 레코드가 여러번 표시되거나 NULL이 표시된다
+
+SQL
+SELECT peoplename
+peoplephone
+propertyselling
+FROM people
+RIGHT JOIN property
+ON peoplepid  propertypid
+
+
+ 결과
+imagehttpsimg1daumcdnnetthumbR1280x0scodemtistory2fnamehttps3A2F2Fblogkakaocdnnet2Fdn2FSESNh2FbtqNMMNbsvz2FRcB9qOj59nJUjk1X0PrfKk2Fimgpng
+
+br
+ OUTER JOIN
+  조건에 부합하지 않는 행까지도 포함시켜 결합하는 JOIN이다
+
+  기본적으로 LEFT RIGHT 또는 FULL이 OUTER JOIN 이다
+
+  FULL JOIN은 사용할 일이 없으며 ODBC에 따라 지원하지 않는 경우도 있다" />
+<meta property="og:locale" content="ko_KR" />
+<meta property="og:image" content="images/Dev_J_logo/logo.png" />
+<meta property="og:image:alt" content="blog.devj.me" />
+<meta property="og:image:width" content="486" />
+<meta property="og:image:height" content="254" />
+<meta property="og:updated_time" content="2021-03-23T19:38:55"/>
+<meta property="og:pubdate" content="2021-03-23T19:38:55" />
+<meta property="og:url" content="https://blog.devj.me" />
+<!-- TWITTER -->
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="3강. JOIN(feat. INNER, LEFT, RIGHT, OUTER)" />
+<meta name="twitter:site" content="@Dev_J BLOG" />
+<meta name="twitter:creator" content="@Dev_J BLOG" />
+<meta name="twitter:image" content="images/Dev_J_logo/logo.png">
+<meta name="twitter:description" content=" JOINfeat INNER LEFT RIGHT OUTER
+  DB를 다루다보면 서로 다른 Table의 데이터를 조합해야할 경우가 있다 
+  이때 유용하게 사용할 수 있는 쿼리가 바로 JOIN이다 
+  JOIN에는 크게 INNER JOIN LEFT JOIN RIGHT JOIN 그리고 OUTER JOIN이 있다
+  JOIN은 DB를 다루는데 있어 매우 중요한 쿼리이므로 잘 익혀둘 필요가 있다
+br
+지금부터 아래 테스트 데이터를 베이스로 각 JOIN들의 활용법을 살펴보도록 하자
+ Test Data
+SQL
+
+ a5 데이터베이스 삭제생성선택
+
+DROP DATABASE IF EXISTS a5
+CREATE DATABASE a5
+USE a5
+SHOW DATABASES
+
+
+people테이블 생성
+
+CREATE TABLE people
+    name CHAR100 NOT NULL
+    phone CHAR100 NOT NULL
+    pid INT10 NOT NULL 
+
+DESC people
+
+
+INSERT INTO people
+SET name  Mr b
+phone  01225708225
+pid  1
+
+INSERT INTO people
+SET name  Miss a
+phone  01333444444
+pid  2
+
+INSERT INTO people
+SET name  Mr c
+phone  55555546525
+pid  3
+
+SELECT  FROM people
+
+
+property테이블 생성
+
+CREATE TABLE property
+    pid INT10 NOT NULL
+    spid INT10 NOT NULL
+    selling CHAR100 NOT NULL
+
+DESC property
+
+INSERT INTO property
+SET spid  1
+selling  old
+pid  1
+
+INSERT INTO property
+SET spid  2
+selling  will
+pid  3
+
+INSERT INTO property
+SET spid  3
+selling  tail
+pid  3
+
+INSERT INTO property
+SET spid  4
+selling  flo
+pid  3
+ 
+INSERT INTO property
+SET spid  5
+selling  dum
+pid  4
+ 
+SELECT  FROM property
+
+
+br
+ INNER JOIN
+  INNER 조인은 MySQL에서는 간략히 JOIN으로 나타낸다 일반적으로 사용하는 JOIN 이다
+
+  핵심은 JOIN뒤에 ON인데 두 테이블이 결합하는 조건을 나타낸다 
+
+   ON 대신 WHERE를 쓸 수도 있다
+
+SQL
+SELECT peoplename
+peoplephone
+propertyselling
+FROM people
+INNER JOIN property
+ON peoplepid  propertypid
+
+ 결과
+imagehttpsimg1daumcdnnetthumbR1280x0scodemtistory2fnamehttps3A2F2Fblogkakaocdnnet2Fdn2FdHBGj12FbtqNMOdaLwL2FOXv1Gn0kRoxzoXQI5RmLdK2Fimgpng
+
+br
+ LEFT JOIN
+  왼쪽 테이블을 중심으로 오른쪽의 테이블을 매치시킨다
+
+  왼쪽 테이블의 한개의 레코드에 여러개의 오른쪽 테이블 레코드가 일치할 경우
+
+  해당 왼쪽 레코드를 여러번 표시하게 된다
+
+  왼쪽은 무조건 표시하고 매치되는 레코드가 오른쪽에 없으면 NULL을 표시한다
+
+SQL
+SELECT peoplename
+peoplephone
+propertyselling
+FROM people
+LEFT JOIN property
+ON peoplepid  propertypid
+
+
+ 결과
+imagehttpsimg1daumcdnnetthumbR1280x0scodemtistory2fnamehttps3A2F2Fblogkakaocdnnet2Fdn2Fm6jJh2FbtqNLoTNRu92FWpov71s0FDGIenpmDBkKrK2Fimgpng
+
+br
+ RIGHT JOIN
+  오른쪽 테이블을 중심으로 왼쪽 테이블을 매치시킨다
+
+  LEFT JOIN에서 방향을 오른쪽으로만 바꾼것이므로 역시 해당 레코드가 여러번 표시되거나 NULL이 표시된다
+
+SQL
+SELECT peoplename
+peoplephone
+propertyselling
+FROM people
+RIGHT JOIN property
+ON peoplepid  propertypid
+
+
+ 결과
+imagehttpsimg1daumcdnnetthumbR1280x0scodemtistory2fnamehttps3A2F2Fblogkakaocdnnet2Fdn2FSESNh2FbtqNMMNbsvz2FRcB9qOj59nJUjk1X0PrfKk2Fimgpng
+
+br
+ OUTER JOIN
+  조건에 부합하지 않는 행까지도 포함시켜 결합하는 JOIN이다
+
+  기본적으로 LEFT RIGHT 또는 FULL이 OUTER JOIN 이다
+
+  FULL JOIN은 사용할 일이 없으며 ODBC에 따라 지원하지 않는 경우도 있다" />
+<!-- GOOGLE+ -->
+<meta itemprop="headline" content="Dev_J BLOG" />
+<meta itemprop="name" content="Dev_J BLOG" />
+<meta itemprop="description" content=" JOINfeat INNER LEFT RIGHT OUTER
+  DB를 다루다보면 서로 다른 Table의 데이터를 조합해야할 경우가 있다 
+  이때 유용하게 사용할 수 있는 쿼리가 바로 JOIN이다 
+  JOIN에는 크게 INNER JOIN LEFT JOIN RIGHT JOIN 그리고 OUTER JOIN이 있다
+  JOIN은 DB를 다루는데 있어 매우 중요한 쿼리이므로 잘 익혀둘 필요가 있다
+br
+지금부터 아래 테스트 데이터를 베이스로 각 JOIN들의 활용법을 살펴보도록 하자
+ Test Data
+SQL
+
+ a5 데이터베이스 삭제생성선택
+
+DROP DATABASE IF EXISTS a5
+CREATE DATABASE a5
+USE a5
+SHOW DATABASES
+
+
+people테이블 생성
+
+CREATE TABLE people
+    name CHAR100 NOT NULL
+    phone CHAR100 NOT NULL
+    pid INT10 NOT NULL 
+
+DESC people
+
+
+INSERT INTO people
+SET name  Mr b
+phone  01225708225
+pid  1
+
+INSERT INTO people
+SET name  Miss a
+phone  01333444444
+pid  2
+
+INSERT INTO people
+SET name  Mr c
+phone  55555546525
+pid  3
+
+SELECT  FROM people
+
+
+property테이블 생성
+
+CREATE TABLE property
+    pid INT10 NOT NULL
+    spid INT10 NOT NULL
+    selling CHAR100 NOT NULL
+
+DESC property
+
+INSERT INTO property
+SET spid  1
+selling  old
+pid  1
+
+INSERT INTO property
+SET spid  2
+selling  will
+pid  3
+
+INSERT INTO property
+SET spid  3
+selling  tail
+pid  3
+
+INSERT INTO property
+SET spid  4
+selling  flo
+pid  3
+ 
+INSERT INTO property
+SET spid  5
+selling  dum
+pid  4
+ 
+SELECT  FROM property
+
+
+br
+ INNER JOIN
+  INNER 조인은 MySQL에서는 간략히 JOIN으로 나타낸다 일반적으로 사용하는 JOIN 이다
+
+  핵심은 JOIN뒤에 ON인데 두 테이블이 결합하는 조건을 나타낸다 
+
+   ON 대신 WHERE를 쓸 수도 있다
+
+SQL
+SELECT peoplename
+peoplephone
+propertyselling
+FROM people
+INNER JOIN property
+ON peoplepid  propertypid
+
+ 결과
+imagehttpsimg1daumcdnnetthumbR1280x0scodemtistory2fnamehttps3A2F2Fblogkakaocdnnet2Fdn2FdHBGj12FbtqNMOdaLwL2FOXv1Gn0kRoxzoXQI5RmLdK2Fimgpng
+
+br
+ LEFT JOIN
+  왼쪽 테이블을 중심으로 오른쪽의 테이블을 매치시킨다
+
+  왼쪽 테이블의 한개의 레코드에 여러개의 오른쪽 테이블 레코드가 일치할 경우
+
+  해당 왼쪽 레코드를 여러번 표시하게 된다
+
+  왼쪽은 무조건 표시하고 매치되는 레코드가 오른쪽에 없으면 NULL을 표시한다
+
+SQL
+SELECT peoplename
+peoplephone
+propertyselling
+FROM people
+LEFT JOIN property
+ON peoplepid  propertypid
+
+
+ 결과
+imagehttpsimg1daumcdnnetthumbR1280x0scodemtistory2fnamehttps3A2F2Fblogkakaocdnnet2Fdn2Fm6jJh2FbtqNLoTNRu92FWpov71s0FDGIenpmDBkKrK2Fimgpng
+
+br
+ RIGHT JOIN
+  오른쪽 테이블을 중심으로 왼쪽 테이블을 매치시킨다
+
+  LEFT JOIN에서 방향을 오른쪽으로만 바꾼것이므로 역시 해당 레코드가 여러번 표시되거나 NULL이 표시된다
+
+SQL
+SELECT peoplename
+peoplephone
+propertyselling
+FROM people
+RIGHT JOIN property
+ON peoplepid  propertypid
+
+
+ 결과
+imagehttpsimg1daumcdnnetthumbR1280x0scodemtistory2fnamehttps3A2F2Fblogkakaocdnnet2Fdn2FSESNh2FbtqNMMNbsvz2FRcB9qOj59nJUjk1X0PrfKk2Fimgpng
+
+br
+ OUTER JOIN
+  조건에 부합하지 않는 행까지도 포함시켜 결합하는 JOIN이다
+
+  기본적으로 LEFT RIGHT 또는 FULL이 OUTER JOIN 이다
+
+  FULL JOIN은 사용할 일이 없으며 ODBC에 따라 지원하지 않는 경우도 있다" />
+<meta itemprop="image" content="images/Dev_J_logo/logo.png" />
+
+<!-- 사이트 타이틀 -->
+<title>3강. JOIN(feat. INNER, LEFT, RIGHT, OUTER) | Dev_J BLOG | ARTICLE DETAIL</title>
+
+
+<!-- 파비콘 -->
+<link rel="shortcut icon" href="images/favicon/favicon.ico" type="image/x-icon">
+<link rel="icon" href="images/favicon/favicon.ico" type="image/x-icon">
+
+<!-- 폰트어썸 불러오기 -->
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+
+<!--모바일에서도 PC와 같은 비율 유지-->
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<!--제이쿼리-->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+<!-- 하이라이트 라이브러리 추가, 토스트 UI 에디터에서 사용됨 -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.4.1/highlight.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.4.1/styles/default.min.css">
+
+<!-- 토스트 UI 에디터, 자바스크립트 코어 -->
+<script
+	src="https://uicdn.toast.com/editor/latest/toastui-editor-all.min.js" defer></script>
+
+<!-- 코드 미러 라이브러리 추가, 토스트 UI 에디터에서 사용됨 -->
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.58.3/codemirror.min.css" />
+<!-- 토스트 UI 에디터, CSS 코어 -->
+<link rel="stylesheet"
+	href="https://uicdn.toast.com/editor/latest/toastui-editor.min.css" />
+
+<!-- 토스트 UI 에디터, 신택스 하이라이트 플러그인 추가 -->
+<script src="https://uicdn.toast.com/editor-plugin-code-syntax-highlight/latest/toastui-editor-plugin-code-syntax-highlight.min.js" defer></script>
+
+<!-- app.css 불러오기 -->
+<link rel="stylesheet" href="app.css">
+<!-- app.js 불러오기 -->
+<script src="app.js" defer></script>
+<!-- index.js 불러오기 
+<script src="index.js" defer></script>
+-->
+</head>
+
+<body>
+<!-- 사이트 박스 시작 -->
+<div class="body-content min-height-100vh flex flex-column">
+  <!-- 로고바 시작 -->
+  <header class="logo-bar con-min-width" id="header">
+    <div class="con height-100p flex flex-jc-c" title="HOME">
+      <a href="index.html" class="logo flex flex-ai-c"> 
+        <img class="logo__img" src="images/Dev_J_logo/logo_transparent.png" alt="">
+        <span>
+          BLOG
+        </span>
+      </a>
+    </div>
+  </header>
+  <!-- 로고바 끝 -->
+
+  <!-- 메뉴바 시작-->
+  <header class="menu-bar con-min-width visible-md-up">
+    <div class="flex flex-jc-sb">
+   	 <div class="menu-bar__status-icon" title="Menu">
+      <div></div>
+      <div></div>
+      <div></div>
+     </div>
+     <a class="search-icon" title="search" href="search.html">
+        <i class="fa fa-search"></i>
+     </a>
+   </div>
+   <div class="con hide">
+    <nav class="menu-bar__menu">
+      <ul class="flex">
+          <li title="ABOUT">
+            <a href="about.html" class="block">
+              <i class="far fa-address-card"></i>
+              <span>ABOUT</span>
+            </a>
+          </li>
+          <li>
+            <a class="block">
+              <i class="fas fa-list"></i>
+              <span>ARTICLES</span>
+            </a>
+            <ul>
+              <li title="NOTICE"><a href="notice-list-1.html" class="block"><i class="fas fa-bullhorn"></i> <span>NOTICE BOARD</span></a></li><li title="JAVA"><a href="java-list-1.html" class="block"><i class="fab fa-java"></i> <span>JAVA BOARD</span></a></li><li title="HTML"><a href="html-list-1.html" class="block"><i class="fab fa-html5"></i> <span>HTML & CSS & JS BOARD</span></a></li><li title="MYSQL"><a href="mysql-list-1.html" class="block"><i class="fas fa-database"></i> <span>MySQL BOARD</span></a></li><li title="ETC"><a href="etc-list-1.html" class="block"><i class="fas fa-mouse-pointer"></i> <span>ETC BOARD</span></a></li>
+            </ul>
+          </li>
+          <li>
+            <a class="block">
+              <i class="fas fa-project-diagram"></i>
+              <span>PROJECT</span>
+            </a>
+            <ul>
+              <li title="P_BLOG"><a href="p_blog-list-1.html" class="block"><i class="fab fa-blogger"></i> <span>P.BLOG PROJECT</span></a></li><li title="P_JSP"><a href="p_jsp-list-1.html" class="block"><i class="fas fa-file-word"></i> <span>P.JSP PROJECT</span></a></li>
+            </ul>
+          </li>
+          <li>
+            <a class="block">
+              <i class="fas fa-link"></i>
+              <span>LINK</span>
+            </a>
+            <ul>
+              <li title="T-STORY">
+                <a href="https://cjy324.tistory.com/" target="_blank" class="block">
+                  <i class="fas fa-rss-square"></i>
+                  <span>T-STORY</span>
+                </a>
+              </li>
+              <li title="GITHUB">
+                <a href="https://github.com/cjy324/TIL_Jooyoung#til_jooyoung" target="_blank" class="block">
+                  <i class="fab fa-github"></i>
+                  <span>GITHUB</span>
+                </a>
+              </li>
+              <li title="GetIT">
+                <a href="https://getit.devj.me/" target="_blank" class="block">
+                  <i class="fab fa-dev"></i>
+                  <span>GetIT</span>
+                </a>
+              </li>
+            </ul>
+          </li>
+          <li title="STATISTICS">
+            <a href="statistics.html" class="block">
+              <i class="fas fa-chart-pie"></i>
+              <span>STATISTICS</span>
+            </a>
+          </li>
+        </ul>
+      </nav>
+   </div>
+  </header>
+  <!-- 메뉴바 끝 -->
+  
+  <!-- 모바일 사이드 메뉴바 시작 -->
+  <header class="mobile-menu-bar con-min-width visible-sm-down">
+    <div class="flex flex-jc-sb">
+   <div class="mobile-menu-bar__status-icon" title="Menu">
+     <div></div>
+     <div></div>
+     <div></div>
+   </div>
+    <a class="search-icon" title="search" href="search.html">
+        <i class="fa fa-search"></i>
+      </a>
+   </div>
+   <div class="con ">
+    <aside class="mobile-side-bar flex flex-column flex-jc-c ">
+      <div class="mobile-side-bar_X"><i class="fas fa-times"></i></div>
+      <nav class="mobile-side-bar_menu flex">
+      <ul class="">
+          <li title="ABOUT">
+            <a href="about.html" class="block">
+              <i class="far fa-address-card"></i>
+              <span>ABOUT</span>
+            </a>
+          </li>
+          <li>
+            <a class="block">
+              <i class="fas fa-list"></i>
+              <span>ARTICLES</span>
+            </a>
+            <ul class="hide2">
+              <li title="NOTICE"><a href="notice-list-1.html" class="block"><i class="fas fa-bullhorn"></i> <span>NOTICE BOARD</span></a></li><li title="JAVA"><a href="java-list-1.html" class="block"><i class="fab fa-java"></i> <span>JAVA BOARD</span></a></li><li title="HTML"><a href="html-list-1.html" class="block"><i class="fab fa-html5"></i> <span>HTML & CSS & JS BOARD</span></a></li><li title="MYSQL"><a href="mysql-list-1.html" class="block"><i class="fas fa-database"></i> <span>MySQL BOARD</span></a></li><li title="ETC"><a href="etc-list-1.html" class="block"><i class="fas fa-mouse-pointer"></i> <span>ETC BOARD</span></a></li>
+            </ul>
+          </li>
+          <li>
+            <a class="block">
+              <i class="fas fa-project-diagram"></i>
+              <span>PROJECT</span>
+            </a>
+            <ul class="hide2">
+              <li title="P_BLOG"><a href="p_blog-list-1.html" class="block"><i class="fab fa-blogger"></i> <span>P.BLOG PROJECT</span></a></li><li title="P_JSP"><a href="p_jsp-list-1.html" class="block"><i class="fas fa-file-word"></i> <span>P.JSP PROJECT</span></a></li>
+            </ul>
+          </li>
+          <li>
+            <a class="block">
+              <i class="fas fa-link"></i>
+              <span>LINK</span>
+            </a>
+            <ul class="hide2">
+              <li title="T-STORY">
+                <a href="https://cjy324.tistory.com/" target="_blank" class="block">
+                  <i class="fas fa-rss-square"></i>
+                  <span>T-STORY</span>
+                </a>
+              </li>
+              <li title="GITHUB">
+                <a href="https://github.com/cjy324/TIL_Jooyoung#til_jooyoung" target="_blank" class="block">
+                  <i class="fab fa-github"></i>
+                  <span>GITHUB</span>
+                </a>
+              </li>
+              <li title="GetIT">
+                <a href="https://getit.devj.me/" target="_blank" class="block">
+                  <i class="fab fa-dev"></i>
+                  <span>GetIT</span>
+                </a>
+              </li>
+            </ul>
+          </li>
+          <li title="STATISTICS">
+            <a href="statistics.html" class="block">
+              <i class="fas fa-chart-pie"></i>
+              <span>STATISTICS</span>
+            </a>
+          </li>
+        </ul>
+      </nav>  
+      </aside>
+   </div>
+  </header>
+  
+  <!-- 모바일 사이드 메뉴바 끝 --> 
+   
+
+  <!-- 메인 컨텐츠 박스 시작 -->
+  <main class="main-box flex-grow-1">
+  <section class="main-box-section con-min-width">
+   <!-- 메인-타이틀바 시작 -->
+	<div class="title-bar con-min-width">
+		<h1 class="con">
+			<i class="fas fa-file-invoice"></i> <span>ARTICLE</span>
+		</h1>
+	</div>
+   <!-- 메인-타이틀바 종료 -->
+<!-- Progress-bar -->
+<script type="text/javascript"
+	src="https://rawcdn.githack.com/mburakerman/prognroll/0feda211643153bce2c69de32ea1b39cdc64ffbe/src/prognroll.js"></script>
+<script type="text/javascript">
+	$(function() {
+		$("body").prognroll({
+			height : 10,
+			color : "#666666"
+		});
+		$(".content").prognroll({
+			custom : true
+		});
+	});
+</script>
+
+<!-- 메인-상세페이지 시작 -->
+<section class="section-2 con-min-width min-height-50vh">
+	<div class="con height-100p">
+		<div class="article-detail-cell height-100p">
+			<div class="article-detail-cell__board-name"><div><span>게시판 : </span><span>MySQL 게시판</span></div></div><div class="article-detail-cell__id"><div><span>번호 : </span><span>56</span></div></div><div class="article-detail-cell__member-id"><div><span>작성자 : </span><span>Dev_J</span></div></div><div class="article-detail-cell__reg-date"><div><span>작성일 : </span><span>2021-03-23 19:36:20</span></div></div><div class="article-detail-cell__update-date"><div><span>수정일 : </span><span>2021-03-23 19:38:54</span></div></div><br><div class="article-detail-cell__title-contents flex flex-jc-fe"><div class="article-detail-cell__hitsCount"><div><span>조회수 : </span><span>0</span></div></div><div class="article-detail-cell__likesCount"><div><span>추천수 : </span><span>0</span></div></div><div class="article-detail-cell__commentsCount"><div><span>댓글수 : </span><span>0</span></div></div></div><div class="article-detail-cell__title"><div><span>제목 : </span><span>3강. JOIN(feat. INNER, LEFT, RIGHT, OUTER)</span></div></div><nav class="ad"><!-- 구글 애드센스2 --><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script><!-- 수평 반응형2 --><ins class="adsbygoogle" style="display: block" data-ad-client="ca-pub-7996879977557531" data-ad-slot="2278060237" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle = window.adsbygoogle || []).push({});</script></nav><script type"text/x-template"># JOIN(feat. INNER, LEFT, RIGHT, OUTER)
+ - DB를 다루다보면 서로 다른 Table의 데이터를 조합해야할 경우가 있다. 
+ - 이때 유용하게 사용할 수 있는 쿼리가 바로 'JOIN'이다. 
+ - JOIN에는 크게 INNER JOIN, LEFT JOIN, RIGHT JOIN 그리고 OUTER JOIN이 있다.
+ - JOIN은 DB를 다루는데 있어 매우 중요한 쿼리이므로 잘 익혀둘 필요가 있다.
+<br>
+지금부터 아래 테스트 데이터를 베이스로 각 JOIN들의 활용법을 살펴보도록 하자.
+## Test Data
+```SQL
+
+# a5 데이터베이스 삭제/생성/선택
+
+DROP DATABASE IF EXISTS `a5`;
+CREATE DATABASE `a5`;
+USE `a5`;
+SHOW DATABASES;
+
+
+#people테이블 생성
+
+CREATE TABLE `people`(
+    `name` CHAR(100) NOT NULL,
+    `phone` CHAR(100) NOT NULL,
+    `pid` INT(10) NOT NULL 
+);
+DESC `people`;
+
+
+INSERT INTO `people`
+SET `name` = 'Mr b',
+`phone` = '01225-708225',
+`pid` = 1;
+
+INSERT INTO `people`
+SET `name` = 'Miss a',
+`phone` = '01333-444444',
+`pid` = 2;
+
+INSERT INTO `people`
+SET `name` = 'Mr c',
+`phone` = '55555-546525',
+`pid` = 3;
+
+SELECT * FROM `people`;
+
+
+#property테이블 생성
+
+CREATE TABLE `property`(
+    `pid` INT(10) NOT NULL,
+    `spid` INT(10) NOT NULL,
+    `selling` CHAR(100) NOT NULL
+);
+DESC `property`;
+
+INSERT INTO `property`
+SET `spid` = 1,
+`selling` = 'old',
+`pid` = 1;
+
+INSERT INTO `property`
+SET `spid` = 2,
+`selling` = 'will',
+`pid` = 3;
+
+INSERT INTO `property`
+SET `spid` = 3,
+`selling` = 'tail',
+`pid` = 3;
+
+INSERT INTO `property`
+SET `spid` = 4,
+`selling` = 'flo',
+`pid` = 3;
+ 
+INSERT INTO `property`
+SET `spid` = 5,
+`selling` = 'dum',
+`pid` = 4;
+ 
+SELECT * FROM `property`;
+
+```
+<br>
+## INNER JOIN
+ - INNER 조인은 MySQL에서는 간략히 JOIN으로 나타낸다. 일반적으로 사용하는 JOIN 이다.
+
+ - 핵심은 JOIN뒤에 ON인데, 두 테이블이 결합하는 조건을 나타낸다. 
+
+ - (* ON 대신 WHERE를 쓸 수도 있다.)
+
+```SQL
+SELECT people.name,
+people.phone,
+property.selling
+FROM people
+INNER JOIN property
+ON people.pid = property.pid;
+```
+#### 결과
+![image](https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FdHBGj1%2FbtqNMOdaLwL%2FOXv1Gn0kRoxzoXQI5RmLdK%2Fimg.png)
+
+<br>
+## LEFT JOIN
+ - 왼쪽 테이블을 중심으로 오른쪽의 테이블을 매치시킨다.
+
+ - 왼쪽 테이블의 한개의 레코드에 여러개의 오른쪽 테이블 레코드가 일치할 경우,
+
+ - 해당 왼쪽 레코드를 여러번 표시하게 된다.
+
+ - 왼쪽은 무조건 표시하고, 매치되는 레코드가 오른쪽에 없으면 NULL을 표시한다.
+
+```SQL
+SELECT people.name,
+people.phone,
+property.selling
+FROM people
+LEFT JOIN property
+ON people.pid = property.pid;
+```
+
+#### 결과
+![image](https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2Fm6jJh%2FbtqNLoTNRu9%2FWpov71s0FDGIenpmDBkKrK%2Fimg.png)
+
+<br>
+## RIGHT JOIN
+ - 오른쪽 테이블을 중심으로 왼쪽 테이블을 매치시킨다.
+
+ - LEFT JOIN에서 방향을 오른쪽으로만 바꾼것이므로, 역시 해당 레코드가 여러번 표시되거나, NULL이 표시된다.
+
+```SQL
+SELECT people.name,
+people.phone,
+property.selling
+FROM people
+RIGHT JOIN property
+ON people.pid = property.pid;
+```
+
+#### 결과
+![image](https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FSESNh%2FbtqNMMNbsvz%2FRcB9qOj59nJUjk1X0PrfKk%2Fimg.png)
+
+<br>
+## OUTER JOIN
+ - 조건에 부합하지 않는 행까지도 포함시켜 결합하는 JOIN이다.
+
+ - 기본적으로 LEFT, RIGHT 또는 FULL이 OUTER JOIN 이다.
+
+ - FULL JOIN은 사용할 일이 없으며, ODBC에 따라 지원하지 않는 경우도 있다.</script><div class="article-detail-cell__body height-70p toast-ui-viewer"><div></div></div><br><div class="article-detail-cell__tag flex flex-wrap"><nav># <a href="#" target="_blank">SQL</a></nav><nav># <a href="#" target="_blank">MySQL</a></nav><nav># <a href="#" target="_blank">JOIN</a></nav></div><br><br><nav class="ad"><!-- 구글 애드센스1 --><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script><!-- 수평 반응형1 --><ins class="adsbygoogle" style="display: block" data-ad-client="ca-pub-7996879977557531" data-ad-slot="6812185708" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle = window.adsbygoogle || []).push({});</script></nav>
+			<!-- Disqus api 적용 -->
+			<!-- 정확한 페이지 경로 알려주는 기능 추가-->
+			<nav>
+				<div id="disqus_thread"></div>
+				<script>
+					var disqus_config = function() {
+						this.page.url = 'https://blog.devj.me/article_detail_56.html';
+						this.page.identifier = 'article_detail_56.html';
+					};
+					(function() {
+						//DON'T EDIT BELOW THIS LINE
+						var d = document, s = d.createElement('script');
+						s.src = 'https://devj-blog.disqus.com/embed.js';
+						s.setAttribute('data-timestamp', +new Date());
+						(d.head || d.body).appendChild(s);
+					})();
+				</script>
+				<noscript>
+					Please enable JavaScript to view the
+					<a href="https://disqus.com/?ref_noscript">comments powered by
+						Disqus.</a>
+				</noscript>
+			</nav>
+		</div>
+	</div>
+</section>
+<!-- 메인-상세페이지 끝 -->
+<!-- 메인-상세 하단 메뉴 시작 -->
+<section class="section-3 con-min-width">
+	<div class="con">
+		<div class="article-list-bottom-cell flex flex-jc-c"><div class="./"><a href="article_detail_15.html" class="hover-underline">&lt 이전글</a></div><div class="./"><i class="fas fa-th-list"></i><a href="mysql-list-1.html" class="hover-underline"> 목록 </a></div></div>
+	</div>
+</section>
+<!-- 메인-상세 하단 메뉴 끝 -->
+</section>
+</main>
+<!-- 메인 컨텐츠 박스 끝 -->
+  <!-- 맨 위 버튼 시작 -->
+  <nav class="top-button flex flex-jc-c flex-ai-c">
+    <div class="">
+      <a href="#header">▲ TOP</a> 
+    </div>     
+  </nav>
+  <!-- 맨 위 버튼 끝 -->
+
+
+  <!-- 푸터 시작 -->
+  <footer class="bottom-bar con-min-width">
+    <div class="con flex flex-ai-c">
+      <a href="index.html" class="logo logo--mini flex flex-ai-c" title="HOME">
+        <img class="logo--mini__img" src="images/Dev_J_logo/logo_transparent.png" alt="">
+      </a>
+      <div class="bottom-bar__site-info">
+        <span><i class="far fa-envelope"></i> juy32400@gmail.com</span>
+        <br>
+        <br>
+        <span>COPYRIGHT 2020. Dev_J. All rights reserved.</span>
+      </div>
+    </div>
+  </footer>
+  <!-- 푸터 끝 -->
+</div>
+<!-- 사이트 박스 끝 -->
+</body>
+</html>

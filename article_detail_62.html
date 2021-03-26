@@ -1,0 +1,1393 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+<script data-ad-client="ca-pub-7996879977557531" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-X5RMP83794"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-X5RMP83794');
+</script>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- 구글 검색엔진 등록-소유권 확인 -->
+<meta name="google-site-verification" content="37R4KcEaJU5LfiKL7GI1hu1_spJgWOazN6xy48OHhD4" />
+
+<!-- Meta Tag & Open Graph -->
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<meta name="viewport" content="width=1200">
+<meta name="apple-mobile-web-app-title" content="Dev_J BLOG" />
+<!-- 메타태그정보 //-->
+<!-- META -->
+<link rel="canonical" href="https://blog.devj.me" />
+<meta name="subject" content="P.Lamplight - 개발일지(FormRow 전역 컴포넌트 적용, 상황별 버튼 셋팅, 폰트 적용 등)"/>
+<meta name="title" content="Dev_J BLOG" />
+<meta name="keywords" content="JAVA, HTML, CSS, JavaScript, MySQL" />
+<meta name="copyright" content="Dev_J BLOG" />
+<meta name="pubdate" content="2021-03-26T15:04:10" />
+<meta name="lastmod" content="2021-03-26T15:04:10" />
+<!-- OPENGRAPH -->
+<meta property="og:site_name" content="Dev_J BLOG" />
+<meta property="og:type" content="blog" />
+<meta property="og:title" content="P.Lamplight - 개발일지(FormRow 전역 컴포넌트 적용, 상황별 버튼 셋팅, 폰트 적용 등)" />
+<meta property="og:description" content="
+ FormRow 전역 컴포넌트 적용 상황별 버튼 셋팅 폰트 적용 등
+
+ NOTE
+
+
+apply
+ tailwind 방식을 style에 적용할 수 있도록 해주는 것 
+ 즉 class에 css를 입력하는 tailwind를 style에 바로 입력하는 것 
+httpstailwindcsscomdocsfunctionsanddirectives
+
+br
+ 주요소스코드
+
+ FormRowvue
+html
+template
+  div classformrow flex
+    div classw32 flex justifycenter 
+      span classflex itemscentertitlespan
+    div
+    div classflexgrow justifycenter
+      slotslot
+    div
+  div
+template
+
+script langts
+import  defineComponent  from vue
+export default defineComponent   컴포넌트의 속성을 정의해주어야 함
+
+   title props의 속성을 정해준다
+  props 
+    title 
+      type String
+      required true
+    
+  
+  컴포넌트의 이름을 정의한다
+  name FormRow
+
+script
+
+
+FormRow의 css를 post 방식으로 전송
+style langpostcss
+formrowinput
+   apply tailwind 방식을 style에 적용할 수 있도록 해주는 것 
+    즉 class에 css를 입력하는 tailwind를 style에 바로 입력하는 것  
+   roundedsm 	borderradius0125rem 
+  apply wfull roundedxl
+
+
+
+ textarea에 달린 formrowinput 클래스 라는 의미
+textareaformrowinput
+  minheight themespacing96
+
+
+formrow
+   mt  margintop 
+  apply mt2
+
+
+formrow 다음에 나오는 formrow라는 의미
+formrow  formrow 
+
+
+
+style
+
+
+style scoped
+  
+style 
+
+
+br
+ Appvue
+html
+ vue를 하나의 jsp라고 생각하면 됨 
+
+template
+
+
+  header classheaderbar h40 bggray100
+    div classcontainer mxauto flex hfull
+       routerlink는 a와 같다고 보면 됨 
+       to는 href 
+      routerlink to classhfull flex itemscenter
+        img classblock w20 srcassetslogopng alt
+      routerlink
+
+      div classflexgrowdiv
+
+      nav classheaderbarmenubox1
+        ul classflex hfull
+          li
+            routerlink to classhfull flex itemscenter fontbold px10 hoverbgblack hovertextwhite
+              HOME
+            routerlink
+          li
+          li
+            routerlink toarticlelist classhfull flex itemscenter fontbold px10 hoverbgblack hovertextwhite
+              ARTICLE LIST
+            routerlink
+          li
+        ul
+      nav
+    div
+  header
+
+    
+   main
+     이것을 해주어야 다른 페이지를 불러올 수 있음 
+    routerviewrouterview
+  main
+
+template
+
+script langts
+import  defineComponent  from vue
+
+
+export default defineComponent
+  name App
+
+
+script
+
+style langpostcss
+btnprimary 
+  apply py2 px4 bgblue600 hoverbgblue700 focusringblue500 focusringoffsetblue200 textwhite transition easein duration200 textcenter textbase fontsemibold shadowmd focusoutlinenone focusring2 focusringoffset2 roundedlg
+
+btnsecondary 
+  apply py2 px4 bggray600 hoverbggray700 focusringgray500 focusringoffsetgray200 textwhite transition easein duration200 textcenter textbase fontsemibold shadowmd focusoutlinenone focusring2 focusringoffset2 roundedlg
+
+btnsuccess 
+  apply py2 px4 bgpurple600 hoverbgpurple700 focusringpurple500 focusringoffsetpurple200 textwhite transition easein duration200 textcenter textbase fontsemibold shadowmd focusoutlinenone focusring2 focusringoffset2 roundedlg
+
+btndanger 
+  apply py2 px4 bgred600 hoverbgred700 focusringred500 focusringoffsetred200 textwhite transition easein duration200 textcenter textbase fontsemibold shadowmd focusoutlinenone focusring2 focusringoffset2 roundedlg
+
+btnwarning 
+  apply py2 px4 bgyellow600 hoverbgyellow700 focusringyellow500 focusringoffsetyellow200 textwhite transition easein duration200 textcenter textbase fontsemibold shadowmd focusoutlinenone focusring2 focusringoffset2 roundedlg
+
+btninfo 
+  apply py2 px4 bggreen600 hoverbggreen700 focusringgreen500 focusringoffsetgreen200 textwhite transition easein duration200 textcenter textbase fontsemibold shadowmd focusoutlinenone focusring2 focusringoffset2 roundedlg
+
+
+ css 선택자 
+ btns 자식들 중에 class로 btn를 갖고 있는 엘리먼트의 다음 엘리먼트 
+btns  classbtn  classbtn 
+  marginleft themespacing2
+
+style
+
+
+br
+ indexcss
+html
+tailwind base
+tailwind components
+tailwind utilities
+
+
+
+
+ 여기에 css를 저장할 수 있음 
+
+fontface 
+  fontfamily LotteMartDream
+  fontstyle normal
+  fontweight 400
+  src urlhttpscdnjsdelivrnetkoreanwebfonts1corpslottemartLotteMartDreamLotteMartDreamMediumwoff2 formatwoff2 urlhttpscdnjsdelivrnetkoreanwebfonts1corpslottemartLotteMartDreamLotteMartDreamMediumwoff formatwoff
+
+
+fontface 
+  fontfamily LotteMartDream
+  fontstyle normal
+  fontweight 700
+  src urlhttpscdnjsdelivrnetkoreanwebfonts1corpslottemartLotteMartDreamLotteMartDreamBoldwoff2 formatwoff2 urlcdnjsdelivrnetkoreanwebfonts1corpslottemartLotteMartDreamLotteMartDreamBoldwoff formatwoff
+
+
+fontface 
+  fontfamily LotteMartDream
+  fontstyle normal
+  fontweight 300
+  src urlhttpscdnjsdelivrnetkoreanwebfonts1corpslottemartLotteMartDreamLotteMartDreamLightwoff2 formatwoff2 urlhttpscdnjsdelivrnetkoreanwebfonts1corpslottemartLotteMartDreamLotteMartDreamLightwoff formatwoff
+
+
+html body 
+  margin0
+
+
+html 
+  fontfamily LotteMartDream sansserif
+  webkitfontsmoothing antialiased
+  mozosxfontsmoothing grayscale
+
+
+
+br
+ ArticleListPagevue
+html
+template
+
+  TitleBar classbgpurple500Article ListTitleBar
+
+  section classarticlewriteformbox
+    div classcontainer mxauto
+      form action
+        FormRow title제목
+          input typetext classformrowinput placeholder제목을 입력하세요 
+        FormRow
+        FormRow title내용
+          textarea classformrowinput placeholder내용을 입력하세요textarea
+        FormRow
+        FormRow
+           Appvue로 부터 btnprimary의 style 가져오기 
+          div classbtns
+            input classbtnprimary typebutton value등록
+            input classbtnsuccess typebutton value등록
+            input classbtninfo typebutton value등록
+            input classbtnwarning typebutton value등록
+            input classbtnsecondary typebutton value등록
+            input classbtndanger typebutton value등록
+          div
+          
+        FormRow
+      form
+    div
+  section
+template
+
+script langts
+import  defineComponent  from vue
+  전역 컴포넌트 적용으로 안해도 됨 
+import TitleBar from componentsTitleBarvue
+
+
+export default defineComponent
+  name ArticleListPage
+  
+  전역 컴포넌트 적용으로 안해도 됨 
+  components 
+    TitleBar
+  
+
+
+script
+
+style scoped
+
+style
+" />
+<meta property="og:locale" content="ko_KR" />
+<meta property="og:image" content="images/Dev_J_logo/logo.png" />
+<meta property="og:image:alt" content="blog.devj.me" />
+<meta property="og:image:width" content="486" />
+<meta property="og:image:height" content="254" />
+<meta property="og:updated_time" content="2021-03-26T15:04:10"/>
+<meta property="og:pubdate" content="2021-03-26T15:04:10" />
+<meta property="og:url" content="https://blog.devj.me" />
+<!-- TWITTER -->
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="P.Lamplight - 개발일지(FormRow 전역 컴포넌트 적용, 상황별 버튼 셋팅, 폰트 적용 등)" />
+<meta name="twitter:site" content="@Dev_J BLOG" />
+<meta name="twitter:creator" content="@Dev_J BLOG" />
+<meta name="twitter:image" content="images/Dev_J_logo/logo.png">
+<meta name="twitter:description" content="
+ FormRow 전역 컴포넌트 적용 상황별 버튼 셋팅 폰트 적용 등
+
+ NOTE
+
+
+apply
+ tailwind 방식을 style에 적용할 수 있도록 해주는 것 
+ 즉 class에 css를 입력하는 tailwind를 style에 바로 입력하는 것 
+httpstailwindcsscomdocsfunctionsanddirectives
+
+br
+ 주요소스코드
+
+ FormRowvue
+html
+template
+  div classformrow flex
+    div classw32 flex justifycenter 
+      span classflex itemscentertitlespan
+    div
+    div classflexgrow justifycenter
+      slotslot
+    div
+  div
+template
+
+script langts
+import  defineComponent  from vue
+export default defineComponent   컴포넌트의 속성을 정의해주어야 함
+
+   title props의 속성을 정해준다
+  props 
+    title 
+      type String
+      required true
+    
+  
+  컴포넌트의 이름을 정의한다
+  name FormRow
+
+script
+
+
+FormRow의 css를 post 방식으로 전송
+style langpostcss
+formrowinput
+   apply tailwind 방식을 style에 적용할 수 있도록 해주는 것 
+    즉 class에 css를 입력하는 tailwind를 style에 바로 입력하는 것  
+   roundedsm 	borderradius0125rem 
+  apply wfull roundedxl
+
+
+
+ textarea에 달린 formrowinput 클래스 라는 의미
+textareaformrowinput
+  minheight themespacing96
+
+
+formrow
+   mt  margintop 
+  apply mt2
+
+
+formrow 다음에 나오는 formrow라는 의미
+formrow  formrow 
+
+
+
+style
+
+
+style scoped
+  
+style 
+
+
+br
+ Appvue
+html
+ vue를 하나의 jsp라고 생각하면 됨 
+
+template
+
+
+  header classheaderbar h40 bggray100
+    div classcontainer mxauto flex hfull
+       routerlink는 a와 같다고 보면 됨 
+       to는 href 
+      routerlink to classhfull flex itemscenter
+        img classblock w20 srcassetslogopng alt
+      routerlink
+
+      div classflexgrowdiv
+
+      nav classheaderbarmenubox1
+        ul classflex hfull
+          li
+            routerlink to classhfull flex itemscenter fontbold px10 hoverbgblack hovertextwhite
+              HOME
+            routerlink
+          li
+          li
+            routerlink toarticlelist classhfull flex itemscenter fontbold px10 hoverbgblack hovertextwhite
+              ARTICLE LIST
+            routerlink
+          li
+        ul
+      nav
+    div
+  header
+
+    
+   main
+     이것을 해주어야 다른 페이지를 불러올 수 있음 
+    routerviewrouterview
+  main
+
+template
+
+script langts
+import  defineComponent  from vue
+
+
+export default defineComponent
+  name App
+
+
+script
+
+style langpostcss
+btnprimary 
+  apply py2 px4 bgblue600 hoverbgblue700 focusringblue500 focusringoffsetblue200 textwhite transition easein duration200 textcenter textbase fontsemibold shadowmd focusoutlinenone focusring2 focusringoffset2 roundedlg
+
+btnsecondary 
+  apply py2 px4 bggray600 hoverbggray700 focusringgray500 focusringoffsetgray200 textwhite transition easein duration200 textcenter textbase fontsemibold shadowmd focusoutlinenone focusring2 focusringoffset2 roundedlg
+
+btnsuccess 
+  apply py2 px4 bgpurple600 hoverbgpurple700 focusringpurple500 focusringoffsetpurple200 textwhite transition easein duration200 textcenter textbase fontsemibold shadowmd focusoutlinenone focusring2 focusringoffset2 roundedlg
+
+btndanger 
+  apply py2 px4 bgred600 hoverbgred700 focusringred500 focusringoffsetred200 textwhite transition easein duration200 textcenter textbase fontsemibold shadowmd focusoutlinenone focusring2 focusringoffset2 roundedlg
+
+btnwarning 
+  apply py2 px4 bgyellow600 hoverbgyellow700 focusringyellow500 focusringoffsetyellow200 textwhite transition easein duration200 textcenter textbase fontsemibold shadowmd focusoutlinenone focusring2 focusringoffset2 roundedlg
+
+btninfo 
+  apply py2 px4 bggreen600 hoverbggreen700 focusringgreen500 focusringoffsetgreen200 textwhite transition easein duration200 textcenter textbase fontsemibold shadowmd focusoutlinenone focusring2 focusringoffset2 roundedlg
+
+
+ css 선택자 
+ btns 자식들 중에 class로 btn를 갖고 있는 엘리먼트의 다음 엘리먼트 
+btns  classbtn  classbtn 
+  marginleft themespacing2
+
+style
+
+
+br
+ indexcss
+html
+tailwind base
+tailwind components
+tailwind utilities
+
+
+
+
+ 여기에 css를 저장할 수 있음 
+
+fontface 
+  fontfamily LotteMartDream
+  fontstyle normal
+  fontweight 400
+  src urlhttpscdnjsdelivrnetkoreanwebfonts1corpslottemartLotteMartDreamLotteMartDreamMediumwoff2 formatwoff2 urlhttpscdnjsdelivrnetkoreanwebfonts1corpslottemartLotteMartDreamLotteMartDreamMediumwoff formatwoff
+
+
+fontface 
+  fontfamily LotteMartDream
+  fontstyle normal
+  fontweight 700
+  src urlhttpscdnjsdelivrnetkoreanwebfonts1corpslottemartLotteMartDreamLotteMartDreamBoldwoff2 formatwoff2 urlcdnjsdelivrnetkoreanwebfonts1corpslottemartLotteMartDreamLotteMartDreamBoldwoff formatwoff
+
+
+fontface 
+  fontfamily LotteMartDream
+  fontstyle normal
+  fontweight 300
+  src urlhttpscdnjsdelivrnetkoreanwebfonts1corpslottemartLotteMartDreamLotteMartDreamLightwoff2 formatwoff2 urlhttpscdnjsdelivrnetkoreanwebfonts1corpslottemartLotteMartDreamLotteMartDreamLightwoff formatwoff
+
+
+html body 
+  margin0
+
+
+html 
+  fontfamily LotteMartDream sansserif
+  webkitfontsmoothing antialiased
+  mozosxfontsmoothing grayscale
+
+
+
+br
+ ArticleListPagevue
+html
+template
+
+  TitleBar classbgpurple500Article ListTitleBar
+
+  section classarticlewriteformbox
+    div classcontainer mxauto
+      form action
+        FormRow title제목
+          input typetext classformrowinput placeholder제목을 입력하세요 
+        FormRow
+        FormRow title내용
+          textarea classformrowinput placeholder내용을 입력하세요textarea
+        FormRow
+        FormRow
+           Appvue로 부터 btnprimary의 style 가져오기 
+          div classbtns
+            input classbtnprimary typebutton value등록
+            input classbtnsuccess typebutton value등록
+            input classbtninfo typebutton value등록
+            input classbtnwarning typebutton value등록
+            input classbtnsecondary typebutton value등록
+            input classbtndanger typebutton value등록
+          div
+          
+        FormRow
+      form
+    div
+  section
+template
+
+script langts
+import  defineComponent  from vue
+  전역 컴포넌트 적용으로 안해도 됨 
+import TitleBar from componentsTitleBarvue
+
+
+export default defineComponent
+  name ArticleListPage
+  
+  전역 컴포넌트 적용으로 안해도 됨 
+  components 
+    TitleBar
+  
+
+
+script
+
+style scoped
+
+style
+" />
+<!-- GOOGLE+ -->
+<meta itemprop="headline" content="Dev_J BLOG" />
+<meta itemprop="name" content="Dev_J BLOG" />
+<meta itemprop="description" content="
+ FormRow 전역 컴포넌트 적용 상황별 버튼 셋팅 폰트 적용 등
+
+ NOTE
+
+
+apply
+ tailwind 방식을 style에 적용할 수 있도록 해주는 것 
+ 즉 class에 css를 입력하는 tailwind를 style에 바로 입력하는 것 
+httpstailwindcsscomdocsfunctionsanddirectives
+
+br
+ 주요소스코드
+
+ FormRowvue
+html
+template
+  div classformrow flex
+    div classw32 flex justifycenter 
+      span classflex itemscentertitlespan
+    div
+    div classflexgrow justifycenter
+      slotslot
+    div
+  div
+template
+
+script langts
+import  defineComponent  from vue
+export default defineComponent   컴포넌트의 속성을 정의해주어야 함
+
+   title props의 속성을 정해준다
+  props 
+    title 
+      type String
+      required true
+    
+  
+  컴포넌트의 이름을 정의한다
+  name FormRow
+
+script
+
+
+FormRow의 css를 post 방식으로 전송
+style langpostcss
+formrowinput
+   apply tailwind 방식을 style에 적용할 수 있도록 해주는 것 
+    즉 class에 css를 입력하는 tailwind를 style에 바로 입력하는 것  
+   roundedsm 	borderradius0125rem 
+  apply wfull roundedxl
+
+
+
+ textarea에 달린 formrowinput 클래스 라는 의미
+textareaformrowinput
+  minheight themespacing96
+
+
+formrow
+   mt  margintop 
+  apply mt2
+
+
+formrow 다음에 나오는 formrow라는 의미
+formrow  formrow 
+
+
+
+style
+
+
+style scoped
+  
+style 
+
+
+br
+ Appvue
+html
+ vue를 하나의 jsp라고 생각하면 됨 
+
+template
+
+
+  header classheaderbar h40 bggray100
+    div classcontainer mxauto flex hfull
+       routerlink는 a와 같다고 보면 됨 
+       to는 href 
+      routerlink to classhfull flex itemscenter
+        img classblock w20 srcassetslogopng alt
+      routerlink
+
+      div classflexgrowdiv
+
+      nav classheaderbarmenubox1
+        ul classflex hfull
+          li
+            routerlink to classhfull flex itemscenter fontbold px10 hoverbgblack hovertextwhite
+              HOME
+            routerlink
+          li
+          li
+            routerlink toarticlelist classhfull flex itemscenter fontbold px10 hoverbgblack hovertextwhite
+              ARTICLE LIST
+            routerlink
+          li
+        ul
+      nav
+    div
+  header
+
+    
+   main
+     이것을 해주어야 다른 페이지를 불러올 수 있음 
+    routerviewrouterview
+  main
+
+template
+
+script langts
+import  defineComponent  from vue
+
+
+export default defineComponent
+  name App
+
+
+script
+
+style langpostcss
+btnprimary 
+  apply py2 px4 bgblue600 hoverbgblue700 focusringblue500 focusringoffsetblue200 textwhite transition easein duration200 textcenter textbase fontsemibold shadowmd focusoutlinenone focusring2 focusringoffset2 roundedlg
+
+btnsecondary 
+  apply py2 px4 bggray600 hoverbggray700 focusringgray500 focusringoffsetgray200 textwhite transition easein duration200 textcenter textbase fontsemibold shadowmd focusoutlinenone focusring2 focusringoffset2 roundedlg
+
+btnsuccess 
+  apply py2 px4 bgpurple600 hoverbgpurple700 focusringpurple500 focusringoffsetpurple200 textwhite transition easein duration200 textcenter textbase fontsemibold shadowmd focusoutlinenone focusring2 focusringoffset2 roundedlg
+
+btndanger 
+  apply py2 px4 bgred600 hoverbgred700 focusringred500 focusringoffsetred200 textwhite transition easein duration200 textcenter textbase fontsemibold shadowmd focusoutlinenone focusring2 focusringoffset2 roundedlg
+
+btnwarning 
+  apply py2 px4 bgyellow600 hoverbgyellow700 focusringyellow500 focusringoffsetyellow200 textwhite transition easein duration200 textcenter textbase fontsemibold shadowmd focusoutlinenone focusring2 focusringoffset2 roundedlg
+
+btninfo 
+  apply py2 px4 bggreen600 hoverbggreen700 focusringgreen500 focusringoffsetgreen200 textwhite transition easein duration200 textcenter textbase fontsemibold shadowmd focusoutlinenone focusring2 focusringoffset2 roundedlg
+
+
+ css 선택자 
+ btns 자식들 중에 class로 btn를 갖고 있는 엘리먼트의 다음 엘리먼트 
+btns  classbtn  classbtn 
+  marginleft themespacing2
+
+style
+
+
+br
+ indexcss
+html
+tailwind base
+tailwind components
+tailwind utilities
+
+
+
+
+ 여기에 css를 저장할 수 있음 
+
+fontface 
+  fontfamily LotteMartDream
+  fontstyle normal
+  fontweight 400
+  src urlhttpscdnjsdelivrnetkoreanwebfonts1corpslottemartLotteMartDreamLotteMartDreamMediumwoff2 formatwoff2 urlhttpscdnjsdelivrnetkoreanwebfonts1corpslottemartLotteMartDreamLotteMartDreamMediumwoff formatwoff
+
+
+fontface 
+  fontfamily LotteMartDream
+  fontstyle normal
+  fontweight 700
+  src urlhttpscdnjsdelivrnetkoreanwebfonts1corpslottemartLotteMartDreamLotteMartDreamBoldwoff2 formatwoff2 urlcdnjsdelivrnetkoreanwebfonts1corpslottemartLotteMartDreamLotteMartDreamBoldwoff formatwoff
+
+
+fontface 
+  fontfamily LotteMartDream
+  fontstyle normal
+  fontweight 300
+  src urlhttpscdnjsdelivrnetkoreanwebfonts1corpslottemartLotteMartDreamLotteMartDreamLightwoff2 formatwoff2 urlhttpscdnjsdelivrnetkoreanwebfonts1corpslottemartLotteMartDreamLotteMartDreamLightwoff formatwoff
+
+
+html body 
+  margin0
+
+
+html 
+  fontfamily LotteMartDream sansserif
+  webkitfontsmoothing antialiased
+  mozosxfontsmoothing grayscale
+
+
+
+br
+ ArticleListPagevue
+html
+template
+
+  TitleBar classbgpurple500Article ListTitleBar
+
+  section classarticlewriteformbox
+    div classcontainer mxauto
+      form action
+        FormRow title제목
+          input typetext classformrowinput placeholder제목을 입력하세요 
+        FormRow
+        FormRow title내용
+          textarea classformrowinput placeholder내용을 입력하세요textarea
+        FormRow
+        FormRow
+           Appvue로 부터 btnprimary의 style 가져오기 
+          div classbtns
+            input classbtnprimary typebutton value등록
+            input classbtnsuccess typebutton value등록
+            input classbtninfo typebutton value등록
+            input classbtnwarning typebutton value등록
+            input classbtnsecondary typebutton value등록
+            input classbtndanger typebutton value등록
+          div
+          
+        FormRow
+      form
+    div
+  section
+template
+
+script langts
+import  defineComponent  from vue
+  전역 컴포넌트 적용으로 안해도 됨 
+import TitleBar from componentsTitleBarvue
+
+
+export default defineComponent
+  name ArticleListPage
+  
+  전역 컴포넌트 적용으로 안해도 됨 
+  components 
+    TitleBar
+  
+
+
+script
+
+style scoped
+
+style
+" />
+<meta itemprop="image" content="images/Dev_J_logo/logo.png" />
+
+<!-- 사이트 타이틀 -->
+<title>P.Lamplight - 개발일지(FormRow 전역 컴포넌트 적용, 상황별 버튼 셋팅, 폰트 적용 등) | Dev_J BLOG | ARTICLE DETAIL</title>
+
+
+<!-- 파비콘 -->
+<link rel="shortcut icon" href="images/favicon/favicon.ico" type="image/x-icon">
+<link rel="icon" href="images/favicon/favicon.ico" type="image/x-icon">
+
+<!-- 폰트어썸 불러오기 -->
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+
+<!--모바일에서도 PC와 같은 비율 유지-->
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<!--제이쿼리-->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+<!-- 하이라이트 라이브러리 추가, 토스트 UI 에디터에서 사용됨 -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.4.1/highlight.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.4.1/styles/default.min.css">
+
+<!-- 토스트 UI 에디터, 자바스크립트 코어 -->
+<script
+	src="https://uicdn.toast.com/editor/latest/toastui-editor-all.min.js" defer></script>
+
+<!-- 코드 미러 라이브러리 추가, 토스트 UI 에디터에서 사용됨 -->
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.58.3/codemirror.min.css" />
+<!-- 토스트 UI 에디터, CSS 코어 -->
+<link rel="stylesheet"
+	href="https://uicdn.toast.com/editor/latest/toastui-editor.min.css" />
+
+<!-- 토스트 UI 에디터, 신택스 하이라이트 플러그인 추가 -->
+<script src="https://uicdn.toast.com/editor-plugin-code-syntax-highlight/latest/toastui-editor-plugin-code-syntax-highlight.min.js" defer></script>
+
+<!-- app.css 불러오기 -->
+<link rel="stylesheet" href="app.css">
+<!-- app.js 불러오기 -->
+<script src="app.js" defer></script>
+<!-- index.js 불러오기 
+<script src="index.js" defer></script>
+-->
+</head>
+
+<body>
+<!-- 사이트 박스 시작 -->
+<div class="body-content min-height-100vh flex flex-column">
+  <!-- 로고바 시작 -->
+  <header class="logo-bar con-min-width" id="header">
+    <div class="con height-100p flex flex-jc-c" title="HOME">
+      <a href="index.html" class="logo flex flex-ai-c"> 
+        <img class="logo__img" src="images/Dev_J_logo/logo_transparent.png" alt="">
+        <span>
+          BLOG
+        </span>
+      </a>
+    </div>
+  </header>
+  <!-- 로고바 끝 -->
+
+  <!-- 메뉴바 시작-->
+  <header class="menu-bar con-min-width visible-md-up">
+    <div class="flex flex-jc-sb">
+   	 <div class="menu-bar__status-icon" title="Menu">
+      <div></div>
+      <div></div>
+      <div></div>
+     </div>
+     <a class="search-icon" title="search" href="search.html">
+        <i class="fa fa-search"></i>
+     </a>
+   </div>
+   <div class="con hide">
+    <nav class="menu-bar__menu">
+      <ul class="flex">
+          <li title="ABOUT">
+            <a href="about.html" class="block">
+              <i class="far fa-address-card"></i>
+              <span>ABOUT</span>
+            </a>
+          </li>
+          <li>
+            <a class="block">
+              <i class="fas fa-list"></i>
+              <span>ARTICLES</span>
+            </a>
+            <ul>
+              <li title="NOTICE"><a href="notice-list-1.html" class="block"><i class="fas fa-bullhorn"></i> <span>NOTICE BOARD</span></a></li><li title="JAVA"><a href="java-list-1.html" class="block"><i class="fab fa-java"></i> <span>JAVA BOARD</span></a></li><li title="HTML"><a href="html-list-1.html" class="block"><i class="fab fa-html5"></i> <span>HTML & CSS & JS BOARD</span></a></li><li title="MYSQL"><a href="mysql-list-1.html" class="block"><i class="fas fa-database"></i> <span>MySQL BOARD</span></a></li><li title="ETC"><a href="etc-list-1.html" class="block"><i class="fas fa-mouse-pointer"></i> <span>ETC BOARD</span></a></li>
+            </ul>
+          </li>
+          <li>
+            <a class="block">
+              <i class="fas fa-project-diagram"></i>
+              <span>PROJECT</span>
+            </a>
+            <ul>
+              <li title="P_BLOG"><a href="p_blog-list-1.html" class="block"><i class="fab fa-blogger"></i> <span>P.BLOG PROJECT</span></a></li><li title="P_JSP"><a href="p_jsp-list-1.html" class="block"><i class="fas fa-users"></i> <span>P.JSP PROJECT</span></a></li><li title="P_LAMP"><a href="p_lamp-list-1.html" class="block"><i class="fab fa-vuejs"></i> <span>P.Lamplight PROJECT</span></a></li><li title="P_WHAT"><a href="p_what-list-1.html" class="block"><i class="fas fa-file-word"></i> <span>P.WhatIsMyName PROJECT</span></a></li>
+            </ul>
+          </li>
+          <li>
+            <a class="block">
+              <i class="fas fa-link"></i>
+              <span>LINK</span>
+            </a>
+            <ul>
+              <li title="T-STORY">
+                <a href="https://cjy324.tistory.com/" target="_blank" class="block">
+                  <i class="fas fa-rss-square"></i>
+                  <span>T-STORY</span>
+                </a>
+              </li>
+              <li title="GITHUB">
+                <a href="https://github.com/cjy324/TIL_Jooyoung#til_jooyoung" target="_blank" class="block">
+                  <i class="fab fa-github"></i>
+                  <span>GITHUB</span>
+                </a>
+              </li>
+              <li title="GetIT">
+                <a href="https://getit.devj.me/" target="_blank" class="block">
+                  <i class="fab fa-dev"></i>
+                  <span>GetIT</span>
+                </a>
+              </li>
+            </ul>
+          </li>
+          <li title="STATISTICS">
+            <a href="statistics.html" class="block">
+              <i class="fas fa-chart-pie"></i>
+              <span>STATISTICS</span>
+            </a>
+          </li>
+        </ul>
+      </nav>
+   </div>
+  </header>
+  <!-- 메뉴바 끝 -->
+  
+  <!-- 모바일 사이드 메뉴바 시작 -->
+  <header class="mobile-menu-bar con-min-width visible-sm-down">
+    <div class="flex flex-jc-sb">
+   <div class="mobile-menu-bar__status-icon" title="Menu">
+     <div></div>
+     <div></div>
+     <div></div>
+   </div>
+    <a class="search-icon" title="search" href="search.html">
+        <i class="fa fa-search"></i>
+      </a>
+   </div>
+   <div class="con ">
+    <aside class="mobile-side-bar flex flex-column flex-jc-c ">
+      <div class="mobile-side-bar_X"><i class="fas fa-times"></i></div>
+      <nav class="mobile-side-bar_menu flex">
+      <ul class="">
+          <li title="ABOUT">
+            <a href="about.html" class="block">
+              <i class="far fa-address-card"></i>
+              <span>ABOUT</span>
+            </a>
+          </li>
+          <li>
+            <a class="block">
+              <i class="fas fa-list"></i>
+              <span>ARTICLES</span>
+            </a>
+            <ul class="hide2">
+              <li title="NOTICE"><a href="notice-list-1.html" class="block"><i class="fas fa-bullhorn"></i> <span>NOTICE BOARD</span></a></li><li title="JAVA"><a href="java-list-1.html" class="block"><i class="fab fa-java"></i> <span>JAVA BOARD</span></a></li><li title="HTML"><a href="html-list-1.html" class="block"><i class="fab fa-html5"></i> <span>HTML & CSS & JS BOARD</span></a></li><li title="MYSQL"><a href="mysql-list-1.html" class="block"><i class="fas fa-database"></i> <span>MySQL BOARD</span></a></li><li title="ETC"><a href="etc-list-1.html" class="block"><i class="fas fa-mouse-pointer"></i> <span>ETC BOARD</span></a></li>
+            </ul>
+          </li>
+          <li>
+            <a class="block">
+              <i class="fas fa-project-diagram"></i>
+              <span>PROJECT</span>
+            </a>
+            <ul class="hide2">
+              <li title="P_BLOG"><a href="p_blog-list-1.html" class="block"><i class="fab fa-blogger"></i> <span>P.BLOG PROJECT</span></a></li><li title="P_JSP"><a href="p_jsp-list-1.html" class="block"><i class="fas fa-users"></i> <span>P.JSP PROJECT</span></a></li><li title="P_LAMP"><a href="p_lamp-list-1.html" class="block"><i class="fab fa-vuejs"></i> <span>P.Lamplight PROJECT</span></a></li><li title="P_WHAT"><a href="p_what-list-1.html" class="block"><i class="fas fa-file-word"></i> <span>P.WhatIsMyName PROJECT</span></a></li>
+            </ul>
+          </li>
+          <li>
+            <a class="block">
+              <i class="fas fa-link"></i>
+              <span>LINK</span>
+            </a>
+            <ul class="hide2">
+              <li title="T-STORY">
+                <a href="https://cjy324.tistory.com/" target="_blank" class="block">
+                  <i class="fas fa-rss-square"></i>
+                  <span>T-STORY</span>
+                </a>
+              </li>
+              <li title="GITHUB">
+                <a href="https://github.com/cjy324/TIL_Jooyoung#til_jooyoung" target="_blank" class="block">
+                  <i class="fab fa-github"></i>
+                  <span>GITHUB</span>
+                </a>
+              </li>
+              <li title="GetIT">
+                <a href="https://getit.devj.me/" target="_blank" class="block">
+                  <i class="fab fa-dev"></i>
+                  <span>GetIT</span>
+                </a>
+              </li>
+            </ul>
+          </li>
+          <li title="STATISTICS">
+            <a href="statistics.html" class="block">
+              <i class="fas fa-chart-pie"></i>
+              <span>STATISTICS</span>
+            </a>
+          </li>
+        </ul>
+      </nav>  
+      </aside>
+   </div>
+  </header>
+  
+  <!-- 모바일 사이드 메뉴바 끝 --> 
+   
+
+  <!-- 메인 컨텐츠 박스 시작 -->
+  <main class="main-box flex-grow-1">
+  <section class="main-box-section con-min-width">
+   <!-- 메인-타이틀바 시작 -->
+	<div class="title-bar con-min-width">
+		<h1 class="con">
+			<i class="fas fa-file-invoice"></i> <span>ARTICLE</span>
+		</h1>
+	</div>
+   <!-- 메인-타이틀바 종료 -->
+<!-- Progress-bar -->
+<script type="text/javascript"
+	src="https://rawcdn.githack.com/mburakerman/prognroll/0feda211643153bce2c69de32ea1b39cdc64ffbe/src/prognroll.js"></script>
+<script type="text/javascript">
+	$(function() {
+		$("body").prognroll({
+			height : 10,
+			color : "#666666"
+		});
+		$(".content").prognroll({
+			custom : true
+		});
+	});
+</script>
+
+<!-- 메인-상세페이지 시작 -->
+<section class="section-2 con-min-width min-height-50vh">
+	<div class="con height-100p">
+		<div class="article-detail-cell height-100p">
+			<div class="article-detail-cell__board-name"><div><span>게시판 : </span><span>P.Lamplight 게시판</span></div></div><div class="article-detail-cell__id"><div><span>번호 : </span><span>62</span></div></div><div class="article-detail-cell__member-id"><div><span>작성자 : </span><span>Dev_J</span></div></div><div class="article-detail-cell__reg-date"><div><span>작성일 : </span><span>2021-03-26 15:02:29</span></div></div><div class="article-detail-cell__update-date"><div><span>수정일 : </span><span>2021-03-26 15:04:09</span></div></div><br><div class="article-detail-cell__title-contents flex flex-jc-fe"><div class="article-detail-cell__hitsCount"><div><span>조회수 : </span><span>0</span></div></div><div class="article-detail-cell__likesCount"><div><span>추천수 : </span><span>0</span></div></div><div class="article-detail-cell__commentsCount"><div><span>댓글수 : </span><span>0</span></div></div></div><div class="article-detail-cell__title"><div><span>제목 : </span><span>P.Lamplight - 개발일지(FormRow 전역 컴포넌트 적용, 상황별 버튼 셋팅, 폰트 적용 등)</span></div></div><nav class="ad"><!-- 구글 애드센스2 --><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script><!-- 수평 반응형2 --><ins class="adsbygoogle" style="display: block" data-ad-client="ca-pub-7996879977557531" data-ad-slot="2278060237" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle = window.adsbygoogle || []).push({});</script></nav><script type"text/x-template">
+# FormRow 전역 컴포넌트 적용, 상황별 버튼 셋팅, 폰트 적용 등
+
+## NOTE
+
+```
+@apply?
+- tailwind 방식을 style에 적용할 수 있도록 해주는 것? 
+- 즉, class에 css를 입력하는 tailwind를 style에 바로 입력하는 것 
+https://tailwindcss.com/docs/functions-and-directives
+```
+<br>
+## 주요소스코드
+
+### FormRow.vue
+```html
+<template>
+  <div class="form-row flex">
+    <div class="w-32 flex justify-center ">
+      <span class="flex items-center">{{title}}</span>
+    </div>
+    <div class="flex-grow justify-center">
+      <slot></slot>
+    </div>
+  </div>
+</template>
+
+<t-script lang="ts">
+import { defineComponent } from 'vue'
+export default defineComponent({  // 컴포넌트의 속성을 정의해주어야 함
+
+  // title props의 속성을 정해준다
+  props: {
+    title: {
+      type: String,
+      required: true
+    }
+  },
+  //컴포넌트의 이름을 정의한다
+  name: 'FormRow'
+})
+</t-script>
+
+
+<!--FormRow의 css를 post 방식으로 전송-->
+<style lang="postcss">
+.form-row-input{
+  /* @apply? tailwind 방식을 style에 적용할 수 있도록 해주는 것? 
+    즉, class에 css를 입력하는 tailwind를 style에 바로 입력하는 것  */
+  /* rounded-sm =>	border-radius:0.125rem; */
+  @apply w-full rounded-xl;
+
+}
+
+/* textarea에 달린 form-row-input 클래스 라는 의미*/
+textarea.form-row-input{
+  min-height: theme('spacing.96');
+}
+
+.form-row{
+  /* mt => margin-top */
+  @apply mt-2;
+}
+
+/*form-row 다음에 나오는 form-row라는 의미*/
+.form-row + .form-row {
+
+}
+
+</style>
+
+
+<style scoped>
+  
+</style> 
+
+```
+<br>
+### App.vue
+```html
+<!-- vue를 하나의 jsp라고 생각하면 됨 -->
+
+<template>
+
+
+  <header class="header-bar h-40 bg-gray-100">
+    <div class="container mx-auto flex h-full">
+      <!-- router-link는 a와 같다고 보면 됨 -->
+      <!-- to는 href -->
+      <router-link to="/" class="h-full flex items-center">
+        <img class="block w-20" src="./assets/logo.png" alt="">
+      </router-link>
+
+      <div class="flex-grow"></div>
+
+      <nav class="header-bar__menu-box-1">
+        <ul class="flex h-full">
+          <li>
+            <router-link to="/" class="h-full flex items-center font-bold px-10 hover:bg-black hover:text-white">
+              HOME
+            </router-link>
+          </li>
+          <li>
+            <router-link to="/article/list" class="h-full flex items-center font-bold px-10 hover:bg-black hover:text-white">
+              ARTICLE LIST
+            </router-link>
+          </li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+    
+   <main>
+    <!-- 이것을 해주어야 다른 페이지를 불러올 수 있음 -->
+    <router-view></router-view>
+  </main>
+
+</template>
+
+<t-script lang="ts">
+import { defineComponent } from 'vue'
+
+
+export default defineComponent({
+  name: 'App'
+
+})
+</t-script>
+
+<style lang="postcss">
+.btn-primary {
+  @apply py-2 px-4 bg-blue-600 hover:bg-blue-700 focus:ring-blue-500 focus:ring-offset-blue-200 text-white transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 rounded-lg;
+}
+.btn-secondary {
+  @apply py-2 px-4 bg-gray-600 hover:bg-gray-700 focus:ring-gray-500 focus:ring-offset-gray-200 text-white transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 rounded-lg;
+}
+.btn-success {
+  @apply py-2 px-4 bg-purple-600 hover:bg-purple-700 focus:ring-purple-500 focus:ring-offset-purple-200 text-white transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 rounded-lg;
+}
+.btn-danger {
+  @apply py-2 px-4 bg-red-600 hover:bg-red-700 focus:ring-red-500 focus:ring-offset-red-200 text-white transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 rounded-lg;
+}
+.btn-warning {
+  @apply py-2 px-4 bg-yellow-600 hover:bg-yellow-700 focus:ring-yellow-500 focus:ring-offset-yellow-200 text-white transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 rounded-lg;
+}
+.btn-info {
+  @apply py-2 px-4 bg-green-600 hover:bg-green-700 focus:ring-green-500 focus:ring-offset-green-200 text-white transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 rounded-lg;
+}
+
+/* css 선택자 */
+/* .btns 자식들 중에 class로 'btn-'를 갖고 있는 엘리먼트의 다음 엘리먼트 */
+.btns > [class*="btn-"] + [class*="btn-"] {
+  margin-left: theme('spacing.2');
+}
+</style>
+```
+
+<br>
+### index.css
+```html
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+
+
+/* 여기에 css를 저장할 수 있음 */
+
+@font-face {
+  font-family: 'LotteMartDream';
+  font-style: normal;
+  font-weight: 400;
+  src: url('https://cdn.jsdelivr.net/korean-webfonts/1/corps/lottemart/LotteMartDream/LotteMartDreamMedium.woff2') format('woff2'), url('https://cdn.jsdelivr.net/korean-webfonts/1/corps/lottemart/LotteMartDream/LotteMartDreamMedium.woff') format('woff');
+}
+
+@font-face {
+  font-family: 'LotteMartDream';
+  font-style: normal;
+  font-weight: 700;
+  src: url('https://cdn.jsdelivr.net/korean-webfonts/1/corps/lottemart/LotteMartDream/LotteMartDreamBold.woff2') format('woff2'), url('//cdn.jsdelivr.net/korean-webfonts/1/corps/lottemart/LotteMartDream/LotteMartDreamBold.woff') format('woff');
+}
+
+@font-face {
+  font-family: 'LotteMartDream';
+  font-style: normal;
+  font-weight: 300;
+  src: url('https://cdn.jsdelivr.net/korean-webfonts/1/corps/lottemart/LotteMartDream/LotteMartDreamLight.woff2') format('woff2'), url('https://cdn.jsdelivr.net/korean-webfonts/1/corps/lottemart/LotteMartDream/LotteMartDreamLight.woff') format('woff');
+}
+
+html, body {
+  margin:0;
+}
+
+html {
+  font-family: 'LotteMartDream', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+```
+
+<br>
+### ArticleListPage.vue
+```html
+<template>
+
+  <TitleBar class="bg-purple-500">Article List</TitleBar>
+
+  <section class="article-write-form-box">
+    <div class="container mx-auto">
+      <form action="">
+        <FormRow title="제목">
+          <input type="text" class="form-row-input" placeholder="제목을 입력하세요."> 
+        </FormRow>
+        <FormRow title="내용">
+          <textarea class="form-row-input" placeholder="내용을 입력하세요."></textarea>
+        </FormRow>
+        <FormRow>
+          <!-- App.vue로 부터 .btn-primary의 style 가져오기 -->
+          <div class="btns">
+            <input class="btn-primary" type="button" value="등록">
+            <input class="btn-success" type="button" value="등록">
+            <input class="btn-info" type="button" value="등록">
+            <input class="btn-warning" type="button" value="등록">
+            <input class="btn-secondary" type="button" value="등록">
+            <input class="btn-danger" type="button" value="등록">
+          </div>
+          
+        </FormRow>
+      </form>
+    </div>
+  </section>
+</template>
+
+<t-script lang="ts">
+import { defineComponent } from 'vue'
+ /* 전역 컴포넌트 적용으로 안해도 됨 
+import TitleBar from '../components/TitleBar.vue';
+*/
+
+export default defineComponent({
+  name: 'ArticleListPage',
+  
+ /* 전역 컴포넌트 적용으로 안해도 됨 
+  components: {
+    TitleBar
+  }
+*/
+})
+</t-script>
+
+<style scoped>
+
+</style>
+```</script><div class="article-detail-cell__body height-70p toast-ui-viewer"><div></div></div><br><div class="article-detail-cell__tag flex flex-wrap"><nav># project</nav><nav># 개발일지</nav><nav># lamplight</nav></div><br><br><nav class="ad"><!-- 구글 애드센스1 --><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script><!-- 수평 반응형1 --><ins class="adsbygoogle" style="display: block" data-ad-client="ca-pub-7996879977557531" data-ad-slot="6812185708" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle = window.adsbygoogle || []).push({});</script></nav>
+			<!-- Disqus api 적용 -->
+			<!-- 정확한 페이지 경로 알려주는 기능 추가-->
+			<nav>
+				<div id="disqus_thread"></div>
+				<script>
+					var disqus_config = function() {
+						this.page.url = 'https://blog.devj.me/article_detail_62.html';
+						this.page.identifier = 'article_detail_62.html';
+					};
+					(function() {
+						//DON'T EDIT BELOW THIS LINE
+						var d = document, s = d.createElement('script');
+						s.src = 'https://devj-blog.disqus.com/embed.js';
+						s.setAttribute('data-timestamp', +new Date());
+						(d.head || d.body).appendChild(s);
+					})();
+				</script>
+				<noscript>
+					Please enable JavaScript to view the
+					<a href="https://disqus.com/?ref_noscript">comments powered by
+						Disqus.</a>
+				</noscript>
+			</nav>
+		</div>
+	</div>
+</section>
+<!-- 메인-상세페이지 끝 -->
+<!-- 메인-상세 하단 메뉴 시작 -->
+<section class="section-3 con-min-width">
+	<div class="con">
+		<div class="article-list-bottom-cell flex flex-jc-c"><div class="./"><i class="fas fa-th-list"></i><a href="p_lamp-list-1.html" class="hover-underline"> 목록 </a></div></div>
+	</div>
+</section>
+<!-- 메인-상세 하단 메뉴 끝 -->
+</section>
+</main>
+<!-- 메인 컨텐츠 박스 끝 -->
+  <!-- 맨 위 버튼 시작 -->
+  <nav class="top-button flex flex-jc-c flex-ai-c">
+    <div class="">
+      <a href="#header">▲ TOP</a> 
+    </div>     
+  </nav>
+  <!-- 맨 위 버튼 끝 -->
+
+
+  <!-- 푸터 시작 -->
+  <footer class="bottom-bar con-min-width">
+    <div class="con flex flex-ai-c">
+      <a href="index.html" class="logo logo--mini flex flex-ai-c" title="HOME">
+        <img class="logo--mini__img" src="images/Dev_J_logo/logo_transparent.png" alt="">
+      </a>
+      <div class="bottom-bar__site-info">
+        <span><i class="far fa-envelope"></i> juy32400@gmail.com</span>
+        <br>
+        <br>
+        <span>COPYRIGHT 2020. Dev_J. All rights reserved.</span>
+      </div>
+    </div>
+  </footer>
+  <!-- 푸터 끝 -->
+</div>
+<!-- 사이트 박스 끝 -->
+</body>
+</html>

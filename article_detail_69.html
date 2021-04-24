@@ -1,0 +1,3981 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+<script data-ad-client="ca-pub-7996879977557531" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-X5RMP83794"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-X5RMP83794');
+</script>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- 구글 검색엔진 등록-소유권 확인 -->
+<meta name="google-site-verification" content="37R4KcEaJU5LfiKL7GI1hu1_spJgWOazN6xy48OHhD4" />
+
+<!-- Meta Tag & Open Graph -->
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<meta name="viewport" content="width=1200">
+<meta name="apple-mobile-web-app-title" content="Dev_J BLOG" />
+<!-- 메타태그정보 //-->
+<!-- META -->
+<link rel="canonical" href="https://blog.devj.me" />
+<meta name="subject" content="P.Lamplight - 개발일지(요청수정페이지,회원정보페이지,회원수정페이지까지 DB연계 완료)"/>
+<meta name="title" content="Dev_J BLOG" />
+<meta name="keywords" content="JAVA, HTML, CSS, JavaScript, MySQL" />
+<meta name="copyright" content="Dev_J BLOG" />
+<meta name="pubdate" content="2021-04-24T15:02:49" />
+<meta name="lastmod" content="2021-04-24T15:02:49" />
+<!-- OPENGRAPH -->
+<meta property="og:site_name" content="Dev_J BLOG" />
+<meta property="og:type" content="blog" />
+<meta property="og:title" content="P.Lamplight - 개발일지(요청수정페이지,회원정보페이지,회원수정페이지까지 DB연계 완료)" />
+<meta property="og:description" content=" 요청수정페이지회원정보페이지회원수정페이지까지 DB연계 완료
+
+ NOTE
+
+
+프론트엔드
+요청 수정 페이지
+회원정보 수정 페이지
+평점후기페이지
+
+
+백엔드
+order테이블 funeralHomestepLevel 컬럼 추가
+
+
+br
+ 주요소스코드
+
+ OrderModifyPagevue
+html
+template
+
+  TitleBar요청서 수정 페이지TitleBar
+
+  section classsection sectionarticlewriteformbox px2
+    div classcontainer mxauto
+      div classpx6 py6 bgwhite roundedlg shadowmd
+        form vifglobalShareisLogined vonsubmitpreventcheckAndModifyOrder
+          FormRow title제목
+            input refmodifiedOrderTitleElRef classformrowinput typetext valuestateordertitle
+          FormRow
+          FormRow title장례식장
+            input refmodifiedOrderFuneralHomeElRef classformrowinput typetext valuestateorderfuneralHome
+          FormRow
+          FormRow title옵션1
+            input refmodifiedOrderOption1ElRef classformrowinput typetext valuestateorderoption1
+            select refmodifiedOrderOption1qtyElRef nameoption1qty classformrowinput wfull roundedsm valuestateorderoption1qty
+						  option value11option
+						  option value22option
+						  option value33option
+						  option value44option
+						  option value55option
+					  select
+          FormRow
+          FormRow title옵션2
+            input refmodifiedOrderOption2ElRef classformrowinput typetext valuestateorderoption2
+            select refmodifiedOrderOption2qtyElRef nameoption1qty classformrowinput wfull roundedsm valuestateorderoption2qty
+						  option value11option
+						  option value22option
+						  option value33option
+						  option value44option
+						  option value55option
+					  select
+          FormRow
+          FormRow title옵션3
+            input refmodifiedOrderOption3ElRef classformrowinput typetext valuestateorderoption3
+            select refmodifiedOrderOption3qtyElRef nameoption1qty classformrowinput wfull roundedsm valuestateorderoption3qty
+						  option value11option
+						  option value22option
+						  option value33option
+						  option value44option
+						  option value55option
+					  select
+          FormRow
+          FormRow title옵션4
+            input refmodifiedOrderOption4ElRef classformrowinput typetext valuestateorderoption4
+            select refmodifiedOrderOption4qtyElRef nameoption1qty classformrowinput wfull roundedsm valuestateorderoption4qty
+						  option value11option
+						  option value22option
+						  option value33option
+						  option value44option
+						  option value55option
+					  select
+          FormRow
+          FormRow title옵션5
+            input refmodifiedOrderOption5ElRef classformrowinput typetext valuestateorderoption5
+            select refmodifiedOrderOption5qtyElRef nameoption1qty classformrowinput wfull roundedsm valuestateorderoption5qty
+						  option value11option
+						  option value22option
+						  option value33option
+						  option value44option
+						  option value55option
+					  select
+          FormRow
+          FormRow title추가 요청 사항
+            textarea refmodifiedOrderBodyElRef classformrowinput valuestateorderbodytextarea
+          FormRow
+          FormRow title완료
+            div classbtns
+              input typesubmit value완료 classbtnprimary 
+            div
+          FormRow
+        form
+        div velse
+          routerlink classbtnlink tomemberlogin로그인routerlink 후 이용해주세요
+        div
+      div
+    div
+  section
+
+
+template
+
+script langts
+import  defineComponent reactive ref getCurrentInstance onMounted watch  from vue
+import  MainApi  from apis
+import  Router  from vuerouter
+import  IOrder  from types
+
+
+export default defineComponent
+  name AddOrderPage
+
+  props 
+    globalShare 
+      type Object
+      required true
+    
+    id 
+      type Number
+      required true
+    
+  
+
+  setupprops
+    const routerRouter  getCurrentInstanceappContextconfigglobalPropertiesrouter
+    const mainApiMainApi  getCurrentInstanceappContextconfigglobalPropertiesmainApi
+
+    const modifiedOrderTitleElRef  refHTMLInputElement
+    const modifiedOrderFuneralHomeElRef  refHTMLInputElement
+    const modifiedOrderOption1ElRef  refHTMLInputElement
+    const modifiedOrderOption1qtyElRef  refHTMLInputElement
+    const modifiedOrderOption2ElRef  refHTMLInputElement
+    const modifiedOrderOption2qtyElRef  refHTMLInputElement
+    const modifiedOrderOption3ElRef  refHTMLInputElement
+    const modifiedOrderOption3qtyElRef  refHTMLInputElement
+    const modifiedOrderOption4ElRef  refHTMLInputElement
+    const modifiedOrderOption4qtyElRef  refHTMLInputElement
+    const modifiedOrderOption5ElRef  refHTMLInputElement
+    const modifiedOrderOption5qtyElRef  refHTMLInputElement
+    const modifiedOrderBodyElRef  refHTMLInputElement
+
+    const state  reactive
+      order  as IOrder
+    
+
+    function loadOrderidnumber 
+      mainApiorderdetailid
+      thenaxiosResponse  
+        stateorder  axiosResponsedatabodyorder
+      
+    
+    onMounted  
+      loadOrderpropsid
+    
+    watch  propsid newValue oldValue  
+      loadOrderpropsid
+    
+
+     공백 체크 
+    function checkAndModifyOrder
+
+      일반적으로 안해도 되지만 typescript에서는 해야됨
+      제목
+      ifmodifiedOrderTitleElRefvalue  null
+        return
+      
+
+      const modifiedOrderTitleEl  modifiedOrderTitleElRefvalue
+      modifiedOrderTitleElvalue  modifiedOrderTitleElvaluetrim
+
+      ifmodifiedOrderTitleElvaluelength  0
+        alert제목을 입력해 주세요
+        modifiedOrderTitleElfocus
+        return
+      
+
+      장례식장
+      ifmodifiedOrderFuneralHomeElRefvalue  null
+        return
+      
+
+      const modifiedOrderFuneralHomeEl  modifiedOrderFuneralHomeElRefvalue
+      modifiedOrderFuneralHomeElvalue  modifiedOrderFuneralHomeElvaluetrim
+
+      ifmodifiedOrderFuneralHomeElvaluelength  0
+        alert장례식장명을 입력해 주세요
+        modifiedOrderFuneralHomeElfocus
+        return
+      
+
+      옵션1
+      ifmodifiedOrderOption1ElRefvalue  null
+        return
+      
+
+      const modifiedOrderOption1El  modifiedOrderOption1ElRefvalue
+      modifiedOrderOption1Elvalue  modifiedOrderOption1Elvaluetrim
+
+      ifmodifiedOrderOption1Elvaluelength  0
+        alert옵션1을 입력해 주세요
+        modifiedOrderOption1Elfocus
+        return
+      
+
+      옵션1qty
+      ifmodifiedOrderOption1qtyElRefvalue  null
+        return
+      
+
+      const modifiedOrderOption1qtyEl  modifiedOrderOption1qtyElRefvalue
+
+      옵션2
+      ifmodifiedOrderOption2ElRefvalue  null
+        return
+      
+
+      const modifiedOrderOption2El  modifiedOrderOption2ElRefvalue
+      modifiedOrderOption2Elvalue  modifiedOrderOption2Elvaluetrim
+
+      ifmodifiedOrderOption1Elvaluelength  0
+        alert옵션2를 입력해 주세요
+        modifiedOrderOption2Elfocus
+        return
+      
+
+      옵션2qty
+      ifmodifiedOrderOption2qtyElRefvalue  null
+        return
+      
+
+      const modifiedOrderOption2qtyEl  modifiedOrderOption2qtyElRefvalue
+
+      옵션3
+      ifmodifiedOrderOption3ElRefvalue  null
+        return
+      
+
+      const modifiedOrderOption3El  modifiedOrderOption3ElRefvalue
+      modifiedOrderOption3Elvalue  modifiedOrderOption3Elvaluetrim
+
+      ifmodifiedOrderOption3Elvaluelength  0
+        alert옵션3을 입력해 주세요
+        modifiedOrderOption3Elfocus
+        return
+      
+
+      옵션3qty
+      ifmodifiedOrderOption3qtyElRefvalue  null
+        return
+      
+
+      const modifiedOrderOption3qtyEl  modifiedOrderOption3qtyElRefvalue
+
+      옵션4
+      ifmodifiedOrderOption4ElRefvalue  null
+        return
+      
+
+      const modifiedOrderOption4El  modifiedOrderOption4ElRefvalue
+      modifiedOrderOption4Elvalue  modifiedOrderOption4Elvaluetrim
+
+      ifmodifiedOrderOption4Elvaluelength  0
+        alert옵션4를 입력해 주세요
+        modifiedOrderOption4Elfocus
+        return
+      
+
+      옵션4qty
+      ifmodifiedOrderOption4qtyElRefvalue  null
+        return
+      
+
+      const modifiedOrderOption4qtyEl  modifiedOrderOption4qtyElRefvalue
+
+      옵션5
+      ifmodifiedOrderOption5ElRefvalue  null
+        return
+      
+
+      const modifiedOrderOption5El  modifiedOrderOption5ElRefvalue
+      modifiedOrderOption5Elvalue  modifiedOrderOption5Elvaluetrim
+
+      ifmodifiedOrderOption5Elvaluelength  0
+        alert옵션5를 입력해 주세요
+        modifiedOrderOption5Elfocus
+        return
+      
+
+      옵션5qty
+      ifmodifiedOrderOption5qtyElRefvalue  null
+        return
+      
+
+      const modifiedOrderOption5qtyEl  modifiedOrderOption5qtyElRefvalue
+
+
+      body
+      ifmodifiedOrderBodyElRefvalue  null
+        return
+      
+
+      const modifiedOrderBodyEl  modifiedOrderBodyElRefvalue
+      modifiedOrderBodyElvalue  modifiedOrderBodyElvaluetrim
+
+      ifmodifiedOrderBodyElvaluelength  0
+        alert내용을 입력해 주세요
+        modifiedOrderBodyElfocus
+        return
+      
+
+       작성 함수로 보내기
+      modifyOrderpropsid modifiedOrderTitleElvalue modifiedOrderFuneralHomeElvalue modifiedOrderOption1Elvalue parseIntmodifiedOrderOption1qtyElvalue modifiedOrderOption2Elvalue parseIntmodifiedOrderOption2qtyElvalue modifiedOrderOption3Elvalue parseIntmodifiedOrderOption3qtyElvalue modifiedOrderOption4Elvalue parseIntmodifiedOrderOption4qtyElvalue modifiedOrderOption5Elvalue parseIntmodifiedOrderOption5qtyElvalue modifiedOrderBodyElvalue stateorderdirectorId propsglobalShareloginedMemberid
+
+    
+
+    typescript에서는 titlestring bodystring 이런식으로 type을 적어주어야 한다
+      function modifyOrderidnumber titlestring funeralHomestring option1string option1qtynumber option2string option2qtynumber option3string option3qtynumber option4string option4qtynumber option5string option5qtynumber bodystring directorIdnumber clientIdnumber
+       
+        mainApiorderdoModifyid title funeralHome option1 option1qty option2 option2qty option3 option3qty option4 option4qty option5 option5qty body directorId clientId
+        thenaxiosResponse  
+          alertaxiosResponsedatamsg
+          
+           로그인이 fail 상태이면 리턴
+          if  axiosResponsedatafail  
+            return
+          
+
+          authKey가 있는 상태에서 가능
+          const modifiedOrderId  axiosResponsedatabodyid
+          alertmodifiedArticleId  번 게시물 등록 완료
+
+          routerreplacedetailid  modifiedOrderId
+        
+      
+
+    return
+        state
+        modifiedOrderTitleElRef
+        modifiedOrderFuneralHomeElRef
+        modifiedOrderOption1ElRef
+        modifiedOrderOption1qtyElRef
+        modifiedOrderOption2ElRef
+        modifiedOrderOption2qtyElRef
+        modifiedOrderOption3ElRef
+        modifiedOrderOption3qtyElRef
+        modifiedOrderOption4ElRef
+        modifiedOrderOption4qtyElRef
+        modifiedOrderOption5ElRef
+        modifiedOrderOption5qtyElRef
+        modifiedOrderBodyElRef
+        checkAndModifyOrder
+      
+    
+
+  
+  
+
+script
+
+style scoped
+
+style
+
+
+ MemberModifyPagevue
+html
+template
+  TitleBar회원정보수정TitleBar
+
+  section classsection sectionmembermodifyform px2
+    div classcontainer mxauto
+      div classpx6 py6 bgwhite roundedlg shadowmd
+        form vifglobalShareisLogined vonsubmitpreventcheckAndModify
+          div title프로필 이미지
+            img classh96 roundedlg objectcover objectcenter srchttplocalhost8090  statememberextrathumbImg
+          div
+          FormRow title프로필 이미지
+            input refprofileImgElRef classformrowinput typefile
+          FormRow
+          FormRow title회원유형
+            select refauthLevelElRef valuestatememberauthLevel
+              option value3일반회원option
+              option value4도우미option
+              option value5지도사option
+            select
+          FormRow
+          FormRow title아이디
+            input refloginIdElRef classformrowinput typetext valuestatememberloginId
+          FormRow
+          FormRow title비밀번호
+            input refloginPwElRef classformrowinput typepassword placeholder비밀번호를 입력해주세요
+          FormRow
+          FormRow title비밀번호 확인
+            input refloginPwConfirmElRef classformrowinput typepassword placeholder비밀번호 확인을 해주세요
+          FormRow
+          FormRow title이름
+            input refnameElRef classformrowinput typetext valuestatemembername
+          FormRow
+          FormRow title닉네임
+            input refnicknameElRef classformrowinput typetext valuestatemembernickname
+          FormRow
+          FormRow title전화번호
+            input refcellphoneNoElRef classformrowinput typetel maxlength11 valuestatemembercellphoneNo
+          FormRow
+          FormRow title이메일
+            input refemailElRef classformrowinput typeemail valuestatememberemail
+          FormRow
+          FormRow title시도
+            input refaddressElRef classformrowinput typetext valuestatememberaddress
+          FormRow
+          FormRow title완료
+            div classbtns
+              input typesubmit value완료 classbtnprimary 
+            div
+          FormRow
+        form
+        div velse
+          이미 로그인 상태입니다 routerlink classbtnlink to홈routerlink 으로 이동
+        div
+      div
+    div
+  section
+template
+
+script langts
+import  defineComponent ref reactive getCurrentInstance onMounted watch  from vue
+import  MainApi  from apis
+import  Router  from vuerouter
+import  IMember  from types
+
+export default defineComponent
+  name MemberJoinPage
+  props 
+    globalShare 
+      type Object
+      required true
+    
+    id 
+      type Number
+      required true
+    
+  
+  setupprops 
+    const routerRouter  getCurrentInstanceappContextconfigglobalPropertiesrouter
+    const mainApiMainApi  getCurrentInstanceappContextconfigglobalPropertiesmainApi
+    const profileImgElRef  refHTMLInputElement
+    const authLevelElRef  refHTMLInputElement
+    const loginIdElRef  refHTMLInputElement
+    const loginPwElRef  refHTMLInputElement
+    const loginPwConfirmElRef  refHTMLInputElement
+    const nameElRef  refHTMLInputElement
+    const nicknameElRef  refHTMLInputElement
+    const cellphoneNoElRef  refHTMLInputElement
+    const emailElRef  refHTMLInputElement
+    const addressElRef  refHTMLInputElement
+
+
+    const state  reactive
+      member  as IMember
+    
+
+    function loadMemberidnumber 
+      mainApimemberdetailid
+      thenaxiosResponse  
+        statemember  axiosResponsedatabodymember
+      
+    
+    onMounted  
+      loadMemberpropsid
+    
+    watch  propsid newValue oldValue  
+      loadMemberpropsid
+    
+
+   
+    function checkAndModify 
+        아이디 체크
+      if  loginIdElRefvalue  null  
+        return
+      
+      
+      const loginIdEl  loginIdElRefvalue
+      loginIdElvalue  loginIdElvaluetrim
+      
+      if  loginIdElvaluelength  0  
+        alert아이디를 입력해주세요
+        loginIdElfocus
+        return
+      
+       비번 체크
+      if  loginPwElRefvalue  null  
+        return
+      
+
+      const loginPwEl  loginPwElRefvalue
+      loginPwElvalue  loginPwElvaluetrim
+      
+      if  loginPwElvaluelength  0  
+        alert비밀번호를 입력해주세요
+        loginPwElfocus
+        return
+      
+      
+       비번확인 체크
+      if  loginPwConfirmElRefvalue  null  
+        return
+      
+
+      const loginPwConfirmEl  loginPwConfirmElRefvalue
+      
+      if  loginPwElvalue  loginPwConfirmElvalue  
+        alert로그인 비번이 일치하지 않습니다
+        loginPwConfirmElfocus
+        return
+      
+
+       이름 체크
+      if  nameElRefvalue  null  
+        return
+      
+
+      const nameEl  nameElRefvalue
+      nameElvalue  nameElvaluetrim
+
+      if  nameElvaluelength  0  
+        alert이름을 입력해주세요
+        nameElfocus
+        return
+      
+
+       닉네임 체크
+      if  nicknameElRefvalue  null  
+        return
+      
+
+      const nicknameEl  nicknameElRefvalue
+      nicknameElvalue  nicknameElvaluetrim
+      
+      if  nicknameElvaluelength  0  
+        alert닉네임을 입력해주세요
+        nicknameElfocus
+        return
+      
+      
+       전화번호 체크
+      if  cellphoneNoElRefvalue  null  
+        return
+      
+
+      const cellphoneNoEl  cellphoneNoElRefvalue
+      cellphoneNoElvalue  cellphoneNoElvaluetrim
+      
+      if  cellphoneNoElvaluelength  0  
+        alert전화번호를 입력해주세요
+        cellphoneNoElfocus
+        return
+      
+
+       이메일 체크
+      if  emailElRefvalue  null  
+        return
+      
+      
+      const emailEl  emailElRefvalue
+      emailElvalue  emailElvaluetrim
+      
+      if  emailElvaluelength  0  
+        alert이메일을 입력해주세요
+        emailElfocus
+        return
+      
+
+       시도 주소 체크
+      if  addressElRefvalue  null  
+        return
+      
+      
+      const addressEl  addressElRefvalue
+      addressElvalue  addressElvaluetrim
+      
+      if  addressElvaluelength  0  
+        alert시도를 입력해주세요
+        addressElfocus
+        return
+      
+
+     
+
+      ifauthLevelElRefvalue  null
+        return
+      
+      
+      const authLevelEl  authLevelElRefvalue
+      
+      const startFileUpload  onSuccessFunction  
+           반전
+         a  undefindedor null  a  true  a  flase란 의미
+           만약 profileImgElRefvalue까지가 null이면 여기까지만 실행하겠다라는 의미
+         즉 profileImgElRefvaluefiles의 의미는 해당 파일이 없는지 물어보는 것
+         없으면 true
+        ifprofileImgElRefvaluefiles
+          onSuccess  파일이 없으면 다음 과정 생략하고 onSuccess 즉시 실행
+          return
+        
+
+        mainApicommongenFiledoUploadprofileImgElRefvaluefiles0
+        thenaxiosResponse  
+          
+          if  axiosResponsedatafail  
+            alertaxiosResponsedatamsg
+            return
+          
+          else
+            onSuccessaxiosResponsedatabodygenFileIdsStr
+          
+        
+      
+
+
+      회원가입 join함수 시작
+      파일첨부기능 추가로 인해 로직 변경
+      joinloginIdElvalue loginPwElvalue nameElvalue nicknameElvalue cellphoneNoElvalue emailElvalue
+      const startModify  genFileIdsStrstring 
+        modifypropsid parseIntauthLevelElvalue loginIdElvalue loginPwElvalue nameElvalue nicknameElvalue cellphoneNoElvalue emailElvalue addressElvalue  genFileIdsStr
+      
+
+      startFileUpload 로직을 먼저 실행한 후
+      onSuccess 즉 startJoin를 실행한다 onSuccess  startJoin
+      실행 순서  1첨부파일이 있는지 확인하고 업로드까지 진행하는 startFileUpload함수 종료 후 2회원가입 join함수가 실행된다
+      startFileUploadstartModify
+
+
+      
+    
+    function modifyidnumber authLevelnumber loginIdstring loginPwstring namestring nicknamestring cellphoneNostring emailstring addressstring genFileIdsStrstring 
+      mainApimemberdoModifyid authLevel loginId loginPw name nickname cellphoneNo email address genFileIdsStr
+        thenaxiosResponse  
+          
+          alertaxiosResponsedatamsg
+          if  axiosResponsedatafail  
+            return
+          
+          
+          routerreplacememberdetailid  id
+        
+    
+    return 
+      state
+      checkAndModify
+      profileImgElRef
+      authLevelElRef
+      loginIdElRef
+      loginPwElRef
+      loginPwConfirmElRef
+      nameElRef
+      nicknameElRef
+      cellphoneNoElRef
+      emailElRef
+      addressElRef
+    
+  
+
+script
+
+style scoped
+style 
+
+
+ DB
+sql
+ 데이터베이스 생성
+DROP DATABASE IF EXISTS lamplight
+CREATE DATABASE lamplight
+USE lamplight
+
+ 요청사항 테이블 생성
+CREATE TABLE order 
+    id INT10 UNSIGNED NOT NULL PRIMARY KEY AUTOINCREMENT
+    regDate DATETIME NOT NULL
+    updateDate DATETIME NOT NULL
+    option1 CHAR200 NOT NULL
+    option1qty INT10 UNSIGNED NOT NULL
+    option2 CHAR200 NOT NULL
+    option2qty INT10 UNSIGNED NOT NULL
+    option3 CHAR200 NOT NULL
+    option3qty INT10 UNSIGNED NOT NULL
+    option4 CHAR200 NOT NULL
+    option4qty INT10 UNSIGNED NOT NULL
+    option5 CHAR200 NOT NULL
+    option5qty INT10 UNSIGNED NOT NULL
+    title CHAR200 NOT NULL
+    body TEXT NOT NULL
+    funeralHome CHAR200 NOT NULL
+    directorId INT10 UNSIGNED NOT NULL
+    clientId INT10 UNSIGNED NOT NULL
+    stepLevel SMALLINT2 UNSIGNED DEFAULT 1 NOT NULL COMMENT 1의뢰요청의뢰검토2의뢰승인장례준비3장례진행중4장례종료결제미완료5결제완료
+
+
+ 테스트 의뢰 생성
+INSERT INTO order
+SET regDate  NOW
+    updateDate  NOW
+    option1  옵션1
+    option1qty  10
+    option2  옵션2
+    option2qty  20
+    option3  옵션3
+    option3qty  30
+    option4  옵션4
+    option4qty  40
+    option5  옵션5
+    option5qty  50
+    title  user2님 의뢰
+    funeralHome  대전장례식장
+    body  기타 요청 사항
+    directorId  4
+    clientId  2
+
+INSERT INTO order
+SET regDate  NOW
+    updateDate  NOW
+    option1  옵션1
+    option1qty  10
+    option2  옵션2
+    option2qty  20
+    option3  옵션3
+    option3qty  30
+    option4  옵션4
+    option4qty  40
+    option5  옵션5
+    option5qty  50
+    title  user3님 의뢰
+    funeralHome  익산장례식장
+    body  기타 요청 사항2
+    directorId  4
+    clientId  3
+ 
+ 회원 테이블 생성
+CREATE TABLE member 
+    id INT10 UNSIGNED NOT NULL PRIMARY KEY AUTOINCREMENT
+    regDate DATETIME NOT NULL
+    updateDate DATETIME NOT NULL
+    loginId CHAR30 NOT NULL
+    loginPw VARCHAR100 NOT NULL
+    authKey CHAR80 NOT NULL
+    authLevel SMALLINT2 UNSIGNED DEFAULT 3 NOT NULL COMMENT 3의뢰인4도우미5지도사7관리자
+    name CHAR30 NOT NULL
+    nickname CHAR30 NOT NULL
+    email CHAR100 NOT NULL
+    cellphoneNo CHAR20 NOT NULL
+    address CHAR100 NOT NULL
+
+
+
+ 로그인 ID로 검색했을 때
+ALTER TABLE member ADD UNIQUE INDEX loginId
+
+ authKey 칼럼에 유니크 인덱스 추가
+ALTER TABLE member ADD UNIQUE INDEX authKey
+
+ 회원 테스트 데이터 생성
+INSERT INTO member
+SET regDate  NOW
+    updateDate  NOW
+    loginId  user1
+    loginPw  user1
+    authKey  authKey11
+    authLevel  7
+    name  user1
+    nickname  user1
+    email  user1user1com
+    cellphoneNo  01011111111
+    address  대전광역시
+
+INSERT INTO member
+SET regDate  NOW
+    updateDate  NOW
+    loginId  user2
+    loginPw  user2
+    authKey  authKey12
+    authLevel  3
+    name  user2
+    nickname  user2
+    email  user2user2com
+    cellphoneNo  01022222222
+    address  경기도
+
+INSERT INTO member
+SET regDate  NOW
+    updateDate  NOW
+    loginId  user3
+    loginPw  user3
+    authKey  authKey13
+    authLevel  3
+    name  user3
+    nickname  user3
+    email  user3user3com
+    cellphoneNo  01033333333
+    address  전라북도
+    
+INSERT INTO member
+SET regDate  NOW
+    updateDate  NOW
+    loginId  tester1
+    loginPw  tester1
+    authKey  authKey14
+    authLevel  5
+    name  tester1
+    nickname  tester1
+    email  tester1tester1com
+    cellphoneNo  01044444444
+    address  대전광역시
+
+
+INSERT INTO member
+SET regDate  NOW
+    updateDate  NOW
+    loginId  tester2
+    loginPw  tester2
+    authKey  authKey15
+    authLevel  5
+    name  tester2
+    nickname  tester2
+    email  tester2tester2com
+    cellphoneNo  01055555555
+    address  경기도
+
+INSERT INTO member
+SET regDate  NOW
+    updateDate  NOW
+    loginId  tester3
+    loginPw  tester3
+    authKey  authKey16
+    authLevel  5
+    name  tester3
+    nickname  tester3
+    email  tester3tester3com
+    cellphoneNo  01066666666
+    address  전라북도
+    
+INSERT INTO member
+SET regDate  NOW
+    updateDate  NOW
+    loginId  tester4
+    loginPw  tester4
+    authKey  authKey17
+    authLevel  5
+    name  tester4
+    nickname  tester4
+    email  tester4tester4com
+    cellphoneNo  01044444444
+    address  대전광역시
+
+
+INSERT INTO member
+SET regDate  NOW
+    updateDate  NOW
+    loginId  tester5
+    loginPw  tester5
+    authKey  authKey18
+    authLevel  5
+    name  tester5
+    nickname  tester5
+    email  tester5tester5com
+    cellphoneNo  01055555555
+    address  경기도
+
+INSERT INTO member
+SET regDate  NOW
+    updateDate  NOW
+    loginId  tester6
+    loginPw  tester6
+    authKey  authKey19
+    authLevel  5
+    name  tester6
+    nickname  tester6
+    email  tester6tester6com
+    cellphoneNo  01066666666
+    address  전라북도
+
+ 파일 테이블 추가
+CREATE TABLE genFile 
+  id INT10 UNSIGNED NOT NULL AUTOINCREMENT  번호
+  regDate DATETIME DEFAULT NULL  작성날짜
+  updateDate DATETIME DEFAULT NULL  갱신날짜
+  delDate DATETIME DEFAULT NULL  삭제날짜
+  delStatus TINYINT1 UNSIGNED NOT NULL DEFAULT 0  삭제상태0미삭제1삭제
+  relTypeCode CHAR50 NOT NULL  관련 데이터 타입article member
+  relId INT10 UNSIGNED NOT NULL  관련 데이터 번호
+  originFileName VARCHAR100 NOT NULL  업로드 당시의 파일이름
+  fileExt CHAR10 NOT NULL  확장자
+  typeCode CHAR20 NOT NULL  종류코드 common
+  type2Code CHAR20 NOT NULL  종류2코드 attatchment
+  fileSize INT10 UNSIGNED NOT NULL  파일의 사이즈byte
+  fileExtTypeCode CHAR10 NOT NULL  파일규격코드img video
+  fileExtType2Code CHAR10 NOT NULL  파일규격2코드jpg mp4
+  fileNo SMALLINT2 UNSIGNED NOT NULL  파일번호 1
+  fileDir CHAR20 NOT NULL  파일이 저장되는 폴더명
+  PRIMARY KEY id
+  KEY relId relIdrelTypeCodetypeCodetype2CodefileNo
+ 
+" />
+<meta property="og:locale" content="ko_KR" />
+<meta property="og:image" content="images/Dev_J_logo/logo.png" />
+<meta property="og:image:alt" content="blog.devj.me" />
+<meta property="og:image:width" content="486" />
+<meta property="og:image:height" content="254" />
+<meta property="og:updated_time" content="2021-04-24T15:02:49"/>
+<meta property="og:pubdate" content="2021-04-24T15:02:49" />
+<meta property="og:url" content="https://blog.devj.me" />
+<!-- TWITTER -->
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="P.Lamplight - 개발일지(요청수정페이지,회원정보페이지,회원수정페이지까지 DB연계 완료)" />
+<meta name="twitter:site" content="@Dev_J BLOG" />
+<meta name="twitter:creator" content="@Dev_J BLOG" />
+<meta name="twitter:image" content="images/Dev_J_logo/logo.png">
+<meta name="twitter:description" content=" 요청수정페이지회원정보페이지회원수정페이지까지 DB연계 완료
+
+ NOTE
+
+
+프론트엔드
+요청 수정 페이지
+회원정보 수정 페이지
+평점후기페이지
+
+
+백엔드
+order테이블 funeralHomestepLevel 컬럼 추가
+
+
+br
+ 주요소스코드
+
+ OrderModifyPagevue
+html
+template
+
+  TitleBar요청서 수정 페이지TitleBar
+
+  section classsection sectionarticlewriteformbox px2
+    div classcontainer mxauto
+      div classpx6 py6 bgwhite roundedlg shadowmd
+        form vifglobalShareisLogined vonsubmitpreventcheckAndModifyOrder
+          FormRow title제목
+            input refmodifiedOrderTitleElRef classformrowinput typetext valuestateordertitle
+          FormRow
+          FormRow title장례식장
+            input refmodifiedOrderFuneralHomeElRef classformrowinput typetext valuestateorderfuneralHome
+          FormRow
+          FormRow title옵션1
+            input refmodifiedOrderOption1ElRef classformrowinput typetext valuestateorderoption1
+            select refmodifiedOrderOption1qtyElRef nameoption1qty classformrowinput wfull roundedsm valuestateorderoption1qty
+						  option value11option
+						  option value22option
+						  option value33option
+						  option value44option
+						  option value55option
+					  select
+          FormRow
+          FormRow title옵션2
+            input refmodifiedOrderOption2ElRef classformrowinput typetext valuestateorderoption2
+            select refmodifiedOrderOption2qtyElRef nameoption1qty classformrowinput wfull roundedsm valuestateorderoption2qty
+						  option value11option
+						  option value22option
+						  option value33option
+						  option value44option
+						  option value55option
+					  select
+          FormRow
+          FormRow title옵션3
+            input refmodifiedOrderOption3ElRef classformrowinput typetext valuestateorderoption3
+            select refmodifiedOrderOption3qtyElRef nameoption1qty classformrowinput wfull roundedsm valuestateorderoption3qty
+						  option value11option
+						  option value22option
+						  option value33option
+						  option value44option
+						  option value55option
+					  select
+          FormRow
+          FormRow title옵션4
+            input refmodifiedOrderOption4ElRef classformrowinput typetext valuestateorderoption4
+            select refmodifiedOrderOption4qtyElRef nameoption1qty classformrowinput wfull roundedsm valuestateorderoption4qty
+						  option value11option
+						  option value22option
+						  option value33option
+						  option value44option
+						  option value55option
+					  select
+          FormRow
+          FormRow title옵션5
+            input refmodifiedOrderOption5ElRef classformrowinput typetext valuestateorderoption5
+            select refmodifiedOrderOption5qtyElRef nameoption1qty classformrowinput wfull roundedsm valuestateorderoption5qty
+						  option value11option
+						  option value22option
+						  option value33option
+						  option value44option
+						  option value55option
+					  select
+          FormRow
+          FormRow title추가 요청 사항
+            textarea refmodifiedOrderBodyElRef classformrowinput valuestateorderbodytextarea
+          FormRow
+          FormRow title완료
+            div classbtns
+              input typesubmit value완료 classbtnprimary 
+            div
+          FormRow
+        form
+        div velse
+          routerlink classbtnlink tomemberlogin로그인routerlink 후 이용해주세요
+        div
+      div
+    div
+  section
+
+
+template
+
+script langts
+import  defineComponent reactive ref getCurrentInstance onMounted watch  from vue
+import  MainApi  from apis
+import  Router  from vuerouter
+import  IOrder  from types
+
+
+export default defineComponent
+  name AddOrderPage
+
+  props 
+    globalShare 
+      type Object
+      required true
+    
+    id 
+      type Number
+      required true
+    
+  
+
+  setupprops
+    const routerRouter  getCurrentInstanceappContextconfigglobalPropertiesrouter
+    const mainApiMainApi  getCurrentInstanceappContextconfigglobalPropertiesmainApi
+
+    const modifiedOrderTitleElRef  refHTMLInputElement
+    const modifiedOrderFuneralHomeElRef  refHTMLInputElement
+    const modifiedOrderOption1ElRef  refHTMLInputElement
+    const modifiedOrderOption1qtyElRef  refHTMLInputElement
+    const modifiedOrderOption2ElRef  refHTMLInputElement
+    const modifiedOrderOption2qtyElRef  refHTMLInputElement
+    const modifiedOrderOption3ElRef  refHTMLInputElement
+    const modifiedOrderOption3qtyElRef  refHTMLInputElement
+    const modifiedOrderOption4ElRef  refHTMLInputElement
+    const modifiedOrderOption4qtyElRef  refHTMLInputElement
+    const modifiedOrderOption5ElRef  refHTMLInputElement
+    const modifiedOrderOption5qtyElRef  refHTMLInputElement
+    const modifiedOrderBodyElRef  refHTMLInputElement
+
+    const state  reactive
+      order  as IOrder
+    
+
+    function loadOrderidnumber 
+      mainApiorderdetailid
+      thenaxiosResponse  
+        stateorder  axiosResponsedatabodyorder
+      
+    
+    onMounted  
+      loadOrderpropsid
+    
+    watch  propsid newValue oldValue  
+      loadOrderpropsid
+    
+
+     공백 체크 
+    function checkAndModifyOrder
+
+      일반적으로 안해도 되지만 typescript에서는 해야됨
+      제목
+      ifmodifiedOrderTitleElRefvalue  null
+        return
+      
+
+      const modifiedOrderTitleEl  modifiedOrderTitleElRefvalue
+      modifiedOrderTitleElvalue  modifiedOrderTitleElvaluetrim
+
+      ifmodifiedOrderTitleElvaluelength  0
+        alert제목을 입력해 주세요
+        modifiedOrderTitleElfocus
+        return
+      
+
+      장례식장
+      ifmodifiedOrderFuneralHomeElRefvalue  null
+        return
+      
+
+      const modifiedOrderFuneralHomeEl  modifiedOrderFuneralHomeElRefvalue
+      modifiedOrderFuneralHomeElvalue  modifiedOrderFuneralHomeElvaluetrim
+
+      ifmodifiedOrderFuneralHomeElvaluelength  0
+        alert장례식장명을 입력해 주세요
+        modifiedOrderFuneralHomeElfocus
+        return
+      
+
+      옵션1
+      ifmodifiedOrderOption1ElRefvalue  null
+        return
+      
+
+      const modifiedOrderOption1El  modifiedOrderOption1ElRefvalue
+      modifiedOrderOption1Elvalue  modifiedOrderOption1Elvaluetrim
+
+      ifmodifiedOrderOption1Elvaluelength  0
+        alert옵션1을 입력해 주세요
+        modifiedOrderOption1Elfocus
+        return
+      
+
+      옵션1qty
+      ifmodifiedOrderOption1qtyElRefvalue  null
+        return
+      
+
+      const modifiedOrderOption1qtyEl  modifiedOrderOption1qtyElRefvalue
+
+      옵션2
+      ifmodifiedOrderOption2ElRefvalue  null
+        return
+      
+
+      const modifiedOrderOption2El  modifiedOrderOption2ElRefvalue
+      modifiedOrderOption2Elvalue  modifiedOrderOption2Elvaluetrim
+
+      ifmodifiedOrderOption1Elvaluelength  0
+        alert옵션2를 입력해 주세요
+        modifiedOrderOption2Elfocus
+        return
+      
+
+      옵션2qty
+      ifmodifiedOrderOption2qtyElRefvalue  null
+        return
+      
+
+      const modifiedOrderOption2qtyEl  modifiedOrderOption2qtyElRefvalue
+
+      옵션3
+      ifmodifiedOrderOption3ElRefvalue  null
+        return
+      
+
+      const modifiedOrderOption3El  modifiedOrderOption3ElRefvalue
+      modifiedOrderOption3Elvalue  modifiedOrderOption3Elvaluetrim
+
+      ifmodifiedOrderOption3Elvaluelength  0
+        alert옵션3을 입력해 주세요
+        modifiedOrderOption3Elfocus
+        return
+      
+
+      옵션3qty
+      ifmodifiedOrderOption3qtyElRefvalue  null
+        return
+      
+
+      const modifiedOrderOption3qtyEl  modifiedOrderOption3qtyElRefvalue
+
+      옵션4
+      ifmodifiedOrderOption4ElRefvalue  null
+        return
+      
+
+      const modifiedOrderOption4El  modifiedOrderOption4ElRefvalue
+      modifiedOrderOption4Elvalue  modifiedOrderOption4Elvaluetrim
+
+      ifmodifiedOrderOption4Elvaluelength  0
+        alert옵션4를 입력해 주세요
+        modifiedOrderOption4Elfocus
+        return
+      
+
+      옵션4qty
+      ifmodifiedOrderOption4qtyElRefvalue  null
+        return
+      
+
+      const modifiedOrderOption4qtyEl  modifiedOrderOption4qtyElRefvalue
+
+      옵션5
+      ifmodifiedOrderOption5ElRefvalue  null
+        return
+      
+
+      const modifiedOrderOption5El  modifiedOrderOption5ElRefvalue
+      modifiedOrderOption5Elvalue  modifiedOrderOption5Elvaluetrim
+
+      ifmodifiedOrderOption5Elvaluelength  0
+        alert옵션5를 입력해 주세요
+        modifiedOrderOption5Elfocus
+        return
+      
+
+      옵션5qty
+      ifmodifiedOrderOption5qtyElRefvalue  null
+        return
+      
+
+      const modifiedOrderOption5qtyEl  modifiedOrderOption5qtyElRefvalue
+
+
+      body
+      ifmodifiedOrderBodyElRefvalue  null
+        return
+      
+
+      const modifiedOrderBodyEl  modifiedOrderBodyElRefvalue
+      modifiedOrderBodyElvalue  modifiedOrderBodyElvaluetrim
+
+      ifmodifiedOrderBodyElvaluelength  0
+        alert내용을 입력해 주세요
+        modifiedOrderBodyElfocus
+        return
+      
+
+       작성 함수로 보내기
+      modifyOrderpropsid modifiedOrderTitleElvalue modifiedOrderFuneralHomeElvalue modifiedOrderOption1Elvalue parseIntmodifiedOrderOption1qtyElvalue modifiedOrderOption2Elvalue parseIntmodifiedOrderOption2qtyElvalue modifiedOrderOption3Elvalue parseIntmodifiedOrderOption3qtyElvalue modifiedOrderOption4Elvalue parseIntmodifiedOrderOption4qtyElvalue modifiedOrderOption5Elvalue parseIntmodifiedOrderOption5qtyElvalue modifiedOrderBodyElvalue stateorderdirectorId propsglobalShareloginedMemberid
+
+    
+
+    typescript에서는 titlestring bodystring 이런식으로 type을 적어주어야 한다
+      function modifyOrderidnumber titlestring funeralHomestring option1string option1qtynumber option2string option2qtynumber option3string option3qtynumber option4string option4qtynumber option5string option5qtynumber bodystring directorIdnumber clientIdnumber
+       
+        mainApiorderdoModifyid title funeralHome option1 option1qty option2 option2qty option3 option3qty option4 option4qty option5 option5qty body directorId clientId
+        thenaxiosResponse  
+          alertaxiosResponsedatamsg
+          
+           로그인이 fail 상태이면 리턴
+          if  axiosResponsedatafail  
+            return
+          
+
+          authKey가 있는 상태에서 가능
+          const modifiedOrderId  axiosResponsedatabodyid
+          alertmodifiedArticleId  번 게시물 등록 완료
+
+          routerreplacedetailid  modifiedOrderId
+        
+      
+
+    return
+        state
+        modifiedOrderTitleElRef
+        modifiedOrderFuneralHomeElRef
+        modifiedOrderOption1ElRef
+        modifiedOrderOption1qtyElRef
+        modifiedOrderOption2ElRef
+        modifiedOrderOption2qtyElRef
+        modifiedOrderOption3ElRef
+        modifiedOrderOption3qtyElRef
+        modifiedOrderOption4ElRef
+        modifiedOrderOption4qtyElRef
+        modifiedOrderOption5ElRef
+        modifiedOrderOption5qtyElRef
+        modifiedOrderBodyElRef
+        checkAndModifyOrder
+      
+    
+
+  
+  
+
+script
+
+style scoped
+
+style
+
+
+ MemberModifyPagevue
+html
+template
+  TitleBar회원정보수정TitleBar
+
+  section classsection sectionmembermodifyform px2
+    div classcontainer mxauto
+      div classpx6 py6 bgwhite roundedlg shadowmd
+        form vifglobalShareisLogined vonsubmitpreventcheckAndModify
+          div title프로필 이미지
+            img classh96 roundedlg objectcover objectcenter srchttplocalhost8090  statememberextrathumbImg
+          div
+          FormRow title프로필 이미지
+            input refprofileImgElRef classformrowinput typefile
+          FormRow
+          FormRow title회원유형
+            select refauthLevelElRef valuestatememberauthLevel
+              option value3일반회원option
+              option value4도우미option
+              option value5지도사option
+            select
+          FormRow
+          FormRow title아이디
+            input refloginIdElRef classformrowinput typetext valuestatememberloginId
+          FormRow
+          FormRow title비밀번호
+            input refloginPwElRef classformrowinput typepassword placeholder비밀번호를 입력해주세요
+          FormRow
+          FormRow title비밀번호 확인
+            input refloginPwConfirmElRef classformrowinput typepassword placeholder비밀번호 확인을 해주세요
+          FormRow
+          FormRow title이름
+            input refnameElRef classformrowinput typetext valuestatemembername
+          FormRow
+          FormRow title닉네임
+            input refnicknameElRef classformrowinput typetext valuestatemembernickname
+          FormRow
+          FormRow title전화번호
+            input refcellphoneNoElRef classformrowinput typetel maxlength11 valuestatemembercellphoneNo
+          FormRow
+          FormRow title이메일
+            input refemailElRef classformrowinput typeemail valuestatememberemail
+          FormRow
+          FormRow title시도
+            input refaddressElRef classformrowinput typetext valuestatememberaddress
+          FormRow
+          FormRow title완료
+            div classbtns
+              input typesubmit value완료 classbtnprimary 
+            div
+          FormRow
+        form
+        div velse
+          이미 로그인 상태입니다 routerlink classbtnlink to홈routerlink 으로 이동
+        div
+      div
+    div
+  section
+template
+
+script langts
+import  defineComponent ref reactive getCurrentInstance onMounted watch  from vue
+import  MainApi  from apis
+import  Router  from vuerouter
+import  IMember  from types
+
+export default defineComponent
+  name MemberJoinPage
+  props 
+    globalShare 
+      type Object
+      required true
+    
+    id 
+      type Number
+      required true
+    
+  
+  setupprops 
+    const routerRouter  getCurrentInstanceappContextconfigglobalPropertiesrouter
+    const mainApiMainApi  getCurrentInstanceappContextconfigglobalPropertiesmainApi
+    const profileImgElRef  refHTMLInputElement
+    const authLevelElRef  refHTMLInputElement
+    const loginIdElRef  refHTMLInputElement
+    const loginPwElRef  refHTMLInputElement
+    const loginPwConfirmElRef  refHTMLInputElement
+    const nameElRef  refHTMLInputElement
+    const nicknameElRef  refHTMLInputElement
+    const cellphoneNoElRef  refHTMLInputElement
+    const emailElRef  refHTMLInputElement
+    const addressElRef  refHTMLInputElement
+
+
+    const state  reactive
+      member  as IMember
+    
+
+    function loadMemberidnumber 
+      mainApimemberdetailid
+      thenaxiosResponse  
+        statemember  axiosResponsedatabodymember
+      
+    
+    onMounted  
+      loadMemberpropsid
+    
+    watch  propsid newValue oldValue  
+      loadMemberpropsid
+    
+
+   
+    function checkAndModify 
+        아이디 체크
+      if  loginIdElRefvalue  null  
+        return
+      
+      
+      const loginIdEl  loginIdElRefvalue
+      loginIdElvalue  loginIdElvaluetrim
+      
+      if  loginIdElvaluelength  0  
+        alert아이디를 입력해주세요
+        loginIdElfocus
+        return
+      
+       비번 체크
+      if  loginPwElRefvalue  null  
+        return
+      
+
+      const loginPwEl  loginPwElRefvalue
+      loginPwElvalue  loginPwElvaluetrim
+      
+      if  loginPwElvaluelength  0  
+        alert비밀번호를 입력해주세요
+        loginPwElfocus
+        return
+      
+      
+       비번확인 체크
+      if  loginPwConfirmElRefvalue  null  
+        return
+      
+
+      const loginPwConfirmEl  loginPwConfirmElRefvalue
+      
+      if  loginPwElvalue  loginPwConfirmElvalue  
+        alert로그인 비번이 일치하지 않습니다
+        loginPwConfirmElfocus
+        return
+      
+
+       이름 체크
+      if  nameElRefvalue  null  
+        return
+      
+
+      const nameEl  nameElRefvalue
+      nameElvalue  nameElvaluetrim
+
+      if  nameElvaluelength  0  
+        alert이름을 입력해주세요
+        nameElfocus
+        return
+      
+
+       닉네임 체크
+      if  nicknameElRefvalue  null  
+        return
+      
+
+      const nicknameEl  nicknameElRefvalue
+      nicknameElvalue  nicknameElvaluetrim
+      
+      if  nicknameElvaluelength  0  
+        alert닉네임을 입력해주세요
+        nicknameElfocus
+        return
+      
+      
+       전화번호 체크
+      if  cellphoneNoElRefvalue  null  
+        return
+      
+
+      const cellphoneNoEl  cellphoneNoElRefvalue
+      cellphoneNoElvalue  cellphoneNoElvaluetrim
+      
+      if  cellphoneNoElvaluelength  0  
+        alert전화번호를 입력해주세요
+        cellphoneNoElfocus
+        return
+      
+
+       이메일 체크
+      if  emailElRefvalue  null  
+        return
+      
+      
+      const emailEl  emailElRefvalue
+      emailElvalue  emailElvaluetrim
+      
+      if  emailElvaluelength  0  
+        alert이메일을 입력해주세요
+        emailElfocus
+        return
+      
+
+       시도 주소 체크
+      if  addressElRefvalue  null  
+        return
+      
+      
+      const addressEl  addressElRefvalue
+      addressElvalue  addressElvaluetrim
+      
+      if  addressElvaluelength  0  
+        alert시도를 입력해주세요
+        addressElfocus
+        return
+      
+
+     
+
+      ifauthLevelElRefvalue  null
+        return
+      
+      
+      const authLevelEl  authLevelElRefvalue
+      
+      const startFileUpload  onSuccessFunction  
+           반전
+         a  undefindedor null  a  true  a  flase란 의미
+           만약 profileImgElRefvalue까지가 null이면 여기까지만 실행하겠다라는 의미
+         즉 profileImgElRefvaluefiles의 의미는 해당 파일이 없는지 물어보는 것
+         없으면 true
+        ifprofileImgElRefvaluefiles
+          onSuccess  파일이 없으면 다음 과정 생략하고 onSuccess 즉시 실행
+          return
+        
+
+        mainApicommongenFiledoUploadprofileImgElRefvaluefiles0
+        thenaxiosResponse  
+          
+          if  axiosResponsedatafail  
+            alertaxiosResponsedatamsg
+            return
+          
+          else
+            onSuccessaxiosResponsedatabodygenFileIdsStr
+          
+        
+      
+
+
+      회원가입 join함수 시작
+      파일첨부기능 추가로 인해 로직 변경
+      joinloginIdElvalue loginPwElvalue nameElvalue nicknameElvalue cellphoneNoElvalue emailElvalue
+      const startModify  genFileIdsStrstring 
+        modifypropsid parseIntauthLevelElvalue loginIdElvalue loginPwElvalue nameElvalue nicknameElvalue cellphoneNoElvalue emailElvalue addressElvalue  genFileIdsStr
+      
+
+      startFileUpload 로직을 먼저 실행한 후
+      onSuccess 즉 startJoin를 실행한다 onSuccess  startJoin
+      실행 순서  1첨부파일이 있는지 확인하고 업로드까지 진행하는 startFileUpload함수 종료 후 2회원가입 join함수가 실행된다
+      startFileUploadstartModify
+
+
+      
+    
+    function modifyidnumber authLevelnumber loginIdstring loginPwstring namestring nicknamestring cellphoneNostring emailstring addressstring genFileIdsStrstring 
+      mainApimemberdoModifyid authLevel loginId loginPw name nickname cellphoneNo email address genFileIdsStr
+        thenaxiosResponse  
+          
+          alertaxiosResponsedatamsg
+          if  axiosResponsedatafail  
+            return
+          
+          
+          routerreplacememberdetailid  id
+        
+    
+    return 
+      state
+      checkAndModify
+      profileImgElRef
+      authLevelElRef
+      loginIdElRef
+      loginPwElRef
+      loginPwConfirmElRef
+      nameElRef
+      nicknameElRef
+      cellphoneNoElRef
+      emailElRef
+      addressElRef
+    
+  
+
+script
+
+style scoped
+style 
+
+
+ DB
+sql
+ 데이터베이스 생성
+DROP DATABASE IF EXISTS lamplight
+CREATE DATABASE lamplight
+USE lamplight
+
+ 요청사항 테이블 생성
+CREATE TABLE order 
+    id INT10 UNSIGNED NOT NULL PRIMARY KEY AUTOINCREMENT
+    regDate DATETIME NOT NULL
+    updateDate DATETIME NOT NULL
+    option1 CHAR200 NOT NULL
+    option1qty INT10 UNSIGNED NOT NULL
+    option2 CHAR200 NOT NULL
+    option2qty INT10 UNSIGNED NOT NULL
+    option3 CHAR200 NOT NULL
+    option3qty INT10 UNSIGNED NOT NULL
+    option4 CHAR200 NOT NULL
+    option4qty INT10 UNSIGNED NOT NULL
+    option5 CHAR200 NOT NULL
+    option5qty INT10 UNSIGNED NOT NULL
+    title CHAR200 NOT NULL
+    body TEXT NOT NULL
+    funeralHome CHAR200 NOT NULL
+    directorId INT10 UNSIGNED NOT NULL
+    clientId INT10 UNSIGNED NOT NULL
+    stepLevel SMALLINT2 UNSIGNED DEFAULT 1 NOT NULL COMMENT 1의뢰요청의뢰검토2의뢰승인장례준비3장례진행중4장례종료결제미완료5결제완료
+
+
+ 테스트 의뢰 생성
+INSERT INTO order
+SET regDate  NOW
+    updateDate  NOW
+    option1  옵션1
+    option1qty  10
+    option2  옵션2
+    option2qty  20
+    option3  옵션3
+    option3qty  30
+    option4  옵션4
+    option4qty  40
+    option5  옵션5
+    option5qty  50
+    title  user2님 의뢰
+    funeralHome  대전장례식장
+    body  기타 요청 사항
+    directorId  4
+    clientId  2
+
+INSERT INTO order
+SET regDate  NOW
+    updateDate  NOW
+    option1  옵션1
+    option1qty  10
+    option2  옵션2
+    option2qty  20
+    option3  옵션3
+    option3qty  30
+    option4  옵션4
+    option4qty  40
+    option5  옵션5
+    option5qty  50
+    title  user3님 의뢰
+    funeralHome  익산장례식장
+    body  기타 요청 사항2
+    directorId  4
+    clientId  3
+ 
+ 회원 테이블 생성
+CREATE TABLE member 
+    id INT10 UNSIGNED NOT NULL PRIMARY KEY AUTOINCREMENT
+    regDate DATETIME NOT NULL
+    updateDate DATETIME NOT NULL
+    loginId CHAR30 NOT NULL
+    loginPw VARCHAR100 NOT NULL
+    authKey CHAR80 NOT NULL
+    authLevel SMALLINT2 UNSIGNED DEFAULT 3 NOT NULL COMMENT 3의뢰인4도우미5지도사7관리자
+    name CHAR30 NOT NULL
+    nickname CHAR30 NOT NULL
+    email CHAR100 NOT NULL
+    cellphoneNo CHAR20 NOT NULL
+    address CHAR100 NOT NULL
+
+
+
+ 로그인 ID로 검색했을 때
+ALTER TABLE member ADD UNIQUE INDEX loginId
+
+ authKey 칼럼에 유니크 인덱스 추가
+ALTER TABLE member ADD UNIQUE INDEX authKey
+
+ 회원 테스트 데이터 생성
+INSERT INTO member
+SET regDate  NOW
+    updateDate  NOW
+    loginId  user1
+    loginPw  user1
+    authKey  authKey11
+    authLevel  7
+    name  user1
+    nickname  user1
+    email  user1user1com
+    cellphoneNo  01011111111
+    address  대전광역시
+
+INSERT INTO member
+SET regDate  NOW
+    updateDate  NOW
+    loginId  user2
+    loginPw  user2
+    authKey  authKey12
+    authLevel  3
+    name  user2
+    nickname  user2
+    email  user2user2com
+    cellphoneNo  01022222222
+    address  경기도
+
+INSERT INTO member
+SET regDate  NOW
+    updateDate  NOW
+    loginId  user3
+    loginPw  user3
+    authKey  authKey13
+    authLevel  3
+    name  user3
+    nickname  user3
+    email  user3user3com
+    cellphoneNo  01033333333
+    address  전라북도
+    
+INSERT INTO member
+SET regDate  NOW
+    updateDate  NOW
+    loginId  tester1
+    loginPw  tester1
+    authKey  authKey14
+    authLevel  5
+    name  tester1
+    nickname  tester1
+    email  tester1tester1com
+    cellphoneNo  01044444444
+    address  대전광역시
+
+
+INSERT INTO member
+SET regDate  NOW
+    updateDate  NOW
+    loginId  tester2
+    loginPw  tester2
+    authKey  authKey15
+    authLevel  5
+    name  tester2
+    nickname  tester2
+    email  tester2tester2com
+    cellphoneNo  01055555555
+    address  경기도
+
+INSERT INTO member
+SET regDate  NOW
+    updateDate  NOW
+    loginId  tester3
+    loginPw  tester3
+    authKey  authKey16
+    authLevel  5
+    name  tester3
+    nickname  tester3
+    email  tester3tester3com
+    cellphoneNo  01066666666
+    address  전라북도
+    
+INSERT INTO member
+SET regDate  NOW
+    updateDate  NOW
+    loginId  tester4
+    loginPw  tester4
+    authKey  authKey17
+    authLevel  5
+    name  tester4
+    nickname  tester4
+    email  tester4tester4com
+    cellphoneNo  01044444444
+    address  대전광역시
+
+
+INSERT INTO member
+SET regDate  NOW
+    updateDate  NOW
+    loginId  tester5
+    loginPw  tester5
+    authKey  authKey18
+    authLevel  5
+    name  tester5
+    nickname  tester5
+    email  tester5tester5com
+    cellphoneNo  01055555555
+    address  경기도
+
+INSERT INTO member
+SET regDate  NOW
+    updateDate  NOW
+    loginId  tester6
+    loginPw  tester6
+    authKey  authKey19
+    authLevel  5
+    name  tester6
+    nickname  tester6
+    email  tester6tester6com
+    cellphoneNo  01066666666
+    address  전라북도
+
+ 파일 테이블 추가
+CREATE TABLE genFile 
+  id INT10 UNSIGNED NOT NULL AUTOINCREMENT  번호
+  regDate DATETIME DEFAULT NULL  작성날짜
+  updateDate DATETIME DEFAULT NULL  갱신날짜
+  delDate DATETIME DEFAULT NULL  삭제날짜
+  delStatus TINYINT1 UNSIGNED NOT NULL DEFAULT 0  삭제상태0미삭제1삭제
+  relTypeCode CHAR50 NOT NULL  관련 데이터 타입article member
+  relId INT10 UNSIGNED NOT NULL  관련 데이터 번호
+  originFileName VARCHAR100 NOT NULL  업로드 당시의 파일이름
+  fileExt CHAR10 NOT NULL  확장자
+  typeCode CHAR20 NOT NULL  종류코드 common
+  type2Code CHAR20 NOT NULL  종류2코드 attatchment
+  fileSize INT10 UNSIGNED NOT NULL  파일의 사이즈byte
+  fileExtTypeCode CHAR10 NOT NULL  파일규격코드img video
+  fileExtType2Code CHAR10 NOT NULL  파일규격2코드jpg mp4
+  fileNo SMALLINT2 UNSIGNED NOT NULL  파일번호 1
+  fileDir CHAR20 NOT NULL  파일이 저장되는 폴더명
+  PRIMARY KEY id
+  KEY relId relIdrelTypeCodetypeCodetype2CodefileNo
+ 
+" />
+<!-- GOOGLE+ -->
+<meta itemprop="headline" content="Dev_J BLOG" />
+<meta itemprop="name" content="Dev_J BLOG" />
+<meta itemprop="description" content=" 요청수정페이지회원정보페이지회원수정페이지까지 DB연계 완료
+
+ NOTE
+
+
+프론트엔드
+요청 수정 페이지
+회원정보 수정 페이지
+평점후기페이지
+
+
+백엔드
+order테이블 funeralHomestepLevel 컬럼 추가
+
+
+br
+ 주요소스코드
+
+ OrderModifyPagevue
+html
+template
+
+  TitleBar요청서 수정 페이지TitleBar
+
+  section classsection sectionarticlewriteformbox px2
+    div classcontainer mxauto
+      div classpx6 py6 bgwhite roundedlg shadowmd
+        form vifglobalShareisLogined vonsubmitpreventcheckAndModifyOrder
+          FormRow title제목
+            input refmodifiedOrderTitleElRef classformrowinput typetext valuestateordertitle
+          FormRow
+          FormRow title장례식장
+            input refmodifiedOrderFuneralHomeElRef classformrowinput typetext valuestateorderfuneralHome
+          FormRow
+          FormRow title옵션1
+            input refmodifiedOrderOption1ElRef classformrowinput typetext valuestateorderoption1
+            select refmodifiedOrderOption1qtyElRef nameoption1qty classformrowinput wfull roundedsm valuestateorderoption1qty
+						  option value11option
+						  option value22option
+						  option value33option
+						  option value44option
+						  option value55option
+					  select
+          FormRow
+          FormRow title옵션2
+            input refmodifiedOrderOption2ElRef classformrowinput typetext valuestateorderoption2
+            select refmodifiedOrderOption2qtyElRef nameoption1qty classformrowinput wfull roundedsm valuestateorderoption2qty
+						  option value11option
+						  option value22option
+						  option value33option
+						  option value44option
+						  option value55option
+					  select
+          FormRow
+          FormRow title옵션3
+            input refmodifiedOrderOption3ElRef classformrowinput typetext valuestateorderoption3
+            select refmodifiedOrderOption3qtyElRef nameoption1qty classformrowinput wfull roundedsm valuestateorderoption3qty
+						  option value11option
+						  option value22option
+						  option value33option
+						  option value44option
+						  option value55option
+					  select
+          FormRow
+          FormRow title옵션4
+            input refmodifiedOrderOption4ElRef classformrowinput typetext valuestateorderoption4
+            select refmodifiedOrderOption4qtyElRef nameoption1qty classformrowinput wfull roundedsm valuestateorderoption4qty
+						  option value11option
+						  option value22option
+						  option value33option
+						  option value44option
+						  option value55option
+					  select
+          FormRow
+          FormRow title옵션5
+            input refmodifiedOrderOption5ElRef classformrowinput typetext valuestateorderoption5
+            select refmodifiedOrderOption5qtyElRef nameoption1qty classformrowinput wfull roundedsm valuestateorderoption5qty
+						  option value11option
+						  option value22option
+						  option value33option
+						  option value44option
+						  option value55option
+					  select
+          FormRow
+          FormRow title추가 요청 사항
+            textarea refmodifiedOrderBodyElRef classformrowinput valuestateorderbodytextarea
+          FormRow
+          FormRow title완료
+            div classbtns
+              input typesubmit value완료 classbtnprimary 
+            div
+          FormRow
+        form
+        div velse
+          routerlink classbtnlink tomemberlogin로그인routerlink 후 이용해주세요
+        div
+      div
+    div
+  section
+
+
+template
+
+script langts
+import  defineComponent reactive ref getCurrentInstance onMounted watch  from vue
+import  MainApi  from apis
+import  Router  from vuerouter
+import  IOrder  from types
+
+
+export default defineComponent
+  name AddOrderPage
+
+  props 
+    globalShare 
+      type Object
+      required true
+    
+    id 
+      type Number
+      required true
+    
+  
+
+  setupprops
+    const routerRouter  getCurrentInstanceappContextconfigglobalPropertiesrouter
+    const mainApiMainApi  getCurrentInstanceappContextconfigglobalPropertiesmainApi
+
+    const modifiedOrderTitleElRef  refHTMLInputElement
+    const modifiedOrderFuneralHomeElRef  refHTMLInputElement
+    const modifiedOrderOption1ElRef  refHTMLInputElement
+    const modifiedOrderOption1qtyElRef  refHTMLInputElement
+    const modifiedOrderOption2ElRef  refHTMLInputElement
+    const modifiedOrderOption2qtyElRef  refHTMLInputElement
+    const modifiedOrderOption3ElRef  refHTMLInputElement
+    const modifiedOrderOption3qtyElRef  refHTMLInputElement
+    const modifiedOrderOption4ElRef  refHTMLInputElement
+    const modifiedOrderOption4qtyElRef  refHTMLInputElement
+    const modifiedOrderOption5ElRef  refHTMLInputElement
+    const modifiedOrderOption5qtyElRef  refHTMLInputElement
+    const modifiedOrderBodyElRef  refHTMLInputElement
+
+    const state  reactive
+      order  as IOrder
+    
+
+    function loadOrderidnumber 
+      mainApiorderdetailid
+      thenaxiosResponse  
+        stateorder  axiosResponsedatabodyorder
+      
+    
+    onMounted  
+      loadOrderpropsid
+    
+    watch  propsid newValue oldValue  
+      loadOrderpropsid
+    
+
+     공백 체크 
+    function checkAndModifyOrder
+
+      일반적으로 안해도 되지만 typescript에서는 해야됨
+      제목
+      ifmodifiedOrderTitleElRefvalue  null
+        return
+      
+
+      const modifiedOrderTitleEl  modifiedOrderTitleElRefvalue
+      modifiedOrderTitleElvalue  modifiedOrderTitleElvaluetrim
+
+      ifmodifiedOrderTitleElvaluelength  0
+        alert제목을 입력해 주세요
+        modifiedOrderTitleElfocus
+        return
+      
+
+      장례식장
+      ifmodifiedOrderFuneralHomeElRefvalue  null
+        return
+      
+
+      const modifiedOrderFuneralHomeEl  modifiedOrderFuneralHomeElRefvalue
+      modifiedOrderFuneralHomeElvalue  modifiedOrderFuneralHomeElvaluetrim
+
+      ifmodifiedOrderFuneralHomeElvaluelength  0
+        alert장례식장명을 입력해 주세요
+        modifiedOrderFuneralHomeElfocus
+        return
+      
+
+      옵션1
+      ifmodifiedOrderOption1ElRefvalue  null
+        return
+      
+
+      const modifiedOrderOption1El  modifiedOrderOption1ElRefvalue
+      modifiedOrderOption1Elvalue  modifiedOrderOption1Elvaluetrim
+
+      ifmodifiedOrderOption1Elvaluelength  0
+        alert옵션1을 입력해 주세요
+        modifiedOrderOption1Elfocus
+        return
+      
+
+      옵션1qty
+      ifmodifiedOrderOption1qtyElRefvalue  null
+        return
+      
+
+      const modifiedOrderOption1qtyEl  modifiedOrderOption1qtyElRefvalue
+
+      옵션2
+      ifmodifiedOrderOption2ElRefvalue  null
+        return
+      
+
+      const modifiedOrderOption2El  modifiedOrderOption2ElRefvalue
+      modifiedOrderOption2Elvalue  modifiedOrderOption2Elvaluetrim
+
+      ifmodifiedOrderOption1Elvaluelength  0
+        alert옵션2를 입력해 주세요
+        modifiedOrderOption2Elfocus
+        return
+      
+
+      옵션2qty
+      ifmodifiedOrderOption2qtyElRefvalue  null
+        return
+      
+
+      const modifiedOrderOption2qtyEl  modifiedOrderOption2qtyElRefvalue
+
+      옵션3
+      ifmodifiedOrderOption3ElRefvalue  null
+        return
+      
+
+      const modifiedOrderOption3El  modifiedOrderOption3ElRefvalue
+      modifiedOrderOption3Elvalue  modifiedOrderOption3Elvaluetrim
+
+      ifmodifiedOrderOption3Elvaluelength  0
+        alert옵션3을 입력해 주세요
+        modifiedOrderOption3Elfocus
+        return
+      
+
+      옵션3qty
+      ifmodifiedOrderOption3qtyElRefvalue  null
+        return
+      
+
+      const modifiedOrderOption3qtyEl  modifiedOrderOption3qtyElRefvalue
+
+      옵션4
+      ifmodifiedOrderOption4ElRefvalue  null
+        return
+      
+
+      const modifiedOrderOption4El  modifiedOrderOption4ElRefvalue
+      modifiedOrderOption4Elvalue  modifiedOrderOption4Elvaluetrim
+
+      ifmodifiedOrderOption4Elvaluelength  0
+        alert옵션4를 입력해 주세요
+        modifiedOrderOption4Elfocus
+        return
+      
+
+      옵션4qty
+      ifmodifiedOrderOption4qtyElRefvalue  null
+        return
+      
+
+      const modifiedOrderOption4qtyEl  modifiedOrderOption4qtyElRefvalue
+
+      옵션5
+      ifmodifiedOrderOption5ElRefvalue  null
+        return
+      
+
+      const modifiedOrderOption5El  modifiedOrderOption5ElRefvalue
+      modifiedOrderOption5Elvalue  modifiedOrderOption5Elvaluetrim
+
+      ifmodifiedOrderOption5Elvaluelength  0
+        alert옵션5를 입력해 주세요
+        modifiedOrderOption5Elfocus
+        return
+      
+
+      옵션5qty
+      ifmodifiedOrderOption5qtyElRefvalue  null
+        return
+      
+
+      const modifiedOrderOption5qtyEl  modifiedOrderOption5qtyElRefvalue
+
+
+      body
+      ifmodifiedOrderBodyElRefvalue  null
+        return
+      
+
+      const modifiedOrderBodyEl  modifiedOrderBodyElRefvalue
+      modifiedOrderBodyElvalue  modifiedOrderBodyElvaluetrim
+
+      ifmodifiedOrderBodyElvaluelength  0
+        alert내용을 입력해 주세요
+        modifiedOrderBodyElfocus
+        return
+      
+
+       작성 함수로 보내기
+      modifyOrderpropsid modifiedOrderTitleElvalue modifiedOrderFuneralHomeElvalue modifiedOrderOption1Elvalue parseIntmodifiedOrderOption1qtyElvalue modifiedOrderOption2Elvalue parseIntmodifiedOrderOption2qtyElvalue modifiedOrderOption3Elvalue parseIntmodifiedOrderOption3qtyElvalue modifiedOrderOption4Elvalue parseIntmodifiedOrderOption4qtyElvalue modifiedOrderOption5Elvalue parseIntmodifiedOrderOption5qtyElvalue modifiedOrderBodyElvalue stateorderdirectorId propsglobalShareloginedMemberid
+
+    
+
+    typescript에서는 titlestring bodystring 이런식으로 type을 적어주어야 한다
+      function modifyOrderidnumber titlestring funeralHomestring option1string option1qtynumber option2string option2qtynumber option3string option3qtynumber option4string option4qtynumber option5string option5qtynumber bodystring directorIdnumber clientIdnumber
+       
+        mainApiorderdoModifyid title funeralHome option1 option1qty option2 option2qty option3 option3qty option4 option4qty option5 option5qty body directorId clientId
+        thenaxiosResponse  
+          alertaxiosResponsedatamsg
+          
+           로그인이 fail 상태이면 리턴
+          if  axiosResponsedatafail  
+            return
+          
+
+          authKey가 있는 상태에서 가능
+          const modifiedOrderId  axiosResponsedatabodyid
+          alertmodifiedArticleId  번 게시물 등록 완료
+
+          routerreplacedetailid  modifiedOrderId
+        
+      
+
+    return
+        state
+        modifiedOrderTitleElRef
+        modifiedOrderFuneralHomeElRef
+        modifiedOrderOption1ElRef
+        modifiedOrderOption1qtyElRef
+        modifiedOrderOption2ElRef
+        modifiedOrderOption2qtyElRef
+        modifiedOrderOption3ElRef
+        modifiedOrderOption3qtyElRef
+        modifiedOrderOption4ElRef
+        modifiedOrderOption4qtyElRef
+        modifiedOrderOption5ElRef
+        modifiedOrderOption5qtyElRef
+        modifiedOrderBodyElRef
+        checkAndModifyOrder
+      
+    
+
+  
+  
+
+script
+
+style scoped
+
+style
+
+
+ MemberModifyPagevue
+html
+template
+  TitleBar회원정보수정TitleBar
+
+  section classsection sectionmembermodifyform px2
+    div classcontainer mxauto
+      div classpx6 py6 bgwhite roundedlg shadowmd
+        form vifglobalShareisLogined vonsubmitpreventcheckAndModify
+          div title프로필 이미지
+            img classh96 roundedlg objectcover objectcenter srchttplocalhost8090  statememberextrathumbImg
+          div
+          FormRow title프로필 이미지
+            input refprofileImgElRef classformrowinput typefile
+          FormRow
+          FormRow title회원유형
+            select refauthLevelElRef valuestatememberauthLevel
+              option value3일반회원option
+              option value4도우미option
+              option value5지도사option
+            select
+          FormRow
+          FormRow title아이디
+            input refloginIdElRef classformrowinput typetext valuestatememberloginId
+          FormRow
+          FormRow title비밀번호
+            input refloginPwElRef classformrowinput typepassword placeholder비밀번호를 입력해주세요
+          FormRow
+          FormRow title비밀번호 확인
+            input refloginPwConfirmElRef classformrowinput typepassword placeholder비밀번호 확인을 해주세요
+          FormRow
+          FormRow title이름
+            input refnameElRef classformrowinput typetext valuestatemembername
+          FormRow
+          FormRow title닉네임
+            input refnicknameElRef classformrowinput typetext valuestatemembernickname
+          FormRow
+          FormRow title전화번호
+            input refcellphoneNoElRef classformrowinput typetel maxlength11 valuestatemembercellphoneNo
+          FormRow
+          FormRow title이메일
+            input refemailElRef classformrowinput typeemail valuestatememberemail
+          FormRow
+          FormRow title시도
+            input refaddressElRef classformrowinput typetext valuestatememberaddress
+          FormRow
+          FormRow title완료
+            div classbtns
+              input typesubmit value완료 classbtnprimary 
+            div
+          FormRow
+        form
+        div velse
+          이미 로그인 상태입니다 routerlink classbtnlink to홈routerlink 으로 이동
+        div
+      div
+    div
+  section
+template
+
+script langts
+import  defineComponent ref reactive getCurrentInstance onMounted watch  from vue
+import  MainApi  from apis
+import  Router  from vuerouter
+import  IMember  from types
+
+export default defineComponent
+  name MemberJoinPage
+  props 
+    globalShare 
+      type Object
+      required true
+    
+    id 
+      type Number
+      required true
+    
+  
+  setupprops 
+    const routerRouter  getCurrentInstanceappContextconfigglobalPropertiesrouter
+    const mainApiMainApi  getCurrentInstanceappContextconfigglobalPropertiesmainApi
+    const profileImgElRef  refHTMLInputElement
+    const authLevelElRef  refHTMLInputElement
+    const loginIdElRef  refHTMLInputElement
+    const loginPwElRef  refHTMLInputElement
+    const loginPwConfirmElRef  refHTMLInputElement
+    const nameElRef  refHTMLInputElement
+    const nicknameElRef  refHTMLInputElement
+    const cellphoneNoElRef  refHTMLInputElement
+    const emailElRef  refHTMLInputElement
+    const addressElRef  refHTMLInputElement
+
+
+    const state  reactive
+      member  as IMember
+    
+
+    function loadMemberidnumber 
+      mainApimemberdetailid
+      thenaxiosResponse  
+        statemember  axiosResponsedatabodymember
+      
+    
+    onMounted  
+      loadMemberpropsid
+    
+    watch  propsid newValue oldValue  
+      loadMemberpropsid
+    
+
+   
+    function checkAndModify 
+        아이디 체크
+      if  loginIdElRefvalue  null  
+        return
+      
+      
+      const loginIdEl  loginIdElRefvalue
+      loginIdElvalue  loginIdElvaluetrim
+      
+      if  loginIdElvaluelength  0  
+        alert아이디를 입력해주세요
+        loginIdElfocus
+        return
+      
+       비번 체크
+      if  loginPwElRefvalue  null  
+        return
+      
+
+      const loginPwEl  loginPwElRefvalue
+      loginPwElvalue  loginPwElvaluetrim
+      
+      if  loginPwElvaluelength  0  
+        alert비밀번호를 입력해주세요
+        loginPwElfocus
+        return
+      
+      
+       비번확인 체크
+      if  loginPwConfirmElRefvalue  null  
+        return
+      
+
+      const loginPwConfirmEl  loginPwConfirmElRefvalue
+      
+      if  loginPwElvalue  loginPwConfirmElvalue  
+        alert로그인 비번이 일치하지 않습니다
+        loginPwConfirmElfocus
+        return
+      
+
+       이름 체크
+      if  nameElRefvalue  null  
+        return
+      
+
+      const nameEl  nameElRefvalue
+      nameElvalue  nameElvaluetrim
+
+      if  nameElvaluelength  0  
+        alert이름을 입력해주세요
+        nameElfocus
+        return
+      
+
+       닉네임 체크
+      if  nicknameElRefvalue  null  
+        return
+      
+
+      const nicknameEl  nicknameElRefvalue
+      nicknameElvalue  nicknameElvaluetrim
+      
+      if  nicknameElvaluelength  0  
+        alert닉네임을 입력해주세요
+        nicknameElfocus
+        return
+      
+      
+       전화번호 체크
+      if  cellphoneNoElRefvalue  null  
+        return
+      
+
+      const cellphoneNoEl  cellphoneNoElRefvalue
+      cellphoneNoElvalue  cellphoneNoElvaluetrim
+      
+      if  cellphoneNoElvaluelength  0  
+        alert전화번호를 입력해주세요
+        cellphoneNoElfocus
+        return
+      
+
+       이메일 체크
+      if  emailElRefvalue  null  
+        return
+      
+      
+      const emailEl  emailElRefvalue
+      emailElvalue  emailElvaluetrim
+      
+      if  emailElvaluelength  0  
+        alert이메일을 입력해주세요
+        emailElfocus
+        return
+      
+
+       시도 주소 체크
+      if  addressElRefvalue  null  
+        return
+      
+      
+      const addressEl  addressElRefvalue
+      addressElvalue  addressElvaluetrim
+      
+      if  addressElvaluelength  0  
+        alert시도를 입력해주세요
+        addressElfocus
+        return
+      
+
+     
+
+      ifauthLevelElRefvalue  null
+        return
+      
+      
+      const authLevelEl  authLevelElRefvalue
+      
+      const startFileUpload  onSuccessFunction  
+           반전
+         a  undefindedor null  a  true  a  flase란 의미
+           만약 profileImgElRefvalue까지가 null이면 여기까지만 실행하겠다라는 의미
+         즉 profileImgElRefvaluefiles의 의미는 해당 파일이 없는지 물어보는 것
+         없으면 true
+        ifprofileImgElRefvaluefiles
+          onSuccess  파일이 없으면 다음 과정 생략하고 onSuccess 즉시 실행
+          return
+        
+
+        mainApicommongenFiledoUploadprofileImgElRefvaluefiles0
+        thenaxiosResponse  
+          
+          if  axiosResponsedatafail  
+            alertaxiosResponsedatamsg
+            return
+          
+          else
+            onSuccessaxiosResponsedatabodygenFileIdsStr
+          
+        
+      
+
+
+      회원가입 join함수 시작
+      파일첨부기능 추가로 인해 로직 변경
+      joinloginIdElvalue loginPwElvalue nameElvalue nicknameElvalue cellphoneNoElvalue emailElvalue
+      const startModify  genFileIdsStrstring 
+        modifypropsid parseIntauthLevelElvalue loginIdElvalue loginPwElvalue nameElvalue nicknameElvalue cellphoneNoElvalue emailElvalue addressElvalue  genFileIdsStr
+      
+
+      startFileUpload 로직을 먼저 실행한 후
+      onSuccess 즉 startJoin를 실행한다 onSuccess  startJoin
+      실행 순서  1첨부파일이 있는지 확인하고 업로드까지 진행하는 startFileUpload함수 종료 후 2회원가입 join함수가 실행된다
+      startFileUploadstartModify
+
+
+      
+    
+    function modifyidnumber authLevelnumber loginIdstring loginPwstring namestring nicknamestring cellphoneNostring emailstring addressstring genFileIdsStrstring 
+      mainApimemberdoModifyid authLevel loginId loginPw name nickname cellphoneNo email address genFileIdsStr
+        thenaxiosResponse  
+          
+          alertaxiosResponsedatamsg
+          if  axiosResponsedatafail  
+            return
+          
+          
+          routerreplacememberdetailid  id
+        
+    
+    return 
+      state
+      checkAndModify
+      profileImgElRef
+      authLevelElRef
+      loginIdElRef
+      loginPwElRef
+      loginPwConfirmElRef
+      nameElRef
+      nicknameElRef
+      cellphoneNoElRef
+      emailElRef
+      addressElRef
+    
+  
+
+script
+
+style scoped
+style 
+
+
+ DB
+sql
+ 데이터베이스 생성
+DROP DATABASE IF EXISTS lamplight
+CREATE DATABASE lamplight
+USE lamplight
+
+ 요청사항 테이블 생성
+CREATE TABLE order 
+    id INT10 UNSIGNED NOT NULL PRIMARY KEY AUTOINCREMENT
+    regDate DATETIME NOT NULL
+    updateDate DATETIME NOT NULL
+    option1 CHAR200 NOT NULL
+    option1qty INT10 UNSIGNED NOT NULL
+    option2 CHAR200 NOT NULL
+    option2qty INT10 UNSIGNED NOT NULL
+    option3 CHAR200 NOT NULL
+    option3qty INT10 UNSIGNED NOT NULL
+    option4 CHAR200 NOT NULL
+    option4qty INT10 UNSIGNED NOT NULL
+    option5 CHAR200 NOT NULL
+    option5qty INT10 UNSIGNED NOT NULL
+    title CHAR200 NOT NULL
+    body TEXT NOT NULL
+    funeralHome CHAR200 NOT NULL
+    directorId INT10 UNSIGNED NOT NULL
+    clientId INT10 UNSIGNED NOT NULL
+    stepLevel SMALLINT2 UNSIGNED DEFAULT 1 NOT NULL COMMENT 1의뢰요청의뢰검토2의뢰승인장례준비3장례진행중4장례종료결제미완료5결제완료
+
+
+ 테스트 의뢰 생성
+INSERT INTO order
+SET regDate  NOW
+    updateDate  NOW
+    option1  옵션1
+    option1qty  10
+    option2  옵션2
+    option2qty  20
+    option3  옵션3
+    option3qty  30
+    option4  옵션4
+    option4qty  40
+    option5  옵션5
+    option5qty  50
+    title  user2님 의뢰
+    funeralHome  대전장례식장
+    body  기타 요청 사항
+    directorId  4
+    clientId  2
+
+INSERT INTO order
+SET regDate  NOW
+    updateDate  NOW
+    option1  옵션1
+    option1qty  10
+    option2  옵션2
+    option2qty  20
+    option3  옵션3
+    option3qty  30
+    option4  옵션4
+    option4qty  40
+    option5  옵션5
+    option5qty  50
+    title  user3님 의뢰
+    funeralHome  익산장례식장
+    body  기타 요청 사항2
+    directorId  4
+    clientId  3
+ 
+ 회원 테이블 생성
+CREATE TABLE member 
+    id INT10 UNSIGNED NOT NULL PRIMARY KEY AUTOINCREMENT
+    regDate DATETIME NOT NULL
+    updateDate DATETIME NOT NULL
+    loginId CHAR30 NOT NULL
+    loginPw VARCHAR100 NOT NULL
+    authKey CHAR80 NOT NULL
+    authLevel SMALLINT2 UNSIGNED DEFAULT 3 NOT NULL COMMENT 3의뢰인4도우미5지도사7관리자
+    name CHAR30 NOT NULL
+    nickname CHAR30 NOT NULL
+    email CHAR100 NOT NULL
+    cellphoneNo CHAR20 NOT NULL
+    address CHAR100 NOT NULL
+
+
+
+ 로그인 ID로 검색했을 때
+ALTER TABLE member ADD UNIQUE INDEX loginId
+
+ authKey 칼럼에 유니크 인덱스 추가
+ALTER TABLE member ADD UNIQUE INDEX authKey
+
+ 회원 테스트 데이터 생성
+INSERT INTO member
+SET regDate  NOW
+    updateDate  NOW
+    loginId  user1
+    loginPw  user1
+    authKey  authKey11
+    authLevel  7
+    name  user1
+    nickname  user1
+    email  user1user1com
+    cellphoneNo  01011111111
+    address  대전광역시
+
+INSERT INTO member
+SET regDate  NOW
+    updateDate  NOW
+    loginId  user2
+    loginPw  user2
+    authKey  authKey12
+    authLevel  3
+    name  user2
+    nickname  user2
+    email  user2user2com
+    cellphoneNo  01022222222
+    address  경기도
+
+INSERT INTO member
+SET regDate  NOW
+    updateDate  NOW
+    loginId  user3
+    loginPw  user3
+    authKey  authKey13
+    authLevel  3
+    name  user3
+    nickname  user3
+    email  user3user3com
+    cellphoneNo  01033333333
+    address  전라북도
+    
+INSERT INTO member
+SET regDate  NOW
+    updateDate  NOW
+    loginId  tester1
+    loginPw  tester1
+    authKey  authKey14
+    authLevel  5
+    name  tester1
+    nickname  tester1
+    email  tester1tester1com
+    cellphoneNo  01044444444
+    address  대전광역시
+
+
+INSERT INTO member
+SET regDate  NOW
+    updateDate  NOW
+    loginId  tester2
+    loginPw  tester2
+    authKey  authKey15
+    authLevel  5
+    name  tester2
+    nickname  tester2
+    email  tester2tester2com
+    cellphoneNo  01055555555
+    address  경기도
+
+INSERT INTO member
+SET regDate  NOW
+    updateDate  NOW
+    loginId  tester3
+    loginPw  tester3
+    authKey  authKey16
+    authLevel  5
+    name  tester3
+    nickname  tester3
+    email  tester3tester3com
+    cellphoneNo  01066666666
+    address  전라북도
+    
+INSERT INTO member
+SET regDate  NOW
+    updateDate  NOW
+    loginId  tester4
+    loginPw  tester4
+    authKey  authKey17
+    authLevel  5
+    name  tester4
+    nickname  tester4
+    email  tester4tester4com
+    cellphoneNo  01044444444
+    address  대전광역시
+
+
+INSERT INTO member
+SET regDate  NOW
+    updateDate  NOW
+    loginId  tester5
+    loginPw  tester5
+    authKey  authKey18
+    authLevel  5
+    name  tester5
+    nickname  tester5
+    email  tester5tester5com
+    cellphoneNo  01055555555
+    address  경기도
+
+INSERT INTO member
+SET regDate  NOW
+    updateDate  NOW
+    loginId  tester6
+    loginPw  tester6
+    authKey  authKey19
+    authLevel  5
+    name  tester6
+    nickname  tester6
+    email  tester6tester6com
+    cellphoneNo  01066666666
+    address  전라북도
+
+ 파일 테이블 추가
+CREATE TABLE genFile 
+  id INT10 UNSIGNED NOT NULL AUTOINCREMENT  번호
+  regDate DATETIME DEFAULT NULL  작성날짜
+  updateDate DATETIME DEFAULT NULL  갱신날짜
+  delDate DATETIME DEFAULT NULL  삭제날짜
+  delStatus TINYINT1 UNSIGNED NOT NULL DEFAULT 0  삭제상태0미삭제1삭제
+  relTypeCode CHAR50 NOT NULL  관련 데이터 타입article member
+  relId INT10 UNSIGNED NOT NULL  관련 데이터 번호
+  originFileName VARCHAR100 NOT NULL  업로드 당시의 파일이름
+  fileExt CHAR10 NOT NULL  확장자
+  typeCode CHAR20 NOT NULL  종류코드 common
+  type2Code CHAR20 NOT NULL  종류2코드 attatchment
+  fileSize INT10 UNSIGNED NOT NULL  파일의 사이즈byte
+  fileExtTypeCode CHAR10 NOT NULL  파일규격코드img video
+  fileExtType2Code CHAR10 NOT NULL  파일규격2코드jpg mp4
+  fileNo SMALLINT2 UNSIGNED NOT NULL  파일번호 1
+  fileDir CHAR20 NOT NULL  파일이 저장되는 폴더명
+  PRIMARY KEY id
+  KEY relId relIdrelTypeCodetypeCodetype2CodefileNo
+ 
+" />
+<meta itemprop="image" content="images/Dev_J_logo/logo.png" />
+
+<!-- 사이트 타이틀 -->
+<title>P.Lamplight - 개발일지(요청수정페이지,회원정보페이지,회원수정페이지까지 DB연계 완료) | Dev_J BLOG | ARTICLE DETAIL</title>
+
+
+<!-- 파비콘 -->
+<link rel="shortcut icon" href="images/favicon/favicon.ico" type="image/x-icon">
+<link rel="icon" href="images/favicon/favicon.ico" type="image/x-icon">
+
+<!-- 폰트어썸 불러오기 -->
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+
+<!--모바일에서도 PC와 같은 비율 유지-->
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<!--제이쿼리-->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+<!-- 하이라이트 라이브러리 추가, 토스트 UI 에디터에서 사용됨 -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.4.1/highlight.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.4.1/styles/default.min.css">
+
+<!-- 토스트 UI 에디터, 자바스크립트 코어 -->
+<script
+	src="https://uicdn.toast.com/editor/latest/toastui-editor-all.min.js" defer></script>
+
+<!-- 코드 미러 라이브러리 추가, 토스트 UI 에디터에서 사용됨 -->
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.58.3/codemirror.min.css" />
+<!-- 토스트 UI 에디터, CSS 코어 -->
+<link rel="stylesheet"
+	href="https://uicdn.toast.com/editor/latest/toastui-editor.min.css" />
+
+<!-- 토스트 UI 에디터, 신택스 하이라이트 플러그인 추가 -->
+<script src="https://uicdn.toast.com/editor-plugin-code-syntax-highlight/latest/toastui-editor-plugin-code-syntax-highlight.min.js" defer></script>
+
+<!-- app.css 불러오기 -->
+<link rel="stylesheet" href="app.css">
+<!-- app.js 불러오기 -->
+<script src="app.js" defer></script>
+<!-- index.js 불러오기 
+<script src="index.js" defer></script>
+-->
+</head>
+
+<body>
+<!-- 사이트 박스 시작 -->
+<div class="body-content min-height-100vh flex flex-column">
+  <!-- 로고바 시작 -->
+  <header class="logo-bar con-min-width" id="header">
+    <div class="con height-100p flex flex-jc-c" title="HOME">
+      <a href="index.html" class="logo flex flex-ai-c"> 
+        <img class="logo__img" src="images/Dev_J_logo/logo_transparent.png" alt="">
+        <span>
+          BLOG
+        </span>
+      </a>
+    </div>
+  </header>
+  <!-- 로고바 끝 -->
+
+  <!-- 메뉴바 시작-->
+  <header class="menu-bar con-min-width visible-md-up">
+    <div class="flex flex-jc-sb">
+   	 <div class="menu-bar__status-icon" title="Menu">
+      <div></div>
+      <div></div>
+      <div></div>
+     </div>
+     <a class="search-icon" title="search" href="search.html">
+        <i class="fa fa-search"></i>
+     </a>
+   </div>
+   <div class="con hide">
+    <nav class="menu-bar__menu">
+      <ul class="flex">
+          <li title="ABOUT">
+            <a href="about.html" class="block">
+              <i class="far fa-address-card"></i>
+              <span>ABOUT</span>
+            </a>
+          </li>
+          <li>
+            <a class="block">
+              <i class="fas fa-list"></i>
+              <span>ARTICLES</span>
+            </a>
+            <ul>
+              <li title="NOTICE"><a href="notice-list-1.html" class="block"><i class="fas fa-bullhorn"></i> <span>NOTICE BOARD</span></a></li><li title="JAVA"><a href="java-list-1.html" class="block"><i class="fab fa-java"></i> <span>JAVA BOARD</span></a></li><li title="HTML"><a href="html-list-1.html" class="block"><i class="fab fa-html5"></i> <span>HTML & CSS & JS BOARD</span></a></li><li title="MYSQL"><a href="mysql-list-1.html" class="block"><i class="fas fa-database"></i> <span>MySQL BOARD</span></a></li><li title="ETC"><a href="etc-list-1.html" class="block"><i class="fas fa-mouse-pointer"></i> <span>ETC BOARD</span></a></li>
+            </ul>
+          </li>
+          <li>
+            <a class="block">
+              <i class="fas fa-project-diagram"></i>
+              <span>PROJECT</span>
+            </a>
+            <ul>
+              <li title="P_BLOG"><a href="p_blog-list-1.html" class="block"><i class="fab fa-blogger"></i> <span>P.BLOG PROJECT</span></a></li><li title="P_JSP"><a href="p_jsp-list-1.html" class="block"><i class="fas fa-users"></i> <span>P.JSP PROJECT</span></a></li><li title="P_LAMP"><a href="p_lamp-list-1.html" class="block"><i class="fab fa-vuejs"></i> <span>P.Lamplight PROJECT</span></a></li><li title="P_WHAT"><a href="p_what-list-1.html" class="block"><i class="fas fa-file-word"></i> <span>P.WhatIsMyName PROJECT</span></a></li>
+            </ul>
+          </li>
+          <li>
+            <a class="block">
+              <i class="fas fa-link"></i>
+              <span>LINK</span>
+            </a>
+            <ul>
+              <li title="T-STORY">
+                <a href="https://cjy324.tistory.com/" target="_blank" class="block">
+                  <i class="fas fa-rss-square"></i>
+                  <span>T-STORY</span>
+                </a>
+              </li>
+              <li title="GITHUB">
+                <a href="https://github.com/cjy324/TIL_Jooyoung#til_jooyoung" target="_blank" class="block">
+                  <i class="fab fa-github"></i>
+                  <span>GITHUB</span>
+                </a>
+              </li>
+              <li title="GetIT">
+                <a href="https://getit.devj.me/" target="_blank" class="block">
+                  <i class="fab fa-dev"></i>
+                  <span>GetIT</span>
+                </a>
+              </li>
+            </ul>
+          </li>
+          <li title="STATISTICS">
+            <a href="statistics.html" class="block">
+              <i class="fas fa-chart-pie"></i>
+              <span>STATISTICS</span>
+            </a>
+          </li>
+        </ul>
+      </nav>
+   </div>
+  </header>
+  <!-- 메뉴바 끝 -->
+  
+  <!-- 모바일 사이드 메뉴바 시작 -->
+  <header class="mobile-menu-bar con-min-width visible-sm-down">
+    <div class="flex flex-jc-sb">
+   <div class="mobile-menu-bar__status-icon" title="Menu">
+     <div></div>
+     <div></div>
+     <div></div>
+   </div>
+    <a class="search-icon" title="search" href="search.html">
+        <i class="fa fa-search"></i>
+      </a>
+   </div>
+   <div class="con ">
+    <aside class="mobile-side-bar flex flex-column flex-jc-c ">
+      <div class="mobile-side-bar_X"><i class="fas fa-times"></i></div>
+      <nav class="mobile-side-bar_menu flex">
+      <ul class="">
+          <li title="ABOUT">
+            <a href="about.html" class="block">
+              <i class="far fa-address-card"></i>
+              <span>ABOUT</span>
+            </a>
+          </li>
+          <li>
+            <a class="block">
+              <i class="fas fa-list"></i>
+              <span>ARTICLES</span>
+            </a>
+            <ul class="hide2">
+              <li title="NOTICE"><a href="notice-list-1.html" class="block"><i class="fas fa-bullhorn"></i> <span>NOTICE BOARD</span></a></li><li title="JAVA"><a href="java-list-1.html" class="block"><i class="fab fa-java"></i> <span>JAVA BOARD</span></a></li><li title="HTML"><a href="html-list-1.html" class="block"><i class="fab fa-html5"></i> <span>HTML & CSS & JS BOARD</span></a></li><li title="MYSQL"><a href="mysql-list-1.html" class="block"><i class="fas fa-database"></i> <span>MySQL BOARD</span></a></li><li title="ETC"><a href="etc-list-1.html" class="block"><i class="fas fa-mouse-pointer"></i> <span>ETC BOARD</span></a></li>
+            </ul>
+          </li>
+          <li>
+            <a class="block">
+              <i class="fas fa-project-diagram"></i>
+              <span>PROJECT</span>
+            </a>
+            <ul class="hide2">
+              <li title="P_BLOG"><a href="p_blog-list-1.html" class="block"><i class="fab fa-blogger"></i> <span>P.BLOG PROJECT</span></a></li><li title="P_JSP"><a href="p_jsp-list-1.html" class="block"><i class="fas fa-users"></i> <span>P.JSP PROJECT</span></a></li><li title="P_LAMP"><a href="p_lamp-list-1.html" class="block"><i class="fab fa-vuejs"></i> <span>P.Lamplight PROJECT</span></a></li><li title="P_WHAT"><a href="p_what-list-1.html" class="block"><i class="fas fa-file-word"></i> <span>P.WhatIsMyName PROJECT</span></a></li>
+            </ul>
+          </li>
+          <li>
+            <a class="block">
+              <i class="fas fa-link"></i>
+              <span>LINK</span>
+            </a>
+            <ul class="hide2">
+              <li title="T-STORY">
+                <a href="https://cjy324.tistory.com/" target="_blank" class="block">
+                  <i class="fas fa-rss-square"></i>
+                  <span>T-STORY</span>
+                </a>
+              </li>
+              <li title="GITHUB">
+                <a href="https://github.com/cjy324/TIL_Jooyoung#til_jooyoung" target="_blank" class="block">
+                  <i class="fab fa-github"></i>
+                  <span>GITHUB</span>
+                </a>
+              </li>
+              <li title="GetIT">
+                <a href="https://getit.devj.me/" target="_blank" class="block">
+                  <i class="fab fa-dev"></i>
+                  <span>GetIT</span>
+                </a>
+              </li>
+            </ul>
+          </li>
+          <li title="STATISTICS">
+            <a href="statistics.html" class="block">
+              <i class="fas fa-chart-pie"></i>
+              <span>STATISTICS</span>
+            </a>
+          </li>
+        </ul>
+      </nav>  
+      </aside>
+   </div>
+  </header>
+  
+  <!-- 모바일 사이드 메뉴바 끝 --> 
+   
+
+  <!-- 메인 컨텐츠 박스 시작 -->
+  <main class="main-box flex-grow-1">
+  <section class="main-box-section con-min-width">
+   <!-- 메인-타이틀바 시작 -->
+	<div class="title-bar con-min-width">
+		<h1 class="con">
+			<i class="fas fa-file-invoice"></i> <span>ARTICLE</span>
+		</h1>
+	</div>
+   <!-- 메인-타이틀바 종료 -->
+<!-- Progress-bar -->
+<script type="text/javascript"
+	src="https://rawcdn.githack.com/mburakerman/prognroll/0feda211643153bce2c69de32ea1b39cdc64ffbe/src/prognroll.js"></script>
+<script type="text/javascript">
+	$(function() {
+		$("body").prognroll({
+			height : 10,
+			color : "#666666"
+		});
+		$(".content").prognroll({
+			custom : true
+		});
+	});
+</script>
+
+<!-- 메인-상세페이지 시작 -->
+<section class="section-2 con-min-width min-height-50vh">
+	<div class="con height-100p">
+		<div class="article-detail-cell height-100p">
+			<div class="article-detail-cell__board-name"><div><span>게시판 : </span><span>P.Lamplight 게시판</span></div></div><div class="article-detail-cell__id"><div><span>번호 : </span><span>69</span></div></div><div class="article-detail-cell__member-id"><div><span>작성자 : </span><span>Dev_J</span></div></div><div class="article-detail-cell__reg-date"><div><span>작성일 : </span><span>2021-04-24 14:57:45</span></div></div><div class="article-detail-cell__update-date"><div><span>수정일 : </span><span>2021-04-24 15:02:45</span></div></div><br><div class="article-detail-cell__title-contents flex flex-jc-fe"><div class="article-detail-cell__hitsCount"><div><span>조회수 : </span><span>0</span></div></div><div class="article-detail-cell__likesCount"><div><span>추천수 : </span><span>0</span></div></div><div class="article-detail-cell__commentsCount"><div><span>댓글수 : </span><span>0</span></div></div></div><div class="article-detail-cell__title"><div><span>제목 : </span><span>P.Lamplight - 개발일지(요청수정페이지,회원정보페이지,회원수정페이지까지 DB연계 완료)</span></div></div><nav class="ad"><!-- 구글 애드센스2 --><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script><!-- 수평 반응형2 --><ins class="adsbygoogle" style="display: block" data-ad-client="ca-pub-7996879977557531" data-ad-slot="2278060237" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle = window.adsbygoogle || []).push({});</script></nav><script type"text/x-template"># 요청수정페이지,회원정보페이지,회원수정페이지까지 DB연계 완료
+
+## NOTE
+
+```
+프론트엔드
+-요청 수정 페이지[ㅇ]
+-회원정보 수정 페이지[ㅇ]
+-평점/후기페이지[...]
+```
+```
+백엔드
+-order테이블 funeralHome,stepLevel 컬럼 추가
+```
+
+<br>
+## 주요소스코드
+
+### OrderModifyPage.vue
+```html
+<template>
+
+  <TitleBar>요청서 수정 페이지</TitleBar>
+
+  <section class="section section-article-write-form-box px-2">
+    <div class="container mx-auto">
+      <div class="px-6 py-6 bg-white rounded-lg shadow-md">
+        <form v-if="globalShare.isLogined" v-on:submit.prevent="checkAndModifyOrder">
+          <FormRow title="제목">
+            <input ref="modifiedOrderTitleElRef" class="form-row-input" type="text" :value="state.order.title">
+          </FormRow>
+          <FormRow title="장례식장">
+            <input ref="modifiedOrderFuneralHomeElRef" class="form-row-input" type="text" :value="state.order.funeralHome">
+          </FormRow>
+          <FormRow title="옵션1">
+            <input ref="modifiedOrderOption1ElRef" class="form-row-input" type="text" :value="state.order.option1">
+            <select ref="modifiedOrderOption1qtyElRef" name="option1qty" class="form-row-input w-full rounded-sm" :value="state.order.option1qty">
+						  <option value="1">1</option>
+						  <option value="2">2</option>
+						  <option value="3">3</option>
+						  <option value="4">4</option>
+						  <option value="5">5</option>
+					  </select>
+          </FormRow>
+          <FormRow title="옵션2">
+            <input ref="modifiedOrderOption2ElRef" class="form-row-input" type="text" :value="state.order.option2">
+            <select ref="modifiedOrderOption2qtyElRef" name="option1qty" class="form-row-input w-full rounded-sm" :value="state.order.option2qty">
+						  <option value="1">1</option>
+						  <option value="2">2</option>
+						  <option value="3">3</option>
+						  <option value="4">4</option>
+						  <option value="5">5</option>
+					  </select>
+          </FormRow>
+          <FormRow title="옵션3">
+            <input ref="modifiedOrderOption3ElRef" class="form-row-input" type="text" :value="state.order.option3">
+            <select ref="modifiedOrderOption3qtyElRef" name="option1qty" class="form-row-input w-full rounded-sm" :value="state.order.option3qty">
+						  <option value="1">1</option>
+						  <option value="2">2</option>
+						  <option value="3">3</option>
+						  <option value="4">4</option>
+						  <option value="5">5</option>
+					  </select>
+          </FormRow>
+          <FormRow title="옵션4">
+            <input ref="modifiedOrderOption4ElRef" class="form-row-input" type="text" :value="state.order.option4">
+            <select ref="modifiedOrderOption4qtyElRef" name="option1qty" class="form-row-input w-full rounded-sm" :value="state.order.option4qty">
+						  <option value="1">1</option>
+						  <option value="2">2</option>
+						  <option value="3">3</option>
+						  <option value="4">4</option>
+						  <option value="5">5</option>
+					  </select>
+          </FormRow>
+          <FormRow title="옵션5">
+            <input ref="modifiedOrderOption5ElRef" class="form-row-input" type="text" :value="state.order.option5">
+            <select ref="modifiedOrderOption5qtyElRef" name="option1qty" class="form-row-input w-full rounded-sm" :value="state.order.option5qty">
+						  <option value="1">1</option>
+						  <option value="2">2</option>
+						  <option value="3">3</option>
+						  <option value="4">4</option>
+						  <option value="5">5</option>
+					  </select>
+          </FormRow>
+          <FormRow title="추가 요청 사항">
+            <textarea ref="modifiedOrderBodyElRef" class="form-row-input" :value="state.order.body"></textarea>
+          </FormRow>
+          <FormRow title="완료">
+            <div class="btns">
+              <input type="submit" value="완료" class="btn-primary" />
+            </div>
+          </FormRow>
+        </form>
+        <div v-else>
+          <router-link class="btn-link" to="/member/login">로그인</router-link> 후 이용해주세요.
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+</template>
+
+<t-script lang="ts">
+import { defineComponent, reactive, ref, getCurrentInstance, onMounted, watch } from 'vue'
+import { MainApi } from '../apis'
+import { Router } from 'vue-router'
+import { IOrder } from '../types'
+
+
+export default defineComponent({
+  name: 'AddOrderPage',
+
+  props: {
+    globalShare: {
+      type: Object,
+      required: true
+    },
+    id: {
+      type: Number,
+      required: true
+    }
+  },
+
+  setup(props){
+    const router:Router = getCurrentInstance()?.appContext.config.globalProperties.$router;
+    const mainApi:MainApi = getCurrentInstance()?.appContext.config.globalProperties.$mainApi;
+
+    const modifiedOrderTitleElRef = ref<HTMLInputElement>();
+    const modifiedOrderFuneralHomeElRef = ref<HTMLInputElement>();
+    const modifiedOrderOption1ElRef = ref<HTMLInputElement>();
+    const modifiedOrderOption1qtyElRef = ref<HTMLInputElement>();
+    const modifiedOrderOption2ElRef = ref<HTMLInputElement>();
+    const modifiedOrderOption2qtyElRef = ref<HTMLInputElement>();
+    const modifiedOrderOption3ElRef = ref<HTMLInputElement>();
+    const modifiedOrderOption3qtyElRef = ref<HTMLInputElement>();
+    const modifiedOrderOption4ElRef = ref<HTMLInputElement>();
+    const modifiedOrderOption4qtyElRef = ref<HTMLInputElement>();
+    const modifiedOrderOption5ElRef = ref<HTMLInputElement>();
+    const modifiedOrderOption5qtyElRef = ref<HTMLInputElement>();
+    const modifiedOrderBodyElRef = ref<HTMLInputElement>();
+
+    const state = reactive({
+      order: {} as IOrder
+    });
+
+    function loadOrder(id:number) {
+      mainApi.order_detail(id)
+      .then(axiosResponse => {
+        state.order = axiosResponse.data.body.order;
+      });
+    }
+    onMounted(() => {
+      loadOrder(props.id);
+    });
+    watch(() => props.id, (newValue, oldValue) => {
+      loadOrder(props.id);
+    })
+
+    /* 공백 체크 */
+    function checkAndModifyOrder(){
+
+      //일반적으로 안해도 되지만 typet-script에서는 해야됨
+      //제목
+      if(modifiedOrderTitleElRef.value == null){
+        return;
+      }
+
+      const modifiedOrderTitleEl = modifiedOrderTitleElRef.value;
+      modifiedOrderTitleEl.value = modifiedOrderTitleEl.value.trim();
+
+      if(modifiedOrderTitleEl.value.length == 0){
+        alert('제목을 입력해 주세요.')
+        modifiedOrderTitleEl.focus();
+        return;
+      }
+
+      //장례식장
+      if(modifiedOrderFuneralHomeElRef.value == null){
+        return;
+      }
+
+      const modifiedOrderFuneralHomeEl = modifiedOrderFuneralHomeElRef.value;
+      modifiedOrderFuneralHomeEl.value = modifiedOrderFuneralHomeEl.value.trim();
+
+      if(modifiedOrderFuneralHomeEl.value.length == 0){
+        alert('장례식장명을 입력해 주세요.')
+        modifiedOrderFuneralHomeEl.focus();
+        return;
+      }
+
+      //옵션1
+      if(modifiedOrderOption1ElRef.value == null){
+        return;
+      }
+
+      const modifiedOrderOption1El = modifiedOrderOption1ElRef.value;
+      modifiedOrderOption1El.value = modifiedOrderOption1El.value.trim();
+
+      if(modifiedOrderOption1El.value.length == 0){
+        alert('옵션1을 입력해 주세요.')
+        modifiedOrderOption1El.focus();
+        return;
+      }
+
+      //옵션1qty
+      if(modifiedOrderOption1qtyElRef.value == null){
+        return;
+      }
+
+      const modifiedOrderOption1qtyEl = modifiedOrderOption1qtyElRef.value;
+
+      //옵션2
+      if(modifiedOrderOption2ElRef.value == null){
+        return;
+      }
+
+      const modifiedOrderOption2El = modifiedOrderOption2ElRef.value;
+      modifiedOrderOption2El.value = modifiedOrderOption2El.value.trim();
+
+      if(modifiedOrderOption1El.value.length == 0){
+        alert('옵션2를 입력해 주세요.')
+        modifiedOrderOption2El.focus();
+        return;
+      }
+
+      //옵션2qty
+      if(modifiedOrderOption2qtyElRef.value == null){
+        return;
+      }
+
+      const modifiedOrderOption2qtyEl = modifiedOrderOption2qtyElRef.value;
+
+      //옵션3
+      if(modifiedOrderOption3ElRef.value == null){
+        return;
+      }
+
+      const modifiedOrderOption3El = modifiedOrderOption3ElRef.value;
+      modifiedOrderOption3El.value = modifiedOrderOption3El.value.trim();
+
+      if(modifiedOrderOption3El.value.length == 0){
+        alert('옵션3을 입력해 주세요.')
+        modifiedOrderOption3El.focus();
+        return;
+      }
+
+      //옵션3qty
+      if(modifiedOrderOption3qtyElRef.value == null){
+        return;
+      }
+
+      const modifiedOrderOption3qtyEl = modifiedOrderOption3qtyElRef.value;
+
+      //옵션4
+      if(modifiedOrderOption4ElRef.value == null){
+        return;
+      }
+
+      const modifiedOrderOption4El = modifiedOrderOption4ElRef.value;
+      modifiedOrderOption4El.value = modifiedOrderOption4El.value.trim();
+
+      if(modifiedOrderOption4El.value.length == 0){
+        alert('옵션4를 입력해 주세요.')
+        modifiedOrderOption4El.focus();
+        return;
+      }
+
+      //옵션4qty
+      if(modifiedOrderOption4qtyElRef.value == null){
+        return;
+      }
+
+      const modifiedOrderOption4qtyEl = modifiedOrderOption4qtyElRef.value;
+
+      //옵션5
+      if(modifiedOrderOption5ElRef.value == null){
+        return;
+      }
+
+      const modifiedOrderOption5El = modifiedOrderOption5ElRef.value;
+      modifiedOrderOption5El.value = modifiedOrderOption5El.value.trim();
+
+      if(modifiedOrderOption5El.value.length == 0){
+        alert('옵션5를 입력해 주세요.')
+        modifiedOrderOption5El.focus();
+        return;
+      }
+
+      //옵션5qty
+      if(modifiedOrderOption5qtyElRef.value == null){
+        return;
+      }
+
+      const modifiedOrderOption5qtyEl = modifiedOrderOption5qtyElRef.value;
+
+
+      //body
+      if(modifiedOrderBodyElRef.value == null){
+        return;
+      }
+
+      const modifiedOrderBodyEl = modifiedOrderBodyElRef.value;
+      modifiedOrderBodyEl.value = modifiedOrderBodyEl.value.trim();
+
+      if(modifiedOrderBodyEl.value.length == 0){
+        alert('내용을 입력해 주세요.')
+        modifiedOrderBodyEl.focus();
+        return;
+      }
+
+      // 작성 함수로 보내기
+      modifyOrder(props.id, modifiedOrderTitleEl.value, modifiedOrderFuneralHomeEl.value, modifiedOrderOption1El.value, parseInt(modifiedOrderOption1qtyEl.value), modifiedOrderOption2El.value, parseInt(modifiedOrderOption2qtyEl.value), modifiedOrderOption3El.value, parseInt(modifiedOrderOption3qtyEl.value), modifiedOrderOption4El.value, parseInt(modifiedOrderOption4qtyEl.value), modifiedOrderOption5El.value, parseInt(modifiedOrderOption5qtyEl.value), modifiedOrderBodyEl.value, state.order.directorId, props.globalShare.loginedMember.id);
+
+    }
+
+    //typet-script에서는 title:string, body:string 이런식으로 type을 적어주어야 한다
+      function modifyOrder(id:number, title:string, funeralHome:string, option1:string, option1qty:number, option2:string, option2qty:number, option3:string, option3qty:number, option4:string, option4qty:number, option5:string, option5qty:number, body:string, directorId:number, clientId:number){
+       
+        mainApi.order_doModify(id, title, funeralHome, option1, option1qty, option2, option2qty, option3, option3qty, option4, option4qty, option5, option5qty, body, directorId, clientId)
+        .then(axiosResponse => {
+          alert(axiosResponse.data.msg);
+          
+          // 로그인이 fail 상태이면 리턴
+          if ( axiosResponse.data.fail ) {
+            return;
+          }
+
+          //authKey가 있는 상태에서 가능
+          const modifiedOrderId = axiosResponse.data.body.id;
+          //alert(modifiedArticleId + "번 게시물 등록 완료!!");
+
+          router.replace("detail?id=" + modifiedOrderId);
+        });
+      }
+
+    return{
+        state,
+        modifiedOrderTitleElRef,
+        modifiedOrderFuneralHomeElRef,
+        modifiedOrderOption1ElRef,
+        modifiedOrderOption1qtyElRef,
+        modifiedOrderOption2ElRef,
+        modifiedOrderOption2qtyElRef,
+        modifiedOrderOption3ElRef,
+        modifiedOrderOption3qtyElRef,
+        modifiedOrderOption4ElRef,
+        modifiedOrderOption4qtyElRef,
+        modifiedOrderOption5ElRef,
+        modifiedOrderOption5qtyElRef,
+        modifiedOrderBodyElRef,
+        checkAndModifyOrder,
+      
+    }
+
+  }
+  
+})
+</t-script>
+
+<style scoped>
+
+</style>
+```
+
+### MemberModifyPage.vue
+```html
+<template>
+  <TitleBar>회원정보수정</TitleBar>
+
+  <section class="section section-member-modify-form px-2">
+    <div class="container mx-auto">
+      <div class="px-6 py-6 bg-white rounded-lg shadow-md">
+        <form v-if="globalShare.isLogined" v-on:submit.prevent="checkAndModify">
+          <div title="프로필 이미지">
+            <img class="h-96 rounded-lg object-cover object-center" :src="'http://localhost:8090' + state.member.extra__thumbImg">
+          </div>
+          <FormRow title="프로필 이미지">
+            <input ref="profileImgElRef" class="form-row-input" type="file">
+          </FormRow>
+          <FormRow title="회원유형">
+            <select ref="authLevelElRef" :value="state.member.authLevel">
+              <option value="3">일반회원</option>
+              <option value="4">도우미</option>
+              <option value="5">지도사</option>
+            </select>
+          </FormRow>
+          <FormRow title="아이디">
+            <input ref="loginIdElRef" class="form-row-input" type="text" :value="state.member.loginId">
+          </FormRow>
+          <FormRow title="비밀번호">
+            <input ref="loginPwElRef" class="form-row-input" type="password" placeholder="비밀번호를 입력해주세요.">
+          </FormRow>
+          <FormRow title="비밀번호 확인">
+            <input ref="loginPwConfirmElRef" class="form-row-input" type="password" placeholder="비밀번호 확인을 해주세요.">
+          </FormRow>
+          <FormRow title="이름">
+            <input ref="nameElRef" class="form-row-input" type="text" :value="state.member.name">
+          </FormRow>
+          <FormRow title="닉네임">
+            <input ref="nicknameElRef" class="form-row-input" type="text" :value="state.member.nickname">
+          </FormRow>
+          <FormRow title="전화번호">
+            <input ref="cellphoneNoElRef" class="form-row-input" type="tel" maxlength="11" :value="state.member.cellphoneNo">
+          </FormRow>
+          <FormRow title="이메일">
+            <input ref="emailElRef" class="form-row-input" type="email" :value="state.member.email">
+          </FormRow>
+          <FormRow title="시/도">
+            <input ref="addressElRef" class="form-row-input" type="text" :value="state.member.address">
+          </FormRow>
+          <FormRow title="완료">
+            <div class="btns">
+              <input type="submit" value="완료" class="btn-primary" />
+            </div>
+          </FormRow>
+        </form>
+        <div v-else>
+          이미 로그인 상태입니다. <router-link class="btn-link" to="/">홈</router-link> 으로 이동
+        </div>
+      </div>
+    </div>
+  </section>
+</template>
+
+<t-script lang="ts">
+import { defineComponent, ref, reactive, getCurrentInstance, onMounted, watch } from 'vue'
+import { MainApi } from '../apis'
+import { Router } from 'vue-router'
+import { IMember } from '../types'
+
+export default defineComponent({
+  name: 'MemberJoinPage',
+  props: {
+    globalShare: {
+      type: Object,
+      required: true
+    },
+    id: {
+      type: Number,
+      required: true
+    }
+  },
+  setup(props) {
+    const router:Router = getCurrentInstance()?.appContext.config.globalProperties.$router;
+    const mainApi:MainApi = getCurrentInstance()?.appContext.config.globalProperties.$mainApi;
+    const profileImgElRef = ref<HTMLInputElement>();
+    const authLevelElRef = ref<HTMLInputElement>();
+    const loginIdElRef = ref<HTMLInputElement>();
+    const loginPwElRef = ref<HTMLInputElement>();
+    const loginPwConfirmElRef = ref<HTMLInputElement>();
+    const nameElRef = ref<HTMLInputElement>();
+    const nicknameElRef = ref<HTMLInputElement>();
+    const cellphoneNoElRef = ref<HTMLInputElement>();
+    const emailElRef = ref<HTMLInputElement>();
+    const addressElRef = ref<HTMLInputElement>();
+
+
+    const state = reactive({
+      member: {} as IMember
+    });
+
+    function loadMember(id:number) {
+      mainApi.member_detail(id)
+      .then(axiosResponse => {
+        state.member = axiosResponse.data.body.member;
+      });
+    }
+    onMounted(() => {
+      loadMember(props.id);
+    });
+    watch(() => props.id, (newValue, oldValue) => {
+      loadMember(props.id);
+    })
+
+   
+    function checkAndModify() {
+       // 아이디 체크
+      if ( loginIdElRef.value == null ) {
+        return;
+      }
+      
+      const loginIdEl = loginIdElRef.value;
+      loginIdEl.value = loginIdEl.value.trim();
+      
+      if ( loginIdEl.value.length == 0 ) {
+        alert('아이디를 입력해주세요.');
+        loginIdEl.focus();
+        return;
+      }
+      // 비번 체크
+      if ( loginPwElRef.value == null ) {
+        return;
+      }
+
+      const loginPwEl = loginPwElRef.value;
+      loginPwEl.value = loginPwEl.value.trim();
+      
+      if ( loginPwEl.value.length == 0 ) {
+        alert('비밀번호를 입력해주세요.');
+        loginPwEl.focus();
+        return;
+      }
+      
+      // 비번확인 체크
+      if ( loginPwConfirmElRef.value == null ) {
+        return;
+      }
+
+      const loginPwConfirmEl = loginPwConfirmElRef.value;
+      
+      if ( loginPwEl.value != loginPwConfirmEl.value ) {
+        alert('로그인 비번이 일치하지 않습니다.');
+        loginPwConfirmEl.focus();
+        return;
+      }
+
+      // 이름 체크
+      if ( nameElRef.value == null ) {
+        return;
+      }
+
+      const nameEl = nameElRef.value;
+      nameEl.value = nameEl.value.trim();
+
+      if ( nameEl.value.length == 0 ) {
+        alert('이름을 입력해주세요.');
+        nameEl.focus();
+        return;
+      }
+
+      // 닉네임 체크
+      if ( nicknameElRef.value == null ) {
+        return;
+      }
+
+      const nicknameEl = nicknameElRef.value;
+      nicknameEl.value = nicknameEl.value.trim();
+      
+      if ( nicknameEl.value.length == 0 ) {
+        alert('닉네임을 입력해주세요.');
+        nicknameEl.focus();
+        return;
+      }
+      
+      // 전화번호 체크
+      if ( cellphoneNoElRef.value == null ) {
+        return;
+      }
+
+      const cellphoneNoEl = cellphoneNoElRef.value;
+      cellphoneNoEl.value = cellphoneNoEl.value.trim();
+      
+      if ( cellphoneNoEl.value.length == 0 ) {
+        alert('전화번호를 입력해주세요.');
+        cellphoneNoEl.focus();
+        return;
+      }
+
+      // 이메일 체크
+      if ( emailElRef.value == null ) {
+        return;
+      }
+      
+      const emailEl = emailElRef.value;
+      emailEl.value = emailEl.value.trim();
+      
+      if ( emailEl.value.length == 0 ) {
+        alert('이메일을 입력해주세요.');
+        emailEl.focus();
+        return;
+      }
+
+      // 시/도 주소 체크
+      if ( addressElRef.value == null ) {
+        return;
+      }
+      
+      const addressEl = addressElRef.value;
+      addressEl.value = addressEl.value.trim();
+      
+      if ( addressEl.value.length == 0 ) {
+        alert('시/도를 입력해주세요.');
+        addressEl.focus();
+        return;
+      }
+
+     
+
+      if(authLevelElRef.value == null){
+        return
+      }
+      
+      const authLevelEl = authLevelElRef.value;
+      
+      const startFileUpload = (onSuccess:Function) => {
+        // ! => 반전
+        // a = undefinded(or null) / !a = true / !!a = flase란 의미
+        // ? => 만약 profileImgElRef.value?까지가 null이면 여기까지만 실행하겠다라는 의미
+        // 즉, !!!profileImgElRef.value?.files의 의미는 해당 파일이 없는지 물어보는 것
+        // 없으면 true
+        if(!!!profileImgElRef.value?.files){
+          onSuccess("");  //파일이 없으면 다음 과정 생략하고 onSuccess() 즉시 실행
+          return;
+        }
+
+        mainApi.common_genFile_doUpload(profileImgElRef.value?.files[0])
+        .then(axiosResponse => {
+          
+          if ( axiosResponse.data.fail ) {
+            alert(axiosResponse.data.msg);
+            return;
+          }
+          else{
+            onSuccess(axiosResponse.data.body.genFileIdsStr);
+          }
+        });
+      };
+
+
+      //회원가입 join함수 시작
+      //파일첨부기능 추가로 인해 로직 변경
+      //join(loginIdEl.value, loginPwEl.value, nameEl.value, nicknameEl.value, cellphoneNoEl.value, emailEl.value);
+      const startModify = (genFileIdsStr:string) =>{
+        modify(props.id, parseInt(authLevelEl.value), loginIdEl.value, loginPwEl.value, nameEl.value, nicknameEl.value, cellphoneNoEl.value, emailEl.value, addressEl.value,  genFileIdsStr);
+      };
+
+      //startFileUpload 로직을 먼저 실행한 후
+      //onSuccess 즉, startJoin를 실행한다. onSuccess = startJoin
+      //실행 순서 : 1.첨부파일이 있는지 확인하고 업로드까지 진행하는 startFileUpload함수 종료 후 2.회원가입 join함수가 실행된다.
+      startFileUpload(startModify);
+
+
+      
+    }
+    function modify(id:number, authLevel:number, loginId:string, loginPw:string, name:string, nickname:string, cellphoneNo:string, email:string, address:string, genFileIdsStr:string) {
+      mainApi.member_doModify(id, authLevel, loginId, loginPw, name, nickname, cellphoneNo, email, address, genFileIdsStr)
+        .then(axiosResponse => {
+          
+          alert(axiosResponse.data.msg);
+          if ( axiosResponse.data.fail ) {
+            return;
+          }
+          
+          router.replace('/member/detail?id=' + id)
+        });
+    }
+    return {
+      state,
+      checkAndModify,
+      profileImgElRef,
+      authLevelElRef,
+      loginIdElRef,
+      loginPwElRef,
+      loginPwConfirmElRef,
+      nameElRef,
+      nicknameElRef,
+      cellphoneNoElRef,
+      emailElRef,
+      addressElRef
+    }
+  }
+})
+</t-script>
+
+<style scoped>
+</style> 
+```
+
+### DB
+```sql
+# 데이터베이스 생성
+DROP DATABASE IF EXISTS lamplight;
+CREATE DATABASE lamplight;
+USE lamplight;
+
+# 요청사항 테이블 생성
+CREATE TABLE `order` (
+    id INT(10) UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    regDate DATETIME NOT NULL,
+    updateDate DATETIME NOT NULL,
+    option1 CHAR(200) NOT NULL,
+    option1qty INT(10) UNSIGNED NOT NULL,
+    option2 CHAR(200) NOT NULL,
+    option2qty INT(10) UNSIGNED NOT NULL,
+    option3 CHAR(200) NOT NULL,
+    option3qty INT(10) UNSIGNED NOT NULL,
+    option4 CHAR(200) NOT NULL,
+    option4qty INT(10) UNSIGNED NOT NULL,
+    option5 CHAR(200) NOT NULL,
+    option5qty INT(10) UNSIGNED NOT NULL,
+    title CHAR(200) NOT NULL,
+    `body` TEXT NOT NULL,
+    funeralHome CHAR(200) NOT NULL,
+    `directorId` INT(10) UNSIGNED NOT NULL,
+    `clientId` INT(10) UNSIGNED NOT NULL,
+    stepLevel SMALLINT(2) UNSIGNED DEFAULT 1 NOT NULL COMMENT '(1=의뢰요청(의뢰검토),2=의뢰승인(장례준비),3=장례진행중,4=장례종료(결제미완료),5=결제완료)'
+);
+
+# 테스트 의뢰 생성
+INSERT INTO `order`
+SET regDate = NOW(),
+    updateDate = NOW(),
+    option1 = '옵션1',
+    option1qty = 10,
+    option2 = '옵션2',
+    option2qty = 20,
+    option3 = '옵션3',
+    option3qty = 30,
+    option4 = '옵션4',
+    option4qty = 40,
+    option5 = '옵션5',
+    option5qty = 50,
+    title = 'user2님 의뢰',
+    funeralHome = '대전장례식장',
+    `body` = '기타 요청 사항',
+    `directorId` = 4,
+    `clientId` = 2;
+
+INSERT INTO `order`
+SET regDate = NOW(),
+    updateDate = NOW(),
+    option1 = '옵션1',
+    option1qty = 10,
+    option2 = '옵션2',
+    option2qty = 20,
+    option3 = '옵션3',
+    option3qty = 30,
+    option4 = '옵션4',
+    option4qty = 40,
+    option5 = '옵션5',
+    option5qty = 50,
+    title = 'user3님 의뢰',
+    funeralHome = '익산장례식장',
+    `body` = '기타 요청 사항2',
+    `directorId` = 4,
+    `clientId` = 3;
+ 
+# 회원 테이블 생성
+CREATE TABLE `member` (
+    id INT(10) UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    regDate DATETIME NOT NULL,
+    updateDate DATETIME NOT NULL,
+    loginId CHAR(30) NOT NULL,
+    loginPw VARCHAR(100) NOT NULL,
+    authKey CHAR(80) NOT NULL,
+    authLevel SMALLINT(2) UNSIGNED DEFAULT 3 NOT NULL COMMENT '(3=의뢰인,4=도우미,5=지도사,7=관리자)',
+    `name` CHAR(30) NOT NULL,
+    `nickname` CHAR(30) NOT NULL,
+    `email` CHAR(100) NOT NULL,
+    `cellphoneNo` CHAR(20) NOT NULL,
+    `address` CHAR(100) NOT NULL
+
+);
+
+# 로그인 ID로 검색했을 때
+ALTER TABLE `member` ADD UNIQUE INDEX (`loginId`);
+
+# authKey 칼럼에 유니크 인덱스 추가
+ALTER TABLE `member` ADD UNIQUE INDEX (`authKey`);
+
+# 회원, 테스트 데이터 생성
+INSERT INTO `member`
+SET regDate = NOW(),
+    updateDate = NOW(),
+    loginId = 'user1',
+    loginPw = 'user1',
+    authKey = 'authKey1__1',
+    authLevel = 7,
+    `name` = 'user1',
+    `nickname` = 'user1',
+    `email` = 'user1@user1.com',
+    `cellphoneNo` = 01011111111,
+    `address` = '대전광역시';
+
+INSERT INTO `member`
+SET regDate = NOW(),
+    updateDate = NOW(),
+    loginId = 'user2',
+    loginPw = 'user2',
+    authKey = 'authKey1__2',
+    authLevel = 3,
+    `name` = 'user2',
+    `nickname` = 'user2',
+    `email` = 'user2@user2.com',
+    `cellphoneNo` = 01022222222,
+    `address` = '경기도';
+
+INSERT INTO `member`
+SET regDate = NOW(),
+    updateDate = NOW(),
+    loginId = 'user3',
+    loginPw = 'user3',
+    authKey = 'authKey1__3',
+    authLevel = 3,
+    `name` = 'user3',
+    `nickname` = 'user3',
+    `email` = 'user3@user3.com',
+    `cellphoneNo` = 01033333333,
+    `address` = '전라북도';
+    
+INSERT INTO `member`
+SET regDate = NOW(),
+    updateDate = NOW(),
+    loginId = 'tester1',
+    loginPw = 'tester1',
+    authKey = 'authKey1__4',
+    authLevel = 5,
+    `name` = 'tester1',
+    `nickname` = 'tester1',
+    `email` = 'tester1@tester1.com',
+    `cellphoneNo` = 01044444444,
+    `address` = '대전광역시';
+
+
+INSERT INTO `member`
+SET regDate = NOW(),
+    updateDate = NOW(),
+    loginId = 'tester2',
+    loginPw = 'tester2',
+    authKey = 'authKey1__5',
+    authLevel = 5,
+    `name` = 'tester2',
+    `nickname` = 'tester2',
+    `email` = 'tester2@tester2.com',
+    `cellphoneNo` = 01055555555,
+    `address` = '경기도';
+
+INSERT INTO `member`
+SET regDate = NOW(),
+    updateDate = NOW(),
+    loginId = 'tester3',
+    loginPw = 'tester3',
+    authKey = 'authKey1__6',
+    authLevel = 5,
+    `name` = 'tester3',
+    `nickname` = 'tester3',
+    `email` = 'tester3@tester3.com',
+    `cellphoneNo` = 01066666666,
+    `address` = '전라북도';
+    
+INSERT INTO `member`
+SET regDate = NOW(),
+    updateDate = NOW(),
+    loginId = 'tester4',
+    loginPw = 'tester4',
+    authKey = 'authKey1__7',
+    authLevel = 5,
+    `name` = 'tester4',
+    `nickname` = 'tester4',
+    `email` = 'tester4@tester4.com',
+    `cellphoneNo` = 01044444444,
+    `address` = '대전광역시';
+
+
+INSERT INTO `member`
+SET regDate = NOW(),
+    updateDate = NOW(),
+    loginId = 'tester5',
+    loginPw = 'tester5',
+    authKey = 'authKey1__8',
+    authLevel = 5,
+    `name` = 'tester5',
+    `nickname` = 'tester5',
+    `email` = 'tester5@tester5.com',
+    `cellphoneNo` = 01055555555,
+    `address` = '경기도';
+
+INSERT INTO `member`
+SET regDate = NOW(),
+    updateDate = NOW(),
+    loginId = 'tester6',
+    loginPw = 'tester6',
+    authKey = 'authKey1__9',
+    authLevel = 5,
+    `name` = 'tester6',
+    `nickname` = 'tester6',
+    `email` = 'tester6@tester6.com',
+    `cellphoneNo` = 01066666666,
+    `address` = '전라북도';
+
+# 파일 테이블 추가
+CREATE TABLE genFile (
+  id INT(10) UNSIGNED NOT NULL AUTO_INCREMENT, # 번호
+  regDate DATETIME DEFAULT NULL, # 작성날짜
+  updateDate DATETIME DEFAULT NULL, # 갱신날짜
+  delDate DATETIME DEFAULT NULL, # 삭제날짜
+  delStatus TINYINT(1) UNSIGNED NOT NULL DEFAULT 0, # 삭제상태(0:미삭제,1:삭제)
+  relTypeCode CHAR(50) NOT NULL, # 관련 데이터 타입(article, member)
+  relId INT(10) UNSIGNED NOT NULL, # 관련 데이터 번호
+  originFileName VARCHAR(100) NOT NULL, # 업로드 당시의 파일이름
+  fileExt CHAR(10) NOT NULL, # 확장자
+  typeCode CHAR(20) NOT NULL, # 종류코드 (common)
+  type2Code CHAR(20) NOT NULL, # 종류2코드 (attatchment)
+  fileSize INT(10) UNSIGNED NOT NULL, # 파일의 사이즈(byte)
+  fileExtTypeCode CHAR(10) NOT NULL, # 파일규격코드(img, video)
+  fileExtType2Code CHAR(10) NOT NULL, # 파일규격2코드(jpg, mp4)
+  fileNo SMALLINT(2) UNSIGNED NOT NULL, # 파일번호 (1)
+  fileDir CHAR(20) NOT NULL, # 파일이 저장되는 폴더명
+  PRIMARY KEY (id),
+  KEY relId (relId,relTypeCode,typeCode,type2Code,fileNo)
+); 
+```</script><div class="article-detail-cell__body height-70p toast-ui-viewer"><div></div></div><br><div class="article-detail-cell__tag flex flex-wrap"><nav># project</nav><nav># 개발일지</nav><nav># lamplight</nav></div><br><br><nav class="ad"><!-- 구글 애드센스1 --><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script><!-- 수평 반응형1 --><ins class="adsbygoogle" style="display: block" data-ad-client="ca-pub-7996879977557531" data-ad-slot="6812185708" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle = window.adsbygoogle || []).push({});</script></nav>
+			<!-- Disqus api 적용 -->
+			<!-- 정확한 페이지 경로 알려주는 기능 추가-->
+			<nav>
+				<div id="disqus_thread"></div>
+				<script>
+					var disqus_config = function() {
+						this.page.url = 'https://blog.devj.me/article_detail_69.html';
+						this.page.identifier = 'article_detail_69.html';
+					};
+					(function() {
+						//DON'T EDIT BELOW THIS LINE
+						var d = document, s = d.createElement('script');
+						s.src = 'https://devj-blog.disqus.com/embed.js';
+						s.setAttribute('data-timestamp', +new Date());
+						(d.head || d.body).appendChild(s);
+					})();
+				</script>
+				<noscript>
+					Please enable JavaScript to view the
+					<a href="https://disqus.com/?ref_noscript">comments powered by
+						Disqus.</a>
+				</noscript>
+			</nav>
+		</div>
+	</div>
+</section>
+<!-- 메인-상세페이지 끝 -->
+<!-- 메인-상세 하단 메뉴 시작 -->
+<section class="section-3 con-min-width">
+	<div class="con">
+		<div class="article-list-bottom-cell flex flex-jc-c"><div class="./"><a href="article_detail_68.html" class="hover-underline">&lt 이전글</a></div><div class="./"><i class="fas fa-th-list"></i><a href="p_lamp-list-1.html" class="hover-underline"> 목록 </a></div><div class="./"><a href="article_detail_70.html"class="hover-underline">다음글 &gt</a></div></div>
+	</div>
+</section>
+<!-- 메인-상세 하단 메뉴 끝 -->
+</section>
+</main>
+<!-- 메인 컨텐츠 박스 끝 -->
+  <!-- 맨 위 버튼 시작 -->
+  <nav class="top-button flex flex-jc-c flex-ai-c">
+    <div class="">
+      <a href="#header">▲ TOP</a> 
+    </div>     
+  </nav>
+  <!-- 맨 위 버튼 끝 -->
+
+
+  <!-- 푸터 시작 -->
+  <footer class="bottom-bar con-min-width">
+    <div class="con flex flex-ai-c">
+      <a href="index.html" class="logo logo--mini flex flex-ai-c" title="HOME">
+        <img class="logo--mini__img" src="images/Dev_J_logo/logo_transparent.png" alt="">
+      </a>
+      <div class="bottom-bar__site-info">
+        <span><i class="far fa-envelope"></i> juy32400@gmail.com</span>
+        <br>
+        <br>
+        <span>COPYRIGHT 2020. Dev_J. All rights reserved.</span>
+      </div>
+    </div>
+  </footer>
+  <!-- 푸터 끝 -->
+</div>
+<!-- 사이트 박스 끝 -->
+</body>
+</html>

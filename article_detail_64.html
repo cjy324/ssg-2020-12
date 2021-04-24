@@ -1,0 +1,2589 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+<script data-ad-client="ca-pub-7996879977557531" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-X5RMP83794"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-X5RMP83794');
+</script>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- 구글 검색엔진 등록-소유권 확인 -->
+<meta name="google-site-verification" content="37R4KcEaJU5LfiKL7GI1hu1_spJgWOazN6xy48OHhD4" />
+
+<!-- Meta Tag & Open Graph -->
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<meta name="viewport" content="width=1200">
+<meta name="apple-mobile-web-app-title" content="Dev_J BLOG" />
+<!-- 메타태그정보 //-->
+<!-- META -->
+<link rel="canonical" href="https://blog.devj.me" />
+<meta name="subject" content="P.Lamplight - 개발일지(글쓰기,상세페이지,로그인 ~ 회원가입까지)"/>
+<meta name="title" content="Dev_J BLOG" />
+<meta name="keywords" content="JAVA, HTML, CSS, JavaScript, MySQL" />
+<meta name="copyright" content="Dev_J BLOG" />
+<meta name="pubdate" content="2021-04-24T15:02:49" />
+<meta name="lastmod" content="2021-04-24T15:02:49" />
+<!-- OPENGRAPH -->
+<meta property="og:site_name" content="Dev_J BLOG" />
+<meta property="og:type" content="blog" />
+<meta property="og:title" content="P.Lamplight - 개발일지(글쓰기,상세페이지,로그인 ~ 회원가입까지)" />
+<meta property="og:description" content=" 글쓰기상세페이지로그인  회원가입까지
+
+ NOTE
+
+
+post 전송방식
+1form 방식
+ 일반 form 형식
+2axios json 방식
+ json 형식
+
+
+to와 to의 차이
+이 있으면 자바스크립트 사용 가능
+
+ex
+toarticlelist
+toarticlelistboardId  articleboardId
+
+
+protected handleResponseaxiosResponseAxiosResponse  AxiosResponse 
+
+     로그인 정보 체크
+     axiosResponsedataresultCode  FA  axiosResponsedataresultCode  FB 초보 버전
+     axiosResponsedataresultCode  FA  로그인 정보가 아예 없는 경우
+     axiosResponsedataresultCode  FB  로그인 정보가 틀린 경우
+
+     axiosResponsedataresultCode  FA  axiosResponsedataresultCode  FB 초보 버전
+    FA FBincludesaxiosResponsedataresultCode 고급 버전
+    
+     로그인 정보 체크 후 로그인 화면으로 이동 
+    if FA FBincludesaxiosResponsedataresultCode 
+      alert로그인 후 이용해주세요
+      locationreplacememberlogin
+    
+
+    return axiosResponse
+  
+
+
+컴포넌트
+
+현재 앱 컴포넌트와 페이지별 컴포넌트로 구성
+페이지 컴포넌트는 현재 라우터주소에 의해 자동적으로 선택되고 있음
+
+
+state 상태
+
+페이지 글과 같은 상태는 전역적으로 필요하지 않음
+하지만 로그인 정보의 경우 전역적으로 필요함 
+이를 위해 전역상태를 구축해야함
+
+
+br
+ 주요소스코드
+
+ ArticleWritePagevue
+html
+template
+
+  TitleBar글쓰기TitleBar
+
+  section classsection sectionarticlewriteformbox px2
+    div classcontainer mxauto
+      div classpx6 py6 bgwhite roundedlg shadowmd
+        form vifglobalShareisLogined vonsubmitpreventcheckAndWriteArticle
+          FormRow title게시판
+            select classformrowselect refnewArticleBoardIdElRef
+              option value1NOTICEoption
+              option value2FREEoption
+            select
+          FormRow
+          FormRow title제목
+            input refnewArticleTitleElRef classformrowinput typetext placeholder제목을 입력해주세요
+          FormRow
+          FormRow title내용
+            textarea refnewArticleBodyElRef classformrowinput placeholder내용을 입력해주세요textarea
+          FormRow
+          FormRow title작성
+            div classbtns
+              input typesubmit value작성 classbtnprimary 
+            div
+          FormRow
+        form
+        div velse
+          routerlink classbtnlink tomemberlogin로그인routerlink 후 이용해주세요
+        div
+      div
+    div
+  section
+
+
+template
+
+script langts
+import  defineComponent reactive ref getCurrentInstance onMounted  from vue
+import  MainApi  from apis
+import  Router  from vuerouter
+
+
+export default defineComponent
+  name ArticleWritePage
+
+  props 
+    globalShare 
+      type Object
+      required true
+    
+    boardId 
+      type Number
+      required true
+      default1
+    
+  
+
+  setupprops
+    const routerRouter  getCurrentInstanceappContextconfigglobalPropertiesrouter
+    const mainApiMainApi  getCurrentInstanceappContextconfigglobalPropertiesmainApi
+
+    const newArticleBoardIdElRef  refHTMLInputElement
+    const newArticleTitleElRef  refHTMLInputElement
+    const newArticleBodyElRef  refHTMLInputElement
+
+    boardId 파라미터 값에 따라 게시판 선택 옵션 값newArticleBoardIdElRefvaluevalue이 바뀜
+    onMounted  
+        ifnewArticleBoardIdElRefvalue  null
+        return
+      
+        newArticleBoardIdElRefvaluevalue  propsboardId  
+      
+
+     공백 체크 
+    function checkAndWriteArticle
+
+      ifnewArticleBoardIdElRefvalue  null
+        return
+      
+
+      const newArticleBoardIdEl  newArticleBoardIdElRefvalue
+
+
+      일반적으로 안해도 되지만 typescript에서는 해야됨
+      ifnewArticleTitleElRefvalue  null
+        return
+      
+
+      const newArticleTitleEl  newArticleTitleElRefvalue
+      newArticleTitleElvalue  newArticleTitleElvaluetrim
+
+      ifnewArticleTitleElvaluelength  0
+        alert제목을 입력해 주세요
+        newArticleTitleElfocus
+        return
+      
+
+      ifnewArticleBodyElRefvalue  null
+        return
+      
+
+      const newArticleBodyEl  newArticleBodyElRefvalue
+      newArticleBodyElvalue  newArticleBodyElvaluetrim
+
+      ifnewArticleBodyElvaluelength  0
+        alert내용을 입력해 주세요
+        newArticleBodyElfocus
+        return
+      
+
+       글작성 함수로 보내기
+      writeArticleparseIntnewArticleBoardIdElvalue newArticleTitleElvalue newArticleBodyElvalue
+
+    
+
+    typescript에서는 titlestring bodystring 이런식으로 type을 적어주어야 한다
+      function writeArticleboardIdnumber titlestring bodystring
+       
+        mainApiarticledoWriteboardId title body
+        thenaxiosResponse  
+          alertaxiosResponsedatamsg
+          
+           로그인이 fail 상태이면 리턴
+          if  axiosResponsedatafail  
+            return
+          
+
+          authKey가 있는 상태에서 가능
+          const newArticleId  axiosResponsedatabodyid
+          alertnewArticleId  번 게시물 등록 완료
+
+          routerreplacedetailid  newArticleId
+        
+      
+
+    return
+      newArticleBoardIdElRef
+      newArticleTitleElRef
+      newArticleBodyElRef
+      checkAndWriteArticle
+      
+    
+
+  
+  
+
+script
+
+style scoped
+
+style
+
+
+ MemberLoginPagevue
+html
+template
+  TitleBar로그인TitleBar
+
+  section classsection sectionmemberloginform px2
+    div classcontainer mxauto
+      div classpx6 py6 bgwhite roundedlg shadowmd
+        form vifglobalShareisLogined  false vonsubmitpreventcheckAndLogin
+          FormRow title로그인아이디
+            input refloginIdElRef classformrowinput typetext placeholder아이디를 입력해주세요
+          FormRow
+          FormRow title로그인비밀번호
+            input refloginPwElRef classformrowinput typepassword placeholder로그인비밀번호를 입력해주세요
+          FormRow
+          FormRow title로그인
+            div classbtns
+              input typesubmit value로그인 classbtnprimary 
+            div
+          FormRow
+        form
+        div velse
+          이미 로그인 되었습니다 routelink classbtnlink to홈routelink 으로 이동
+        div
+      div
+    div
+  section
+template
+
+script langts
+import  defineComponent ref getCurrentInstance onMounted  from vue
+import  IArticle  from types
+import  MainApi  from apis
+import  useRoute  from vuerouter
+import  Router  from vuerouter
+
+export default defineComponent
+  name MemberLoginPage
+  props 
+    globalShare 
+      type Object
+      required true
+    
+  
+  setupprops 
+    const route  useRoute
+    const routerRouter  getCurrentInstanceappContextconfigglobalPropertiesrouter
+    const mainApiMainApi  getCurrentInstanceappContextconfigglobalPropertiesmainApi
+    const loginIdElRef  refHTMLInputElement
+    const loginPwElRef  refHTMLInputElement
+
+
+    
+    onMounted  
+       만약 route로 들어온 쿼리의 loginId가 null이 아니면
+      if  routequeryloginId  null  
+        if  loginIdElRefvalue  null  
+          return
+        
+        if  loginPwElRefvalue  null  
+          return
+        
+
+         loginIdElRef 값에 routequeryloginId 정보 담기
+        loginIdElRefvaluevalue  routequeryloginId as any
+         loginPwElRef에 포커스
+        loginPwElRefvaluefocus
+      
+    
+
+
+    function checkAndLogin 
+      if  loginIdElRefvalue  null  
+        return
+      
+
+      const loginIdEl  loginIdElRefvalue
+      loginIdElvalue  loginIdElvaluetrim
+
+      if  loginIdElvaluelength  0  
+        alert아이디를 입력해주세요
+        loginIdElfocus
+        return
+      
+      if  loginPwElRefvalue  null  
+        return
+      
+
+      const loginPwEl  loginPwElRefvalue
+      loginPwElvalue  loginPwElvaluetrim
+
+      if  loginPwElvaluelength  0  
+        alert비밀번호를 입력해주세요
+        loginPwElfocus
+        return
+      
+
+      로그인
+      loginloginIdElvalue loginPwElvalue
+    
+    
+    function loginloginIdstring loginPwstring 
+      mainApimemberauthKeyloginId loginPw
+        thenaxiosResponse  
+          alertaxiosResponsedatamsg
+          
+           로그인이 fail 상태이면 리턴
+          if  axiosResponsedatafail  
+            return
+          
+
+          const authKey  axiosResponsedatabodyauthKey
+          const loginedMemberId  axiosResponsedatabodyid
+          const loginedMemberName  axiosResponsedatabodyname
+          const loginedMemberNickname  axiosResponsedatabodynickname
+
+          localStoragesetItemauthKey authKey
+          localStoragesetItemloginedMemberId loginedMemberId  
+          localStoragesetItemloginedMemberName loginedMemberName
+          localStoragesetItemloginedMemberNickname loginedMemberNickname
+          
+          propsglobalShareloginedMember  
+            authKey
+            idloginedMemberId
+            nameloginedMemberName
+            nicknameloginedMemberNickname
+          
+
+          alertaxiosResponsedatamsg
+
+          routerreplace
+        
+    
+    return 
+      checkAndLogin
+      loginIdElRef
+      loginPwElRef
+    
+  
+
+script
+
+style scoped
+style 
+
+
+ MemberJoinPagevue
+ html
+template
+  TitleBar회원가입TitleBar
+
+  section classsection sectionmemberjoinform px2
+    div classcontainer mxauto
+      div classpx6 py6 bgwhite roundedlg shadowmd
+        form vifglobalShareisLogined  false vonsubmitpreventcheckAndJoin
+          FormRow title아이디
+            input refloginIdElRef classformrowinput typetext placeholder아이디를 입력해주세요
+          FormRow
+          FormRow title비밀번호
+            input refloginPwElRef classformrowinput typepassword placeholder비밀번호를 입력해주세요
+          FormRow
+          FormRow title비밀번호 확인
+            input refloginPwConfirmElRef classformrowinput typepassword placeholder비밀번호 확인을 해주세요
+          FormRow
+          FormRow title이름
+            input refnameElRef classformrowinput typetext placeholder이름을 입력해주세요
+          FormRow
+          FormRow title닉네임
+            input refnicknameElRef classformrowinput typetext placeholder닉네임을 입력해주세요
+          FormRow
+          FormRow title전화번호
+            input refcellphoneNoElRef classformrowinput typetel placeholder전화번호를 입력해주세요
+          FormRow
+          FormRow title이메일
+            input refemailElRef classformrowinput typeemail placeholder이메일을 입력해주세요
+          FormRow
+          FormRow title가입
+            div classbtns
+              input typesubmit value가입 classbtnprimary 
+            div
+          FormRow
+        form
+        div velse
+          이미 로그인 상태입니다 routelink classbtnlink to홈routelink 으로 이동
+        div
+      div
+    div
+  section
+template
+
+script langts
+import  defineComponent ref reactive getCurrentInstance onMounted  from vue
+import  MainApi  from apis
+import  Router  from vuerouter
+
+export default defineComponent
+  name MemberJoinPage
+  props 
+    globalShare 
+      type Object
+      required true
+    
+  
+  setupprops 
+    const routerRouter  getCurrentInstanceappContextconfigglobalPropertiesrouter
+    const mainApiMainApi  getCurrentInstanceappContextconfigglobalPropertiesmainApi
+    const loginIdElRef  refHTMLInputElement
+    const loginPwElRef  refHTMLInputElement
+    const loginPwConfirmElRef  refHTMLInputElement
+    const nameElRef  refHTMLInputElement
+    const nicknameElRef  refHTMLInputElement
+    const cellphoneNoElRef  refHTMLInputElement
+    const emailElRef  refHTMLInputElement
+    
+   
+    function checkAndJoin 
+        아이디 체크
+      if  loginIdElRefvalue  null  
+        return
+      
+      
+      const loginIdEl  loginIdElRefvalue
+      loginIdElvalue  loginIdElvaluetrim
+      
+      if  loginIdElvaluelength  0  
+        alert아이디를 입력해주세요
+        loginIdElfocus
+        return
+      
+       비번 체크
+      if  loginPwElRefvalue  null  
+        return
+      
+
+      const loginPwEl  loginPwElRefvalue
+      loginPwElvalue  loginPwElvaluetrim
+      
+      if  loginPwElvaluelength  0  
+        alert비밀번호를 입력해주세요
+        loginPwElfocus
+        return
+      
+      
+       비번확인 체크
+      if  loginPwConfirmElRefvalue  null  
+        return
+      
+
+      const loginPwConfirmEl  loginPwConfirmElRefvalue
+      
+      if  loginPwElvalue  loginPwConfirmElvalue  
+        alert로그인 비번이 일치하지 않습니다
+        loginPwConfirmElfocus
+        return
+      
+
+       이름 체크
+      if  nameElRefvalue  null  
+        return
+      
+
+      const nameEl  nameElRefvalue
+      nameElvalue  nameElvaluetrim
+
+      if  nameElvaluelength  0  
+        alert이름을 입력해주세요
+        nameElfocus
+        return
+      
+
+       닉네임 체크
+      if  nicknameElRefvalue  null  
+        return
+      
+
+      const nicknameEl  nicknameElRefvalue
+      nicknameElvalue  nicknameElvaluetrim
+      
+      if  nicknameElvaluelength  0  
+        alert닉네임을 입력해주세요
+        nicknameElfocus
+        return
+      
+      
+       전화번호 체크
+      if  cellphoneNoElRefvalue  null  
+        return
+      
+
+      const cellphoneNoEl  cellphoneNoElRefvalue
+      cellphoneNoElvalue  cellphoneNoElvaluetrim
+      
+      if  cellphoneNoElvaluelength  0  
+        alert전화번호를 입력해주세요
+        cellphoneNoElfocus
+        return
+      
+
+       이메일 체크
+      if  emailElRefvalue  null  
+        return
+      
+      
+      const emailEl  emailElRefvalue
+      emailElvalue  emailElvaluetrim
+      
+      if  emailElvaluelength  0  
+        alert이메일을 입력해주세요
+        emailElfocus
+        return
+      
+      
+      회원가입
+      joinloginIdElvalue loginPwElvalue nameElvalue nicknameElvalue cellphoneNoElvalue emailElvalue
+    
+    function joinloginIdstring loginPwstring namestring nicknamestring cellphoneNostring emailstring 
+      mainApimemberdoJoinloginId loginPw name nickname cellphoneNo email
+        thenaxiosResponse  
+          
+          alertaxiosResponsedatamsg
+          if  axiosResponsedatafail  
+            return
+          
+          
+          routerreplacememberloginloginId  loginId
+        
+    
+    return 
+      checkAndJoin
+      loginIdElRef
+      loginPwElRef
+      loginPwConfirmElRef
+      nameElRef
+      nicknameElRef
+      cellphoneNoElRef
+      emailElRef
+    
+  
+
+script
+
+style scoped
+style 
+" />
+<meta property="og:locale" content="ko_KR" />
+<meta property="og:image" content="images/Dev_J_logo/logo.png" />
+<meta property="og:image:alt" content="blog.devj.me" />
+<meta property="og:image:width" content="486" />
+<meta property="og:image:height" content="254" />
+<meta property="og:updated_time" content="2021-04-24T15:02:49"/>
+<meta property="og:pubdate" content="2021-04-24T15:02:49" />
+<meta property="og:url" content="https://blog.devj.me" />
+<!-- TWITTER -->
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="P.Lamplight - 개발일지(글쓰기,상세페이지,로그인 ~ 회원가입까지)" />
+<meta name="twitter:site" content="@Dev_J BLOG" />
+<meta name="twitter:creator" content="@Dev_J BLOG" />
+<meta name="twitter:image" content="images/Dev_J_logo/logo.png">
+<meta name="twitter:description" content=" 글쓰기상세페이지로그인  회원가입까지
+
+ NOTE
+
+
+post 전송방식
+1form 방식
+ 일반 form 형식
+2axios json 방식
+ json 형식
+
+
+to와 to의 차이
+이 있으면 자바스크립트 사용 가능
+
+ex
+toarticlelist
+toarticlelistboardId  articleboardId
+
+
+protected handleResponseaxiosResponseAxiosResponse  AxiosResponse 
+
+     로그인 정보 체크
+     axiosResponsedataresultCode  FA  axiosResponsedataresultCode  FB 초보 버전
+     axiosResponsedataresultCode  FA  로그인 정보가 아예 없는 경우
+     axiosResponsedataresultCode  FB  로그인 정보가 틀린 경우
+
+     axiosResponsedataresultCode  FA  axiosResponsedataresultCode  FB 초보 버전
+    FA FBincludesaxiosResponsedataresultCode 고급 버전
+    
+     로그인 정보 체크 후 로그인 화면으로 이동 
+    if FA FBincludesaxiosResponsedataresultCode 
+      alert로그인 후 이용해주세요
+      locationreplacememberlogin
+    
+
+    return axiosResponse
+  
+
+
+컴포넌트
+
+현재 앱 컴포넌트와 페이지별 컴포넌트로 구성
+페이지 컴포넌트는 현재 라우터주소에 의해 자동적으로 선택되고 있음
+
+
+state 상태
+
+페이지 글과 같은 상태는 전역적으로 필요하지 않음
+하지만 로그인 정보의 경우 전역적으로 필요함 
+이를 위해 전역상태를 구축해야함
+
+
+br
+ 주요소스코드
+
+ ArticleWritePagevue
+html
+template
+
+  TitleBar글쓰기TitleBar
+
+  section classsection sectionarticlewriteformbox px2
+    div classcontainer mxauto
+      div classpx6 py6 bgwhite roundedlg shadowmd
+        form vifglobalShareisLogined vonsubmitpreventcheckAndWriteArticle
+          FormRow title게시판
+            select classformrowselect refnewArticleBoardIdElRef
+              option value1NOTICEoption
+              option value2FREEoption
+            select
+          FormRow
+          FormRow title제목
+            input refnewArticleTitleElRef classformrowinput typetext placeholder제목을 입력해주세요
+          FormRow
+          FormRow title내용
+            textarea refnewArticleBodyElRef classformrowinput placeholder내용을 입력해주세요textarea
+          FormRow
+          FormRow title작성
+            div classbtns
+              input typesubmit value작성 classbtnprimary 
+            div
+          FormRow
+        form
+        div velse
+          routerlink classbtnlink tomemberlogin로그인routerlink 후 이용해주세요
+        div
+      div
+    div
+  section
+
+
+template
+
+script langts
+import  defineComponent reactive ref getCurrentInstance onMounted  from vue
+import  MainApi  from apis
+import  Router  from vuerouter
+
+
+export default defineComponent
+  name ArticleWritePage
+
+  props 
+    globalShare 
+      type Object
+      required true
+    
+    boardId 
+      type Number
+      required true
+      default1
+    
+  
+
+  setupprops
+    const routerRouter  getCurrentInstanceappContextconfigglobalPropertiesrouter
+    const mainApiMainApi  getCurrentInstanceappContextconfigglobalPropertiesmainApi
+
+    const newArticleBoardIdElRef  refHTMLInputElement
+    const newArticleTitleElRef  refHTMLInputElement
+    const newArticleBodyElRef  refHTMLInputElement
+
+    boardId 파라미터 값에 따라 게시판 선택 옵션 값newArticleBoardIdElRefvaluevalue이 바뀜
+    onMounted  
+        ifnewArticleBoardIdElRefvalue  null
+        return
+      
+        newArticleBoardIdElRefvaluevalue  propsboardId  
+      
+
+     공백 체크 
+    function checkAndWriteArticle
+
+      ifnewArticleBoardIdElRefvalue  null
+        return
+      
+
+      const newArticleBoardIdEl  newArticleBoardIdElRefvalue
+
+
+      일반적으로 안해도 되지만 typescript에서는 해야됨
+      ifnewArticleTitleElRefvalue  null
+        return
+      
+
+      const newArticleTitleEl  newArticleTitleElRefvalue
+      newArticleTitleElvalue  newArticleTitleElvaluetrim
+
+      ifnewArticleTitleElvaluelength  0
+        alert제목을 입력해 주세요
+        newArticleTitleElfocus
+        return
+      
+
+      ifnewArticleBodyElRefvalue  null
+        return
+      
+
+      const newArticleBodyEl  newArticleBodyElRefvalue
+      newArticleBodyElvalue  newArticleBodyElvaluetrim
+
+      ifnewArticleBodyElvaluelength  0
+        alert내용을 입력해 주세요
+        newArticleBodyElfocus
+        return
+      
+
+       글작성 함수로 보내기
+      writeArticleparseIntnewArticleBoardIdElvalue newArticleTitleElvalue newArticleBodyElvalue
+
+    
+
+    typescript에서는 titlestring bodystring 이런식으로 type을 적어주어야 한다
+      function writeArticleboardIdnumber titlestring bodystring
+       
+        mainApiarticledoWriteboardId title body
+        thenaxiosResponse  
+          alertaxiosResponsedatamsg
+          
+           로그인이 fail 상태이면 리턴
+          if  axiosResponsedatafail  
+            return
+          
+
+          authKey가 있는 상태에서 가능
+          const newArticleId  axiosResponsedatabodyid
+          alertnewArticleId  번 게시물 등록 완료
+
+          routerreplacedetailid  newArticleId
+        
+      
+
+    return
+      newArticleBoardIdElRef
+      newArticleTitleElRef
+      newArticleBodyElRef
+      checkAndWriteArticle
+      
+    
+
+  
+  
+
+script
+
+style scoped
+
+style
+
+
+ MemberLoginPagevue
+html
+template
+  TitleBar로그인TitleBar
+
+  section classsection sectionmemberloginform px2
+    div classcontainer mxauto
+      div classpx6 py6 bgwhite roundedlg shadowmd
+        form vifglobalShareisLogined  false vonsubmitpreventcheckAndLogin
+          FormRow title로그인아이디
+            input refloginIdElRef classformrowinput typetext placeholder아이디를 입력해주세요
+          FormRow
+          FormRow title로그인비밀번호
+            input refloginPwElRef classformrowinput typepassword placeholder로그인비밀번호를 입력해주세요
+          FormRow
+          FormRow title로그인
+            div classbtns
+              input typesubmit value로그인 classbtnprimary 
+            div
+          FormRow
+        form
+        div velse
+          이미 로그인 되었습니다 routelink classbtnlink to홈routelink 으로 이동
+        div
+      div
+    div
+  section
+template
+
+script langts
+import  defineComponent ref getCurrentInstance onMounted  from vue
+import  IArticle  from types
+import  MainApi  from apis
+import  useRoute  from vuerouter
+import  Router  from vuerouter
+
+export default defineComponent
+  name MemberLoginPage
+  props 
+    globalShare 
+      type Object
+      required true
+    
+  
+  setupprops 
+    const route  useRoute
+    const routerRouter  getCurrentInstanceappContextconfigglobalPropertiesrouter
+    const mainApiMainApi  getCurrentInstanceappContextconfigglobalPropertiesmainApi
+    const loginIdElRef  refHTMLInputElement
+    const loginPwElRef  refHTMLInputElement
+
+
+    
+    onMounted  
+       만약 route로 들어온 쿼리의 loginId가 null이 아니면
+      if  routequeryloginId  null  
+        if  loginIdElRefvalue  null  
+          return
+        
+        if  loginPwElRefvalue  null  
+          return
+        
+
+         loginIdElRef 값에 routequeryloginId 정보 담기
+        loginIdElRefvaluevalue  routequeryloginId as any
+         loginPwElRef에 포커스
+        loginPwElRefvaluefocus
+      
+    
+
+
+    function checkAndLogin 
+      if  loginIdElRefvalue  null  
+        return
+      
+
+      const loginIdEl  loginIdElRefvalue
+      loginIdElvalue  loginIdElvaluetrim
+
+      if  loginIdElvaluelength  0  
+        alert아이디를 입력해주세요
+        loginIdElfocus
+        return
+      
+      if  loginPwElRefvalue  null  
+        return
+      
+
+      const loginPwEl  loginPwElRefvalue
+      loginPwElvalue  loginPwElvaluetrim
+
+      if  loginPwElvaluelength  0  
+        alert비밀번호를 입력해주세요
+        loginPwElfocus
+        return
+      
+
+      로그인
+      loginloginIdElvalue loginPwElvalue
+    
+    
+    function loginloginIdstring loginPwstring 
+      mainApimemberauthKeyloginId loginPw
+        thenaxiosResponse  
+          alertaxiosResponsedatamsg
+          
+           로그인이 fail 상태이면 리턴
+          if  axiosResponsedatafail  
+            return
+          
+
+          const authKey  axiosResponsedatabodyauthKey
+          const loginedMemberId  axiosResponsedatabodyid
+          const loginedMemberName  axiosResponsedatabodyname
+          const loginedMemberNickname  axiosResponsedatabodynickname
+
+          localStoragesetItemauthKey authKey
+          localStoragesetItemloginedMemberId loginedMemberId  
+          localStoragesetItemloginedMemberName loginedMemberName
+          localStoragesetItemloginedMemberNickname loginedMemberNickname
+          
+          propsglobalShareloginedMember  
+            authKey
+            idloginedMemberId
+            nameloginedMemberName
+            nicknameloginedMemberNickname
+          
+
+          alertaxiosResponsedatamsg
+
+          routerreplace
+        
+    
+    return 
+      checkAndLogin
+      loginIdElRef
+      loginPwElRef
+    
+  
+
+script
+
+style scoped
+style 
+
+
+ MemberJoinPagevue
+ html
+template
+  TitleBar회원가입TitleBar
+
+  section classsection sectionmemberjoinform px2
+    div classcontainer mxauto
+      div classpx6 py6 bgwhite roundedlg shadowmd
+        form vifglobalShareisLogined  false vonsubmitpreventcheckAndJoin
+          FormRow title아이디
+            input refloginIdElRef classformrowinput typetext placeholder아이디를 입력해주세요
+          FormRow
+          FormRow title비밀번호
+            input refloginPwElRef classformrowinput typepassword placeholder비밀번호를 입력해주세요
+          FormRow
+          FormRow title비밀번호 확인
+            input refloginPwConfirmElRef classformrowinput typepassword placeholder비밀번호 확인을 해주세요
+          FormRow
+          FormRow title이름
+            input refnameElRef classformrowinput typetext placeholder이름을 입력해주세요
+          FormRow
+          FormRow title닉네임
+            input refnicknameElRef classformrowinput typetext placeholder닉네임을 입력해주세요
+          FormRow
+          FormRow title전화번호
+            input refcellphoneNoElRef classformrowinput typetel placeholder전화번호를 입력해주세요
+          FormRow
+          FormRow title이메일
+            input refemailElRef classformrowinput typeemail placeholder이메일을 입력해주세요
+          FormRow
+          FormRow title가입
+            div classbtns
+              input typesubmit value가입 classbtnprimary 
+            div
+          FormRow
+        form
+        div velse
+          이미 로그인 상태입니다 routelink classbtnlink to홈routelink 으로 이동
+        div
+      div
+    div
+  section
+template
+
+script langts
+import  defineComponent ref reactive getCurrentInstance onMounted  from vue
+import  MainApi  from apis
+import  Router  from vuerouter
+
+export default defineComponent
+  name MemberJoinPage
+  props 
+    globalShare 
+      type Object
+      required true
+    
+  
+  setupprops 
+    const routerRouter  getCurrentInstanceappContextconfigglobalPropertiesrouter
+    const mainApiMainApi  getCurrentInstanceappContextconfigglobalPropertiesmainApi
+    const loginIdElRef  refHTMLInputElement
+    const loginPwElRef  refHTMLInputElement
+    const loginPwConfirmElRef  refHTMLInputElement
+    const nameElRef  refHTMLInputElement
+    const nicknameElRef  refHTMLInputElement
+    const cellphoneNoElRef  refHTMLInputElement
+    const emailElRef  refHTMLInputElement
+    
+   
+    function checkAndJoin 
+        아이디 체크
+      if  loginIdElRefvalue  null  
+        return
+      
+      
+      const loginIdEl  loginIdElRefvalue
+      loginIdElvalue  loginIdElvaluetrim
+      
+      if  loginIdElvaluelength  0  
+        alert아이디를 입력해주세요
+        loginIdElfocus
+        return
+      
+       비번 체크
+      if  loginPwElRefvalue  null  
+        return
+      
+
+      const loginPwEl  loginPwElRefvalue
+      loginPwElvalue  loginPwElvaluetrim
+      
+      if  loginPwElvaluelength  0  
+        alert비밀번호를 입력해주세요
+        loginPwElfocus
+        return
+      
+      
+       비번확인 체크
+      if  loginPwConfirmElRefvalue  null  
+        return
+      
+
+      const loginPwConfirmEl  loginPwConfirmElRefvalue
+      
+      if  loginPwElvalue  loginPwConfirmElvalue  
+        alert로그인 비번이 일치하지 않습니다
+        loginPwConfirmElfocus
+        return
+      
+
+       이름 체크
+      if  nameElRefvalue  null  
+        return
+      
+
+      const nameEl  nameElRefvalue
+      nameElvalue  nameElvaluetrim
+
+      if  nameElvaluelength  0  
+        alert이름을 입력해주세요
+        nameElfocus
+        return
+      
+
+       닉네임 체크
+      if  nicknameElRefvalue  null  
+        return
+      
+
+      const nicknameEl  nicknameElRefvalue
+      nicknameElvalue  nicknameElvaluetrim
+      
+      if  nicknameElvaluelength  0  
+        alert닉네임을 입력해주세요
+        nicknameElfocus
+        return
+      
+      
+       전화번호 체크
+      if  cellphoneNoElRefvalue  null  
+        return
+      
+
+      const cellphoneNoEl  cellphoneNoElRefvalue
+      cellphoneNoElvalue  cellphoneNoElvaluetrim
+      
+      if  cellphoneNoElvaluelength  0  
+        alert전화번호를 입력해주세요
+        cellphoneNoElfocus
+        return
+      
+
+       이메일 체크
+      if  emailElRefvalue  null  
+        return
+      
+      
+      const emailEl  emailElRefvalue
+      emailElvalue  emailElvaluetrim
+      
+      if  emailElvaluelength  0  
+        alert이메일을 입력해주세요
+        emailElfocus
+        return
+      
+      
+      회원가입
+      joinloginIdElvalue loginPwElvalue nameElvalue nicknameElvalue cellphoneNoElvalue emailElvalue
+    
+    function joinloginIdstring loginPwstring namestring nicknamestring cellphoneNostring emailstring 
+      mainApimemberdoJoinloginId loginPw name nickname cellphoneNo email
+        thenaxiosResponse  
+          
+          alertaxiosResponsedatamsg
+          if  axiosResponsedatafail  
+            return
+          
+          
+          routerreplacememberloginloginId  loginId
+        
+    
+    return 
+      checkAndJoin
+      loginIdElRef
+      loginPwElRef
+      loginPwConfirmElRef
+      nameElRef
+      nicknameElRef
+      cellphoneNoElRef
+      emailElRef
+    
+  
+
+script
+
+style scoped
+style 
+" />
+<!-- GOOGLE+ -->
+<meta itemprop="headline" content="Dev_J BLOG" />
+<meta itemprop="name" content="Dev_J BLOG" />
+<meta itemprop="description" content=" 글쓰기상세페이지로그인  회원가입까지
+
+ NOTE
+
+
+post 전송방식
+1form 방식
+ 일반 form 형식
+2axios json 방식
+ json 형식
+
+
+to와 to의 차이
+이 있으면 자바스크립트 사용 가능
+
+ex
+toarticlelist
+toarticlelistboardId  articleboardId
+
+
+protected handleResponseaxiosResponseAxiosResponse  AxiosResponse 
+
+     로그인 정보 체크
+     axiosResponsedataresultCode  FA  axiosResponsedataresultCode  FB 초보 버전
+     axiosResponsedataresultCode  FA  로그인 정보가 아예 없는 경우
+     axiosResponsedataresultCode  FB  로그인 정보가 틀린 경우
+
+     axiosResponsedataresultCode  FA  axiosResponsedataresultCode  FB 초보 버전
+    FA FBincludesaxiosResponsedataresultCode 고급 버전
+    
+     로그인 정보 체크 후 로그인 화면으로 이동 
+    if FA FBincludesaxiosResponsedataresultCode 
+      alert로그인 후 이용해주세요
+      locationreplacememberlogin
+    
+
+    return axiosResponse
+  
+
+
+컴포넌트
+
+현재 앱 컴포넌트와 페이지별 컴포넌트로 구성
+페이지 컴포넌트는 현재 라우터주소에 의해 자동적으로 선택되고 있음
+
+
+state 상태
+
+페이지 글과 같은 상태는 전역적으로 필요하지 않음
+하지만 로그인 정보의 경우 전역적으로 필요함 
+이를 위해 전역상태를 구축해야함
+
+
+br
+ 주요소스코드
+
+ ArticleWritePagevue
+html
+template
+
+  TitleBar글쓰기TitleBar
+
+  section classsection sectionarticlewriteformbox px2
+    div classcontainer mxauto
+      div classpx6 py6 bgwhite roundedlg shadowmd
+        form vifglobalShareisLogined vonsubmitpreventcheckAndWriteArticle
+          FormRow title게시판
+            select classformrowselect refnewArticleBoardIdElRef
+              option value1NOTICEoption
+              option value2FREEoption
+            select
+          FormRow
+          FormRow title제목
+            input refnewArticleTitleElRef classformrowinput typetext placeholder제목을 입력해주세요
+          FormRow
+          FormRow title내용
+            textarea refnewArticleBodyElRef classformrowinput placeholder내용을 입력해주세요textarea
+          FormRow
+          FormRow title작성
+            div classbtns
+              input typesubmit value작성 classbtnprimary 
+            div
+          FormRow
+        form
+        div velse
+          routerlink classbtnlink tomemberlogin로그인routerlink 후 이용해주세요
+        div
+      div
+    div
+  section
+
+
+template
+
+script langts
+import  defineComponent reactive ref getCurrentInstance onMounted  from vue
+import  MainApi  from apis
+import  Router  from vuerouter
+
+
+export default defineComponent
+  name ArticleWritePage
+
+  props 
+    globalShare 
+      type Object
+      required true
+    
+    boardId 
+      type Number
+      required true
+      default1
+    
+  
+
+  setupprops
+    const routerRouter  getCurrentInstanceappContextconfigglobalPropertiesrouter
+    const mainApiMainApi  getCurrentInstanceappContextconfigglobalPropertiesmainApi
+
+    const newArticleBoardIdElRef  refHTMLInputElement
+    const newArticleTitleElRef  refHTMLInputElement
+    const newArticleBodyElRef  refHTMLInputElement
+
+    boardId 파라미터 값에 따라 게시판 선택 옵션 값newArticleBoardIdElRefvaluevalue이 바뀜
+    onMounted  
+        ifnewArticleBoardIdElRefvalue  null
+        return
+      
+        newArticleBoardIdElRefvaluevalue  propsboardId  
+      
+
+     공백 체크 
+    function checkAndWriteArticle
+
+      ifnewArticleBoardIdElRefvalue  null
+        return
+      
+
+      const newArticleBoardIdEl  newArticleBoardIdElRefvalue
+
+
+      일반적으로 안해도 되지만 typescript에서는 해야됨
+      ifnewArticleTitleElRefvalue  null
+        return
+      
+
+      const newArticleTitleEl  newArticleTitleElRefvalue
+      newArticleTitleElvalue  newArticleTitleElvaluetrim
+
+      ifnewArticleTitleElvaluelength  0
+        alert제목을 입력해 주세요
+        newArticleTitleElfocus
+        return
+      
+
+      ifnewArticleBodyElRefvalue  null
+        return
+      
+
+      const newArticleBodyEl  newArticleBodyElRefvalue
+      newArticleBodyElvalue  newArticleBodyElvaluetrim
+
+      ifnewArticleBodyElvaluelength  0
+        alert내용을 입력해 주세요
+        newArticleBodyElfocus
+        return
+      
+
+       글작성 함수로 보내기
+      writeArticleparseIntnewArticleBoardIdElvalue newArticleTitleElvalue newArticleBodyElvalue
+
+    
+
+    typescript에서는 titlestring bodystring 이런식으로 type을 적어주어야 한다
+      function writeArticleboardIdnumber titlestring bodystring
+       
+        mainApiarticledoWriteboardId title body
+        thenaxiosResponse  
+          alertaxiosResponsedatamsg
+          
+           로그인이 fail 상태이면 리턴
+          if  axiosResponsedatafail  
+            return
+          
+
+          authKey가 있는 상태에서 가능
+          const newArticleId  axiosResponsedatabodyid
+          alertnewArticleId  번 게시물 등록 완료
+
+          routerreplacedetailid  newArticleId
+        
+      
+
+    return
+      newArticleBoardIdElRef
+      newArticleTitleElRef
+      newArticleBodyElRef
+      checkAndWriteArticle
+      
+    
+
+  
+  
+
+script
+
+style scoped
+
+style
+
+
+ MemberLoginPagevue
+html
+template
+  TitleBar로그인TitleBar
+
+  section classsection sectionmemberloginform px2
+    div classcontainer mxauto
+      div classpx6 py6 bgwhite roundedlg shadowmd
+        form vifglobalShareisLogined  false vonsubmitpreventcheckAndLogin
+          FormRow title로그인아이디
+            input refloginIdElRef classformrowinput typetext placeholder아이디를 입력해주세요
+          FormRow
+          FormRow title로그인비밀번호
+            input refloginPwElRef classformrowinput typepassword placeholder로그인비밀번호를 입력해주세요
+          FormRow
+          FormRow title로그인
+            div classbtns
+              input typesubmit value로그인 classbtnprimary 
+            div
+          FormRow
+        form
+        div velse
+          이미 로그인 되었습니다 routelink classbtnlink to홈routelink 으로 이동
+        div
+      div
+    div
+  section
+template
+
+script langts
+import  defineComponent ref getCurrentInstance onMounted  from vue
+import  IArticle  from types
+import  MainApi  from apis
+import  useRoute  from vuerouter
+import  Router  from vuerouter
+
+export default defineComponent
+  name MemberLoginPage
+  props 
+    globalShare 
+      type Object
+      required true
+    
+  
+  setupprops 
+    const route  useRoute
+    const routerRouter  getCurrentInstanceappContextconfigglobalPropertiesrouter
+    const mainApiMainApi  getCurrentInstanceappContextconfigglobalPropertiesmainApi
+    const loginIdElRef  refHTMLInputElement
+    const loginPwElRef  refHTMLInputElement
+
+
+    
+    onMounted  
+       만약 route로 들어온 쿼리의 loginId가 null이 아니면
+      if  routequeryloginId  null  
+        if  loginIdElRefvalue  null  
+          return
+        
+        if  loginPwElRefvalue  null  
+          return
+        
+
+         loginIdElRef 값에 routequeryloginId 정보 담기
+        loginIdElRefvaluevalue  routequeryloginId as any
+         loginPwElRef에 포커스
+        loginPwElRefvaluefocus
+      
+    
+
+
+    function checkAndLogin 
+      if  loginIdElRefvalue  null  
+        return
+      
+
+      const loginIdEl  loginIdElRefvalue
+      loginIdElvalue  loginIdElvaluetrim
+
+      if  loginIdElvaluelength  0  
+        alert아이디를 입력해주세요
+        loginIdElfocus
+        return
+      
+      if  loginPwElRefvalue  null  
+        return
+      
+
+      const loginPwEl  loginPwElRefvalue
+      loginPwElvalue  loginPwElvaluetrim
+
+      if  loginPwElvaluelength  0  
+        alert비밀번호를 입력해주세요
+        loginPwElfocus
+        return
+      
+
+      로그인
+      loginloginIdElvalue loginPwElvalue
+    
+    
+    function loginloginIdstring loginPwstring 
+      mainApimemberauthKeyloginId loginPw
+        thenaxiosResponse  
+          alertaxiosResponsedatamsg
+          
+           로그인이 fail 상태이면 리턴
+          if  axiosResponsedatafail  
+            return
+          
+
+          const authKey  axiosResponsedatabodyauthKey
+          const loginedMemberId  axiosResponsedatabodyid
+          const loginedMemberName  axiosResponsedatabodyname
+          const loginedMemberNickname  axiosResponsedatabodynickname
+
+          localStoragesetItemauthKey authKey
+          localStoragesetItemloginedMemberId loginedMemberId  
+          localStoragesetItemloginedMemberName loginedMemberName
+          localStoragesetItemloginedMemberNickname loginedMemberNickname
+          
+          propsglobalShareloginedMember  
+            authKey
+            idloginedMemberId
+            nameloginedMemberName
+            nicknameloginedMemberNickname
+          
+
+          alertaxiosResponsedatamsg
+
+          routerreplace
+        
+    
+    return 
+      checkAndLogin
+      loginIdElRef
+      loginPwElRef
+    
+  
+
+script
+
+style scoped
+style 
+
+
+ MemberJoinPagevue
+ html
+template
+  TitleBar회원가입TitleBar
+
+  section classsection sectionmemberjoinform px2
+    div classcontainer mxauto
+      div classpx6 py6 bgwhite roundedlg shadowmd
+        form vifglobalShareisLogined  false vonsubmitpreventcheckAndJoin
+          FormRow title아이디
+            input refloginIdElRef classformrowinput typetext placeholder아이디를 입력해주세요
+          FormRow
+          FormRow title비밀번호
+            input refloginPwElRef classformrowinput typepassword placeholder비밀번호를 입력해주세요
+          FormRow
+          FormRow title비밀번호 확인
+            input refloginPwConfirmElRef classformrowinput typepassword placeholder비밀번호 확인을 해주세요
+          FormRow
+          FormRow title이름
+            input refnameElRef classformrowinput typetext placeholder이름을 입력해주세요
+          FormRow
+          FormRow title닉네임
+            input refnicknameElRef classformrowinput typetext placeholder닉네임을 입력해주세요
+          FormRow
+          FormRow title전화번호
+            input refcellphoneNoElRef classformrowinput typetel placeholder전화번호를 입력해주세요
+          FormRow
+          FormRow title이메일
+            input refemailElRef classformrowinput typeemail placeholder이메일을 입력해주세요
+          FormRow
+          FormRow title가입
+            div classbtns
+              input typesubmit value가입 classbtnprimary 
+            div
+          FormRow
+        form
+        div velse
+          이미 로그인 상태입니다 routelink classbtnlink to홈routelink 으로 이동
+        div
+      div
+    div
+  section
+template
+
+script langts
+import  defineComponent ref reactive getCurrentInstance onMounted  from vue
+import  MainApi  from apis
+import  Router  from vuerouter
+
+export default defineComponent
+  name MemberJoinPage
+  props 
+    globalShare 
+      type Object
+      required true
+    
+  
+  setupprops 
+    const routerRouter  getCurrentInstanceappContextconfigglobalPropertiesrouter
+    const mainApiMainApi  getCurrentInstanceappContextconfigglobalPropertiesmainApi
+    const loginIdElRef  refHTMLInputElement
+    const loginPwElRef  refHTMLInputElement
+    const loginPwConfirmElRef  refHTMLInputElement
+    const nameElRef  refHTMLInputElement
+    const nicknameElRef  refHTMLInputElement
+    const cellphoneNoElRef  refHTMLInputElement
+    const emailElRef  refHTMLInputElement
+    
+   
+    function checkAndJoin 
+        아이디 체크
+      if  loginIdElRefvalue  null  
+        return
+      
+      
+      const loginIdEl  loginIdElRefvalue
+      loginIdElvalue  loginIdElvaluetrim
+      
+      if  loginIdElvaluelength  0  
+        alert아이디를 입력해주세요
+        loginIdElfocus
+        return
+      
+       비번 체크
+      if  loginPwElRefvalue  null  
+        return
+      
+
+      const loginPwEl  loginPwElRefvalue
+      loginPwElvalue  loginPwElvaluetrim
+      
+      if  loginPwElvaluelength  0  
+        alert비밀번호를 입력해주세요
+        loginPwElfocus
+        return
+      
+      
+       비번확인 체크
+      if  loginPwConfirmElRefvalue  null  
+        return
+      
+
+      const loginPwConfirmEl  loginPwConfirmElRefvalue
+      
+      if  loginPwElvalue  loginPwConfirmElvalue  
+        alert로그인 비번이 일치하지 않습니다
+        loginPwConfirmElfocus
+        return
+      
+
+       이름 체크
+      if  nameElRefvalue  null  
+        return
+      
+
+      const nameEl  nameElRefvalue
+      nameElvalue  nameElvaluetrim
+
+      if  nameElvaluelength  0  
+        alert이름을 입력해주세요
+        nameElfocus
+        return
+      
+
+       닉네임 체크
+      if  nicknameElRefvalue  null  
+        return
+      
+
+      const nicknameEl  nicknameElRefvalue
+      nicknameElvalue  nicknameElvaluetrim
+      
+      if  nicknameElvaluelength  0  
+        alert닉네임을 입력해주세요
+        nicknameElfocus
+        return
+      
+      
+       전화번호 체크
+      if  cellphoneNoElRefvalue  null  
+        return
+      
+
+      const cellphoneNoEl  cellphoneNoElRefvalue
+      cellphoneNoElvalue  cellphoneNoElvaluetrim
+      
+      if  cellphoneNoElvaluelength  0  
+        alert전화번호를 입력해주세요
+        cellphoneNoElfocus
+        return
+      
+
+       이메일 체크
+      if  emailElRefvalue  null  
+        return
+      
+      
+      const emailEl  emailElRefvalue
+      emailElvalue  emailElvaluetrim
+      
+      if  emailElvaluelength  0  
+        alert이메일을 입력해주세요
+        emailElfocus
+        return
+      
+      
+      회원가입
+      joinloginIdElvalue loginPwElvalue nameElvalue nicknameElvalue cellphoneNoElvalue emailElvalue
+    
+    function joinloginIdstring loginPwstring namestring nicknamestring cellphoneNostring emailstring 
+      mainApimemberdoJoinloginId loginPw name nickname cellphoneNo email
+        thenaxiosResponse  
+          
+          alertaxiosResponsedatamsg
+          if  axiosResponsedatafail  
+            return
+          
+          
+          routerreplacememberloginloginId  loginId
+        
+    
+    return 
+      checkAndJoin
+      loginIdElRef
+      loginPwElRef
+      loginPwConfirmElRef
+      nameElRef
+      nicknameElRef
+      cellphoneNoElRef
+      emailElRef
+    
+  
+
+script
+
+style scoped
+style 
+" />
+<meta itemprop="image" content="images/Dev_J_logo/logo.png" />
+
+<!-- 사이트 타이틀 -->
+<title>P.Lamplight - 개발일지(글쓰기,상세페이지,로그인 ~ 회원가입까지) | Dev_J BLOG | ARTICLE DETAIL</title>
+
+
+<!-- 파비콘 -->
+<link rel="shortcut icon" href="images/favicon/favicon.ico" type="image/x-icon">
+<link rel="icon" href="images/favicon/favicon.ico" type="image/x-icon">
+
+<!-- 폰트어썸 불러오기 -->
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+
+<!--모바일에서도 PC와 같은 비율 유지-->
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<!--제이쿼리-->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+<!-- 하이라이트 라이브러리 추가, 토스트 UI 에디터에서 사용됨 -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.4.1/highlight.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.4.1/styles/default.min.css">
+
+<!-- 토스트 UI 에디터, 자바스크립트 코어 -->
+<script
+	src="https://uicdn.toast.com/editor/latest/toastui-editor-all.min.js" defer></script>
+
+<!-- 코드 미러 라이브러리 추가, 토스트 UI 에디터에서 사용됨 -->
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.58.3/codemirror.min.css" />
+<!-- 토스트 UI 에디터, CSS 코어 -->
+<link rel="stylesheet"
+	href="https://uicdn.toast.com/editor/latest/toastui-editor.min.css" />
+
+<!-- 토스트 UI 에디터, 신택스 하이라이트 플러그인 추가 -->
+<script src="https://uicdn.toast.com/editor-plugin-code-syntax-highlight/latest/toastui-editor-plugin-code-syntax-highlight.min.js" defer></script>
+
+<!-- app.css 불러오기 -->
+<link rel="stylesheet" href="app.css">
+<!-- app.js 불러오기 -->
+<script src="app.js" defer></script>
+<!-- index.js 불러오기 
+<script src="index.js" defer></script>
+-->
+</head>
+
+<body>
+<!-- 사이트 박스 시작 -->
+<div class="body-content min-height-100vh flex flex-column">
+  <!-- 로고바 시작 -->
+  <header class="logo-bar con-min-width" id="header">
+    <div class="con height-100p flex flex-jc-c" title="HOME">
+      <a href="index.html" class="logo flex flex-ai-c"> 
+        <img class="logo__img" src="images/Dev_J_logo/logo_transparent.png" alt="">
+        <span>
+          BLOG
+        </span>
+      </a>
+    </div>
+  </header>
+  <!-- 로고바 끝 -->
+
+  <!-- 메뉴바 시작-->
+  <header class="menu-bar con-min-width visible-md-up">
+    <div class="flex flex-jc-sb">
+   	 <div class="menu-bar__status-icon" title="Menu">
+      <div></div>
+      <div></div>
+      <div></div>
+     </div>
+     <a class="search-icon" title="search" href="search.html">
+        <i class="fa fa-search"></i>
+     </a>
+   </div>
+   <div class="con hide">
+    <nav class="menu-bar__menu">
+      <ul class="flex">
+          <li title="ABOUT">
+            <a href="about.html" class="block">
+              <i class="far fa-address-card"></i>
+              <span>ABOUT</span>
+            </a>
+          </li>
+          <li>
+            <a class="block">
+              <i class="fas fa-list"></i>
+              <span>ARTICLES</span>
+            </a>
+            <ul>
+              <li title="NOTICE"><a href="notice-list-1.html" class="block"><i class="fas fa-bullhorn"></i> <span>NOTICE BOARD</span></a></li><li title="JAVA"><a href="java-list-1.html" class="block"><i class="fab fa-java"></i> <span>JAVA BOARD</span></a></li><li title="HTML"><a href="html-list-1.html" class="block"><i class="fab fa-html5"></i> <span>HTML & CSS & JS BOARD</span></a></li><li title="MYSQL"><a href="mysql-list-1.html" class="block"><i class="fas fa-database"></i> <span>MySQL BOARD</span></a></li><li title="ETC"><a href="etc-list-1.html" class="block"><i class="fas fa-mouse-pointer"></i> <span>ETC BOARD</span></a></li>
+            </ul>
+          </li>
+          <li>
+            <a class="block">
+              <i class="fas fa-project-diagram"></i>
+              <span>PROJECT</span>
+            </a>
+            <ul>
+              <li title="P_BLOG"><a href="p_blog-list-1.html" class="block"><i class="fab fa-blogger"></i> <span>P.BLOG PROJECT</span></a></li><li title="P_JSP"><a href="p_jsp-list-1.html" class="block"><i class="fas fa-users"></i> <span>P.JSP PROJECT</span></a></li><li title="P_LAMP"><a href="p_lamp-list-1.html" class="block"><i class="fab fa-vuejs"></i> <span>P.Lamplight PROJECT</span></a></li><li title="P_WHAT"><a href="p_what-list-1.html" class="block"><i class="fas fa-file-word"></i> <span>P.WhatIsMyName PROJECT</span></a></li>
+            </ul>
+          </li>
+          <li>
+            <a class="block">
+              <i class="fas fa-link"></i>
+              <span>LINK</span>
+            </a>
+            <ul>
+              <li title="T-STORY">
+                <a href="https://cjy324.tistory.com/" target="_blank" class="block">
+                  <i class="fas fa-rss-square"></i>
+                  <span>T-STORY</span>
+                </a>
+              </li>
+              <li title="GITHUB">
+                <a href="https://github.com/cjy324/TIL_Jooyoung#til_jooyoung" target="_blank" class="block">
+                  <i class="fab fa-github"></i>
+                  <span>GITHUB</span>
+                </a>
+              </li>
+              <li title="GetIT">
+                <a href="https://getit.devj.me/" target="_blank" class="block">
+                  <i class="fab fa-dev"></i>
+                  <span>GetIT</span>
+                </a>
+              </li>
+            </ul>
+          </li>
+          <li title="STATISTICS">
+            <a href="statistics.html" class="block">
+              <i class="fas fa-chart-pie"></i>
+              <span>STATISTICS</span>
+            </a>
+          </li>
+        </ul>
+      </nav>
+   </div>
+  </header>
+  <!-- 메뉴바 끝 -->
+  
+  <!-- 모바일 사이드 메뉴바 시작 -->
+  <header class="mobile-menu-bar con-min-width visible-sm-down">
+    <div class="flex flex-jc-sb">
+   <div class="mobile-menu-bar__status-icon" title="Menu">
+     <div></div>
+     <div></div>
+     <div></div>
+   </div>
+    <a class="search-icon" title="search" href="search.html">
+        <i class="fa fa-search"></i>
+      </a>
+   </div>
+   <div class="con ">
+    <aside class="mobile-side-bar flex flex-column flex-jc-c ">
+      <div class="mobile-side-bar_X"><i class="fas fa-times"></i></div>
+      <nav class="mobile-side-bar_menu flex">
+      <ul class="">
+          <li title="ABOUT">
+            <a href="about.html" class="block">
+              <i class="far fa-address-card"></i>
+              <span>ABOUT</span>
+            </a>
+          </li>
+          <li>
+            <a class="block">
+              <i class="fas fa-list"></i>
+              <span>ARTICLES</span>
+            </a>
+            <ul class="hide2">
+              <li title="NOTICE"><a href="notice-list-1.html" class="block"><i class="fas fa-bullhorn"></i> <span>NOTICE BOARD</span></a></li><li title="JAVA"><a href="java-list-1.html" class="block"><i class="fab fa-java"></i> <span>JAVA BOARD</span></a></li><li title="HTML"><a href="html-list-1.html" class="block"><i class="fab fa-html5"></i> <span>HTML & CSS & JS BOARD</span></a></li><li title="MYSQL"><a href="mysql-list-1.html" class="block"><i class="fas fa-database"></i> <span>MySQL BOARD</span></a></li><li title="ETC"><a href="etc-list-1.html" class="block"><i class="fas fa-mouse-pointer"></i> <span>ETC BOARD</span></a></li>
+            </ul>
+          </li>
+          <li>
+            <a class="block">
+              <i class="fas fa-project-diagram"></i>
+              <span>PROJECT</span>
+            </a>
+            <ul class="hide2">
+              <li title="P_BLOG"><a href="p_blog-list-1.html" class="block"><i class="fab fa-blogger"></i> <span>P.BLOG PROJECT</span></a></li><li title="P_JSP"><a href="p_jsp-list-1.html" class="block"><i class="fas fa-users"></i> <span>P.JSP PROJECT</span></a></li><li title="P_LAMP"><a href="p_lamp-list-1.html" class="block"><i class="fab fa-vuejs"></i> <span>P.Lamplight PROJECT</span></a></li><li title="P_WHAT"><a href="p_what-list-1.html" class="block"><i class="fas fa-file-word"></i> <span>P.WhatIsMyName PROJECT</span></a></li>
+            </ul>
+          </li>
+          <li>
+            <a class="block">
+              <i class="fas fa-link"></i>
+              <span>LINK</span>
+            </a>
+            <ul class="hide2">
+              <li title="T-STORY">
+                <a href="https://cjy324.tistory.com/" target="_blank" class="block">
+                  <i class="fas fa-rss-square"></i>
+                  <span>T-STORY</span>
+                </a>
+              </li>
+              <li title="GITHUB">
+                <a href="https://github.com/cjy324/TIL_Jooyoung#til_jooyoung" target="_blank" class="block">
+                  <i class="fab fa-github"></i>
+                  <span>GITHUB</span>
+                </a>
+              </li>
+              <li title="GetIT">
+                <a href="https://getit.devj.me/" target="_blank" class="block">
+                  <i class="fab fa-dev"></i>
+                  <span>GetIT</span>
+                </a>
+              </li>
+            </ul>
+          </li>
+          <li title="STATISTICS">
+            <a href="statistics.html" class="block">
+              <i class="fas fa-chart-pie"></i>
+              <span>STATISTICS</span>
+            </a>
+          </li>
+        </ul>
+      </nav>  
+      </aside>
+   </div>
+  </header>
+  
+  <!-- 모바일 사이드 메뉴바 끝 --> 
+   
+
+  <!-- 메인 컨텐츠 박스 시작 -->
+  <main class="main-box flex-grow-1">
+  <section class="main-box-section con-min-width">
+   <!-- 메인-타이틀바 시작 -->
+	<div class="title-bar con-min-width">
+		<h1 class="con">
+			<i class="fas fa-file-invoice"></i> <span>ARTICLE</span>
+		</h1>
+	</div>
+   <!-- 메인-타이틀바 종료 -->
+<!-- Progress-bar -->
+<script type="text/javascript"
+	src="https://rawcdn.githack.com/mburakerman/prognroll/0feda211643153bce2c69de32ea1b39cdc64ffbe/src/prognroll.js"></script>
+<script type="text/javascript">
+	$(function() {
+		$("body").prognroll({
+			height : 10,
+			color : "#666666"
+		});
+		$(".content").prognroll({
+			custom : true
+		});
+	});
+</script>
+
+<!-- 메인-상세페이지 시작 -->
+<section class="section-2 con-min-width min-height-50vh">
+	<div class="con height-100p">
+		<div class="article-detail-cell height-100p">
+			<div class="article-detail-cell__board-name"><div><span>게시판 : </span><span>P.Lamplight 게시판</span></div></div><div class="article-detail-cell__id"><div><span>번호 : </span><span>64</span></div></div><div class="article-detail-cell__member-id"><div><span>작성자 : </span><span>Dev_J</span></div></div><div class="article-detail-cell__reg-date"><div><span>작성일 : </span><span>2021-04-24 14:57:43</span></div></div><div class="article-detail-cell__update-date"><div><span>수정일 : </span><span>2021-04-24 15:02:43</span></div></div><br><div class="article-detail-cell__title-contents flex flex-jc-fe"><div class="article-detail-cell__hitsCount"><div><span>조회수 : </span><span>0</span></div></div><div class="article-detail-cell__likesCount"><div><span>추천수 : </span><span>0</span></div></div><div class="article-detail-cell__commentsCount"><div><span>댓글수 : </span><span>0</span></div></div></div><div class="article-detail-cell__title"><div><span>제목 : </span><span>P.Lamplight - 개발일지(글쓰기,상세페이지,로그인 ~ 회원가입까지)</span></div></div><nav class="ad"><!-- 구글 애드센스2 --><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script><!-- 수평 반응형2 --><ins class="adsbygoogle" style="display: block" data-ad-client="ca-pub-7996879977557531" data-ad-slot="2278060237" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle = window.adsbygoogle || []).push({});</script></nav><script type"text/x-template"># 글쓰기,상세페이지,로그인 ~ 회원가입까지
+
+## NOTE
+
+```
+<post 전송방식>
+1.form 방식
+ 일반 form 형식
+2.axios json 방식
+ json 형식
+```
+```
+:to와 to의 차이??
+:이 있으면 자바스크립트 사용 가능
+
+ex)
+to="article/list"
+:to="'article/list?boardId' + article.boardId"
+```
+```
+protected _handleResponse(axiosResponse:AxiosResponse) : AxiosResponse {
+
+    // 로그인 정보 체크
+    // axiosResponse?.data?.resultCode == "F-A" || axiosResponse?.data?.resultCode == "F-B" (초보 버전)
+    // axiosResponse?.data?.resultCode == "F-A" => 로그인 정보가 아예 없는 경우
+    // axiosResponse?.data?.resultCode == "F-B" => 로그인 정보가 틀린 경우
+
+    // axiosResponse?.data?.resultCode == "F-A" || axiosResponse?.data?.resultCode == "F-B" (초보 버전)
+    //["F-A", "F-B"].includes(axiosResponse?.data?.resultCode) (고급 버전)
+    
+    /* 로그인 정보 체크 후 로그인 화면으로 이동 */
+    if (["F-A", "F-B"].includes(axiosResponse?.data?.resultCode)) {
+      alert('로그인 후 이용해주세요.');
+      location.replace('/member/login');
+    }
+
+    return axiosResponse;
+  }
+```
+```
+<컴포넌트>
+
+현재 앱 컴포넌트와 페이지별 컴포넌트로 구성
+페이지 컴포넌트는 현재 라우터(주소)에 의해 자동적으로 선택되고 있음
+```
+```
+<state: 상태>
+
+페이지 글과 같은 상태는 전역적으로 필요하지 않음
+하지만 로그인 정보의 경우 전역적으로 필요함 
+이를 위해 전역상태를 구축해야함
+```
+
+<br>
+## 주요소스코드
+
+### ArticleWritePage.vue
+```html
+<template>
+
+  <TitleBar>글쓰기</TitleBar>
+
+  <section class="section section-article-write-form-box px-2">
+    <div class="container mx-auto">
+      <div class="px-6 py-6 bg-white rounded-lg shadow-md">
+        <form v-if="globalShare.isLogined" v-on:submit.prevent="checkAndWriteArticle">
+          <FormRow title="게시판">
+            <select class="form-row-select" ref="newArticleBoardIdElRef">
+              <option value="1">NOTICE</option>
+              <option value="2">FREE</option>
+            </select>
+          </FormRow>
+          <FormRow title="제목">
+            <input ref="newArticleTitleElRef" class="form-row-input" type="text" placeholder="제목을 입력해주세요.">
+          </FormRow>
+          <FormRow title="내용">
+            <textarea ref="newArticleBodyElRef" class="form-row-input" placeholder="내용을 입력해주세요."></textarea>
+          </FormRow>
+          <FormRow title="작성">
+            <div class="btns">
+              <input type="submit" value="작성" class="btn-primary" />
+            </div>
+          </FormRow>
+        </form>
+        <div v-else>
+          <router-link class="btn-link" to="/member/login">로그인</router-link> 후 이용해주세요.
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+</template>
+
+<t-script lang="ts">
+import { defineComponent, reactive, ref, getCurrentInstance, onMounted } from 'vue'
+import { MainApi } from '../apis/'
+import { Router } from 'vue-router'
+
+
+export default defineComponent({
+  name: 'ArticleWritePage',
+
+  props: {
+    globalShare: {
+      type: Object,
+      required: true
+    },
+    boardId: {
+      type: Number,
+      required: true,
+      default:1
+    }
+  },
+
+  setup(props){
+    const router:Router = getCurrentInstance()?.appContext.config.globalProperties.$router;
+    const mainApi:MainApi = getCurrentInstance()?.appContext.config.globalProperties.$mainApi;
+
+    const newArticleBoardIdElRef = ref<HTMLInputElement>();
+    const newArticleTitleElRef = ref<HTMLInputElement>();
+    const newArticleBodyElRef = ref<HTMLInputElement>();
+
+    //boardId 파라미터 값에 따라 게시판 선택 옵션 값(newArticleBoardIdElRef.value.value)이 바뀜
+    onMounted(() => {
+        if(newArticleBoardIdElRef.value == null){
+        return;
+      }
+        newArticleBoardIdElRef.value.value = props.boardId + "";
+      });
+
+    /* 공백 체크 */
+    function checkAndWriteArticle(){
+
+      if(newArticleBoardIdElRef.value == null){
+        return;
+      }
+
+      const newArticleBoardIdEl = newArticleBoardIdElRef.value;
+
+
+      //일반적으로 안해도 되지만 typet-script에서는 해야됨
+      if(newArticleTitleElRef.value == null){
+        return;
+      }
+
+      const newArticleTitleEl = newArticleTitleElRef.value;
+      newArticleTitleEl.value = newArticleTitleEl.value.trim();
+
+      if(newArticleTitleEl.value.length == 0){
+        alert('제목을 입력해 주세요.')
+        newArticleTitleEl.focus();
+        return;
+      }
+
+      if(newArticleBodyElRef.value == null){
+        return;
+      }
+
+      const newArticleBodyEl = newArticleBodyElRef.value;
+      newArticleBodyEl.value = newArticleBodyEl.value.trim();
+
+      if(newArticleBodyEl.value.length == 0){
+        alert('내용을 입력해 주세요.')
+        newArticleBodyEl.focus();
+        return;
+      }
+
+      // 글작성 함수로 보내기
+      writeArticle(parseInt(newArticleBoardIdEl.value), newArticleTitleEl.value, newArticleBodyEl.value);
+
+    }
+
+    //typet-script에서는 title:string, body:string 이런식으로 type을 적어주어야 한다
+      function writeArticle(boardId:number, title:string, body:string){
+       
+        mainApi.article_doWrite(boardId, title, body)
+        .then(axiosResponse => {
+          alert(axiosResponse.data.msg);
+          
+          // 로그인이 fail 상태이면 리턴
+          if ( axiosResponse.data.fail ) {
+            return;
+          }
+
+          //authKey가 있는 상태에서 가능
+          const newArticleId = axiosResponse.data.body.id;
+          //alert(newArticleId + "번 게시물 등록 완료!!");
+
+          router.replace("detail?id=" + newArticleId);
+        });
+      }
+
+    return{
+      newArticleBoardIdElRef,
+      newArticleTitleElRef,
+      newArticleBodyElRef,
+      checkAndWriteArticle
+      
+    }
+
+  }
+  
+})
+</t-script>
+
+<style scoped>
+
+</style>
+```
+
+### MemberLoginPage.vue
+```html
+<template>
+  <TitleBar>로그인</TitleBar>
+
+  <section class="section section-member-login-form px-2">
+    <div class="container mx-auto">
+      <div class="px-6 py-6 bg-white rounded-lg shadow-md">
+        <form v-if="globalShare.isLogined == false" v-on:submit.prevent="checkAndLogin">
+          <FormRow title="로그인아이디">
+            <input ref="loginIdElRef" class="form-row-input" type="text" placeholder="아이디를 입력해주세요.">
+          </FormRow>
+          <FormRow title="로그인비밀번호">
+            <input ref="loginPwElRef" class="form-row-input" type="password" placeholder="로그인비밀번호를 입력해주세요.">
+          </FormRow>
+          <FormRow title="로그인">
+            <div class="btns">
+              <input type="submit" value="로그인" class="btn-primary" />
+            </div>
+          </FormRow>
+        </form>
+        <div v-else>
+          이미 로그인 되었습니다. <route-link class="btn-link" to="/">홈</route-link> 으로 이동
+        </div>
+      </div>
+    </div>
+  </section>
+</template>
+
+<t-script lang="ts">
+import { defineComponent, ref, getCurrentInstance, onMounted } from 'vue'
+import { IArticle } from '../types/'
+import { MainApi } from '../apis/'
+import { useRoute } from 'vue-router'
+import { Router } from 'vue-router'
+
+export default defineComponent({
+  name: 'MemberLoginPage',
+  props: {
+    globalShare: {
+      type: Object,
+      required: true
+    },
+  },
+  setup(props) {
+    const route = useRoute();
+    const router:Router = getCurrentInstance()?.appContext.config.globalProperties.$router;
+    const mainApi:MainApi = getCurrentInstance()?.appContext.config.globalProperties.$mainApi;
+    const loginIdElRef = ref<HTMLInputElement>();
+    const loginPwElRef = ref<HTMLInputElement>();
+
+
+    
+    onMounted(() => {
+      // 만약, route로 들어온 쿼리의 loginId가 null이 아니면
+      if ( route.query.loginId != null ) {
+        if ( loginIdElRef.value == null ) {
+          return;
+        }
+        if ( loginPwElRef.value == null ) {
+          return;
+        }
+
+        // loginIdElRef 값에 route.query.loginId 정보 담기
+        loginIdElRef.value.value = route.query.loginId as any;
+        // loginPwElRef에 포커스
+        loginPwElRef.value.focus();
+      }
+    })
+
+
+    function checkAndLogin() {
+      if ( loginIdElRef.value == null ) {
+        return;
+      }
+
+      const loginIdEl = loginIdElRef.value;
+      loginIdEl.value = loginIdEl.value.trim();
+
+      if ( loginIdEl.value.length == 0 ) {
+        alert('아이디를 입력해주세요.');
+        loginIdEl.focus();
+        return;
+      }
+      if ( loginPwElRef.value == null ) {
+        return;
+      }
+
+      const loginPwEl = loginPwElRef.value;
+      loginPwEl.value = loginPwEl.value.trim();
+
+      if ( loginPwEl.value.length == 0 ) {
+        alert('비밀번호를 입력해주세요.');
+        loginPwEl.focus();
+        return;
+      }
+
+      //로그인
+      login(loginIdEl.value, loginPwEl.value);
+    
+    }
+    function login(loginId:string, loginPw:string) {
+      mainApi.member_authKey(loginId, loginPw)
+        .then(axiosResponse => {
+          alert(axiosResponse.data.msg);
+          
+          // 로그인이 fail 상태이면 리턴
+          if ( axiosResponse.data.fail ) {
+            return;
+          }
+
+          const authKey = axiosResponse.data.body.authKey;
+          const loginedMemberId = axiosResponse.data.body.id;
+          const loginedMemberName = axiosResponse.data.body.name;
+          const loginedMemberNickname = axiosResponse.data.body.nickname;
+
+          localStorage.setItem("authKey", authKey);
+          localStorage.setItem("loginedMemberId", loginedMemberId + "");
+          localStorage.setItem("loginedMemberName", loginedMemberName);
+          localStorage.setItem("loginedMemberNickname", loginedMemberNickname);
+          
+          props.globalShare.loginedMember = {
+            authKey,
+            id:loginedMemberId,
+            name:loginedMemberName,
+            nickname:loginedMemberNickname,
+          };
+
+          //alert(axiosResponse.data.msg);
+
+          router.replace('/')
+        });
+    }
+    return {
+      checkAndLogin,
+      loginIdElRef,
+      loginPwElRef
+    }
+  }
+})
+</t-script>
+
+<style scoped>
+</style> 
+```
+
+### MemberJoinPage.vue
+``` html
+<template>
+  <TitleBar>회원가입</TitleBar>
+
+  <section class="section section-member-join-form px-2">
+    <div class="container mx-auto">
+      <div class="px-6 py-6 bg-white rounded-lg shadow-md">
+        <form v-if="globalShare.isLogined == false" v-on:submit.prevent="checkAndJoin">
+          <FormRow title="아이디">
+            <input ref="loginIdElRef" class="form-row-input" type="text" placeholder="아이디를 입력해주세요.">
+          </FormRow>
+          <FormRow title="비밀번호">
+            <input ref="loginPwElRef" class="form-row-input" type="password" placeholder="비밀번호를 입력해주세요.">
+          </FormRow>
+          <FormRow title="비밀번호 확인">
+            <input ref="loginPwConfirmElRef" class="form-row-input" type="password" placeholder="비밀번호 확인을 해주세요.">
+          </FormRow>
+          <FormRow title="이름">
+            <input ref="nameElRef" class="form-row-input" type="text" placeholder="이름을 입력해주세요.">
+          </FormRow>
+          <FormRow title="닉네임">
+            <input ref="nicknameElRef" class="form-row-input" type="text" placeholder="닉네임을 입력해주세요.">
+          </FormRow>
+          <FormRow title="전화번호">
+            <input ref="cellphoneNoElRef" class="form-row-input" type="tel" placeholder="전화번호를 입력해주세요.">
+          </FormRow>
+          <FormRow title="이메일">
+            <input ref="emailElRef" class="form-row-input" type="email" placeholder="이메일을 입력해주세요.">
+          </FormRow>
+          <FormRow title="가입">
+            <div class="btns">
+              <input type="submit" value="가입" class="btn-primary" />
+            </div>
+          </FormRow>
+        </form>
+        <div v-else>
+          이미 로그인 상태입니다. <route-link class="btn-link" to="/">홈</route-link> 으로 이동
+        </div>
+      </div>
+    </div>
+  </section>
+</template>
+
+<t-script lang="ts">
+import { defineComponent, ref, reactive, getCurrentInstance, onMounted } from 'vue'
+import { MainApi } from '../apis/'
+import { Router } from 'vue-router';
+
+export default defineComponent({
+  name: 'MemberJoinPage',
+  props: {
+    globalShare: {
+      type: Object,
+      required: true
+    },
+  },
+  setup(props) {
+    const router:Router = getCurrentInstance()?.appContext.config.globalProperties.$router;
+    const mainApi:MainApi = getCurrentInstance()?.appContext.config.globalProperties.$mainApi;
+    const loginIdElRef = ref<HTMLInputElement>();
+    const loginPwElRef = ref<HTMLInputElement>();
+    const loginPwConfirmElRef = ref<HTMLInputElement>();
+    const nameElRef = ref<HTMLInputElement>();
+    const nicknameElRef = ref<HTMLInputElement>();
+    const cellphoneNoElRef = ref<HTMLInputElement>();
+    const emailElRef = ref<HTMLInputElement>();
+    
+   
+    function checkAndJoin() {
+       // 아이디 체크
+      if ( loginIdElRef.value == null ) {
+        return;
+      }
+      
+      const loginIdEl = loginIdElRef.value;
+      loginIdEl.value = loginIdEl.value.trim();
+      
+      if ( loginIdEl.value.length == 0 ) {
+        alert('아이디를 입력해주세요.');
+        loginIdEl.focus();
+        return;
+      }
+      // 비번 체크
+      if ( loginPwElRef.value == null ) {
+        return;
+      }
+
+      const loginPwEl = loginPwElRef.value;
+      loginPwEl.value = loginPwEl.value.trim();
+      
+      if ( loginPwEl.value.length == 0 ) {
+        alert('비밀번호를 입력해주세요.');
+        loginPwEl.focus();
+        return;
+      }
+      
+      // 비번확인 체크
+      if ( loginPwConfirmElRef.value == null ) {
+        return;
+      }
+
+      const loginPwConfirmEl = loginPwConfirmElRef.value;
+      
+      if ( loginPwEl.value != loginPwConfirmEl.value ) {
+        alert('로그인 비번이 일치하지 않습니다.');
+        loginPwConfirmEl.focus();
+        return;
+      }
+
+      // 이름 체크
+      if ( nameElRef.value == null ) {
+        return;
+      }
+
+      const nameEl = nameElRef.value;
+      nameEl.value = nameEl.value.trim();
+
+      if ( nameEl.value.length == 0 ) {
+        alert('이름을 입력해주세요.');
+        nameEl.focus();
+        return;
+      }
+
+      // 닉네임 체크
+      if ( nicknameElRef.value == null ) {
+        return;
+      }
+
+      const nicknameEl = nicknameElRef.value;
+      nicknameEl.value = nicknameEl.value.trim();
+      
+      if ( nicknameEl.value.length == 0 ) {
+        alert('닉네임을 입력해주세요.');
+        nicknameEl.focus();
+        return;
+      }
+      
+      // 전화번호 체크
+      if ( cellphoneNoElRef.value == null ) {
+        return;
+      }
+
+      const cellphoneNoEl = cellphoneNoElRef.value;
+      cellphoneNoEl.value = cellphoneNoEl.value.trim();
+      
+      if ( cellphoneNoEl.value.length == 0 ) {
+        alert('전화번호를 입력해주세요.');
+        cellphoneNoEl.focus();
+        return;
+      }
+
+      // 이메일 체크
+      if ( emailElRef.value == null ) {
+        return;
+      }
+      
+      const emailEl = emailElRef.value;
+      emailEl.value = emailEl.value.trim();
+      
+      if ( emailEl.value.length == 0 ) {
+        alert('이메일을 입력해주세요.');
+        emailEl.focus();
+        return;
+      }
+      
+      //회원가입
+      join(loginIdEl.value, loginPwEl.value, nameEl.value, nicknameEl.value, cellphoneNoEl.value, emailEl.value);
+    }
+    function join(loginId:string, loginPw:string, name:string, nickname:string, cellphoneNo:string, email:string) {
+      mainApi.member_doJoin(loginId, loginPw, name, nickname, cellphoneNo, email)
+        .then(axiosResponse => {
+          
+          alert(axiosResponse.data.msg);
+          if ( axiosResponse.data.fail ) {
+            return;
+          }
+          
+          router.replace('/member/login?loginId=' + loginId)
+        });
+    }
+    return {
+      checkAndJoin,
+      loginIdElRef,
+      loginPwElRef,
+      loginPwConfirmElRef,
+      nameElRef,
+      nicknameElRef,
+      cellphoneNoElRef,
+      emailElRef,
+    }
+  }
+})
+</t-script>
+
+<style scoped>
+</style> 
+```</script><div class="article-detail-cell__body height-70p toast-ui-viewer"><div></div></div><br><div class="article-detail-cell__tag flex flex-wrap"><nav># project</nav><nav># 개발일지</nav><nav># lamplight</nav></div><br><br><nav class="ad"><!-- 구글 애드센스1 --><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script><!-- 수평 반응형1 --><ins class="adsbygoogle" style="display: block" data-ad-client="ca-pub-7996879977557531" data-ad-slot="6812185708" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle = window.adsbygoogle || []).push({});</script></nav>
+			<!-- Disqus api 적용 -->
+			<!-- 정확한 페이지 경로 알려주는 기능 추가-->
+			<nav>
+				<div id="disqus_thread"></div>
+				<script>
+					var disqus_config = function() {
+						this.page.url = 'https://blog.devj.me/article_detail_64.html';
+						this.page.identifier = 'article_detail_64.html';
+					};
+					(function() {
+						//DON'T EDIT BELOW THIS LINE
+						var d = document, s = d.createElement('script');
+						s.src = 'https://devj-blog.disqus.com/embed.js';
+						s.setAttribute('data-timestamp', +new Date());
+						(d.head || d.body).appendChild(s);
+					})();
+				</script>
+				<noscript>
+					Please enable JavaScript to view the
+					<a href="https://disqus.com/?ref_noscript">comments powered by
+						Disqus.</a>
+				</noscript>
+			</nav>
+		</div>
+	</div>
+</section>
+<!-- 메인-상세페이지 끝 -->
+<!-- 메인-상세 하단 메뉴 시작 -->
+<section class="section-3 con-min-width">
+	<div class="con">
+		<div class="article-list-bottom-cell flex flex-jc-c"><div class="./"><a href="article_detail_63.html" class="hover-underline">&lt 이전글</a></div><div class="./"><i class="fas fa-th-list"></i><a href="p_lamp-list-1.html" class="hover-underline"> 목록 </a></div><div class="./"><a href="article_detail_65.html"class="hover-underline">다음글 &gt</a></div></div>
+	</div>
+</section>
+<!-- 메인-상세 하단 메뉴 끝 -->
+</section>
+</main>
+<!-- 메인 컨텐츠 박스 끝 -->
+  <!-- 맨 위 버튼 시작 -->
+  <nav class="top-button flex flex-jc-c flex-ai-c">
+    <div class="">
+      <a href="#header">▲ TOP</a> 
+    </div>     
+  </nav>
+  <!-- 맨 위 버튼 끝 -->
+
+
+  <!-- 푸터 시작 -->
+  <footer class="bottom-bar con-min-width">
+    <div class="con flex flex-ai-c">
+      <a href="index.html" class="logo logo--mini flex flex-ai-c" title="HOME">
+        <img class="logo--mini__img" src="images/Dev_J_logo/logo_transparent.png" alt="">
+      </a>
+      <div class="bottom-bar__site-info">
+        <span><i class="far fa-envelope"></i> juy32400@gmail.com</span>
+        <br>
+        <br>
+        <span>COPYRIGHT 2020. Dev_J. All rights reserved.</span>
+      </div>
+    </div>
+  </footer>
+  <!-- 푸터 끝 -->
+</div>
+<!-- 사이트 박스 끝 -->
+</body>
+</html>

@@ -1,0 +1,3061 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+<script data-ad-client="ca-pub-7996879977557531" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-X5RMP83794"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-X5RMP83794');
+</script>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- 구글 검색엔진 등록-소유권 확인 -->
+<meta name="google-site-verification" content="37R4KcEaJU5LfiKL7GI1hu1_spJgWOazN6xy48OHhD4" />
+
+<!-- Meta Tag & Open Graph -->
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<meta name="viewport" content="width=1200">
+<meta name="apple-mobile-web-app-title" content="Dev_J BLOG" />
+<!-- 메타태그정보 //-->
+<!-- META -->
+<link rel="canonical" href="https://blog.devj.me" />
+<meta name="subject" content="P.Lamplight - 개발일지(ionic이사 진행중-의뢰인로그인,회원가입,정보수정.....지도사리스팅....요청서crud, 리스팅 완료)"/>
+<meta name="title" content="Dev_J BLOG" />
+<meta name="keywords" content="JAVA, HTML, CSS, JavaScript, MySQL" />
+<meta name="copyright" content="Dev_J BLOG" />
+<meta name="pubdate" content="2021-04-24T15:02:49" />
+<meta name="lastmod" content="2021-04-24T15:02:49" />
+<!-- OPENGRAPH -->
+<meta property="og:site_name" content="Dev_J BLOG" />
+<meta property="og:type" content="blog" />
+<meta property="og:title" content="P.Lamplight - 개발일지(ionic이사 진행중-의뢰인로그인,회원가입,정보수정.....지도사리스팅....요청서crud, 리스팅 완료)" />
+<meta property="og:description" content=" ionic이사 진행중의뢰인로그인회원가입정보수정지도사리스팅요청서crud 리스팅 완료
+
+ NOTE
+
+
+프론트엔드
+
+Todo
+ionic으로 일단 이사
+ 의뢰인로그인로그아웃
+ 의뢰인회원가입후 로그인아이디
+ 의뢰인마이페이지
+ 의뢰인회원정보 수정
+ 지도사 리스팅
+ 요청서 작성상세보기
+ 요청서 수정
+ 요청서 삭제
+  컨펌창 도입
+   요청서 작성시
+   요청서 수정시
+   회원가입시
+   회원정보 수정시
+ 요청서 리스팅
+ 
+ionic 컨펌창 도입
+httpsforumionicframeworkcomtreturnvaluefromalertconfirmation758242
+
+사이클 변경
+의뢰인 요청서 등록  해당 지역에 속한 지도사에게 푸시알림or SMS
+ 요청서 확인 후 수락 푸시알림or SMS연락처  장례 준비 진행도우미 지원2차 배포시 추가
+ 장례 진행  종료  의뢰인 최종 확인결제2차 배포시 추가  평점리뷰 작성
+ 요청서 등록시 해당 지역 지도사에게 알림연락처 전달
+ 요청서 확인 후 수락 푸시알림or SMS지도사프로필
+
+
+
+NaN
+ 전역 NaN 속성은 NotANumber숫자가 아님를 나타냄
+ isNaN 함수로 NaN 여부를 확인
+
+
+백엔드
+
+order 테이블 컬럼 수정deceasedName 고인 이름 bereavedName 유족 이름 추가
+
+
+br
+ 주요소스코드
+
+ ClientJoinvue
+html
+template
+  ionpage
+    ioncustomheader회원  가입ioncustomheader
+    ioncontent fullscreentrue
+      ionheader collapsecondense
+        iontoolbar
+          iontitle sizelarge회원  가입iontitle
+        iontoolbar
+      ionheader
+      ioncustombody classjustifycenter
+        div classlogobox textcenter
+          span
+            span classtext3xl
+              fontawesomeicon iconlemon 
+            span
+            span classfontbold text3xl
+              DESIGN LEMON
+            span
+          span
+        div
+        form submitpreventcheckAndJoin
+          div
+            ionitem
+              ionlabel positionstacked프로필 이미지ionlabel
+              ioninput vmodeljoinFormStateprofileImg typefileioninput
+            ionitem
+          div
+          div
+            ionitem
+              ionlabel positionfloating아이디ionlabel
+              ioninput vmodeljoinFormStateloginId typetext minlength5 maxlength12 placeholder아이디를 입력해주세요ioninput
+            ionitem
+          div
+          div
+            ionitem
+              ionlabel positionfloating비밀번호ionlabel
+              ioninput vmodeljoinFormStateloginPw minlength8 typepassword placeholder비밀번호를 입력해주세요ioninput
+            ionitem
+          div
+          div
+            ionitem
+              ionlabel positionfloating비밀번호 확인ionlabel
+              ioninput vmodeljoinFormStateloginPwConfirm minlength8 typepassword placeholder비밀번호 확인을 해주세요ioninput
+            ionitem
+          div
+          div
+            ionitem
+              ionlabel positionfloating이름ionlabel
+              ioninput vmodeljoinFormStatename minlength2 placeholder이름을 입력해주세요ioninput
+            ionitem
+          div
+          div
+            ionitem
+              ionlabel positionfloating연락처ionlabel
+              ioninput vmodeljoinFormStatecellphoneNo typetel maxlength11 placeholder연락처를 입력해주세요ioninput
+            ionitem
+          div
+          div
+            ionitem
+              ionlabel positionfloating이메일ionlabel
+              ioninput vmodeljoinFormStateemail typeemail placeholder이메일을 입력해주세요ioninput
+            ionitem
+          div
+          div
+            ionitem
+              ionlabel positionfloating지역ionlabel
+              ioninput vmodeljoinFormStateregion placeholder시도 주소를 입력해주세요ioninput
+            ionitem
+          div
+          div classpy2 px4
+            ionbutton typesubmit expandblock가입ionbutton
+          div
+          div classpx4
+            ionbutton colorsecondary typereset expandblock초기화ionbutton
+          div
+        form
+      ioncustombody
+    ioncontent
+  ionpage
+template
+
+style
+style
+
+script langts
+import  IonCustomBody IonCustomHeader  from components
+import  
+  IonPage 
+  IonHeader 
+  IonToolbar 
+  IonTitle 
+  IonContent
+  IonLabel 
+  IonInput 
+  IonItem 
+  IonButton 
+ from ionicvue
+import  useGlobalState  from stores
+import  useMainService  from services
+import  useRouter  from vuerouter
+import  as util from utils
+import  reactive  from vue
+
+
+const useJoinFormState    
+  return reactive
+    profileImg  as File
+    loginId 
+    loginPw 
+    loginPwConfirm 
+    name 
+    cellphoneNo 
+    email 
+    region 
+  
+
+
+export default 
+  name Join
+
+  components  
+    IonHeader 
+    IonToolbar 
+    IonTitle
+    IonLabel 
+    IonInput 
+    IonItem 
+    IonButton 
+    IonContent 
+    IonPage 
+    IonCustomBody 
+    IonCustomHeader 
+  
+
+  setup 
+    const globalState  useGlobalState
+    const joinFormState  useJoinFormState
+    const router  useRouter
+    const mainService  useMainService
+
+     function confirmAlert
+       const msg  해당 내용으로 가입하시겠습니까
+       utilshowAlertConfirmmsg
+     
+
+    function checkAndJoin 
+        아이디 체크
+      const loginId  joinFormStateloginIdtrim
+      
+      if  joinFormStateloginIdtrimlength  0  
+        alert아이디를 입력해주세요
+        return
+      
+       비번 체크
+      const loginPw  joinFormStateloginPwtrim
+      
+      if  loginPwlength  0  
+        alert비밀번호를 입력해주세요
+        return
+      
+      
+       비번확인 체크
+      const loginPwConfirm  joinFormStateloginPwConfirmtrim
+      
+      if  loginPw  loginPwConfirm  
+        alert비밀번호가 일치하지 않습니다
+        return
+      
+
+       이름 체크
+      const name  joinFormStatenametrim
+
+      if  namelength  0  
+        alert이름을 입력해주세요
+        return
+      
+      
+       전화번호 체크
+      const cellphoneNo  joinFormStatecellphoneNotrim
+      
+      if  cellphoneNolength  0  
+        alert연락처를 입력해주세요
+        return
+      
+
+       이메일 체크
+      const email  joinFormStateemailtrim
+      
+      if  emaillength  0  
+        alert이메일을 입력해주세요
+        return
+      
+
+       시도 주소 체크
+      const region  joinFormStateregiontrim
+      
+      if  regionlength  0  
+        alert지역시도을 입력해주세요
+        return
+      
+
+      async function startFileUploadonSuccess Function
+           반전
+         a  undefindedor null  a  true  a  flase란 의미
+           만약 profileImgElRefvalue까지가 null이면 여기까지만 실행하겠다라는 의미
+         즉 profileImgElRefvaluefiles의 의미는 해당 파일이 없는지 물어보는 것
+         없으면 true
+        ifjoinFormStateprofileImg  null
+          onSuccess  파일이 없으면 다음 과정 생략하고 onSuccess 즉시 실행
+          alert파일 업로드 안됨
+          return
+        
+        const axRes  await mainServicecommongenFiledoUploadjoinFormStateprofileImg0
+
+        if  axResdatafail  
+          utilshowAlertaxResdatamsg
+          return
+        
+        else
+            onSuccessaxResdatabodygenFileIdsStr
+        
+      
+
+      async function joinloginId string loginPw string name string cellphoneNo string email string region string genFileIdsStr string 
+        const axRes  await  mainServiceclientdoJoinloginId loginPw name cellphoneNo email region genFileIdsStr
+  
+          utilshowAlertaxResdatamsg
+        
+          if  axResdatafail  
+            return
+          
+
+          routerreplaceclientloginloginId  loginId
+      
+
+      const startJoin  genFileIdsStr string 
+          joinloginId loginPw name cellphoneNo email region  genFileIdsStr
+      
+
+      const msg  해당 내용으로 가입하시겠습니까
+      utilshowAlertConfirmmsgthenconfirm  
+        if confirm  false 
+          return
+         else
+          startFileUploadstartJoin
+        
+      
+      
+    
+
+    
+
+    return 
+      globalState
+      confirmAlert
+      joinFormState
+      checkAndJoin
+      
+    
+  
+
+script
+
+
+ OrderListvue
+html
+template
+ioncustomheader의뢰  리스트ioncustomheader
+ioncontent 
+  ionlist classmb12
+    ionitem
+    ionselect vmodelsearchStateselectStepLevel
+      ionselectoption value0진행단계 전체ionselectoption
+      ionselectoption value1요청서 검토중ionselectoption
+      ionselectoption value2장례준비중ionselectoption
+      ionselectoption value3장례진행중ionselectoption
+      ionselectoption value4장례종료확인대기중ionselectoption
+      ionselectoption value5장례종료최종종료ionselectoption
+    ionselect
+    ionitem
+    ionitem
+    ionselect vmodelsearchStatesearchKeywordType
+      ionselectoption valuedeceasedName고인명ionselectoption
+      ionselectoption valuebereavedName상주명ionselectoption
+      ionselectoption valueextraclientName의뢰인명ionselectoption
+      ionselectoption valuebody내용ionselectoption
+      ionselectoption valuefuneralHome장례식장ionselectoption
+    ionselect
+    ionitem
+    ionitem
+      ionsearchbar showcancelbuttonfocus animated inputmodesearch enterkeyhintenter placeholder검색어를 입력해주세요 valuesearchStatesearchKeyword keyupenteronInputeventionsearchbar
+    ionitem
+    ionlistheaderMyOrderListionlistheader
+    template vbindkeyorderid vfororder in returnFilteredOrders
+    ionitem
+      진행단계
+        div viforderstepLevel1 classbtnsuccess
+          진행단계 returnToStringorderstepLevel
+        div
+        div viforderstepLevel2 classbtnsecondary
+          진행단계 returnToStringorderstepLevel
+        div
+        div viforderstepLevel3 classbtnwarning
+          진행단계 returnToStringorderstepLevel
+        div
+        div viforderstepLevel4 classbtnprimary
+          진행단계 returnToStringorderstepLevel
+        div
+        div viforderstepLevel5 classbtnprimary
+          진행단계 returnToStringorderstepLevel
+        div
+      ionlabel
+        iongrid
+          ionrow
+            ioncol size12 classbggray300 border roundedmd
+              고인명 orderdeceasedName
+            ioncol
+          ionrow
+          ionrow
+            ioncol size4
+              상주명 orderbereavedName
+            ioncol
+            ioncol size10
+              의뢰인 orderextraclientName
+            ioncol
+            ioncol size10
+              담당지도사 orderextraexpertName
+            ioncol
+          ionrow
+          ionrow
+            ioncol size10
+              장례식장 orderfuneralHome
+            ioncol
+            ioncol size10
+              인원 orderhead 명
+            ioncol
+            ioncol size10
+              종교 orderreligion
+            ioncol
+            ioncol size10
+              장례시작일 orderstartDate
+            ioncol
+            ioncol size10
+              장례종료일 orderendDate
+            ioncol
+          ionrow
+        iongrid
+      ionlabel
+      div classflexcol
+        ionitemdivider classmt2
+          ionbutton color slotend hreforderdetailid  orderid
+            상세보기
+          ionbutton
+        ionitemdivider
+        ionitemdivider classmt2
+          ionbutton vifglobalStateloginedClientid  orderclientId colorsuccess slotend hrefreviewaddrelTypeCodeexpertrelId  orderexpertId
+            후기평점 작성
+          ionbutton
+        ionitemdivider
+
+        ionitemdivider classmt2 vifglobalStateloginedClientid  orderclientId
+          ionbutton viforderstepLevel1 colorsuccess slotend clickchangeStepLevelorderid orderstepLevel
+            의뢰수락장례준비
+          ionbutton
+          ionbutton viforderstepLevel2 colorsuccess slotend clickchangeStepLevelorderid orderstepLevel
+            장례진행
+          ionbutton
+          ionbutton viforderstepLevel3 colorsuccess slotend clickchangeStepLevelorderid orderstepLevel
+            장례종료확인요청
+          ionbutton
+        ionitemdivider
+
+        ionitemdivider classmt2 vifglobalStateloginedClientid  orderclientId
+          ionbutton viforderstepLevel2 colorsuccess slotend
+            장례준비중
+          ionbutton
+          ionbutton viforderstepLevel3 colorsuccess slotend
+            장례진행중
+          ionbutton
+          ionbutton viforderstepLevel4 colorsuccess slotend clickchangeStepLevelorderid orderstepLevel
+            장례종료확인
+          ionbutton
+        ionitemdivider
+        
+
+      div
+      ionitem
+    template
+  ionlist
+ioncontent
+template
+
+style
+style
+
+script langts
+import  IonCustomHeader  from components
+import  
+  IonSelect 
+  IonSelectOption 
+  IonSearchbar 
+  IonLabel 
+  IonListHeader 
+  IonList 
+  IonItem 
+  IonContent
+  IonItemDivider
+  IonCol
+  IonRow
+  IonGrid
+  IonButton
+ from ionicvue
+import  useGlobalState  from stores
+import  useMainService  from services
+import  reactive computed onMounted watch  from vue
+import  as util from utils
+import  useRoute  from vuerouter
+import  Order  from types
+
+const useSearchState    
+  return reactive
+    searchKeyword 
+    searchKeywordType deceasedName
+    selectStepLevel 0
+  
+
+
+export default  
+  name OrderList
+  
+  components  
+    IonSelect 
+    IonSelectOption 
+    IonSearchbar 
+    IonCustomHeader 
+    IonLabel 
+    IonListHeader 
+    IonList 
+    IonItem 
+    IonContent
+    IonItemDivider
+    IonCol
+    IonRow
+    IonGrid
+    IonButton
+  
+  
+  setup 
+    const globalState  useGlobalState
+    const mainService  useMainService
+    const searchState  useSearchState
+    const route  useRoute
+
+    const state  reactive
+      orders  as Order
+    
+
+    function returnToStringstepLevel any 
+      let stepLevelToStr   
+      ifstepLevel  1
+        stepLevelToStr  의뢰요청의뢰검토중
+      
+      ifstepLevel  2
+        stepLevelToStr  의뢰승인장례준비중
+      
+      ifstepLevel  3
+        stepLevelToStr  장례진행중
+      
+      ifstepLevel  4
+        stepLevelToStr  장례종료종료확인요청
+      
+      ifstepLevel  5
+        stepLevelToStr  종료확인최종종료
+      
+      
+      return stepLevelToStr
+    
+
+    function onInputevent any
+      searchStatesearchKeyword  eventtargetvalue
+      return searchStatesearchKeyword
+    
+
+
+    const returnFilteredOrders  computed  
+
+      let filteredOrders  stateorders
+      
+      ifsearchStateselectStepLevel  0
+        ifsearchStatesearchKeywordType  deceasedName
+          filteredOrders  stateordersfilterorder Order  orderdeceasedNameincludessearchStatesearchKeyword
+        
+        ifsearchStatesearchKeywordType  bereavedName
+          filteredOrders  stateordersfilterorder Order  orderbereavedNameincludessearchStatesearchKeyword
+        
+        ifsearchStatesearchKeywordType  extraclientName
+          filteredOrders  stateordersfilterorder Order  orderextraclientNameincludessearchStatesearchKeyword
+        
+        ifsearchStatesearchKeywordType  body
+          filteredOrders  stateordersfilterorder Order  orderbodyincludessearchStatesearchKeyword
+        
+        ifsearchStatesearchKeywordType  funeralHome
+          filteredOrders  stateordersfilterorder Order  orderfuneralHomeincludessearchStatesearchKeyword
+        
+      
+      else
+        ifsearchStatesearchKeywordType  deceasedName
+          filteredOrders  stateordersfilterorder Order  orderdeceasedNameincludessearchStatesearchKeyword  orderstepLevel  parseIntsearchStateselectStepLevel
+        
+        ifsearchStatesearchKeywordType  bereavedName
+          filteredOrders  stateordersfilterorder Order  orderbereavedNameincludessearchStatesearchKeyword  orderstepLevel  parseIntsearchStateselectStepLevel
+        
+        ifsearchStatesearchKeywordType  extraclientName
+          filteredOrders  stateordersfilterorder Order  orderextraclientNameincludessearchStatesearchKeyword  orderstepLevel  parseIntsearchStateselectStepLevel
+        
+        ifsearchStatesearchKeywordType  body
+          filteredOrders  stateordersfilterorder Order  orderbodyincludessearchStatesearchKeyword  orderstepLevel  parseIntsearchStateselectStepLevel
+        
+        ifsearchStatesearchKeywordType  funeralHome
+          filteredOrders  stateordersfilterorder Order  orderfuneralHomeincludessearchStatesearchKeyword  orderstepLevel  parseIntsearchStateselectStepLevel
+        
+      
+      return filteredOrders
+    
+
+    async function loadOrdersmemberId number memberType string
+      const axRes  await mainServiceorderlistmemberId memberType
+      stateorders  axResdatabodyorders
+    
+
+     function doDeleteReviewid number 
+       ifconfirm정말 삭제하시겠습니까  false
+         return
+       
+       mainServicereviewdoDeleteid
+       thenaxiosResponse  
+           alertaxiosResponsedatamsg
+           if  axiosResponsedatafail  
+             return
+           
+         windowlocationreload
+       
+     
+
+    async function doChangeStepLevelid number stepLevel number
+      const axRes  await mainServiceorderchangeStepLevelid stepLevel
+          utilshowAlertaxResdatamsg
+
+          if  axResdatafail  
+            return
+          
+          windowlocationreload
+    
+
+    function changeStepLevelid number stepLevel number
+
+      const msg  해당 의뢰를 수락하시겠습니까
+      utilshowAlertConfirmmsgthenconfirm  
+        if confirm  false 
+          return
+         else
+          doChangeStepLevelid stepLevel
+        
+      
+      
+    
+
+    let loginedMemberId  0
+    let loginedMemberType  
+
+    ifglobalStateloginedClientid  null
+        loginedMemberId  globalStateloginedClientid
+        loginedMemberType  client
+    
+
+     onMounted 바로 실행하는 것이 아닌 모든 것이 준비되었을때 실행됨
+    onMounted  
+      alert3
+      loadOrdersloginedMemberId loginedMemberType
+      loadReviewsrelTypeCode
+    
+
+
+    return 
+      globalState
+      mainService
+      state
+      searchState
+      returnFilteredOrders
+      doDeleteReview
+      onInput
+      returnToString
+      changeStepLevel
+      onClickInput
+    
+  
+
+
+
+script
+
+
+ DB
+sql
+ 요청사항 테이블 생성
+CREATE TABLE order 
+    id INT10 UNSIGNED NOT NULL PRIMARY KEY AUTOINCREMENT
+    regDate DATETIME NOT NULL
+    updateDate DATETIME NOT NULL
+    head INT10 UNSIGNED NOT NULL 예상인원수
+    religion CHAR200 NOT NULL 종교
+    startDate DATE NOT NULL 장례시작일
+    endDate DATE NOT NULL 장례종료일
+    deceasedName CHAR30 NOT NULL 고인 이름
+    bereavedName CHAR30 NOT NULL 유족 이름
+    body TEXT NOT NULL 상세요구사항
+    funeralHome CHAR200 NOT NULL 장례식장
+    expertId INT10 UNSIGNED NOT NULL
+    clientId INT10 UNSIGNED NOT NULL
+    stepLevel SMALLINT2 UNSIGNED DEFAULT 1 NOT NULL COMMENT 1의뢰요청의뢰검토2의뢰승인장례준비중3장례진행중4장례종료종료확인요청5종료확인최종종료
+
+" />
+<meta property="og:locale" content="ko_KR" />
+<meta property="og:image" content="images/Dev_J_logo/logo.png" />
+<meta property="og:image:alt" content="blog.devj.me" />
+<meta property="og:image:width" content="486" />
+<meta property="og:image:height" content="254" />
+<meta property="og:updated_time" content="2021-04-24T15:02:49"/>
+<meta property="og:pubdate" content="2021-04-24T15:02:49" />
+<meta property="og:url" content="https://blog.devj.me" />
+<!-- TWITTER -->
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="P.Lamplight - 개발일지(ionic이사 진행중-의뢰인로그인,회원가입,정보수정.....지도사리스팅....요청서crud, 리스팅 완료)" />
+<meta name="twitter:site" content="@Dev_J BLOG" />
+<meta name="twitter:creator" content="@Dev_J BLOG" />
+<meta name="twitter:image" content="images/Dev_J_logo/logo.png">
+<meta name="twitter:description" content=" ionic이사 진행중의뢰인로그인회원가입정보수정지도사리스팅요청서crud 리스팅 완료
+
+ NOTE
+
+
+프론트엔드
+
+Todo
+ionic으로 일단 이사
+ 의뢰인로그인로그아웃
+ 의뢰인회원가입후 로그인아이디
+ 의뢰인마이페이지
+ 의뢰인회원정보 수정
+ 지도사 리스팅
+ 요청서 작성상세보기
+ 요청서 수정
+ 요청서 삭제
+  컨펌창 도입
+   요청서 작성시
+   요청서 수정시
+   회원가입시
+   회원정보 수정시
+ 요청서 리스팅
+ 
+ionic 컨펌창 도입
+httpsforumionicframeworkcomtreturnvaluefromalertconfirmation758242
+
+사이클 변경
+의뢰인 요청서 등록  해당 지역에 속한 지도사에게 푸시알림or SMS
+ 요청서 확인 후 수락 푸시알림or SMS연락처  장례 준비 진행도우미 지원2차 배포시 추가
+ 장례 진행  종료  의뢰인 최종 확인결제2차 배포시 추가  평점리뷰 작성
+ 요청서 등록시 해당 지역 지도사에게 알림연락처 전달
+ 요청서 확인 후 수락 푸시알림or SMS지도사프로필
+
+
+
+NaN
+ 전역 NaN 속성은 NotANumber숫자가 아님를 나타냄
+ isNaN 함수로 NaN 여부를 확인
+
+
+백엔드
+
+order 테이블 컬럼 수정deceasedName 고인 이름 bereavedName 유족 이름 추가
+
+
+br
+ 주요소스코드
+
+ ClientJoinvue
+html
+template
+  ionpage
+    ioncustomheader회원  가입ioncustomheader
+    ioncontent fullscreentrue
+      ionheader collapsecondense
+        iontoolbar
+          iontitle sizelarge회원  가입iontitle
+        iontoolbar
+      ionheader
+      ioncustombody classjustifycenter
+        div classlogobox textcenter
+          span
+            span classtext3xl
+              fontawesomeicon iconlemon 
+            span
+            span classfontbold text3xl
+              DESIGN LEMON
+            span
+          span
+        div
+        form submitpreventcheckAndJoin
+          div
+            ionitem
+              ionlabel positionstacked프로필 이미지ionlabel
+              ioninput vmodeljoinFormStateprofileImg typefileioninput
+            ionitem
+          div
+          div
+            ionitem
+              ionlabel positionfloating아이디ionlabel
+              ioninput vmodeljoinFormStateloginId typetext minlength5 maxlength12 placeholder아이디를 입력해주세요ioninput
+            ionitem
+          div
+          div
+            ionitem
+              ionlabel positionfloating비밀번호ionlabel
+              ioninput vmodeljoinFormStateloginPw minlength8 typepassword placeholder비밀번호를 입력해주세요ioninput
+            ionitem
+          div
+          div
+            ionitem
+              ionlabel positionfloating비밀번호 확인ionlabel
+              ioninput vmodeljoinFormStateloginPwConfirm minlength8 typepassword placeholder비밀번호 확인을 해주세요ioninput
+            ionitem
+          div
+          div
+            ionitem
+              ionlabel positionfloating이름ionlabel
+              ioninput vmodeljoinFormStatename minlength2 placeholder이름을 입력해주세요ioninput
+            ionitem
+          div
+          div
+            ionitem
+              ionlabel positionfloating연락처ionlabel
+              ioninput vmodeljoinFormStatecellphoneNo typetel maxlength11 placeholder연락처를 입력해주세요ioninput
+            ionitem
+          div
+          div
+            ionitem
+              ionlabel positionfloating이메일ionlabel
+              ioninput vmodeljoinFormStateemail typeemail placeholder이메일을 입력해주세요ioninput
+            ionitem
+          div
+          div
+            ionitem
+              ionlabel positionfloating지역ionlabel
+              ioninput vmodeljoinFormStateregion placeholder시도 주소를 입력해주세요ioninput
+            ionitem
+          div
+          div classpy2 px4
+            ionbutton typesubmit expandblock가입ionbutton
+          div
+          div classpx4
+            ionbutton colorsecondary typereset expandblock초기화ionbutton
+          div
+        form
+      ioncustombody
+    ioncontent
+  ionpage
+template
+
+style
+style
+
+script langts
+import  IonCustomBody IonCustomHeader  from components
+import  
+  IonPage 
+  IonHeader 
+  IonToolbar 
+  IonTitle 
+  IonContent
+  IonLabel 
+  IonInput 
+  IonItem 
+  IonButton 
+ from ionicvue
+import  useGlobalState  from stores
+import  useMainService  from services
+import  useRouter  from vuerouter
+import  as util from utils
+import  reactive  from vue
+
+
+const useJoinFormState    
+  return reactive
+    profileImg  as File
+    loginId 
+    loginPw 
+    loginPwConfirm 
+    name 
+    cellphoneNo 
+    email 
+    region 
+  
+
+
+export default 
+  name Join
+
+  components  
+    IonHeader 
+    IonToolbar 
+    IonTitle
+    IonLabel 
+    IonInput 
+    IonItem 
+    IonButton 
+    IonContent 
+    IonPage 
+    IonCustomBody 
+    IonCustomHeader 
+  
+
+  setup 
+    const globalState  useGlobalState
+    const joinFormState  useJoinFormState
+    const router  useRouter
+    const mainService  useMainService
+
+     function confirmAlert
+       const msg  해당 내용으로 가입하시겠습니까
+       utilshowAlertConfirmmsg
+     
+
+    function checkAndJoin 
+        아이디 체크
+      const loginId  joinFormStateloginIdtrim
+      
+      if  joinFormStateloginIdtrimlength  0  
+        alert아이디를 입력해주세요
+        return
+      
+       비번 체크
+      const loginPw  joinFormStateloginPwtrim
+      
+      if  loginPwlength  0  
+        alert비밀번호를 입력해주세요
+        return
+      
+      
+       비번확인 체크
+      const loginPwConfirm  joinFormStateloginPwConfirmtrim
+      
+      if  loginPw  loginPwConfirm  
+        alert비밀번호가 일치하지 않습니다
+        return
+      
+
+       이름 체크
+      const name  joinFormStatenametrim
+
+      if  namelength  0  
+        alert이름을 입력해주세요
+        return
+      
+      
+       전화번호 체크
+      const cellphoneNo  joinFormStatecellphoneNotrim
+      
+      if  cellphoneNolength  0  
+        alert연락처를 입력해주세요
+        return
+      
+
+       이메일 체크
+      const email  joinFormStateemailtrim
+      
+      if  emaillength  0  
+        alert이메일을 입력해주세요
+        return
+      
+
+       시도 주소 체크
+      const region  joinFormStateregiontrim
+      
+      if  regionlength  0  
+        alert지역시도을 입력해주세요
+        return
+      
+
+      async function startFileUploadonSuccess Function
+           반전
+         a  undefindedor null  a  true  a  flase란 의미
+           만약 profileImgElRefvalue까지가 null이면 여기까지만 실행하겠다라는 의미
+         즉 profileImgElRefvaluefiles의 의미는 해당 파일이 없는지 물어보는 것
+         없으면 true
+        ifjoinFormStateprofileImg  null
+          onSuccess  파일이 없으면 다음 과정 생략하고 onSuccess 즉시 실행
+          alert파일 업로드 안됨
+          return
+        
+        const axRes  await mainServicecommongenFiledoUploadjoinFormStateprofileImg0
+
+        if  axResdatafail  
+          utilshowAlertaxResdatamsg
+          return
+        
+        else
+            onSuccessaxResdatabodygenFileIdsStr
+        
+      
+
+      async function joinloginId string loginPw string name string cellphoneNo string email string region string genFileIdsStr string 
+        const axRes  await  mainServiceclientdoJoinloginId loginPw name cellphoneNo email region genFileIdsStr
+  
+          utilshowAlertaxResdatamsg
+        
+          if  axResdatafail  
+            return
+          
+
+          routerreplaceclientloginloginId  loginId
+      
+
+      const startJoin  genFileIdsStr string 
+          joinloginId loginPw name cellphoneNo email region  genFileIdsStr
+      
+
+      const msg  해당 내용으로 가입하시겠습니까
+      utilshowAlertConfirmmsgthenconfirm  
+        if confirm  false 
+          return
+         else
+          startFileUploadstartJoin
+        
+      
+      
+    
+
+    
+
+    return 
+      globalState
+      confirmAlert
+      joinFormState
+      checkAndJoin
+      
+    
+  
+
+script
+
+
+ OrderListvue
+html
+template
+ioncustomheader의뢰  리스트ioncustomheader
+ioncontent 
+  ionlist classmb12
+    ionitem
+    ionselect vmodelsearchStateselectStepLevel
+      ionselectoption value0진행단계 전체ionselectoption
+      ionselectoption value1요청서 검토중ionselectoption
+      ionselectoption value2장례준비중ionselectoption
+      ionselectoption value3장례진행중ionselectoption
+      ionselectoption value4장례종료확인대기중ionselectoption
+      ionselectoption value5장례종료최종종료ionselectoption
+    ionselect
+    ionitem
+    ionitem
+    ionselect vmodelsearchStatesearchKeywordType
+      ionselectoption valuedeceasedName고인명ionselectoption
+      ionselectoption valuebereavedName상주명ionselectoption
+      ionselectoption valueextraclientName의뢰인명ionselectoption
+      ionselectoption valuebody내용ionselectoption
+      ionselectoption valuefuneralHome장례식장ionselectoption
+    ionselect
+    ionitem
+    ionitem
+      ionsearchbar showcancelbuttonfocus animated inputmodesearch enterkeyhintenter placeholder검색어를 입력해주세요 valuesearchStatesearchKeyword keyupenteronInputeventionsearchbar
+    ionitem
+    ionlistheaderMyOrderListionlistheader
+    template vbindkeyorderid vfororder in returnFilteredOrders
+    ionitem
+      진행단계
+        div viforderstepLevel1 classbtnsuccess
+          진행단계 returnToStringorderstepLevel
+        div
+        div viforderstepLevel2 classbtnsecondary
+          진행단계 returnToStringorderstepLevel
+        div
+        div viforderstepLevel3 classbtnwarning
+          진행단계 returnToStringorderstepLevel
+        div
+        div viforderstepLevel4 classbtnprimary
+          진행단계 returnToStringorderstepLevel
+        div
+        div viforderstepLevel5 classbtnprimary
+          진행단계 returnToStringorderstepLevel
+        div
+      ionlabel
+        iongrid
+          ionrow
+            ioncol size12 classbggray300 border roundedmd
+              고인명 orderdeceasedName
+            ioncol
+          ionrow
+          ionrow
+            ioncol size4
+              상주명 orderbereavedName
+            ioncol
+            ioncol size10
+              의뢰인 orderextraclientName
+            ioncol
+            ioncol size10
+              담당지도사 orderextraexpertName
+            ioncol
+          ionrow
+          ionrow
+            ioncol size10
+              장례식장 orderfuneralHome
+            ioncol
+            ioncol size10
+              인원 orderhead 명
+            ioncol
+            ioncol size10
+              종교 orderreligion
+            ioncol
+            ioncol size10
+              장례시작일 orderstartDate
+            ioncol
+            ioncol size10
+              장례종료일 orderendDate
+            ioncol
+          ionrow
+        iongrid
+      ionlabel
+      div classflexcol
+        ionitemdivider classmt2
+          ionbutton color slotend hreforderdetailid  orderid
+            상세보기
+          ionbutton
+        ionitemdivider
+        ionitemdivider classmt2
+          ionbutton vifglobalStateloginedClientid  orderclientId colorsuccess slotend hrefreviewaddrelTypeCodeexpertrelId  orderexpertId
+            후기평점 작성
+          ionbutton
+        ionitemdivider
+
+        ionitemdivider classmt2 vifglobalStateloginedClientid  orderclientId
+          ionbutton viforderstepLevel1 colorsuccess slotend clickchangeStepLevelorderid orderstepLevel
+            의뢰수락장례준비
+          ionbutton
+          ionbutton viforderstepLevel2 colorsuccess slotend clickchangeStepLevelorderid orderstepLevel
+            장례진행
+          ionbutton
+          ionbutton viforderstepLevel3 colorsuccess slotend clickchangeStepLevelorderid orderstepLevel
+            장례종료확인요청
+          ionbutton
+        ionitemdivider
+
+        ionitemdivider classmt2 vifglobalStateloginedClientid  orderclientId
+          ionbutton viforderstepLevel2 colorsuccess slotend
+            장례준비중
+          ionbutton
+          ionbutton viforderstepLevel3 colorsuccess slotend
+            장례진행중
+          ionbutton
+          ionbutton viforderstepLevel4 colorsuccess slotend clickchangeStepLevelorderid orderstepLevel
+            장례종료확인
+          ionbutton
+        ionitemdivider
+        
+
+      div
+      ionitem
+    template
+  ionlist
+ioncontent
+template
+
+style
+style
+
+script langts
+import  IonCustomHeader  from components
+import  
+  IonSelect 
+  IonSelectOption 
+  IonSearchbar 
+  IonLabel 
+  IonListHeader 
+  IonList 
+  IonItem 
+  IonContent
+  IonItemDivider
+  IonCol
+  IonRow
+  IonGrid
+  IonButton
+ from ionicvue
+import  useGlobalState  from stores
+import  useMainService  from services
+import  reactive computed onMounted watch  from vue
+import  as util from utils
+import  useRoute  from vuerouter
+import  Order  from types
+
+const useSearchState    
+  return reactive
+    searchKeyword 
+    searchKeywordType deceasedName
+    selectStepLevel 0
+  
+
+
+export default  
+  name OrderList
+  
+  components  
+    IonSelect 
+    IonSelectOption 
+    IonSearchbar 
+    IonCustomHeader 
+    IonLabel 
+    IonListHeader 
+    IonList 
+    IonItem 
+    IonContent
+    IonItemDivider
+    IonCol
+    IonRow
+    IonGrid
+    IonButton
+  
+  
+  setup 
+    const globalState  useGlobalState
+    const mainService  useMainService
+    const searchState  useSearchState
+    const route  useRoute
+
+    const state  reactive
+      orders  as Order
+    
+
+    function returnToStringstepLevel any 
+      let stepLevelToStr   
+      ifstepLevel  1
+        stepLevelToStr  의뢰요청의뢰검토중
+      
+      ifstepLevel  2
+        stepLevelToStr  의뢰승인장례준비중
+      
+      ifstepLevel  3
+        stepLevelToStr  장례진행중
+      
+      ifstepLevel  4
+        stepLevelToStr  장례종료종료확인요청
+      
+      ifstepLevel  5
+        stepLevelToStr  종료확인최종종료
+      
+      
+      return stepLevelToStr
+    
+
+    function onInputevent any
+      searchStatesearchKeyword  eventtargetvalue
+      return searchStatesearchKeyword
+    
+
+
+    const returnFilteredOrders  computed  
+
+      let filteredOrders  stateorders
+      
+      ifsearchStateselectStepLevel  0
+        ifsearchStatesearchKeywordType  deceasedName
+          filteredOrders  stateordersfilterorder Order  orderdeceasedNameincludessearchStatesearchKeyword
+        
+        ifsearchStatesearchKeywordType  bereavedName
+          filteredOrders  stateordersfilterorder Order  orderbereavedNameincludessearchStatesearchKeyword
+        
+        ifsearchStatesearchKeywordType  extraclientName
+          filteredOrders  stateordersfilterorder Order  orderextraclientNameincludessearchStatesearchKeyword
+        
+        ifsearchStatesearchKeywordType  body
+          filteredOrders  stateordersfilterorder Order  orderbodyincludessearchStatesearchKeyword
+        
+        ifsearchStatesearchKeywordType  funeralHome
+          filteredOrders  stateordersfilterorder Order  orderfuneralHomeincludessearchStatesearchKeyword
+        
+      
+      else
+        ifsearchStatesearchKeywordType  deceasedName
+          filteredOrders  stateordersfilterorder Order  orderdeceasedNameincludessearchStatesearchKeyword  orderstepLevel  parseIntsearchStateselectStepLevel
+        
+        ifsearchStatesearchKeywordType  bereavedName
+          filteredOrders  stateordersfilterorder Order  orderbereavedNameincludessearchStatesearchKeyword  orderstepLevel  parseIntsearchStateselectStepLevel
+        
+        ifsearchStatesearchKeywordType  extraclientName
+          filteredOrders  stateordersfilterorder Order  orderextraclientNameincludessearchStatesearchKeyword  orderstepLevel  parseIntsearchStateselectStepLevel
+        
+        ifsearchStatesearchKeywordType  body
+          filteredOrders  stateordersfilterorder Order  orderbodyincludessearchStatesearchKeyword  orderstepLevel  parseIntsearchStateselectStepLevel
+        
+        ifsearchStatesearchKeywordType  funeralHome
+          filteredOrders  stateordersfilterorder Order  orderfuneralHomeincludessearchStatesearchKeyword  orderstepLevel  parseIntsearchStateselectStepLevel
+        
+      
+      return filteredOrders
+    
+
+    async function loadOrdersmemberId number memberType string
+      const axRes  await mainServiceorderlistmemberId memberType
+      stateorders  axResdatabodyorders
+    
+
+     function doDeleteReviewid number 
+       ifconfirm정말 삭제하시겠습니까  false
+         return
+       
+       mainServicereviewdoDeleteid
+       thenaxiosResponse  
+           alertaxiosResponsedatamsg
+           if  axiosResponsedatafail  
+             return
+           
+         windowlocationreload
+       
+     
+
+    async function doChangeStepLevelid number stepLevel number
+      const axRes  await mainServiceorderchangeStepLevelid stepLevel
+          utilshowAlertaxResdatamsg
+
+          if  axResdatafail  
+            return
+          
+          windowlocationreload
+    
+
+    function changeStepLevelid number stepLevel number
+
+      const msg  해당 의뢰를 수락하시겠습니까
+      utilshowAlertConfirmmsgthenconfirm  
+        if confirm  false 
+          return
+         else
+          doChangeStepLevelid stepLevel
+        
+      
+      
+    
+
+    let loginedMemberId  0
+    let loginedMemberType  
+
+    ifglobalStateloginedClientid  null
+        loginedMemberId  globalStateloginedClientid
+        loginedMemberType  client
+    
+
+     onMounted 바로 실행하는 것이 아닌 모든 것이 준비되었을때 실행됨
+    onMounted  
+      alert3
+      loadOrdersloginedMemberId loginedMemberType
+      loadReviewsrelTypeCode
+    
+
+
+    return 
+      globalState
+      mainService
+      state
+      searchState
+      returnFilteredOrders
+      doDeleteReview
+      onInput
+      returnToString
+      changeStepLevel
+      onClickInput
+    
+  
+
+
+
+script
+
+
+ DB
+sql
+ 요청사항 테이블 생성
+CREATE TABLE order 
+    id INT10 UNSIGNED NOT NULL PRIMARY KEY AUTOINCREMENT
+    regDate DATETIME NOT NULL
+    updateDate DATETIME NOT NULL
+    head INT10 UNSIGNED NOT NULL 예상인원수
+    religion CHAR200 NOT NULL 종교
+    startDate DATE NOT NULL 장례시작일
+    endDate DATE NOT NULL 장례종료일
+    deceasedName CHAR30 NOT NULL 고인 이름
+    bereavedName CHAR30 NOT NULL 유족 이름
+    body TEXT NOT NULL 상세요구사항
+    funeralHome CHAR200 NOT NULL 장례식장
+    expertId INT10 UNSIGNED NOT NULL
+    clientId INT10 UNSIGNED NOT NULL
+    stepLevel SMALLINT2 UNSIGNED DEFAULT 1 NOT NULL COMMENT 1의뢰요청의뢰검토2의뢰승인장례준비중3장례진행중4장례종료종료확인요청5종료확인최종종료
+
+" />
+<!-- GOOGLE+ -->
+<meta itemprop="headline" content="Dev_J BLOG" />
+<meta itemprop="name" content="Dev_J BLOG" />
+<meta itemprop="description" content=" ionic이사 진행중의뢰인로그인회원가입정보수정지도사리스팅요청서crud 리스팅 완료
+
+ NOTE
+
+
+프론트엔드
+
+Todo
+ionic으로 일단 이사
+ 의뢰인로그인로그아웃
+ 의뢰인회원가입후 로그인아이디
+ 의뢰인마이페이지
+ 의뢰인회원정보 수정
+ 지도사 리스팅
+ 요청서 작성상세보기
+ 요청서 수정
+ 요청서 삭제
+  컨펌창 도입
+   요청서 작성시
+   요청서 수정시
+   회원가입시
+   회원정보 수정시
+ 요청서 리스팅
+ 
+ionic 컨펌창 도입
+httpsforumionicframeworkcomtreturnvaluefromalertconfirmation758242
+
+사이클 변경
+의뢰인 요청서 등록  해당 지역에 속한 지도사에게 푸시알림or SMS
+ 요청서 확인 후 수락 푸시알림or SMS연락처  장례 준비 진행도우미 지원2차 배포시 추가
+ 장례 진행  종료  의뢰인 최종 확인결제2차 배포시 추가  평점리뷰 작성
+ 요청서 등록시 해당 지역 지도사에게 알림연락처 전달
+ 요청서 확인 후 수락 푸시알림or SMS지도사프로필
+
+
+
+NaN
+ 전역 NaN 속성은 NotANumber숫자가 아님를 나타냄
+ isNaN 함수로 NaN 여부를 확인
+
+
+백엔드
+
+order 테이블 컬럼 수정deceasedName 고인 이름 bereavedName 유족 이름 추가
+
+
+br
+ 주요소스코드
+
+ ClientJoinvue
+html
+template
+  ionpage
+    ioncustomheader회원  가입ioncustomheader
+    ioncontent fullscreentrue
+      ionheader collapsecondense
+        iontoolbar
+          iontitle sizelarge회원  가입iontitle
+        iontoolbar
+      ionheader
+      ioncustombody classjustifycenter
+        div classlogobox textcenter
+          span
+            span classtext3xl
+              fontawesomeicon iconlemon 
+            span
+            span classfontbold text3xl
+              DESIGN LEMON
+            span
+          span
+        div
+        form submitpreventcheckAndJoin
+          div
+            ionitem
+              ionlabel positionstacked프로필 이미지ionlabel
+              ioninput vmodeljoinFormStateprofileImg typefileioninput
+            ionitem
+          div
+          div
+            ionitem
+              ionlabel positionfloating아이디ionlabel
+              ioninput vmodeljoinFormStateloginId typetext minlength5 maxlength12 placeholder아이디를 입력해주세요ioninput
+            ionitem
+          div
+          div
+            ionitem
+              ionlabel positionfloating비밀번호ionlabel
+              ioninput vmodeljoinFormStateloginPw minlength8 typepassword placeholder비밀번호를 입력해주세요ioninput
+            ionitem
+          div
+          div
+            ionitem
+              ionlabel positionfloating비밀번호 확인ionlabel
+              ioninput vmodeljoinFormStateloginPwConfirm minlength8 typepassword placeholder비밀번호 확인을 해주세요ioninput
+            ionitem
+          div
+          div
+            ionitem
+              ionlabel positionfloating이름ionlabel
+              ioninput vmodeljoinFormStatename minlength2 placeholder이름을 입력해주세요ioninput
+            ionitem
+          div
+          div
+            ionitem
+              ionlabel positionfloating연락처ionlabel
+              ioninput vmodeljoinFormStatecellphoneNo typetel maxlength11 placeholder연락처를 입력해주세요ioninput
+            ionitem
+          div
+          div
+            ionitem
+              ionlabel positionfloating이메일ionlabel
+              ioninput vmodeljoinFormStateemail typeemail placeholder이메일을 입력해주세요ioninput
+            ionitem
+          div
+          div
+            ionitem
+              ionlabel positionfloating지역ionlabel
+              ioninput vmodeljoinFormStateregion placeholder시도 주소를 입력해주세요ioninput
+            ionitem
+          div
+          div classpy2 px4
+            ionbutton typesubmit expandblock가입ionbutton
+          div
+          div classpx4
+            ionbutton colorsecondary typereset expandblock초기화ionbutton
+          div
+        form
+      ioncustombody
+    ioncontent
+  ionpage
+template
+
+style
+style
+
+script langts
+import  IonCustomBody IonCustomHeader  from components
+import  
+  IonPage 
+  IonHeader 
+  IonToolbar 
+  IonTitle 
+  IonContent
+  IonLabel 
+  IonInput 
+  IonItem 
+  IonButton 
+ from ionicvue
+import  useGlobalState  from stores
+import  useMainService  from services
+import  useRouter  from vuerouter
+import  as util from utils
+import  reactive  from vue
+
+
+const useJoinFormState    
+  return reactive
+    profileImg  as File
+    loginId 
+    loginPw 
+    loginPwConfirm 
+    name 
+    cellphoneNo 
+    email 
+    region 
+  
+
+
+export default 
+  name Join
+
+  components  
+    IonHeader 
+    IonToolbar 
+    IonTitle
+    IonLabel 
+    IonInput 
+    IonItem 
+    IonButton 
+    IonContent 
+    IonPage 
+    IonCustomBody 
+    IonCustomHeader 
+  
+
+  setup 
+    const globalState  useGlobalState
+    const joinFormState  useJoinFormState
+    const router  useRouter
+    const mainService  useMainService
+
+     function confirmAlert
+       const msg  해당 내용으로 가입하시겠습니까
+       utilshowAlertConfirmmsg
+     
+
+    function checkAndJoin 
+        아이디 체크
+      const loginId  joinFormStateloginIdtrim
+      
+      if  joinFormStateloginIdtrimlength  0  
+        alert아이디를 입력해주세요
+        return
+      
+       비번 체크
+      const loginPw  joinFormStateloginPwtrim
+      
+      if  loginPwlength  0  
+        alert비밀번호를 입력해주세요
+        return
+      
+      
+       비번확인 체크
+      const loginPwConfirm  joinFormStateloginPwConfirmtrim
+      
+      if  loginPw  loginPwConfirm  
+        alert비밀번호가 일치하지 않습니다
+        return
+      
+
+       이름 체크
+      const name  joinFormStatenametrim
+
+      if  namelength  0  
+        alert이름을 입력해주세요
+        return
+      
+      
+       전화번호 체크
+      const cellphoneNo  joinFormStatecellphoneNotrim
+      
+      if  cellphoneNolength  0  
+        alert연락처를 입력해주세요
+        return
+      
+
+       이메일 체크
+      const email  joinFormStateemailtrim
+      
+      if  emaillength  0  
+        alert이메일을 입력해주세요
+        return
+      
+
+       시도 주소 체크
+      const region  joinFormStateregiontrim
+      
+      if  regionlength  0  
+        alert지역시도을 입력해주세요
+        return
+      
+
+      async function startFileUploadonSuccess Function
+           반전
+         a  undefindedor null  a  true  a  flase란 의미
+           만약 profileImgElRefvalue까지가 null이면 여기까지만 실행하겠다라는 의미
+         즉 profileImgElRefvaluefiles의 의미는 해당 파일이 없는지 물어보는 것
+         없으면 true
+        ifjoinFormStateprofileImg  null
+          onSuccess  파일이 없으면 다음 과정 생략하고 onSuccess 즉시 실행
+          alert파일 업로드 안됨
+          return
+        
+        const axRes  await mainServicecommongenFiledoUploadjoinFormStateprofileImg0
+
+        if  axResdatafail  
+          utilshowAlertaxResdatamsg
+          return
+        
+        else
+            onSuccessaxResdatabodygenFileIdsStr
+        
+      
+
+      async function joinloginId string loginPw string name string cellphoneNo string email string region string genFileIdsStr string 
+        const axRes  await  mainServiceclientdoJoinloginId loginPw name cellphoneNo email region genFileIdsStr
+  
+          utilshowAlertaxResdatamsg
+        
+          if  axResdatafail  
+            return
+          
+
+          routerreplaceclientloginloginId  loginId
+      
+
+      const startJoin  genFileIdsStr string 
+          joinloginId loginPw name cellphoneNo email region  genFileIdsStr
+      
+
+      const msg  해당 내용으로 가입하시겠습니까
+      utilshowAlertConfirmmsgthenconfirm  
+        if confirm  false 
+          return
+         else
+          startFileUploadstartJoin
+        
+      
+      
+    
+
+    
+
+    return 
+      globalState
+      confirmAlert
+      joinFormState
+      checkAndJoin
+      
+    
+  
+
+script
+
+
+ OrderListvue
+html
+template
+ioncustomheader의뢰  리스트ioncustomheader
+ioncontent 
+  ionlist classmb12
+    ionitem
+    ionselect vmodelsearchStateselectStepLevel
+      ionselectoption value0진행단계 전체ionselectoption
+      ionselectoption value1요청서 검토중ionselectoption
+      ionselectoption value2장례준비중ionselectoption
+      ionselectoption value3장례진행중ionselectoption
+      ionselectoption value4장례종료확인대기중ionselectoption
+      ionselectoption value5장례종료최종종료ionselectoption
+    ionselect
+    ionitem
+    ionitem
+    ionselect vmodelsearchStatesearchKeywordType
+      ionselectoption valuedeceasedName고인명ionselectoption
+      ionselectoption valuebereavedName상주명ionselectoption
+      ionselectoption valueextraclientName의뢰인명ionselectoption
+      ionselectoption valuebody내용ionselectoption
+      ionselectoption valuefuneralHome장례식장ionselectoption
+    ionselect
+    ionitem
+    ionitem
+      ionsearchbar showcancelbuttonfocus animated inputmodesearch enterkeyhintenter placeholder검색어를 입력해주세요 valuesearchStatesearchKeyword keyupenteronInputeventionsearchbar
+    ionitem
+    ionlistheaderMyOrderListionlistheader
+    template vbindkeyorderid vfororder in returnFilteredOrders
+    ionitem
+      진행단계
+        div viforderstepLevel1 classbtnsuccess
+          진행단계 returnToStringorderstepLevel
+        div
+        div viforderstepLevel2 classbtnsecondary
+          진행단계 returnToStringorderstepLevel
+        div
+        div viforderstepLevel3 classbtnwarning
+          진행단계 returnToStringorderstepLevel
+        div
+        div viforderstepLevel4 classbtnprimary
+          진행단계 returnToStringorderstepLevel
+        div
+        div viforderstepLevel5 classbtnprimary
+          진행단계 returnToStringorderstepLevel
+        div
+      ionlabel
+        iongrid
+          ionrow
+            ioncol size12 classbggray300 border roundedmd
+              고인명 orderdeceasedName
+            ioncol
+          ionrow
+          ionrow
+            ioncol size4
+              상주명 orderbereavedName
+            ioncol
+            ioncol size10
+              의뢰인 orderextraclientName
+            ioncol
+            ioncol size10
+              담당지도사 orderextraexpertName
+            ioncol
+          ionrow
+          ionrow
+            ioncol size10
+              장례식장 orderfuneralHome
+            ioncol
+            ioncol size10
+              인원 orderhead 명
+            ioncol
+            ioncol size10
+              종교 orderreligion
+            ioncol
+            ioncol size10
+              장례시작일 orderstartDate
+            ioncol
+            ioncol size10
+              장례종료일 orderendDate
+            ioncol
+          ionrow
+        iongrid
+      ionlabel
+      div classflexcol
+        ionitemdivider classmt2
+          ionbutton color slotend hreforderdetailid  orderid
+            상세보기
+          ionbutton
+        ionitemdivider
+        ionitemdivider classmt2
+          ionbutton vifglobalStateloginedClientid  orderclientId colorsuccess slotend hrefreviewaddrelTypeCodeexpertrelId  orderexpertId
+            후기평점 작성
+          ionbutton
+        ionitemdivider
+
+        ionitemdivider classmt2 vifglobalStateloginedClientid  orderclientId
+          ionbutton viforderstepLevel1 colorsuccess slotend clickchangeStepLevelorderid orderstepLevel
+            의뢰수락장례준비
+          ionbutton
+          ionbutton viforderstepLevel2 colorsuccess slotend clickchangeStepLevelorderid orderstepLevel
+            장례진행
+          ionbutton
+          ionbutton viforderstepLevel3 colorsuccess slotend clickchangeStepLevelorderid orderstepLevel
+            장례종료확인요청
+          ionbutton
+        ionitemdivider
+
+        ionitemdivider classmt2 vifglobalStateloginedClientid  orderclientId
+          ionbutton viforderstepLevel2 colorsuccess slotend
+            장례준비중
+          ionbutton
+          ionbutton viforderstepLevel3 colorsuccess slotend
+            장례진행중
+          ionbutton
+          ionbutton viforderstepLevel4 colorsuccess slotend clickchangeStepLevelorderid orderstepLevel
+            장례종료확인
+          ionbutton
+        ionitemdivider
+        
+
+      div
+      ionitem
+    template
+  ionlist
+ioncontent
+template
+
+style
+style
+
+script langts
+import  IonCustomHeader  from components
+import  
+  IonSelect 
+  IonSelectOption 
+  IonSearchbar 
+  IonLabel 
+  IonListHeader 
+  IonList 
+  IonItem 
+  IonContent
+  IonItemDivider
+  IonCol
+  IonRow
+  IonGrid
+  IonButton
+ from ionicvue
+import  useGlobalState  from stores
+import  useMainService  from services
+import  reactive computed onMounted watch  from vue
+import  as util from utils
+import  useRoute  from vuerouter
+import  Order  from types
+
+const useSearchState    
+  return reactive
+    searchKeyword 
+    searchKeywordType deceasedName
+    selectStepLevel 0
+  
+
+
+export default  
+  name OrderList
+  
+  components  
+    IonSelect 
+    IonSelectOption 
+    IonSearchbar 
+    IonCustomHeader 
+    IonLabel 
+    IonListHeader 
+    IonList 
+    IonItem 
+    IonContent
+    IonItemDivider
+    IonCol
+    IonRow
+    IonGrid
+    IonButton
+  
+  
+  setup 
+    const globalState  useGlobalState
+    const mainService  useMainService
+    const searchState  useSearchState
+    const route  useRoute
+
+    const state  reactive
+      orders  as Order
+    
+
+    function returnToStringstepLevel any 
+      let stepLevelToStr   
+      ifstepLevel  1
+        stepLevelToStr  의뢰요청의뢰검토중
+      
+      ifstepLevel  2
+        stepLevelToStr  의뢰승인장례준비중
+      
+      ifstepLevel  3
+        stepLevelToStr  장례진행중
+      
+      ifstepLevel  4
+        stepLevelToStr  장례종료종료확인요청
+      
+      ifstepLevel  5
+        stepLevelToStr  종료확인최종종료
+      
+      
+      return stepLevelToStr
+    
+
+    function onInputevent any
+      searchStatesearchKeyword  eventtargetvalue
+      return searchStatesearchKeyword
+    
+
+
+    const returnFilteredOrders  computed  
+
+      let filteredOrders  stateorders
+      
+      ifsearchStateselectStepLevel  0
+        ifsearchStatesearchKeywordType  deceasedName
+          filteredOrders  stateordersfilterorder Order  orderdeceasedNameincludessearchStatesearchKeyword
+        
+        ifsearchStatesearchKeywordType  bereavedName
+          filteredOrders  stateordersfilterorder Order  orderbereavedNameincludessearchStatesearchKeyword
+        
+        ifsearchStatesearchKeywordType  extraclientName
+          filteredOrders  stateordersfilterorder Order  orderextraclientNameincludessearchStatesearchKeyword
+        
+        ifsearchStatesearchKeywordType  body
+          filteredOrders  stateordersfilterorder Order  orderbodyincludessearchStatesearchKeyword
+        
+        ifsearchStatesearchKeywordType  funeralHome
+          filteredOrders  stateordersfilterorder Order  orderfuneralHomeincludessearchStatesearchKeyword
+        
+      
+      else
+        ifsearchStatesearchKeywordType  deceasedName
+          filteredOrders  stateordersfilterorder Order  orderdeceasedNameincludessearchStatesearchKeyword  orderstepLevel  parseIntsearchStateselectStepLevel
+        
+        ifsearchStatesearchKeywordType  bereavedName
+          filteredOrders  stateordersfilterorder Order  orderbereavedNameincludessearchStatesearchKeyword  orderstepLevel  parseIntsearchStateselectStepLevel
+        
+        ifsearchStatesearchKeywordType  extraclientName
+          filteredOrders  stateordersfilterorder Order  orderextraclientNameincludessearchStatesearchKeyword  orderstepLevel  parseIntsearchStateselectStepLevel
+        
+        ifsearchStatesearchKeywordType  body
+          filteredOrders  stateordersfilterorder Order  orderbodyincludessearchStatesearchKeyword  orderstepLevel  parseIntsearchStateselectStepLevel
+        
+        ifsearchStatesearchKeywordType  funeralHome
+          filteredOrders  stateordersfilterorder Order  orderfuneralHomeincludessearchStatesearchKeyword  orderstepLevel  parseIntsearchStateselectStepLevel
+        
+      
+      return filteredOrders
+    
+
+    async function loadOrdersmemberId number memberType string
+      const axRes  await mainServiceorderlistmemberId memberType
+      stateorders  axResdatabodyorders
+    
+
+     function doDeleteReviewid number 
+       ifconfirm정말 삭제하시겠습니까  false
+         return
+       
+       mainServicereviewdoDeleteid
+       thenaxiosResponse  
+           alertaxiosResponsedatamsg
+           if  axiosResponsedatafail  
+             return
+           
+         windowlocationreload
+       
+     
+
+    async function doChangeStepLevelid number stepLevel number
+      const axRes  await mainServiceorderchangeStepLevelid stepLevel
+          utilshowAlertaxResdatamsg
+
+          if  axResdatafail  
+            return
+          
+          windowlocationreload
+    
+
+    function changeStepLevelid number stepLevel number
+
+      const msg  해당 의뢰를 수락하시겠습니까
+      utilshowAlertConfirmmsgthenconfirm  
+        if confirm  false 
+          return
+         else
+          doChangeStepLevelid stepLevel
+        
+      
+      
+    
+
+    let loginedMemberId  0
+    let loginedMemberType  
+
+    ifglobalStateloginedClientid  null
+        loginedMemberId  globalStateloginedClientid
+        loginedMemberType  client
+    
+
+     onMounted 바로 실행하는 것이 아닌 모든 것이 준비되었을때 실행됨
+    onMounted  
+      alert3
+      loadOrdersloginedMemberId loginedMemberType
+      loadReviewsrelTypeCode
+    
+
+
+    return 
+      globalState
+      mainService
+      state
+      searchState
+      returnFilteredOrders
+      doDeleteReview
+      onInput
+      returnToString
+      changeStepLevel
+      onClickInput
+    
+  
+
+
+
+script
+
+
+ DB
+sql
+ 요청사항 테이블 생성
+CREATE TABLE order 
+    id INT10 UNSIGNED NOT NULL PRIMARY KEY AUTOINCREMENT
+    regDate DATETIME NOT NULL
+    updateDate DATETIME NOT NULL
+    head INT10 UNSIGNED NOT NULL 예상인원수
+    religion CHAR200 NOT NULL 종교
+    startDate DATE NOT NULL 장례시작일
+    endDate DATE NOT NULL 장례종료일
+    deceasedName CHAR30 NOT NULL 고인 이름
+    bereavedName CHAR30 NOT NULL 유족 이름
+    body TEXT NOT NULL 상세요구사항
+    funeralHome CHAR200 NOT NULL 장례식장
+    expertId INT10 UNSIGNED NOT NULL
+    clientId INT10 UNSIGNED NOT NULL
+    stepLevel SMALLINT2 UNSIGNED DEFAULT 1 NOT NULL COMMENT 1의뢰요청의뢰검토2의뢰승인장례준비중3장례진행중4장례종료종료확인요청5종료확인최종종료
+
+" />
+<meta itemprop="image" content="images/Dev_J_logo/logo.png" />
+
+<!-- 사이트 타이틀 -->
+<title>P.Lamplight - 개발일지(ionic이사 진행중-의뢰인로그인,회원가입,정보수정.....지도사리스팅....요청서crud, 리스팅 완료) | Dev_J BLOG | ARTICLE DETAIL</title>
+
+
+<!-- 파비콘 -->
+<link rel="shortcut icon" href="images/favicon/favicon.ico" type="image/x-icon">
+<link rel="icon" href="images/favicon/favicon.ico" type="image/x-icon">
+
+<!-- 폰트어썸 불러오기 -->
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+
+<!--모바일에서도 PC와 같은 비율 유지-->
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<!--제이쿼리-->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+<!-- 하이라이트 라이브러리 추가, 토스트 UI 에디터에서 사용됨 -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.4.1/highlight.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.4.1/styles/default.min.css">
+
+<!-- 토스트 UI 에디터, 자바스크립트 코어 -->
+<script
+	src="https://uicdn.toast.com/editor/latest/toastui-editor-all.min.js" defer></script>
+
+<!-- 코드 미러 라이브러리 추가, 토스트 UI 에디터에서 사용됨 -->
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.58.3/codemirror.min.css" />
+<!-- 토스트 UI 에디터, CSS 코어 -->
+<link rel="stylesheet"
+	href="https://uicdn.toast.com/editor/latest/toastui-editor.min.css" />
+
+<!-- 토스트 UI 에디터, 신택스 하이라이트 플러그인 추가 -->
+<script src="https://uicdn.toast.com/editor-plugin-code-syntax-highlight/latest/toastui-editor-plugin-code-syntax-highlight.min.js" defer></script>
+
+<!-- app.css 불러오기 -->
+<link rel="stylesheet" href="app.css">
+<!-- app.js 불러오기 -->
+<script src="app.js" defer></script>
+<!-- index.js 불러오기 
+<script src="index.js" defer></script>
+-->
+</head>
+
+<body>
+<!-- 사이트 박스 시작 -->
+<div class="body-content min-height-100vh flex flex-column">
+  <!-- 로고바 시작 -->
+  <header class="logo-bar con-min-width" id="header">
+    <div class="con height-100p flex flex-jc-c" title="HOME">
+      <a href="index.html" class="logo flex flex-ai-c"> 
+        <img class="logo__img" src="images/Dev_J_logo/logo_transparent.png" alt="">
+        <span>
+          BLOG
+        </span>
+      </a>
+    </div>
+  </header>
+  <!-- 로고바 끝 -->
+
+  <!-- 메뉴바 시작-->
+  <header class="menu-bar con-min-width visible-md-up">
+    <div class="flex flex-jc-sb">
+   	 <div class="menu-bar__status-icon" title="Menu">
+      <div></div>
+      <div></div>
+      <div></div>
+     </div>
+     <a class="search-icon" title="search" href="search.html">
+        <i class="fa fa-search"></i>
+     </a>
+   </div>
+   <div class="con hide">
+    <nav class="menu-bar__menu">
+      <ul class="flex">
+          <li title="ABOUT">
+            <a href="about.html" class="block">
+              <i class="far fa-address-card"></i>
+              <span>ABOUT</span>
+            </a>
+          </li>
+          <li>
+            <a class="block">
+              <i class="fas fa-list"></i>
+              <span>ARTICLES</span>
+            </a>
+            <ul>
+              <li title="NOTICE"><a href="notice-list-1.html" class="block"><i class="fas fa-bullhorn"></i> <span>NOTICE BOARD</span></a></li><li title="JAVA"><a href="java-list-1.html" class="block"><i class="fab fa-java"></i> <span>JAVA BOARD</span></a></li><li title="HTML"><a href="html-list-1.html" class="block"><i class="fab fa-html5"></i> <span>HTML & CSS & JS BOARD</span></a></li><li title="MYSQL"><a href="mysql-list-1.html" class="block"><i class="fas fa-database"></i> <span>MySQL BOARD</span></a></li><li title="ETC"><a href="etc-list-1.html" class="block"><i class="fas fa-mouse-pointer"></i> <span>ETC BOARD</span></a></li>
+            </ul>
+          </li>
+          <li>
+            <a class="block">
+              <i class="fas fa-project-diagram"></i>
+              <span>PROJECT</span>
+            </a>
+            <ul>
+              <li title="P_BLOG"><a href="p_blog-list-1.html" class="block"><i class="fab fa-blogger"></i> <span>P.BLOG PROJECT</span></a></li><li title="P_JSP"><a href="p_jsp-list-1.html" class="block"><i class="fas fa-users"></i> <span>P.JSP PROJECT</span></a></li><li title="P_LAMP"><a href="p_lamp-list-1.html" class="block"><i class="fab fa-vuejs"></i> <span>P.Lamplight PROJECT</span></a></li><li title="P_WHAT"><a href="p_what-list-1.html" class="block"><i class="fas fa-file-word"></i> <span>P.WhatIsMyName PROJECT</span></a></li>
+            </ul>
+          </li>
+          <li>
+            <a class="block">
+              <i class="fas fa-link"></i>
+              <span>LINK</span>
+            </a>
+            <ul>
+              <li title="T-STORY">
+                <a href="https://cjy324.tistory.com/" target="_blank" class="block">
+                  <i class="fas fa-rss-square"></i>
+                  <span>T-STORY</span>
+                </a>
+              </li>
+              <li title="GITHUB">
+                <a href="https://github.com/cjy324/TIL_Jooyoung#til_jooyoung" target="_blank" class="block">
+                  <i class="fab fa-github"></i>
+                  <span>GITHUB</span>
+                </a>
+              </li>
+              <li title="GetIT">
+                <a href="https://getit.devj.me/" target="_blank" class="block">
+                  <i class="fab fa-dev"></i>
+                  <span>GetIT</span>
+                </a>
+              </li>
+            </ul>
+          </li>
+          <li title="STATISTICS">
+            <a href="statistics.html" class="block">
+              <i class="fas fa-chart-pie"></i>
+              <span>STATISTICS</span>
+            </a>
+          </li>
+        </ul>
+      </nav>
+   </div>
+  </header>
+  <!-- 메뉴바 끝 -->
+  
+  <!-- 모바일 사이드 메뉴바 시작 -->
+  <header class="mobile-menu-bar con-min-width visible-sm-down">
+    <div class="flex flex-jc-sb">
+   <div class="mobile-menu-bar__status-icon" title="Menu">
+     <div></div>
+     <div></div>
+     <div></div>
+   </div>
+    <a class="search-icon" title="search" href="search.html">
+        <i class="fa fa-search"></i>
+      </a>
+   </div>
+   <div class="con ">
+    <aside class="mobile-side-bar flex flex-column flex-jc-c ">
+      <div class="mobile-side-bar_X"><i class="fas fa-times"></i></div>
+      <nav class="mobile-side-bar_menu flex">
+      <ul class="">
+          <li title="ABOUT">
+            <a href="about.html" class="block">
+              <i class="far fa-address-card"></i>
+              <span>ABOUT</span>
+            </a>
+          </li>
+          <li>
+            <a class="block">
+              <i class="fas fa-list"></i>
+              <span>ARTICLES</span>
+            </a>
+            <ul class="hide2">
+              <li title="NOTICE"><a href="notice-list-1.html" class="block"><i class="fas fa-bullhorn"></i> <span>NOTICE BOARD</span></a></li><li title="JAVA"><a href="java-list-1.html" class="block"><i class="fab fa-java"></i> <span>JAVA BOARD</span></a></li><li title="HTML"><a href="html-list-1.html" class="block"><i class="fab fa-html5"></i> <span>HTML & CSS & JS BOARD</span></a></li><li title="MYSQL"><a href="mysql-list-1.html" class="block"><i class="fas fa-database"></i> <span>MySQL BOARD</span></a></li><li title="ETC"><a href="etc-list-1.html" class="block"><i class="fas fa-mouse-pointer"></i> <span>ETC BOARD</span></a></li>
+            </ul>
+          </li>
+          <li>
+            <a class="block">
+              <i class="fas fa-project-diagram"></i>
+              <span>PROJECT</span>
+            </a>
+            <ul class="hide2">
+              <li title="P_BLOG"><a href="p_blog-list-1.html" class="block"><i class="fab fa-blogger"></i> <span>P.BLOG PROJECT</span></a></li><li title="P_JSP"><a href="p_jsp-list-1.html" class="block"><i class="fas fa-users"></i> <span>P.JSP PROJECT</span></a></li><li title="P_LAMP"><a href="p_lamp-list-1.html" class="block"><i class="fab fa-vuejs"></i> <span>P.Lamplight PROJECT</span></a></li><li title="P_WHAT"><a href="p_what-list-1.html" class="block"><i class="fas fa-file-word"></i> <span>P.WhatIsMyName PROJECT</span></a></li>
+            </ul>
+          </li>
+          <li>
+            <a class="block">
+              <i class="fas fa-link"></i>
+              <span>LINK</span>
+            </a>
+            <ul class="hide2">
+              <li title="T-STORY">
+                <a href="https://cjy324.tistory.com/" target="_blank" class="block">
+                  <i class="fas fa-rss-square"></i>
+                  <span>T-STORY</span>
+                </a>
+              </li>
+              <li title="GITHUB">
+                <a href="https://github.com/cjy324/TIL_Jooyoung#til_jooyoung" target="_blank" class="block">
+                  <i class="fab fa-github"></i>
+                  <span>GITHUB</span>
+                </a>
+              </li>
+              <li title="GetIT">
+                <a href="https://getit.devj.me/" target="_blank" class="block">
+                  <i class="fab fa-dev"></i>
+                  <span>GetIT</span>
+                </a>
+              </li>
+            </ul>
+          </li>
+          <li title="STATISTICS">
+            <a href="statistics.html" class="block">
+              <i class="fas fa-chart-pie"></i>
+              <span>STATISTICS</span>
+            </a>
+          </li>
+        </ul>
+      </nav>  
+      </aside>
+   </div>
+  </header>
+  
+  <!-- 모바일 사이드 메뉴바 끝 --> 
+   
+
+  <!-- 메인 컨텐츠 박스 시작 -->
+  <main class="main-box flex-grow-1">
+  <section class="main-box-section con-min-width">
+   <!-- 메인-타이틀바 시작 -->
+	<div class="title-bar con-min-width">
+		<h1 class="con">
+			<i class="fas fa-file-invoice"></i> <span>ARTICLE</span>
+		</h1>
+	</div>
+   <!-- 메인-타이틀바 종료 -->
+<!-- Progress-bar -->
+<script type="text/javascript"
+	src="https://rawcdn.githack.com/mburakerman/prognroll/0feda211643153bce2c69de32ea1b39cdc64ffbe/src/prognroll.js"></script>
+<script type="text/javascript">
+	$(function() {
+		$("body").prognroll({
+			height : 10,
+			color : "#666666"
+		});
+		$(".content").prognroll({
+			custom : true
+		});
+	});
+</script>
+
+<!-- 메인-상세페이지 시작 -->
+<section class="section-2 con-min-width min-height-50vh">
+	<div class="con height-100p">
+		<div class="article-detail-cell height-100p">
+			<div class="article-detail-cell__board-name"><div><span>게시판 : </span><span>P.Lamplight 게시판</span></div></div><div class="article-detail-cell__id"><div><span>번호 : </span><span>75</span></div></div><div class="article-detail-cell__member-id"><div><span>작성자 : </span><span>Dev_J</span></div></div><div class="article-detail-cell__reg-date"><div><span>작성일 : </span><span>2021-04-24 14:57:47</span></div></div><div class="article-detail-cell__update-date"><div><span>수정일 : </span><span>2021-04-24 15:02:47</span></div></div><br><div class="article-detail-cell__title-contents flex flex-jc-fe"><div class="article-detail-cell__hitsCount"><div><span>조회수 : </span><span>0</span></div></div><div class="article-detail-cell__likesCount"><div><span>추천수 : </span><span>0</span></div></div><div class="article-detail-cell__commentsCount"><div><span>댓글수 : </span><span>0</span></div></div></div><div class="article-detail-cell__title"><div><span>제목 : </span><span>P.Lamplight - 개발일지(ionic이사 진행중-의뢰인로그인,회원가입,정보수정.....지도사리스팅....요청서crud, 리스팅 완료)</span></div></div><nav class="ad"><!-- 구글 애드센스2 --><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script><!-- 수평 반응형2 --><ins class="adsbygoogle" style="display: block" data-ad-client="ca-pub-7996879977557531" data-ad-slot="2278060237" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle = window.adsbygoogle || []).push({});</script></nav><script type"text/x-template"># ionic이사 진행중-의뢰인로그인,회원가입,정보수정.....지도사리스팅....요청서crud, 리스팅 완료
+
+## NOTE
+
+```
+<프론트엔드>
+
+Todo
+-ionic으로 일단 이사[]
+ -의뢰인로그인,로그아웃[ㅇ]
+ -의뢰인회원가입후 로그인아이디[ㅇ]
+ -의뢰인마이페이지[ㅇ]
+ -의뢰인회원정보 수정[ㅇ]
+ -지도사 리스팅[ㅇ]
+ -요청서 작성[ㅇ]/상세보기[ㅇ]
+ -요청서 수정[ㅇ]
+ -요청서 삭제[ㅇ]
+  -컨펌창 도입[ㅇ]
+   -요청서 작성시[ㅇ]
+   -요청서 수정시[ㅇ]
+   -회원가입시[ㅇ]
+   -회원정보 수정시[ㅇ]
+ -요청서 리스팅[ㅇ]
+ 
+-ionic 컨펌창 도입[ㅇ]
+https://forum.ionicframework.com/t/return-value-from-alert-confirmation/75824/2
+
+-사이클 변경
+의뢰인 요청서 등록 -> 해당 지역에 속한 지도사에게 푸시알림(or SMS)
+-> 요청서 확인 후 수락 푸시알림(or SMS)+연락처 -> 장례 준비 진행(도우미 지원(2차 배포시 추가))
+-> 장례 진행 -> 종료 -> 의뢰인 최종 확인(결제(2차 배포시 추가)) -> 평점/리뷰 작성
+ -요청서 등록시 해당 지역 지도사에게 알림(연락처 전달?)[]
+ -요청서 확인 후 수락 푸시알림(or SMS)+지도사프로필[]
+
+
+
+-NaN
+ 전역 NaN 속성은 Not-A-Number(숫자가 아님)를 나타냄
+ isNaN() 함수로 NaN 여부를 확인
+```
+```
+<백엔드>
+
+-order 테이블 컬럼 수정(deceasedName #고인 이름, bereavedName #유족 이름 추가)
+```
+
+<br>
+## 주요소스코드
+
+### Client/Join.vue
+```html
+<template>
+  <ion-page>
+    <ion-custom-header>회원 - 가입</ion-custom-header>
+    <ion-content :fullscreen="true">
+      <ion-header collapse="condense">
+        <ion-toolbar>
+          <ion-title size="large">회원 - 가입</ion-title>
+        </ion-toolbar>
+      </ion-header>
+      <ion-custom-body class="justify-center">
+        <div class="logo-box text-center">
+          <span>
+            <span class="text-3xl">
+              <font-awesome-icon icon="lemon" />
+            </span>
+            <span class="font-bold text-3xl">
+              DESIGN LEMON
+            </span>
+          </span>
+        </div>
+        <form @submit.prevent="checkAndJoin">
+          <div>
+            <ion-item>
+              <ion-label position="stacked">프로필 이미지</ion-label>
+              <ion-input v-model="joinFormState.profileImg" type="file"></ion-input>
+            </ion-item>
+          </div>
+          <div>
+            <ion-item>
+              <ion-label position="floating">아이디</ion-label>
+              <ion-input v-model="joinFormState.loginId" type="text" minlength="5" maxlength="12" placeholder="아이디를 입력해주세요."></ion-input>
+            </ion-item>
+          </div>
+          <div>
+            <ion-item>
+              <ion-label position="floating">비밀번호</ion-label>
+              <ion-input v-model="joinFormState.loginPw" minlength="8" type="password" placeholder="비밀번호를 입력해주세요."></ion-input>
+            </ion-item>
+          </div>
+          <div>
+            <ion-item>
+              <ion-label position="floating">비밀번호 확인</ion-label>
+              <ion-input v-model="joinFormState.loginPwConfirm" minlength="8" type="password" placeholder="비밀번호 확인을 해주세요."></ion-input>
+            </ion-item>
+          </div>
+          <div>
+            <ion-item>
+              <ion-label position="floating">이름</ion-label>
+              <ion-input v-model="joinFormState.name" minlength="2" placeholder="이름을 입력해주세요."></ion-input>
+            </ion-item>
+          </div>
+          <div>
+            <ion-item>
+              <ion-label position="floating">연락처</ion-label>
+              <ion-input v-model="joinFormState.cellphoneNo" type="tel" maxlength="11" placeholder="연락처를 입력해주세요."></ion-input>
+            </ion-item>
+          </div>
+          <div>
+            <ion-item>
+              <ion-label position="floating">이메일</ion-label>
+              <ion-input v-model="joinFormState.email" type="email" placeholder="이메일을 입력해주세요."></ion-input>
+            </ion-item>
+          </div>
+          <div>
+            <ion-item>
+              <ion-label position="floating">지역</ion-label>
+              <ion-input v-model="joinFormState.region" placeholder="시/도 주소를 입력해주세요."></ion-input>
+            </ion-item>
+          </div>
+          <div class="py-2 px-4">
+            <ion-button type="submit" expand="block">가입</ion-button>
+          </div>
+          <div class="px-4">
+            <ion-button color="secondary" type="reset" expand="block">초기화</ion-button>
+          </div>
+        </form>
+      </ion-custom-body>
+    </ion-content>
+  </ion-page>
+</template>
+
+<style>
+</style>
+
+<t-script lang="ts">
+import { IonCustomBody, IonCustomHeader } from '@/components/';
+import { 
+  IonPage, 
+  IonHeader, 
+  IonToolbar, 
+  IonTitle, 
+  IonContent,
+  IonLabel, 
+  IonInput, 
+  IonItem, 
+  IonButton, 
+} from '@ionic/vue';
+import { useGlobalState } from '@/stores'
+import { useMainService } from '@/services';
+import { useRouter } from 'vue-router';
+import * as util from '@/utils';
+import { reactive } from 'vue';
+
+
+const useJoinFormState = () => {
+  return reactive({
+    profileImg: [] as File[],
+    loginId: '',
+    loginPw: '',
+    loginPwConfirm: '',
+    name: '',
+    cellphoneNo: '',
+    email: '',
+    region: '',
+  })
+}
+
+export default {
+  name: 'Join',
+
+  components: { 
+    IonHeader, 
+    IonToolbar, 
+    IonTitle,
+    IonLabel, 
+    IonInput, 
+    IonItem, 
+    IonButton, 
+    IonContent, 
+    IonPage, 
+    IonCustomBody, 
+    IonCustomHeader 
+  },
+
+  setup() {
+    const globalState = useGlobalState();
+    const joinFormState = useJoinFormState();
+    const router = useRouter();
+    const mainService = useMainService();
+
+    // function confirmAlert(){
+    //   const msg = '해당 내용으로 가입하시겠습니까?'
+    //   util.showAlertConfirm(msg)
+    // }
+
+    function checkAndJoin() {
+       // 아이디 체크
+      const loginId = joinFormState.loginId.trim();
+      
+      if ( joinFormState.loginId.trim().length == 0 ) {
+        alert('아이디를 입력해주세요.');
+        return;
+      }
+      // 비번 체크
+      const loginPw = joinFormState.loginPw.trim();
+      
+      if ( loginPw.length == 0 ) {
+        alert('비밀번호를 입력해주세요.');
+        return;
+      }
+      
+      // 비번확인 체크
+      const loginPwConfirm = joinFormState.loginPwConfirm.trim();
+      
+      if ( loginPw != loginPwConfirm ) {
+        alert('비밀번호가 일치하지 않습니다.');
+        return;
+      }
+
+      // 이름 체크
+      const name = joinFormState.name.trim();
+
+      if ( name.length == 0 ) {
+        alert('이름을 입력해주세요.');
+        return;
+      }
+      
+      // 전화번호 체크
+      const cellphoneNo = joinFormState.cellphoneNo.trim();
+      
+      if ( cellphoneNo.length == 0 ) {
+        alert('연락처를 입력해주세요.');
+        return;
+      }
+
+      // 이메일 체크
+      const email = joinFormState.email.trim();
+      
+      if ( email.length == 0 ) {
+        alert('이메일을 입력해주세요.');
+        return;
+      }
+
+      // 시/도 주소 체크
+      const region = joinFormState.region.trim();
+      
+      if ( region.length == 0 ) {
+        alert('지역(시/도)을 입력해주세요.');
+        return;
+      }
+
+      async function startFileUpload(onSuccess: Function){
+        // ! => 반전
+        // a = undefinded(or null) / !a = true / !!a = flase란 의미
+        // ? => 만약 profileImgElRef.value?까지가 null이면 여기까지만 실행하겠다라는 의미
+        // 즉, !!!profileImgElRef.value?.files의 의미는 해당 파일이 없는지 물어보는 것
+        // 없으면 true
+        if(joinFormState.profileImg == null){
+          onSuccess("");  //파일이 없으면 다음 과정 생략하고 onSuccess() 즉시 실행
+          alert("파일 업로드 안됨")
+          return;
+        }
+        const axRes = await mainService.common_genFile_doUpload(joinFormState.profileImg[0])
+
+        if ( axRes.data.fail ) {
+          util.showAlert(axRes.data.msg);
+          return;
+        }
+        else{
+            onSuccess(axRes.data.body.genFileIdsStr);
+        }
+      }
+
+      async function join(loginId: string, loginPw: string, name: string, cellphoneNo: string, email: string, region: string, genFileIdsStr: string) {
+        const axRes = await  mainService.client_doJoin(loginId, loginPw, name, cellphoneNo, email, region, genFileIdsStr);
+  
+          util.showAlert(axRes.data.msg);
+        
+          if ( axRes.data.fail ) {
+            return;
+          }
+
+          router.replace('/client/login?loginId=' + loginId)
+      }
+
+      const startJoin = (genFileIdsStr: string) =>{
+          join(loginId, loginPw, name, cellphoneNo, email, region,  genFileIdsStr);
+      }
+
+      const msg = '해당 내용으로 가입하시겠습니까?'
+      util.showAlertConfirm(msg).then(confirm => {
+        if (confirm == false) {
+          return
+        } else{
+          startFileUpload(startJoin);
+        }
+      })
+      
+    }
+
+    
+
+    return {
+      globalState,
+      //confirmAlert,
+      joinFormState,
+      checkAndJoin,
+      
+    }
+  }
+}
+</t-script>
+```
+
+### Order/List.vue
+```html
+<template>
+<ion-custom-header>의뢰 - 리스트</ion-custom-header>
+<ion-content >
+  <ion-list class="mb-12">
+    <ion-item>
+    <ion-select v-model="searchState.selectStepLevel">
+      <ion-select-option value="0">진행단계 전체</ion-select-option>
+      <ion-select-option value="1">요청서 검토중</ion-select-option>
+      <ion-select-option value="2">장례준비중</ion-select-option>
+      <ion-select-option value="3">장례진행중</ion-select-option>
+      <ion-select-option value="4">장례종료(확인대기중)</ion-select-option>
+      <ion-select-option value="5">장례종료(최종종료)</ion-select-option>
+    </ion-select>
+    </ion-item>
+    <ion-item>
+    <ion-select v-model="searchState.searchKeywordType">
+      <ion-select-option value="deceasedName">고인명</ion-select-option>
+      <ion-select-option value="bereavedName">상주명</ion-select-option>
+      <ion-select-option value="extra__clientName">의뢰인명</ion-select-option>
+      <ion-select-option value="body">내용</ion-select-option>
+      <ion-select-option value="funeralHome">장례식장</ion-select-option>
+    </ion-select>
+    </ion-item>
+    <ion-item>
+      <ion-searchbar show-cancel-button="focus" animated inputmode="search" enterkeyhint="enter" placeholder="검색어를 입력해주세요." :value="searchState.searchKeyword" @keyup.enter="onInput($event)"></ion-searchbar>
+    </ion-item>
+    <ion-list-header>MyOrderList</ion-list-header>
+    <template v-bind:key="order.id" v-for="order in returnFilteredOrders">
+    <ion-item>
+      <!--진행단계-->
+        <div v-if="order.stepLevel==1" class="btn-success">
+          진행단계: {{returnToString(order.stepLevel)}}
+        </div>
+        <div v-if="order.stepLevel==2" class="btn-secondary">
+          진행단계: {{returnToString(order.stepLevel)}}
+        </div>
+        <div v-if="order.stepLevel==3" class="btn-warning">
+          진행단계: {{returnToString(order.stepLevel)}}
+        </div>
+        <div v-if="order.stepLevel==4" class="btn-primary">
+          진행단계: {{returnToString(order.stepLevel)}}
+        </div>
+        <div v-if="order.stepLevel==5" class="btn-primary">
+          진행단계: {{returnToString(order.stepLevel)}}
+        </div>
+      <ion-label>
+        <ion-grid>
+          <ion-row>
+            <ion-col size="12" class="bg-gray-300 border rounded-md">
+              고인명: {{order.deceasedName}}
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col size="4">
+              상주명: {{order.bereavedName}}
+            </ion-col>
+            <ion-col size="10">
+              의뢰인: {{order.extra__clientName}}
+            </ion-col>
+            <ion-col size="10">
+              담당지도사: {{order.extra__expertName}}
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col size="10">
+              장례식장: {{order.funeralHome}}
+            </ion-col>
+            <ion-col size="10">
+              인원: {{order.head}} 명
+            </ion-col>
+            <ion-col size="10">
+              종교: {{order.religion}}
+            </ion-col>
+            <ion-col size="10">
+              장례시작일: {{order.startDate}}
+            </ion-col>
+            <ion-col size="10">
+              장례종료일: {{order.endDate}}
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-label>
+      <div class="flex-col">
+        <ion-item-divider class="mt-2">
+          <ion-button color="" slot="end" :href="'/order/detail?id=' + order.id">
+            상세보기
+          </ion-button>
+        </ion-item-divider>
+        <ion-item-divider class="mt-2">
+          <ion-button v-if="globalState.loginedClient.id == order.clientId" color="success" slot="end" :href="'/review/add?relTypeCode=expert&relId=' + order.expertId">
+            후기/평점 작성
+          </ion-button>
+        </ion-item-divider>
+
+        <ion-item-divider class="mt-2" v-if="globalState.loginedClient.id !== order.clientId">
+          <ion-button v-if="order.stepLevel==1" color="success" slot="end" @click="changeStepLevel(order.id, order.stepLevel)">
+            의뢰수락(장례준비)
+          </ion-button>
+          <ion-button v-if="order.stepLevel==2" color="success" slot="end" @click="changeStepLevel(order.id, order.stepLevel)">
+            장례진행
+          </ion-button>
+          <ion-button v-if="order.stepLevel==3" color="success" slot="end" @click="changeStepLevel(order.id, order.stepLevel)">
+            장례종료(확인요청)
+          </ion-button>
+        </ion-item-divider>
+
+        <ion-item-divider class="mt-2" v-if="globalState.loginedClient.id == order.clientId">
+          <ion-button v-if="order.stepLevel==2" color="success" slot="end">
+            장례준비중
+          </ion-button>
+          <ion-button v-if="order.stepLevel==3" color="success" slot="end">
+            장례진행중
+          </ion-button>
+          <ion-button v-if="order.stepLevel==4" color="success" slot="end" @click="changeStepLevel(order.id, order.stepLevel)">
+            장례종료(확인)
+          </ion-button>
+        </ion-item-divider>
+        
+
+      </div>
+      </ion-item>
+    </template>
+  </ion-list>
+</ion-content>
+</template>
+
+<style>
+</style>
+
+<t-script lang="ts">
+import { IonCustomHeader } from '@/components/';
+import { 
+  IonSelect, 
+  IonSelectOption, 
+  IonSearchbar, 
+  IonLabel, 
+  IonListHeader, 
+  IonList, 
+  IonItem, 
+  IonContent,
+  IonItemDivider,
+  IonCol,
+  IonRow,
+  IonGrid,
+  IonButton,
+} from '@ionic/vue';
+import { useGlobalState } from '@/stores'
+import { useMainService } from '@/services';
+import { reactive, computed, onMounted, watch } from 'vue';
+import * as util from '@/utils';
+import { useRoute } from 'vue-router';
+import { Order } from '@/types';
+
+const useSearchState = () => {
+  return reactive({
+    searchKeyword: '',
+    searchKeywordType: 'deceasedName',
+    selectStepLevel: '0',
+  })
+}
+
+export default  {
+  name: 'OrderList',
+  
+  components: { 
+    IonSelect, 
+    IonSelectOption, 
+    IonSearchbar, 
+    IonCustomHeader, 
+    IonLabel, 
+    IonListHeader, 
+    IonList, 
+    IonItem, 
+    IonContent,
+    IonItemDivider,
+    IonCol,
+    IonRow,
+    IonGrid,
+    IonButton,
+  },
+  
+  setup() {
+    const globalState = useGlobalState();
+    const mainService = useMainService();
+    const searchState = useSearchState();
+    const route = useRoute();
+
+    const state = reactive({
+      orders: [] as Order[],
+    });
+
+    function returnToString(stepLevel: any) {
+      let stepLevelToStr = ''; 
+      if(stepLevel == 1){
+        stepLevelToStr = '의뢰요청(의뢰검토중)';
+      }
+      if(stepLevel == 2){
+        stepLevelToStr = '의뢰승인(장례준비중)';
+      }
+      if(stepLevel == 3){
+        stepLevelToStr = '장례진행중';
+      }
+      if(stepLevel == 4){
+        stepLevelToStr = '장례종료(종료확인요청)';
+      }
+      if(stepLevel == 5){
+        stepLevelToStr = '종료확인(최종종료)';
+      }
+      
+      return stepLevelToStr;
+    }
+
+    function onInput(event: any){
+      searchState.searchKeyword = event.target.value;
+      return searchState.searchKeyword;
+    }
+
+
+    const returnFilteredOrders = computed(() => {
+
+      let filteredOrders = state.orders;
+      
+      if(searchState.selectStepLevel == '0'){
+        if(searchState.searchKeywordType == "deceasedName"){
+          filteredOrders = state.orders.filter((order: Order) => order.deceasedName.includes(searchState.searchKeyword))
+        }
+        if(searchState.searchKeywordType == "bereavedName"){
+          filteredOrders = state.orders.filter((order: Order) => order.bereavedName.includes(searchState.searchKeyword))
+        }
+        if(searchState.searchKeywordType == "extra__clientName"){
+          filteredOrders = state.orders.filter((order: Order) => order.extra__clientName.includes(searchState.searchKeyword))
+        }
+        if(searchState.searchKeywordType == "body"){
+          filteredOrders = state.orders.filter((order: Order) => order.body.includes(searchState.searchKeyword))
+        }
+        if(searchState.searchKeywordType == "funeralHome"){
+          filteredOrders = state.orders.filter((order: Order) => order.funeralHome.includes(searchState.searchKeyword))
+        }
+      }
+      else{
+        if(searchState.searchKeywordType == "deceasedName"){
+          filteredOrders = state.orders.filter((order: Order) => order.deceasedName.includes(searchState.searchKeyword) && order.stepLevel === parseInt(searchState.selectStepLevel))
+        }
+        if(searchState.searchKeywordType == "bereavedName"){
+          filteredOrders = state.orders.filter((order: Order) => order.bereavedName.includes(searchState.searchKeyword) && order.stepLevel === parseInt(searchState.selectStepLevel))
+        }
+        if(searchState.searchKeywordType == "extra__clientName"){
+          filteredOrders = state.orders.filter((order: Order) => order.extra__clientName.includes(searchState.searchKeyword) && order.stepLevel === parseInt(searchState.selectStepLevel))
+        }
+        if(searchState.searchKeywordType == "body"){
+          filteredOrders = state.orders.filter((order: Order) => order.body.includes(searchState.searchKeyword) && order.stepLevel === parseInt(searchState.selectStepLevel))
+        }
+        if(searchState.searchKeywordType == "funeralHome"){
+          filteredOrders = state.orders.filter((order: Order) => order.funeralHome.includes(searchState.searchKeyword) && order.stepLevel === parseInt(searchState.selectStepLevel))
+        }
+      }
+      return filteredOrders
+    })
+
+    async function loadOrders(memberId: number, memberType: string){
+      const axRes = await mainService.order_list(memberId, memberType)
+      state.orders = axRes.data.body.orders;
+    }
+
+    // function doDeleteReview(id: number) {
+    //   if(confirm('정말 삭제하시겠습니까?') == false){
+    //     return;
+    //   }
+    //   mainService.review_doDelete(id)
+    //   .then(axiosResponse => {
+    //       alert(axiosResponse.data.msg);
+    //       if ( axiosResponse.data.fail ) {
+    //         return;
+    //       }
+    //     window.location.reload();
+    //   });
+    // }
+
+    async function doChangeStepLevel(id: number, stepLevel: number){
+      const axRes = await mainService.order_changeStepLevel(id, stepLevel)
+          util.showAlert(axRes.data.msg)
+
+          if ( axRes.data.fail ) {
+            return;
+          }
+          window.location.reload();
+    }
+
+    function changeStepLevel(id: number, stepLevel: number){
+
+      const msg = '해당 의뢰를 수락하시겠습니까?'
+      util.showAlertConfirm(msg).then(confirm => {
+        if (confirm == false) {
+          return
+        } else{
+          doChangeStepLevel(id, stepLevel)
+        }
+      })
+      
+    }
+
+    let loginedMemberId = 0;
+    let loginedMemberType = '';
+
+    if(globalState.loginedClient.id != null){
+        loginedMemberId = globalState.loginedClient.id
+        loginedMemberType = 'client'
+    }
+
+    // onMounted 바로 실행하는 것이 아닌 모든 것이 준비되었을때 실행됨
+    onMounted(() => {
+      //alert("3");
+      loadOrders(loginedMemberId, loginedMemberType);
+     // loadReviews(relTypeCode);
+    });
+
+
+    return {
+      globalState,
+      mainService,
+      state,
+      searchState,
+      returnFilteredOrders,
+      //doDeleteReview,
+      onInput,
+      returnToString,
+      changeStepLevel,
+      //onClickInput,
+    }
+  }
+}
+
+
+</t-script>
+```
+
+### DB
+```sql
+# 요청사항 테이블 생성
+CREATE TABLE `order` (
+    id INT(10) UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    regDate DATETIME NOT NULL,
+    updateDate DATETIME NOT NULL,
+    `head` INT(10) UNSIGNED NOT NULL, #예상인원수
+    religion CHAR(200) NOT NULL, #종교
+    `startDate` DATE NOT NULL, #장례시작일
+    `endDate` DATE NOT NULL, #장례종료일
+    deceasedName CHAR(30) NOT NULL, #고인 이름
+    bereavedName CHAR(30) NOT NULL, #유족 이름
+    `body` TEXT NOT NULL, #상세요구사항
+    funeralHome CHAR(200) NOT NULL, #장례식장
+    `expertId` INT(10) UNSIGNED NOT NULL,
+    `clientId` INT(10) UNSIGNED NOT NULL,
+    stepLevel SMALLINT(2) UNSIGNED DEFAULT 1 NOT NULL COMMENT '(1=의뢰요청(의뢰검토),2=의뢰승인(장례준비중),3=장례진행중,4=장례종료(종료확인요청),5=종료확인(최종종료))'
+);
+```</script><div class="article-detail-cell__body height-70p toast-ui-viewer"><div></div></div><br><div class="article-detail-cell__tag flex flex-wrap"><nav># project</nav><nav># 개발일지</nav><nav># lamplight</nav></div><br><br><nav class="ad"><!-- 구글 애드센스1 --><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script><!-- 수평 반응형1 --><ins class="adsbygoogle" style="display: block" data-ad-client="ca-pub-7996879977557531" data-ad-slot="6812185708" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle = window.adsbygoogle || []).push({});</script></nav>
+			<!-- Disqus api 적용 -->
+			<!-- 정확한 페이지 경로 알려주는 기능 추가-->
+			<nav>
+				<div id="disqus_thread"></div>
+				<script>
+					var disqus_config = function() {
+						this.page.url = 'https://blog.devj.me/article_detail_75.html';
+						this.page.identifier = 'article_detail_75.html';
+					};
+					(function() {
+						//DON'T EDIT BELOW THIS LINE
+						var d = document, s = d.createElement('script');
+						s.src = 'https://devj-blog.disqus.com/embed.js';
+						s.setAttribute('data-timestamp', +new Date());
+						(d.head || d.body).appendChild(s);
+					})();
+				</script>
+				<noscript>
+					Please enable JavaScript to view the
+					<a href="https://disqus.com/?ref_noscript">comments powered by
+						Disqus.</a>
+				</noscript>
+			</nav>
+		</div>
+	</div>
+</section>
+<!-- 메인-상세페이지 끝 -->
+<!-- 메인-상세 하단 메뉴 시작 -->
+<section class="section-3 con-min-width">
+	<div class="con">
+		<div class="article-list-bottom-cell flex flex-jc-c"><div class="./"><a href="article_detail_74.html" class="hover-underline">&lt 이전글</a></div><div class="./"><i class="fas fa-th-list"></i><a href="p_lamp-list-1.html" class="hover-underline"> 목록 </a></div><div class="./"><a href="article_detail_76.html"class="hover-underline">다음글 &gt</a></div></div>
+	</div>
+</section>
+<!-- 메인-상세 하단 메뉴 끝 -->
+</section>
+</main>
+<!-- 메인 컨텐츠 박스 끝 -->
+  <!-- 맨 위 버튼 시작 -->
+  <nav class="top-button flex flex-jc-c flex-ai-c">
+    <div class="">
+      <a href="#header">▲ TOP</a> 
+    </div>     
+  </nav>
+  <!-- 맨 위 버튼 끝 -->
+
+
+  <!-- 푸터 시작 -->
+  <footer class="bottom-bar con-min-width">
+    <div class="con flex flex-ai-c">
+      <a href="index.html" class="logo logo--mini flex flex-ai-c" title="HOME">
+        <img class="logo--mini__img" src="images/Dev_J_logo/logo_transparent.png" alt="">
+      </a>
+      <div class="bottom-bar__site-info">
+        <span><i class="far fa-envelope"></i> juy32400@gmail.com</span>
+        <br>
+        <br>
+        <span>COPYRIGHT 2020. Dev_J. All rights reserved.</span>
+      </div>
+    </div>
+  </footer>
+  <!-- 푸터 끝 -->
+</div>
+<!-- 사이트 박스 끝 -->
+</body>
+</html>

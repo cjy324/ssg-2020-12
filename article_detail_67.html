@@ -1,0 +1,1305 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+<script data-ad-client="ca-pub-7996879977557531" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-X5RMP83794"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-X5RMP83794');
+</script>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- 구글 검색엔진 등록-소유권 확인 -->
+<meta name="google-site-verification" content="37R4KcEaJU5LfiKL7GI1hu1_spJgWOazN6xy48OHhD4" />
+
+<!-- Meta Tag & Open Graph -->
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<meta name="viewport" content="width=1200">
+<meta name="apple-mobile-web-app-title" content="Dev_J BLOG" />
+<!-- 메타태그정보 //-->
+<!-- META -->
+<link rel="canonical" href="https://blog.devj.me" />
+<meta name="subject" content="P.Lamplight - 개발일지(리스트 필터링, 검색기능 구현)"/>
+<meta name="title" content="Dev_J BLOG" />
+<meta name="keywords" content="JAVA, HTML, CSS, JavaScript, MySQL" />
+<meta name="copyright" content="Dev_J BLOG" />
+<meta name="pubdate" content="2021-04-24T15:02:49" />
+<meta name="lastmod" content="2021-04-24T15:02:49" />
+<!-- OPENGRAPH -->
+<meta property="og:site_name" content="Dev_J BLOG" />
+<meta property="og:type" content="blog" />
+<meta property="og:title" content="P.Lamplight - 개발일지(리스트 필터링, 검색기능 구현)" />
+<meta property="og:description" content=" 리스트 필터링 검색기능 구현
+
+ NOTE
+
+
+props
+props 속성은 컴포넌트 간에 데이터를 전달할 수 있는 컴포넌트 통신 방법입니다
+props 속성을 기억할 때는 상위 컴포넌트에서 하위 컴포넌트로 내려보내는 
+ 데이터 속성으로 기억하면 쉽습니다
+
+
+br
+ 주요소스코드
+
+ DirectorListvue
+html
+template
+   메인지도사 리스트 시작 
+  section classdirectorListsection bggray500
+    div classh2 bggray500div
+    리스트 search 시작
+    div classflex h10 directorListsectionsearch m2 textright roundedmd
+      select classhfull w14 roundedlmd id changeonChangeSearchKeywordTypeevent
+        option valuename이름option
+        option valueaddressstate시도option
+        option valueaddresscity시군구option
+        option valueaddressstreet읍면동option
+      select
+      input idsearchKeywordElRef refsearchKeywordElRef classhfull wfull pl4 typetext placeholder검색어 입력 valuesearchKeyword keyupenteronInputevent 
+      button classw20 textwhite roundedrmd bgblue500 typebutton검색button
+    div
+    리스트 search 끝
+    리스트 grid 시작
+    div classdirectorListsectiongrid grid gridcols1 mdgridcols3 gap3 overflowhidden
+      리스트 gridbody 시작
+      div classmt6 vbindkeydirectorid vfordirector in filteredDirectors
+      div classdirectorListsectiongridbody p8 bgwhite m2 border roundedxl
+        프로필 이미지
+        div classflex justifycenter overflowhidden
+          img classh96 roundedlg objectcover objectcenter srchttplocalhost8090  directorextrathumbImg
+        div
+        이름
+        div classtextcenter m4
+          routerlink todirectorprofile classtextindigo500 fontbold textxl mdtext2xl hovertextgray700
+             directorname 
+          routerlink
+        div
+        소개멘트
+        h1 classfontsemibold textgray900 leadingnone textxl mt1 mb3 capitalize breaknormal
+          소개멘트 작성란입니다
+        h1
+        지역
+        div classmaxwfull border mt2 p1 pl2 roundedmd
+          지역
+          p classtextbase fontmedium trackingwide textgray600 mt1
+              directoraddressstate   directoraddresscity   directoraddressstreet 
+          p
+        div
+        활동이력
+        div classmaxwfull border mt2 p1 pl2 roundedmd
+          활동이력
+          p classtextbase fontmedium trackingwide textgray600 mt1
+              directorcellphoneNo 
+          p
+          p classtextbase fontmedium trackingwide textgray600 mt1
+              directoremail 
+          p
+          p classtextbase fontmedium trackingwide textgray600 mt1
+              directorregDate 
+          p
+        div
+        routerlink toclientdoOrderid  directorid  clientId  globalShareloginedClientid classblock btnprimary mt2 h10 wfull roundedmd
+          선택
+        routerlink
+        평점
+        div classflex justifycenter itemscenter wfull textcenter mt3
+          div classfontbold textxl mr5
+             directorname 님의 전체 평점
+          div
+          div classborder roundedfull h24 w24 bgyellow500 flex justifycenter itemscenter
+            div classfontbold text2xl textwhite
+              455
+            div
+          div
+        div
+        후기
+        div classflex justifybetween itemsend h8 wfull borderb4 fontsemibold
+          p classpb1
+            매칭 후기
+          p
+          div classtextsm cursorpointer hovertextblue500
+            더보기
+          div
+        div
+        div classmt2 borderb2 bordert2
+            p classtextgray900 p2
+              후기를 작성합니다 Lorem ipsum dolor sit amet consectetur adipisicing elit 
+            p
+            p classtextgray500 p2 textsm
+              20210311 151515
+            p
+        div
+        후기
+        div classmt2 borderb2 bordert2
+            p classtextgray900 p2
+              후기를 작성합니다 ipsum sapiente earum voluptates reiciendis fuga sit Minima quaerat sit sed iusto consectetur
+            p
+            p classtextgray500 p2 textsm
+              20210311 151515
+            p
+        div
+        
+      div
+      div
+      리스트 gridbody 끝
+    div
+    리스트 grid 끝
+  section
+   메인지도사 리스트 끝 
+
+template
+
+script langts
+import  defineComponent reactive ref getCurrentInstance onMounted computed watch  from vue
+import  IDirector  from types
+import  MainApi  from apis
+
+const searchKeywordElRef  refHTMLInputElement
+
+export default defineComponent
+  name DirectorList
+
+props 속성은 컴포넌트 간에 데이터를 전달할 수 있는 컴포넌트 통신 방법입니다 
+props 속성을 기억할 때는 상위 컴포넌트에서 하위 컴포넌트로 내려보내는 데이터 속성으로 기억하면 쉽습니다
+  props 
+    globalShare 
+      type Object
+      required true
+    
+  
+
+  setupprops
+    const mainApiMainApi  getCurrentInstanceappContextconfigglobalPropertiesmainApi
+
+    const stateany  reactive
+      directors  as IDirector
+      searchKeyword  as String
+      result as String
+    
+
+    
+    210316 리스트 검색기능 구현 진행중
+     문제점
+     검색버튼 클릭시에도 onInput이 되도록 개선 필요
+
+    let searchKeywordType  name
+    let page  1
+
+    function onInputeventany
+      statesearchKeyword  eventtargetvalue
+      return statesearchKeyword
+    
+
+    function onChangeSearchKeywordTypeeventany
+      searchKeywordType  eventtargetvalue
+      return searchKeywordType
+    
+
+    function onChangePageElRefeventany
+      page  eventtargetvalue
+      return page
+    
+
+    alert1
+    const filteredDirectors  computed  
+      alert2
+      stateresult  statesearchKeyword
+
+      let filteredDirectors  statedirectors
+
+      ifsearchKeywordType  name
+        filteredDirectors  statedirectorsfilterdirectorIDirector  directornameincludesstatesearchKeyword
+      
+      ifsearchKeywordType  addressstate
+        filteredDirectors  statedirectorsfilterdirectorIDirector  directoraddressstateincludesstatesearchKeyword
+      
+      ifsearchKeywordType  addresscity
+        filteredDirectors  statedirectorsfilterdirectorIDirector  directoraddresscityincludesstatesearchKeyword
+      
+      ifsearchKeywordType  addressstreet
+        filteredDirectors  statedirectorsfilterdirectorIDirector  directoraddressstreetincludesstatesearchKeyword
+      
+      return filteredDirectors
+    
+    
+    
+
+    function loadDirectors
+      alert4
+      mainApidirectorlist
+      thenaxiosResponse  
+          statedirectors  axiosResponsedatabodydirectors
+      
+
+    
+
+     onMounted 바로 실행하는 것이 아닌 모든 것이 준비되었을때 실행됨
+    onMounted  
+      alert3
+      loadDirectors
+    
+
+    return
+      state
+      filteredDirectors
+      onInput
+      onChangeSearchKeywordType
+      onChangePageElRef
+
+    
+
+  
+
+script
+
+
+style scoped
+ httpstailwindcomponentscomcomponentblogspostscard 
+directorListsectiongridbody
+  minwidth 400px
+
+
+style
+" />
+<meta property="og:locale" content="ko_KR" />
+<meta property="og:image" content="images/Dev_J_logo/logo.png" />
+<meta property="og:image:alt" content="blog.devj.me" />
+<meta property="og:image:width" content="486" />
+<meta property="og:image:height" content="254" />
+<meta property="og:updated_time" content="2021-04-24T15:02:49"/>
+<meta property="og:pubdate" content="2021-04-24T15:02:49" />
+<meta property="og:url" content="https://blog.devj.me" />
+<!-- TWITTER -->
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="P.Lamplight - 개발일지(리스트 필터링, 검색기능 구현)" />
+<meta name="twitter:site" content="@Dev_J BLOG" />
+<meta name="twitter:creator" content="@Dev_J BLOG" />
+<meta name="twitter:image" content="images/Dev_J_logo/logo.png">
+<meta name="twitter:description" content=" 리스트 필터링 검색기능 구현
+
+ NOTE
+
+
+props
+props 속성은 컴포넌트 간에 데이터를 전달할 수 있는 컴포넌트 통신 방법입니다
+props 속성을 기억할 때는 상위 컴포넌트에서 하위 컴포넌트로 내려보내는 
+ 데이터 속성으로 기억하면 쉽습니다
+
+
+br
+ 주요소스코드
+
+ DirectorListvue
+html
+template
+   메인지도사 리스트 시작 
+  section classdirectorListsection bggray500
+    div classh2 bggray500div
+    리스트 search 시작
+    div classflex h10 directorListsectionsearch m2 textright roundedmd
+      select classhfull w14 roundedlmd id changeonChangeSearchKeywordTypeevent
+        option valuename이름option
+        option valueaddressstate시도option
+        option valueaddresscity시군구option
+        option valueaddressstreet읍면동option
+      select
+      input idsearchKeywordElRef refsearchKeywordElRef classhfull wfull pl4 typetext placeholder검색어 입력 valuesearchKeyword keyupenteronInputevent 
+      button classw20 textwhite roundedrmd bgblue500 typebutton검색button
+    div
+    리스트 search 끝
+    리스트 grid 시작
+    div classdirectorListsectiongrid grid gridcols1 mdgridcols3 gap3 overflowhidden
+      리스트 gridbody 시작
+      div classmt6 vbindkeydirectorid vfordirector in filteredDirectors
+      div classdirectorListsectiongridbody p8 bgwhite m2 border roundedxl
+        프로필 이미지
+        div classflex justifycenter overflowhidden
+          img classh96 roundedlg objectcover objectcenter srchttplocalhost8090  directorextrathumbImg
+        div
+        이름
+        div classtextcenter m4
+          routerlink todirectorprofile classtextindigo500 fontbold textxl mdtext2xl hovertextgray700
+             directorname 
+          routerlink
+        div
+        소개멘트
+        h1 classfontsemibold textgray900 leadingnone textxl mt1 mb3 capitalize breaknormal
+          소개멘트 작성란입니다
+        h1
+        지역
+        div classmaxwfull border mt2 p1 pl2 roundedmd
+          지역
+          p classtextbase fontmedium trackingwide textgray600 mt1
+              directoraddressstate   directoraddresscity   directoraddressstreet 
+          p
+        div
+        활동이력
+        div classmaxwfull border mt2 p1 pl2 roundedmd
+          활동이력
+          p classtextbase fontmedium trackingwide textgray600 mt1
+              directorcellphoneNo 
+          p
+          p classtextbase fontmedium trackingwide textgray600 mt1
+              directoremail 
+          p
+          p classtextbase fontmedium trackingwide textgray600 mt1
+              directorregDate 
+          p
+        div
+        routerlink toclientdoOrderid  directorid  clientId  globalShareloginedClientid classblock btnprimary mt2 h10 wfull roundedmd
+          선택
+        routerlink
+        평점
+        div classflex justifycenter itemscenter wfull textcenter mt3
+          div classfontbold textxl mr5
+             directorname 님의 전체 평점
+          div
+          div classborder roundedfull h24 w24 bgyellow500 flex justifycenter itemscenter
+            div classfontbold text2xl textwhite
+              455
+            div
+          div
+        div
+        후기
+        div classflex justifybetween itemsend h8 wfull borderb4 fontsemibold
+          p classpb1
+            매칭 후기
+          p
+          div classtextsm cursorpointer hovertextblue500
+            더보기
+          div
+        div
+        div classmt2 borderb2 bordert2
+            p classtextgray900 p2
+              후기를 작성합니다 Lorem ipsum dolor sit amet consectetur adipisicing elit 
+            p
+            p classtextgray500 p2 textsm
+              20210311 151515
+            p
+        div
+        후기
+        div classmt2 borderb2 bordert2
+            p classtextgray900 p2
+              후기를 작성합니다 ipsum sapiente earum voluptates reiciendis fuga sit Minima quaerat sit sed iusto consectetur
+            p
+            p classtextgray500 p2 textsm
+              20210311 151515
+            p
+        div
+        
+      div
+      div
+      리스트 gridbody 끝
+    div
+    리스트 grid 끝
+  section
+   메인지도사 리스트 끝 
+
+template
+
+script langts
+import  defineComponent reactive ref getCurrentInstance onMounted computed watch  from vue
+import  IDirector  from types
+import  MainApi  from apis
+
+const searchKeywordElRef  refHTMLInputElement
+
+export default defineComponent
+  name DirectorList
+
+props 속성은 컴포넌트 간에 데이터를 전달할 수 있는 컴포넌트 통신 방법입니다 
+props 속성을 기억할 때는 상위 컴포넌트에서 하위 컴포넌트로 내려보내는 데이터 속성으로 기억하면 쉽습니다
+  props 
+    globalShare 
+      type Object
+      required true
+    
+  
+
+  setupprops
+    const mainApiMainApi  getCurrentInstanceappContextconfigglobalPropertiesmainApi
+
+    const stateany  reactive
+      directors  as IDirector
+      searchKeyword  as String
+      result as String
+    
+
+    
+    210316 리스트 검색기능 구현 진행중
+     문제점
+     검색버튼 클릭시에도 onInput이 되도록 개선 필요
+
+    let searchKeywordType  name
+    let page  1
+
+    function onInputeventany
+      statesearchKeyword  eventtargetvalue
+      return statesearchKeyword
+    
+
+    function onChangeSearchKeywordTypeeventany
+      searchKeywordType  eventtargetvalue
+      return searchKeywordType
+    
+
+    function onChangePageElRefeventany
+      page  eventtargetvalue
+      return page
+    
+
+    alert1
+    const filteredDirectors  computed  
+      alert2
+      stateresult  statesearchKeyword
+
+      let filteredDirectors  statedirectors
+
+      ifsearchKeywordType  name
+        filteredDirectors  statedirectorsfilterdirectorIDirector  directornameincludesstatesearchKeyword
+      
+      ifsearchKeywordType  addressstate
+        filteredDirectors  statedirectorsfilterdirectorIDirector  directoraddressstateincludesstatesearchKeyword
+      
+      ifsearchKeywordType  addresscity
+        filteredDirectors  statedirectorsfilterdirectorIDirector  directoraddresscityincludesstatesearchKeyword
+      
+      ifsearchKeywordType  addressstreet
+        filteredDirectors  statedirectorsfilterdirectorIDirector  directoraddressstreetincludesstatesearchKeyword
+      
+      return filteredDirectors
+    
+    
+    
+
+    function loadDirectors
+      alert4
+      mainApidirectorlist
+      thenaxiosResponse  
+          statedirectors  axiosResponsedatabodydirectors
+      
+
+    
+
+     onMounted 바로 실행하는 것이 아닌 모든 것이 준비되었을때 실행됨
+    onMounted  
+      alert3
+      loadDirectors
+    
+
+    return
+      state
+      filteredDirectors
+      onInput
+      onChangeSearchKeywordType
+      onChangePageElRef
+
+    
+
+  
+
+script
+
+
+style scoped
+ httpstailwindcomponentscomcomponentblogspostscard 
+directorListsectiongridbody
+  minwidth 400px
+
+
+style
+" />
+<!-- GOOGLE+ -->
+<meta itemprop="headline" content="Dev_J BLOG" />
+<meta itemprop="name" content="Dev_J BLOG" />
+<meta itemprop="description" content=" 리스트 필터링 검색기능 구현
+
+ NOTE
+
+
+props
+props 속성은 컴포넌트 간에 데이터를 전달할 수 있는 컴포넌트 통신 방법입니다
+props 속성을 기억할 때는 상위 컴포넌트에서 하위 컴포넌트로 내려보내는 
+ 데이터 속성으로 기억하면 쉽습니다
+
+
+br
+ 주요소스코드
+
+ DirectorListvue
+html
+template
+   메인지도사 리스트 시작 
+  section classdirectorListsection bggray500
+    div classh2 bggray500div
+    리스트 search 시작
+    div classflex h10 directorListsectionsearch m2 textright roundedmd
+      select classhfull w14 roundedlmd id changeonChangeSearchKeywordTypeevent
+        option valuename이름option
+        option valueaddressstate시도option
+        option valueaddresscity시군구option
+        option valueaddressstreet읍면동option
+      select
+      input idsearchKeywordElRef refsearchKeywordElRef classhfull wfull pl4 typetext placeholder검색어 입력 valuesearchKeyword keyupenteronInputevent 
+      button classw20 textwhite roundedrmd bgblue500 typebutton검색button
+    div
+    리스트 search 끝
+    리스트 grid 시작
+    div classdirectorListsectiongrid grid gridcols1 mdgridcols3 gap3 overflowhidden
+      리스트 gridbody 시작
+      div classmt6 vbindkeydirectorid vfordirector in filteredDirectors
+      div classdirectorListsectiongridbody p8 bgwhite m2 border roundedxl
+        프로필 이미지
+        div classflex justifycenter overflowhidden
+          img classh96 roundedlg objectcover objectcenter srchttplocalhost8090  directorextrathumbImg
+        div
+        이름
+        div classtextcenter m4
+          routerlink todirectorprofile classtextindigo500 fontbold textxl mdtext2xl hovertextgray700
+             directorname 
+          routerlink
+        div
+        소개멘트
+        h1 classfontsemibold textgray900 leadingnone textxl mt1 mb3 capitalize breaknormal
+          소개멘트 작성란입니다
+        h1
+        지역
+        div classmaxwfull border mt2 p1 pl2 roundedmd
+          지역
+          p classtextbase fontmedium trackingwide textgray600 mt1
+              directoraddressstate   directoraddresscity   directoraddressstreet 
+          p
+        div
+        활동이력
+        div classmaxwfull border mt2 p1 pl2 roundedmd
+          활동이력
+          p classtextbase fontmedium trackingwide textgray600 mt1
+              directorcellphoneNo 
+          p
+          p classtextbase fontmedium trackingwide textgray600 mt1
+              directoremail 
+          p
+          p classtextbase fontmedium trackingwide textgray600 mt1
+              directorregDate 
+          p
+        div
+        routerlink toclientdoOrderid  directorid  clientId  globalShareloginedClientid classblock btnprimary mt2 h10 wfull roundedmd
+          선택
+        routerlink
+        평점
+        div classflex justifycenter itemscenter wfull textcenter mt3
+          div classfontbold textxl mr5
+             directorname 님의 전체 평점
+          div
+          div classborder roundedfull h24 w24 bgyellow500 flex justifycenter itemscenter
+            div classfontbold text2xl textwhite
+              455
+            div
+          div
+        div
+        후기
+        div classflex justifybetween itemsend h8 wfull borderb4 fontsemibold
+          p classpb1
+            매칭 후기
+          p
+          div classtextsm cursorpointer hovertextblue500
+            더보기
+          div
+        div
+        div classmt2 borderb2 bordert2
+            p classtextgray900 p2
+              후기를 작성합니다 Lorem ipsum dolor sit amet consectetur adipisicing elit 
+            p
+            p classtextgray500 p2 textsm
+              20210311 151515
+            p
+        div
+        후기
+        div classmt2 borderb2 bordert2
+            p classtextgray900 p2
+              후기를 작성합니다 ipsum sapiente earum voluptates reiciendis fuga sit Minima quaerat sit sed iusto consectetur
+            p
+            p classtextgray500 p2 textsm
+              20210311 151515
+            p
+        div
+        
+      div
+      div
+      리스트 gridbody 끝
+    div
+    리스트 grid 끝
+  section
+   메인지도사 리스트 끝 
+
+template
+
+script langts
+import  defineComponent reactive ref getCurrentInstance onMounted computed watch  from vue
+import  IDirector  from types
+import  MainApi  from apis
+
+const searchKeywordElRef  refHTMLInputElement
+
+export default defineComponent
+  name DirectorList
+
+props 속성은 컴포넌트 간에 데이터를 전달할 수 있는 컴포넌트 통신 방법입니다 
+props 속성을 기억할 때는 상위 컴포넌트에서 하위 컴포넌트로 내려보내는 데이터 속성으로 기억하면 쉽습니다
+  props 
+    globalShare 
+      type Object
+      required true
+    
+  
+
+  setupprops
+    const mainApiMainApi  getCurrentInstanceappContextconfigglobalPropertiesmainApi
+
+    const stateany  reactive
+      directors  as IDirector
+      searchKeyword  as String
+      result as String
+    
+
+    
+    210316 리스트 검색기능 구현 진행중
+     문제점
+     검색버튼 클릭시에도 onInput이 되도록 개선 필요
+
+    let searchKeywordType  name
+    let page  1
+
+    function onInputeventany
+      statesearchKeyword  eventtargetvalue
+      return statesearchKeyword
+    
+
+    function onChangeSearchKeywordTypeeventany
+      searchKeywordType  eventtargetvalue
+      return searchKeywordType
+    
+
+    function onChangePageElRefeventany
+      page  eventtargetvalue
+      return page
+    
+
+    alert1
+    const filteredDirectors  computed  
+      alert2
+      stateresult  statesearchKeyword
+
+      let filteredDirectors  statedirectors
+
+      ifsearchKeywordType  name
+        filteredDirectors  statedirectorsfilterdirectorIDirector  directornameincludesstatesearchKeyword
+      
+      ifsearchKeywordType  addressstate
+        filteredDirectors  statedirectorsfilterdirectorIDirector  directoraddressstateincludesstatesearchKeyword
+      
+      ifsearchKeywordType  addresscity
+        filteredDirectors  statedirectorsfilterdirectorIDirector  directoraddresscityincludesstatesearchKeyword
+      
+      ifsearchKeywordType  addressstreet
+        filteredDirectors  statedirectorsfilterdirectorIDirector  directoraddressstreetincludesstatesearchKeyword
+      
+      return filteredDirectors
+    
+    
+    
+
+    function loadDirectors
+      alert4
+      mainApidirectorlist
+      thenaxiosResponse  
+          statedirectors  axiosResponsedatabodydirectors
+      
+
+    
+
+     onMounted 바로 실행하는 것이 아닌 모든 것이 준비되었을때 실행됨
+    onMounted  
+      alert3
+      loadDirectors
+    
+
+    return
+      state
+      filteredDirectors
+      onInput
+      onChangeSearchKeywordType
+      onChangePageElRef
+
+    
+
+  
+
+script
+
+
+style scoped
+ httpstailwindcomponentscomcomponentblogspostscard 
+directorListsectiongridbody
+  minwidth 400px
+
+
+style
+" />
+<meta itemprop="image" content="images/Dev_J_logo/logo.png" />
+
+<!-- 사이트 타이틀 -->
+<title>P.Lamplight - 개발일지(리스트 필터링, 검색기능 구현) | Dev_J BLOG | ARTICLE DETAIL</title>
+
+
+<!-- 파비콘 -->
+<link rel="shortcut icon" href="images/favicon/favicon.ico" type="image/x-icon">
+<link rel="icon" href="images/favicon/favicon.ico" type="image/x-icon">
+
+<!-- 폰트어썸 불러오기 -->
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+
+<!--모바일에서도 PC와 같은 비율 유지-->
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<!--제이쿼리-->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+<!-- 하이라이트 라이브러리 추가, 토스트 UI 에디터에서 사용됨 -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.4.1/highlight.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.4.1/styles/default.min.css">
+
+<!-- 토스트 UI 에디터, 자바스크립트 코어 -->
+<script
+	src="https://uicdn.toast.com/editor/latest/toastui-editor-all.min.js" defer></script>
+
+<!-- 코드 미러 라이브러리 추가, 토스트 UI 에디터에서 사용됨 -->
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.58.3/codemirror.min.css" />
+<!-- 토스트 UI 에디터, CSS 코어 -->
+<link rel="stylesheet"
+	href="https://uicdn.toast.com/editor/latest/toastui-editor.min.css" />
+
+<!-- 토스트 UI 에디터, 신택스 하이라이트 플러그인 추가 -->
+<script src="https://uicdn.toast.com/editor-plugin-code-syntax-highlight/latest/toastui-editor-plugin-code-syntax-highlight.min.js" defer></script>
+
+<!-- app.css 불러오기 -->
+<link rel="stylesheet" href="app.css">
+<!-- app.js 불러오기 -->
+<script src="app.js" defer></script>
+<!-- index.js 불러오기 
+<script src="index.js" defer></script>
+-->
+</head>
+
+<body>
+<!-- 사이트 박스 시작 -->
+<div class="body-content min-height-100vh flex flex-column">
+  <!-- 로고바 시작 -->
+  <header class="logo-bar con-min-width" id="header">
+    <div class="con height-100p flex flex-jc-c" title="HOME">
+      <a href="index.html" class="logo flex flex-ai-c"> 
+        <img class="logo__img" src="images/Dev_J_logo/logo_transparent.png" alt="">
+        <span>
+          BLOG
+        </span>
+      </a>
+    </div>
+  </header>
+  <!-- 로고바 끝 -->
+
+  <!-- 메뉴바 시작-->
+  <header class="menu-bar con-min-width visible-md-up">
+    <div class="flex flex-jc-sb">
+   	 <div class="menu-bar__status-icon" title="Menu">
+      <div></div>
+      <div></div>
+      <div></div>
+     </div>
+     <a class="search-icon" title="search" href="search.html">
+        <i class="fa fa-search"></i>
+     </a>
+   </div>
+   <div class="con hide">
+    <nav class="menu-bar__menu">
+      <ul class="flex">
+          <li title="ABOUT">
+            <a href="about.html" class="block">
+              <i class="far fa-address-card"></i>
+              <span>ABOUT</span>
+            </a>
+          </li>
+          <li>
+            <a class="block">
+              <i class="fas fa-list"></i>
+              <span>ARTICLES</span>
+            </a>
+            <ul>
+              <li title="NOTICE"><a href="notice-list-1.html" class="block"><i class="fas fa-bullhorn"></i> <span>NOTICE BOARD</span></a></li><li title="JAVA"><a href="java-list-1.html" class="block"><i class="fab fa-java"></i> <span>JAVA BOARD</span></a></li><li title="HTML"><a href="html-list-1.html" class="block"><i class="fab fa-html5"></i> <span>HTML & CSS & JS BOARD</span></a></li><li title="MYSQL"><a href="mysql-list-1.html" class="block"><i class="fas fa-database"></i> <span>MySQL BOARD</span></a></li><li title="ETC"><a href="etc-list-1.html" class="block"><i class="fas fa-mouse-pointer"></i> <span>ETC BOARD</span></a></li>
+            </ul>
+          </li>
+          <li>
+            <a class="block">
+              <i class="fas fa-project-diagram"></i>
+              <span>PROJECT</span>
+            </a>
+            <ul>
+              <li title="P_BLOG"><a href="p_blog-list-1.html" class="block"><i class="fab fa-blogger"></i> <span>P.BLOG PROJECT</span></a></li><li title="P_JSP"><a href="p_jsp-list-1.html" class="block"><i class="fas fa-users"></i> <span>P.JSP PROJECT</span></a></li><li title="P_LAMP"><a href="p_lamp-list-1.html" class="block"><i class="fab fa-vuejs"></i> <span>P.Lamplight PROJECT</span></a></li><li title="P_WHAT"><a href="p_what-list-1.html" class="block"><i class="fas fa-file-word"></i> <span>P.WhatIsMyName PROJECT</span></a></li>
+            </ul>
+          </li>
+          <li>
+            <a class="block">
+              <i class="fas fa-link"></i>
+              <span>LINK</span>
+            </a>
+            <ul>
+              <li title="T-STORY">
+                <a href="https://cjy324.tistory.com/" target="_blank" class="block">
+                  <i class="fas fa-rss-square"></i>
+                  <span>T-STORY</span>
+                </a>
+              </li>
+              <li title="GITHUB">
+                <a href="https://github.com/cjy324/TIL_Jooyoung#til_jooyoung" target="_blank" class="block">
+                  <i class="fab fa-github"></i>
+                  <span>GITHUB</span>
+                </a>
+              </li>
+              <li title="GetIT">
+                <a href="https://getit.devj.me/" target="_blank" class="block">
+                  <i class="fab fa-dev"></i>
+                  <span>GetIT</span>
+                </a>
+              </li>
+            </ul>
+          </li>
+          <li title="STATISTICS">
+            <a href="statistics.html" class="block">
+              <i class="fas fa-chart-pie"></i>
+              <span>STATISTICS</span>
+            </a>
+          </li>
+        </ul>
+      </nav>
+   </div>
+  </header>
+  <!-- 메뉴바 끝 -->
+  
+  <!-- 모바일 사이드 메뉴바 시작 -->
+  <header class="mobile-menu-bar con-min-width visible-sm-down">
+    <div class="flex flex-jc-sb">
+   <div class="mobile-menu-bar__status-icon" title="Menu">
+     <div></div>
+     <div></div>
+     <div></div>
+   </div>
+    <a class="search-icon" title="search" href="search.html">
+        <i class="fa fa-search"></i>
+      </a>
+   </div>
+   <div class="con ">
+    <aside class="mobile-side-bar flex flex-column flex-jc-c ">
+      <div class="mobile-side-bar_X"><i class="fas fa-times"></i></div>
+      <nav class="mobile-side-bar_menu flex">
+      <ul class="">
+          <li title="ABOUT">
+            <a href="about.html" class="block">
+              <i class="far fa-address-card"></i>
+              <span>ABOUT</span>
+            </a>
+          </li>
+          <li>
+            <a class="block">
+              <i class="fas fa-list"></i>
+              <span>ARTICLES</span>
+            </a>
+            <ul class="hide2">
+              <li title="NOTICE"><a href="notice-list-1.html" class="block"><i class="fas fa-bullhorn"></i> <span>NOTICE BOARD</span></a></li><li title="JAVA"><a href="java-list-1.html" class="block"><i class="fab fa-java"></i> <span>JAVA BOARD</span></a></li><li title="HTML"><a href="html-list-1.html" class="block"><i class="fab fa-html5"></i> <span>HTML & CSS & JS BOARD</span></a></li><li title="MYSQL"><a href="mysql-list-1.html" class="block"><i class="fas fa-database"></i> <span>MySQL BOARD</span></a></li><li title="ETC"><a href="etc-list-1.html" class="block"><i class="fas fa-mouse-pointer"></i> <span>ETC BOARD</span></a></li>
+            </ul>
+          </li>
+          <li>
+            <a class="block">
+              <i class="fas fa-project-diagram"></i>
+              <span>PROJECT</span>
+            </a>
+            <ul class="hide2">
+              <li title="P_BLOG"><a href="p_blog-list-1.html" class="block"><i class="fab fa-blogger"></i> <span>P.BLOG PROJECT</span></a></li><li title="P_JSP"><a href="p_jsp-list-1.html" class="block"><i class="fas fa-users"></i> <span>P.JSP PROJECT</span></a></li><li title="P_LAMP"><a href="p_lamp-list-1.html" class="block"><i class="fab fa-vuejs"></i> <span>P.Lamplight PROJECT</span></a></li><li title="P_WHAT"><a href="p_what-list-1.html" class="block"><i class="fas fa-file-word"></i> <span>P.WhatIsMyName PROJECT</span></a></li>
+            </ul>
+          </li>
+          <li>
+            <a class="block">
+              <i class="fas fa-link"></i>
+              <span>LINK</span>
+            </a>
+            <ul class="hide2">
+              <li title="T-STORY">
+                <a href="https://cjy324.tistory.com/" target="_blank" class="block">
+                  <i class="fas fa-rss-square"></i>
+                  <span>T-STORY</span>
+                </a>
+              </li>
+              <li title="GITHUB">
+                <a href="https://github.com/cjy324/TIL_Jooyoung#til_jooyoung" target="_blank" class="block">
+                  <i class="fab fa-github"></i>
+                  <span>GITHUB</span>
+                </a>
+              </li>
+              <li title="GetIT">
+                <a href="https://getit.devj.me/" target="_blank" class="block">
+                  <i class="fab fa-dev"></i>
+                  <span>GetIT</span>
+                </a>
+              </li>
+            </ul>
+          </li>
+          <li title="STATISTICS">
+            <a href="statistics.html" class="block">
+              <i class="fas fa-chart-pie"></i>
+              <span>STATISTICS</span>
+            </a>
+          </li>
+        </ul>
+      </nav>  
+      </aside>
+   </div>
+  </header>
+  
+  <!-- 모바일 사이드 메뉴바 끝 --> 
+   
+
+  <!-- 메인 컨텐츠 박스 시작 -->
+  <main class="main-box flex-grow-1">
+  <section class="main-box-section con-min-width">
+   <!-- 메인-타이틀바 시작 -->
+	<div class="title-bar con-min-width">
+		<h1 class="con">
+			<i class="fas fa-file-invoice"></i> <span>ARTICLE</span>
+		</h1>
+	</div>
+   <!-- 메인-타이틀바 종료 -->
+<!-- Progress-bar -->
+<script type="text/javascript"
+	src="https://rawcdn.githack.com/mburakerman/prognroll/0feda211643153bce2c69de32ea1b39cdc64ffbe/src/prognroll.js"></script>
+<script type="text/javascript">
+	$(function() {
+		$("body").prognroll({
+			height : 10,
+			color : "#666666"
+		});
+		$(".content").prognroll({
+			custom : true
+		});
+	});
+</script>
+
+<!-- 메인-상세페이지 시작 -->
+<section class="section-2 con-min-width min-height-50vh">
+	<div class="con height-100p">
+		<div class="article-detail-cell height-100p">
+			<div class="article-detail-cell__board-name"><div><span>게시판 : </span><span>P.Lamplight 게시판</span></div></div><div class="article-detail-cell__id"><div><span>번호 : </span><span>67</span></div></div><div class="article-detail-cell__member-id"><div><span>작성자 : </span><span>Dev_J</span></div></div><div class="article-detail-cell__reg-date"><div><span>작성일 : </span><span>2021-04-24 14:57:44</span></div></div><div class="article-detail-cell__update-date"><div><span>수정일 : </span><span>2021-04-24 15:02:44</span></div></div><br><div class="article-detail-cell__title-contents flex flex-jc-fe"><div class="article-detail-cell__hitsCount"><div><span>조회수 : </span><span>0</span></div></div><div class="article-detail-cell__likesCount"><div><span>추천수 : </span><span>0</span></div></div><div class="article-detail-cell__commentsCount"><div><span>댓글수 : </span><span>0</span></div></div></div><div class="article-detail-cell__title"><div><span>제목 : </span><span>P.Lamplight - 개발일지(리스트 필터링, 검색기능 구현)</span></div></div><nav class="ad"><!-- 구글 애드센스2 --><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script><!-- 수평 반응형2 --><ins class="adsbygoogle" style="display: block" data-ad-client="ca-pub-7996879977557531" data-ad-slot="2278060237" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle = window.adsbygoogle || []).push({});</script></nav><script type"text/x-template"># 리스트 필터링, 검색기능 구현
+
+## NOTE
+
+```
+props
+-props 속성은 컴포넌트 간에 데이터를 전달할 수 있는 컴포넌트 통신 방법입니다.
+-props 속성을 기억할 때는 상위 컴포넌트에서 하위 컴포넌트로 내려보내는 
+ 데이터 속성으로 기억하면 쉽습니다
+```
+
+<br>
+## 주요소스코드
+
+### DirectorList.vue
+```html
+<template>
+  <!-- 메인-지도사 리스트 시작 -->
+  <section class="directorList-section bg-gray-500">
+    <div class="h-2 bg-gray-500"></div>
+    <!--리스트 search 시작-->
+    <div class="flex h-10 directorList-section-search m-2 text-right rounded-md">
+      <select class="h-full w-1/4 rounded-l-md" id="" @change="onChangeSearchKeywordType($event)">
+        <option value="name">이름</option>
+        <option value="address_state">시/도</option>
+        <option value="address_city">시/군/구</option>
+        <option value="address_street">읍/면/동</option>
+      </select>
+      <input id="searchKeywordElRef" ref="searchKeywordElRef" class="h-full w-full pl-4" type="text" placeholder="검색어 입력" :value="searchKeyword" @keyup.enter="onInput($event)" >
+      <button class="w-20 text-white rounded-r-md bg-blue-500" type="button">검색</button>
+    </div>
+    <!--리스트 search 끝-->
+    <!--리스트 grid 시작-->
+    <div class="directorList-section-grid grid grid-cols-1 md:grid-cols-3 gap-3 overflow-hidden">
+      <!--리스트 grid__body 시작-->
+      <div class="mt-6" v-bind:key="director.id" v-for="director in filteredDirectors">
+      <div class="directorList-section-grid__body p-8 bg-white m-2 border rounded-xl">
+        <!--프로필 이미지-->
+        <div class="flex justify-center overflow-hidden">
+          <img class="h-96 rounded-lg object-cover object-center" :src="'http://localhost:8090' + director.extra__thumbImg">
+        </div>
+        <!--이름-->
+        <div class="text-center m-4">
+          <router-link to="/director/profile" class="text-indigo-500 font-bold text-xl md:text-2xl hover:text-gray-700">
+            {{ director.name }}
+          </router-link>
+        </div>
+        <!--소개멘트-->
+        <h1 class="font-semibold text-gray-900 leading-none text-xl mt-1 mb-3 capitalize break-normal">
+          소개멘트 작성란입니다.
+        </h1>
+        <!--지역-->
+        <div class="max-w-full border mt-2 p-1 pl-2 rounded-md">
+          지역
+          <p class="text-base font-medium tracking-wide text-gray-600 mt-1">
+            - {{ director.address_state }} {{ director.address_city }} {{ director.address_street }}
+          </p>
+        </div>
+        <!--활동이력-->
+        <div class="max-w-full border mt-2 p-1 pl-2 rounded-md">
+          활동이력
+          <p class="text-base font-medium tracking-wide text-gray-600 mt-1">
+            - {{ director.cellphoneNo }}
+          </p>
+          <p class="text-base font-medium tracking-wide text-gray-600 mt-1">
+            - {{ director.email }}
+          </p>
+          <p class="text-base font-medium tracking-wide text-gray-600 mt-1">
+            - {{ director.regDate }}
+          </p>
+        </div>
+        <router-link :to="'/client/doOrder?id=' + director.id + '&clientId=' + globalShare.loginedClient.id" class="block btn-primary mt-2 h-10 w-full rounded-md">
+          선택
+        </router-link>
+        <!--평점-->
+        <div class="flex justify-center items-center w-full text-center mt-3">
+          <div class="font-bold text-xl mr-5">
+            '{{ director.name }}'님의 전체 평점
+          </div>
+          <div class="border rounded-full h-24 w-24 bg-yellow-500 flex justify-center items-center">
+            <div class="font-bold text-2xl text-white">
+              4.5/5
+            </div>
+          </div>
+        </div>
+        <!--후기-->
+        <div class="flex justify-between items-end h-8 w-full border-b-4 font-semibold">
+          <p class="pb-1">
+            매칭 후기
+          </p>
+          <div class="text-sm cursor-pointer hover:text-blue-500">
+            더보기
+          </div>
+        </div>
+        <div class="mt-2 border-b-2 border-t-2">
+            <p class="text-gray-900 p-2">
+              후기를 작성합니다. Lorem ipsum dolor sit amet consectetur adipisicing elit. 
+            </p>
+            <p class="text-gray-500 p-2 text-sm">
+              2021-03-11 15:15:15
+            </p>
+        </div>
+        <!--후기-->
+        <div class="mt-2 border-b-2 border-t-2">
+            <p class="text-gray-900 p-2">
+              후기를 작성합니다. ipsum, sapiente earum voluptates reiciendis fuga sit! Minima quaerat sit sed iusto consectetur.
+            </p>
+            <p class="text-gray-500 p-2 text-sm">
+              2021-03-11 15:15:15
+            </p>
+        </div>
+        
+      </div>
+      </div>
+      <!--리스트 grid__body 끝-->
+    </div>
+    <!--리스트 grid 끝-->
+  </section>
+  <!-- 메인-지도사 리스트 끝 -->
+
+</template>
+
+<t-script lang="ts">
+import { defineComponent, reactive, ref, getCurrentInstance, onMounted, computed, watch } from 'vue'
+import { IDirector } from '../types/'
+import { MainApi } from '../apis/'
+
+const searchKeywordElRef = ref<HTMLInputElement>();
+
+export default defineComponent({
+  name: 'DirectorList',
+
+//props 속성은 컴포넌트 간에 데이터를 전달할 수 있는 컴포넌트 통신 방법입니다. 
+//props 속성을 기억할 때는 상위 컴포넌트에서 하위 컴포넌트로 내려보내는 데이터 속성으로 기억하면 쉽습니다
+  props: {
+    globalShare: {
+      type: Object,
+      required: true
+    },
+  },
+
+  setup(props){
+    const mainApi:MainApi = getCurrentInstance()?.appContext.config.globalProperties.$mainApi;
+
+    const state:any = reactive({
+      directors: [] as IDirector[],
+      searchKeyword: '' as String,
+      result:'' as String,
+    });
+
+    
+    //21.03.16 리스트 검색기능 구현 진행중..
+    // 문제점
+    // 검색버튼 클릭시에도 onInput이 되도록 개선 필요
+
+    let searchKeywordType = "name";
+    let page = "1";
+
+    function onInput(event:any){
+      state.searchKeyword = event.target.value;
+      return state.searchKeyword;
+    }
+
+    function onChangeSearchKeywordType(event:any){
+      searchKeywordType = event.target.value;
+      return searchKeywordType;
+    };
+
+    function onChangePageElRef(event:any){
+      page = event.target.value;
+      return page;
+    }
+
+    //alert("1");
+    const filteredDirectors = computed(() => {
+      //alert("2");
+      state.result = state.searchKeyword;
+
+      let filteredDirectors = state.directors;
+
+      if(searchKeywordType == "name"){
+        filteredDirectors = state.directors.filter((director:IDirector) => director.name.includes(state.searchKeyword))
+      }
+      if(searchKeywordType == "address_state"){
+        filteredDirectors = state.directors.filter((director:IDirector) => director.address_state.includes(state.searchKeyword))
+      }
+      if(searchKeywordType == "address_city"){
+        filteredDirectors = state.directors.filter((director:IDirector) => director.address_city.includes(state.searchKeyword))
+      }
+      if(searchKeywordType == "address_street"){
+        filteredDirectors = state.directors.filter((director:IDirector) => director.address_street.includes(state.searchKeyword))
+      }
+      return filteredDirectors
+    })
+    
+    
+
+    function loadDirectors(){
+      //alert("4");
+      mainApi.director_list()
+      .then(axiosResponse => {
+          state.directors = axiosResponse.data.body.directors;
+      });
+
+    }
+
+    // onMounted 바로 실행하는 것이 아닌 모든 것이 준비되었을때 실행됨
+    onMounted(() => {
+      //alert("3");
+      loadDirectors();
+    });
+
+    return{
+      state,
+      filteredDirectors,
+      onInput,
+      onChangeSearchKeywordType,
+      onChangePageElRef
+
+    }
+
+  }
+})
+</t-script>
+
+
+<style scoped>
+/* https://tailwindcomponents.com/component/blogs-posts-card */
+.directorList-section-grid__body{
+  min-width: 400px;
+}
+
+</style>
+```</script><div class="article-detail-cell__body height-70p toast-ui-viewer"><div></div></div><br><div class="article-detail-cell__tag flex flex-wrap"><nav># project</nav><nav># 개발일지</nav><nav># lamplight</nav></div><br><br><nav class="ad"><!-- 구글 애드센스1 --><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script><!-- 수평 반응형1 --><ins class="adsbygoogle" style="display: block" data-ad-client="ca-pub-7996879977557531" data-ad-slot="6812185708" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle = window.adsbygoogle || []).push({});</script></nav>
+			<!-- Disqus api 적용 -->
+			<!-- 정확한 페이지 경로 알려주는 기능 추가-->
+			<nav>
+				<div id="disqus_thread"></div>
+				<script>
+					var disqus_config = function() {
+						this.page.url = 'https://blog.devj.me/article_detail_67.html';
+						this.page.identifier = 'article_detail_67.html';
+					};
+					(function() {
+						//DON'T EDIT BELOW THIS LINE
+						var d = document, s = d.createElement('script');
+						s.src = 'https://devj-blog.disqus.com/embed.js';
+						s.setAttribute('data-timestamp', +new Date());
+						(d.head || d.body).appendChild(s);
+					})();
+				</script>
+				<noscript>
+					Please enable JavaScript to view the
+					<a href="https://disqus.com/?ref_noscript">comments powered by
+						Disqus.</a>
+				</noscript>
+			</nav>
+		</div>
+	</div>
+</section>
+<!-- 메인-상세페이지 끝 -->
+<!-- 메인-상세 하단 메뉴 시작 -->
+<section class="section-3 con-min-width">
+	<div class="con">
+		<div class="article-list-bottom-cell flex flex-jc-c"><div class="./"><a href="article_detail_66.html" class="hover-underline">&lt 이전글</a></div><div class="./"><i class="fas fa-th-list"></i><a href="p_lamp-list-1.html" class="hover-underline"> 목록 </a></div><div class="./"><a href="article_detail_68.html"class="hover-underline">다음글 &gt</a></div></div>
+	</div>
+</section>
+<!-- 메인-상세 하단 메뉴 끝 -->
+</section>
+</main>
+<!-- 메인 컨텐츠 박스 끝 -->
+  <!-- 맨 위 버튼 시작 -->
+  <nav class="top-button flex flex-jc-c flex-ai-c">
+    <div class="">
+      <a href="#header">▲ TOP</a> 
+    </div>     
+  </nav>
+  <!-- 맨 위 버튼 끝 -->
+
+
+  <!-- 푸터 시작 -->
+  <footer class="bottom-bar con-min-width">
+    <div class="con flex flex-ai-c">
+      <a href="index.html" class="logo logo--mini flex flex-ai-c" title="HOME">
+        <img class="logo--mini__img" src="images/Dev_J_logo/logo_transparent.png" alt="">
+      </a>
+      <div class="bottom-bar__site-info">
+        <span><i class="far fa-envelope"></i> juy32400@gmail.com</span>
+        <br>
+        <br>
+        <span>COPYRIGHT 2020. Dev_J. All rights reserved.</span>
+      </div>
+    </div>
+  </footer>
+  <!-- 푸터 끝 -->
+</div>
+<!-- 사이트 박스 끝 -->
+</body>
+</html>

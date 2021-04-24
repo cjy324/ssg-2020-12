@@ -1,0 +1,1113 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+<script data-ad-client="ca-pub-7996879977557531" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-X5RMP83794"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-X5RMP83794');
+</script>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- 구글 검색엔진 등록-소유권 확인 -->
+<meta name="google-site-verification" content="37R4KcEaJU5LfiKL7GI1hu1_spJgWOazN6xy48OHhD4" />
+
+<!-- Meta Tag & Open Graph -->
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<meta name="viewport" content="width=1200">
+<meta name="apple-mobile-web-app-title" content="Dev_J BLOG" />
+<!-- 메타태그정보 //-->
+<!-- META -->
+<link rel="canonical" href="https://blog.devj.me" />
+<meta name="subject" content="P.Lamplight - 개발일지(~통합~디자인, native푸시&뱃지&전화 도입, SMS...PWA...구글스토어 앱 등록 완료(검토중))"/>
+<meta name="title" content="Dev_J BLOG" />
+<meta name="keywords" content="JAVA, HTML, CSS, JavaScript, MySQL" />
+<meta name="copyright" content="Dev_J BLOG" />
+<meta name="pubdate" content="2021-04-24T15:02:49" />
+<meta name="lastmod" content="2021-04-24T15:02:49" />
+<!-- OPENGRAPH -->
+<meta property="og:site_name" content="Dev_J BLOG" />
+<meta property="og:type" content="blog" />
+<meta property="og:title" content="P.Lamplight - 개발일지(~통합~디자인, native푸시&뱃지&전화 도입, SMS...PWA...구글스토어 앱 등록 완료(검토중))" />
+<meta property="og:description" content=" 통합디자인 native푸시뱃지전화 도입 SMSPWA구글스토어 앱 등록 완료검토중
+
+ PWA
+상장례sangjangryewebapp
+
+ NOTE
+
+ 프론트엔드
+
+210407210418 Work Done
+리뷰작성후 리뷰리스트
+평점 소수점
+회원정보 수정시 이미지 삭제 버그 수정 및 지도사 회원가입시 스캔파일 첨부여부 체크
+안드로이드 에뮬에서 테스트
+	안드로이드 에뮬레이터 로컬호스트 연결
+가입대기상태인 회원 노출되는 버그 수정
+뱃지
+ 의뢰인 시나리오
+	order
+	내 요청 접수거절
+	진행단계변경 34
+ 	최종확인버튼 클릭시 event 데이터 완전 삭제
+ 전문가 시나리오
+	order
+	내 지역 신규요청
+	장례종료최종확인 5
+	의뢰직접요청
+	의뢰수락시 지역별 event 데이터 완전 삭제
+	의뢰거절시 지역별 event 데이터 다시 생성
+	 의뢰 취소했을 경우 지역별 event 삭제
+ 각 시나리오별 위치에 뱃지 노출
+ 각 시나리오별 페이지 접근 시 이벤트 삭제
+모든 의뢰 종료 시 지도사 work값 1로 변경
+ 시나리오
+ 장례 최종 종료
+ 장례 취소 종료
+ 장례 거절 종료
+리스트 의뢰 번호 노출
+메인 위치 조정
+fab버튼 위치 잡기기기테스트 필요
+헤더 제거
+취소뒤로가기 버튼적용
+ionbuttons
+      ionbutton color clickhistoryBack
+        fontawesomeicon classtextgray600 text2xl mt3 iconarrowleft
+      ionbutton
+    ionbuttons
+
+function historyBack
+      routergo1
+    
+버튼 디자인
+
+통합
+아이디비번 찾기
+회원가입 경력자격증
+마이페이지 경력자격증
+전체요청리스트내요청리스트 구분
+지도사 work 상태
+의뢰수락포기 백엔드 연계 테스트 필요
+지역명 옵션 채우기 17 
+내 의뢰 관리 의뢰인 ID 버그 수정
+백엔드랑 연계해봐야 함
+회원정보 수정시 기존 genFile도 변경
+회원탈퇴시 기존 genFile도 삭제
+
+
+ToDo List
+백엔드어드민전문가 수락 소영님
+PWA테스트 앱 설명작성앱버전 동연님
+푸시 원하님
+
+
+
+210419
+PWA 작업
+아이폰 하단 fab버튼 위치
+개인정보처리방침이용약관
+이벤트 삭제
+ 의뢰인시나리오
+	진행장례 최종 종료 버튼 클릭시
+ 지도사 시나리오
+	진행장례 최종 종료 확인 뱃지 확인시
+	미확인 장례중간종료시
+디자인 수정
+
+
+
+210420
+푸시 작업
+sms테스트
+
+210421
+서버
+버그 수정
+  이미지크기 고정
+  연락처입력버그
+  안드로이드스튜디오 앱 이미지 변경
+다크모드
+inputOutLine
+  backgroundcolor f4f5f8
+
+
+media preferscolorscheme light 
+    light 
+        backgroundcolor black
+        color red
+    
+
+media preferscolorscheme light 
+    light 
+        backgroundcolor black
+        color red
+    
+
+  로그인 input
+  지도사리스트
+  프로필내정보
+  지역의뢰리스트
+  내의뢰리스트
+  의뢰상세보기
+  리뷰리스트
+  리뷰작성
+  회원탈퇴로그아웃버튼
+  하단바
+pull제스처새로고침
+ionicvue30tslamplight
+
+
+210422
+PWA 안드로이드 앱 아이콘이름변경  
+기기 테스트
+앱 마켓 등록
+
+
+ 백엔드
+
+ 통합 event 테이블 생성 서버 구축 native푸시뱃지도입 SMS구글스토어 앱 등록 완료검토중
+
+
+EVENT뱃지
+ 의뢰인 시나리오
+	order
+	내 요청 접수거절
+	진행단계변경 34
+ 	최종확인버튼 클릭시 event 데이터 완전 삭제
+ 전문가 시나리오
+	order
+	내 지역 신규요청
+	장례종료최종확인 5
+	의뢰직접요청
+	의뢰수락시 지역별 event 데이터 완전 삭제
+	의뢰거절시 지역별 event 데이터 다시 생성
+	 의뢰 취소했을 경우 지역별 event 삭제
+ 각 시나리오별 위치에 뱃지 노출
+ 각 시나리오별 페이지 접근 시 이벤트 삭제
+모든 의뢰 종료 시 지도사 work값 1로 변경
+ 시나리오
+ 장례 최종 종료
+ 장례 취소 종료
+ 장례 거절 종료
+
+
+br
+ 주요소스코드
+
+ DB
+html
+이벤트
+CREATE TABLE event
+    id INT10 UNSIGNED NOT NULL PRIMARY KEY AUTOINCREMENT
+    regDate DATETIME DEFAULT NULL  작성날짜
+    updateDate DATETIME DEFAULT NULL  갱신날짜
+    relTypeCode CHAR20 NOT NULL order
+    relTypeCode2 CHAR20 NOT NULL client or expert
+    relId INT10 UNSIGNED NOT NULL orderId
+    relId2 INT10 UNSIGNED NOT NULL clientId or expertId
+    accept SMALLINT2 UNSIGNED NOT NULL for client
+    stepLevel SMALLINT2 UNSIGNED NOT NULL 34 for client  5 for expert
+    directOrder SMALLINT2 UNSIGNED NOT NULL for expert
+    cancelOrder SMALLINT2 UNSIGNED NOT NULL for expert
+    region CHAR50 NOT NULL for expert
+    alertCheckStatus SMALLINT2 UNSIGNED DEFAULT 0 NOT NULL COMMENT 0확인안함 1확인함
+
+
+" />
+<meta property="og:locale" content="ko_KR" />
+<meta property="og:image" content="images/Dev_J_logo/logo.png" />
+<meta property="og:image:alt" content="blog.devj.me" />
+<meta property="og:image:width" content="486" />
+<meta property="og:image:height" content="254" />
+<meta property="og:updated_time" content="2021-04-24T15:02:49"/>
+<meta property="og:pubdate" content="2021-04-24T15:02:49" />
+<meta property="og:url" content="https://blog.devj.me" />
+<!-- TWITTER -->
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="P.Lamplight - 개발일지(~통합~디자인, native푸시&뱃지&전화 도입, SMS...PWA...구글스토어 앱 등록 완료(검토중))" />
+<meta name="twitter:site" content="@Dev_J BLOG" />
+<meta name="twitter:creator" content="@Dev_J BLOG" />
+<meta name="twitter:image" content="images/Dev_J_logo/logo.png">
+<meta name="twitter:description" content=" 통합디자인 native푸시뱃지전화 도입 SMSPWA구글스토어 앱 등록 완료검토중
+
+ PWA
+상장례sangjangryewebapp
+
+ NOTE
+
+ 프론트엔드
+
+210407210418 Work Done
+리뷰작성후 리뷰리스트
+평점 소수점
+회원정보 수정시 이미지 삭제 버그 수정 및 지도사 회원가입시 스캔파일 첨부여부 체크
+안드로이드 에뮬에서 테스트
+	안드로이드 에뮬레이터 로컬호스트 연결
+가입대기상태인 회원 노출되는 버그 수정
+뱃지
+ 의뢰인 시나리오
+	order
+	내 요청 접수거절
+	진행단계변경 34
+ 	최종확인버튼 클릭시 event 데이터 완전 삭제
+ 전문가 시나리오
+	order
+	내 지역 신규요청
+	장례종료최종확인 5
+	의뢰직접요청
+	의뢰수락시 지역별 event 데이터 완전 삭제
+	의뢰거절시 지역별 event 데이터 다시 생성
+	 의뢰 취소했을 경우 지역별 event 삭제
+ 각 시나리오별 위치에 뱃지 노출
+ 각 시나리오별 페이지 접근 시 이벤트 삭제
+모든 의뢰 종료 시 지도사 work값 1로 변경
+ 시나리오
+ 장례 최종 종료
+ 장례 취소 종료
+ 장례 거절 종료
+리스트 의뢰 번호 노출
+메인 위치 조정
+fab버튼 위치 잡기기기테스트 필요
+헤더 제거
+취소뒤로가기 버튼적용
+ionbuttons
+      ionbutton color clickhistoryBack
+        fontawesomeicon classtextgray600 text2xl mt3 iconarrowleft
+      ionbutton
+    ionbuttons
+
+function historyBack
+      routergo1
+    
+버튼 디자인
+
+통합
+아이디비번 찾기
+회원가입 경력자격증
+마이페이지 경력자격증
+전체요청리스트내요청리스트 구분
+지도사 work 상태
+의뢰수락포기 백엔드 연계 테스트 필요
+지역명 옵션 채우기 17 
+내 의뢰 관리 의뢰인 ID 버그 수정
+백엔드랑 연계해봐야 함
+회원정보 수정시 기존 genFile도 변경
+회원탈퇴시 기존 genFile도 삭제
+
+
+ToDo List
+백엔드어드민전문가 수락 소영님
+PWA테스트 앱 설명작성앱버전 동연님
+푸시 원하님
+
+
+
+210419
+PWA 작업
+아이폰 하단 fab버튼 위치
+개인정보처리방침이용약관
+이벤트 삭제
+ 의뢰인시나리오
+	진행장례 최종 종료 버튼 클릭시
+ 지도사 시나리오
+	진행장례 최종 종료 확인 뱃지 확인시
+	미확인 장례중간종료시
+디자인 수정
+
+
+
+210420
+푸시 작업
+sms테스트
+
+210421
+서버
+버그 수정
+  이미지크기 고정
+  연락처입력버그
+  안드로이드스튜디오 앱 이미지 변경
+다크모드
+inputOutLine
+  backgroundcolor f4f5f8
+
+
+media preferscolorscheme light 
+    light 
+        backgroundcolor black
+        color red
+    
+
+media preferscolorscheme light 
+    light 
+        backgroundcolor black
+        color red
+    
+
+  로그인 input
+  지도사리스트
+  프로필내정보
+  지역의뢰리스트
+  내의뢰리스트
+  의뢰상세보기
+  리뷰리스트
+  리뷰작성
+  회원탈퇴로그아웃버튼
+  하단바
+pull제스처새로고침
+ionicvue30tslamplight
+
+
+210422
+PWA 안드로이드 앱 아이콘이름변경  
+기기 테스트
+앱 마켓 등록
+
+
+ 백엔드
+
+ 통합 event 테이블 생성 서버 구축 native푸시뱃지도입 SMS구글스토어 앱 등록 완료검토중
+
+
+EVENT뱃지
+ 의뢰인 시나리오
+	order
+	내 요청 접수거절
+	진행단계변경 34
+ 	최종확인버튼 클릭시 event 데이터 완전 삭제
+ 전문가 시나리오
+	order
+	내 지역 신규요청
+	장례종료최종확인 5
+	의뢰직접요청
+	의뢰수락시 지역별 event 데이터 완전 삭제
+	의뢰거절시 지역별 event 데이터 다시 생성
+	 의뢰 취소했을 경우 지역별 event 삭제
+ 각 시나리오별 위치에 뱃지 노출
+ 각 시나리오별 페이지 접근 시 이벤트 삭제
+모든 의뢰 종료 시 지도사 work값 1로 변경
+ 시나리오
+ 장례 최종 종료
+ 장례 취소 종료
+ 장례 거절 종료
+
+
+br
+ 주요소스코드
+
+ DB
+html
+이벤트
+CREATE TABLE event
+    id INT10 UNSIGNED NOT NULL PRIMARY KEY AUTOINCREMENT
+    regDate DATETIME DEFAULT NULL  작성날짜
+    updateDate DATETIME DEFAULT NULL  갱신날짜
+    relTypeCode CHAR20 NOT NULL order
+    relTypeCode2 CHAR20 NOT NULL client or expert
+    relId INT10 UNSIGNED NOT NULL orderId
+    relId2 INT10 UNSIGNED NOT NULL clientId or expertId
+    accept SMALLINT2 UNSIGNED NOT NULL for client
+    stepLevel SMALLINT2 UNSIGNED NOT NULL 34 for client  5 for expert
+    directOrder SMALLINT2 UNSIGNED NOT NULL for expert
+    cancelOrder SMALLINT2 UNSIGNED NOT NULL for expert
+    region CHAR50 NOT NULL for expert
+    alertCheckStatus SMALLINT2 UNSIGNED DEFAULT 0 NOT NULL COMMENT 0확인안함 1확인함
+
+
+" />
+<!-- GOOGLE+ -->
+<meta itemprop="headline" content="Dev_J BLOG" />
+<meta itemprop="name" content="Dev_J BLOG" />
+<meta itemprop="description" content=" 통합디자인 native푸시뱃지전화 도입 SMSPWA구글스토어 앱 등록 완료검토중
+
+ PWA
+상장례sangjangryewebapp
+
+ NOTE
+
+ 프론트엔드
+
+210407210418 Work Done
+리뷰작성후 리뷰리스트
+평점 소수점
+회원정보 수정시 이미지 삭제 버그 수정 및 지도사 회원가입시 스캔파일 첨부여부 체크
+안드로이드 에뮬에서 테스트
+	안드로이드 에뮬레이터 로컬호스트 연결
+가입대기상태인 회원 노출되는 버그 수정
+뱃지
+ 의뢰인 시나리오
+	order
+	내 요청 접수거절
+	진행단계변경 34
+ 	최종확인버튼 클릭시 event 데이터 완전 삭제
+ 전문가 시나리오
+	order
+	내 지역 신규요청
+	장례종료최종확인 5
+	의뢰직접요청
+	의뢰수락시 지역별 event 데이터 완전 삭제
+	의뢰거절시 지역별 event 데이터 다시 생성
+	 의뢰 취소했을 경우 지역별 event 삭제
+ 각 시나리오별 위치에 뱃지 노출
+ 각 시나리오별 페이지 접근 시 이벤트 삭제
+모든 의뢰 종료 시 지도사 work값 1로 변경
+ 시나리오
+ 장례 최종 종료
+ 장례 취소 종료
+ 장례 거절 종료
+리스트 의뢰 번호 노출
+메인 위치 조정
+fab버튼 위치 잡기기기테스트 필요
+헤더 제거
+취소뒤로가기 버튼적용
+ionbuttons
+      ionbutton color clickhistoryBack
+        fontawesomeicon classtextgray600 text2xl mt3 iconarrowleft
+      ionbutton
+    ionbuttons
+
+function historyBack
+      routergo1
+    
+버튼 디자인
+
+통합
+아이디비번 찾기
+회원가입 경력자격증
+마이페이지 경력자격증
+전체요청리스트내요청리스트 구분
+지도사 work 상태
+의뢰수락포기 백엔드 연계 테스트 필요
+지역명 옵션 채우기 17 
+내 의뢰 관리 의뢰인 ID 버그 수정
+백엔드랑 연계해봐야 함
+회원정보 수정시 기존 genFile도 변경
+회원탈퇴시 기존 genFile도 삭제
+
+
+ToDo List
+백엔드어드민전문가 수락 소영님
+PWA테스트 앱 설명작성앱버전 동연님
+푸시 원하님
+
+
+
+210419
+PWA 작업
+아이폰 하단 fab버튼 위치
+개인정보처리방침이용약관
+이벤트 삭제
+ 의뢰인시나리오
+	진행장례 최종 종료 버튼 클릭시
+ 지도사 시나리오
+	진행장례 최종 종료 확인 뱃지 확인시
+	미확인 장례중간종료시
+디자인 수정
+
+
+
+210420
+푸시 작업
+sms테스트
+
+210421
+서버
+버그 수정
+  이미지크기 고정
+  연락처입력버그
+  안드로이드스튜디오 앱 이미지 변경
+다크모드
+inputOutLine
+  backgroundcolor f4f5f8
+
+
+media preferscolorscheme light 
+    light 
+        backgroundcolor black
+        color red
+    
+
+media preferscolorscheme light 
+    light 
+        backgroundcolor black
+        color red
+    
+
+  로그인 input
+  지도사리스트
+  프로필내정보
+  지역의뢰리스트
+  내의뢰리스트
+  의뢰상세보기
+  리뷰리스트
+  리뷰작성
+  회원탈퇴로그아웃버튼
+  하단바
+pull제스처새로고침
+ionicvue30tslamplight
+
+
+210422
+PWA 안드로이드 앱 아이콘이름변경  
+기기 테스트
+앱 마켓 등록
+
+
+ 백엔드
+
+ 통합 event 테이블 생성 서버 구축 native푸시뱃지도입 SMS구글스토어 앱 등록 완료검토중
+
+
+EVENT뱃지
+ 의뢰인 시나리오
+	order
+	내 요청 접수거절
+	진행단계변경 34
+ 	최종확인버튼 클릭시 event 데이터 완전 삭제
+ 전문가 시나리오
+	order
+	내 지역 신규요청
+	장례종료최종확인 5
+	의뢰직접요청
+	의뢰수락시 지역별 event 데이터 완전 삭제
+	의뢰거절시 지역별 event 데이터 다시 생성
+	 의뢰 취소했을 경우 지역별 event 삭제
+ 각 시나리오별 위치에 뱃지 노출
+ 각 시나리오별 페이지 접근 시 이벤트 삭제
+모든 의뢰 종료 시 지도사 work값 1로 변경
+ 시나리오
+ 장례 최종 종료
+ 장례 취소 종료
+ 장례 거절 종료
+
+
+br
+ 주요소스코드
+
+ DB
+html
+이벤트
+CREATE TABLE event
+    id INT10 UNSIGNED NOT NULL PRIMARY KEY AUTOINCREMENT
+    regDate DATETIME DEFAULT NULL  작성날짜
+    updateDate DATETIME DEFAULT NULL  갱신날짜
+    relTypeCode CHAR20 NOT NULL order
+    relTypeCode2 CHAR20 NOT NULL client or expert
+    relId INT10 UNSIGNED NOT NULL orderId
+    relId2 INT10 UNSIGNED NOT NULL clientId or expertId
+    accept SMALLINT2 UNSIGNED NOT NULL for client
+    stepLevel SMALLINT2 UNSIGNED NOT NULL 34 for client  5 for expert
+    directOrder SMALLINT2 UNSIGNED NOT NULL for expert
+    cancelOrder SMALLINT2 UNSIGNED NOT NULL for expert
+    region CHAR50 NOT NULL for expert
+    alertCheckStatus SMALLINT2 UNSIGNED DEFAULT 0 NOT NULL COMMENT 0확인안함 1확인함
+
+
+" />
+<meta itemprop="image" content="images/Dev_J_logo/logo.png" />
+
+<!-- 사이트 타이틀 -->
+<title>P.Lamplight - 개발일지(~통합~디자인, native푸시&뱃지&전화 도입, SMS...PWA...구글스토어 앱 등록 완료(검토중)) | Dev_J BLOG | ARTICLE DETAIL</title>
+
+
+<!-- 파비콘 -->
+<link rel="shortcut icon" href="images/favicon/favicon.ico" type="image/x-icon">
+<link rel="icon" href="images/favicon/favicon.ico" type="image/x-icon">
+
+<!-- 폰트어썸 불러오기 -->
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+
+<!--모바일에서도 PC와 같은 비율 유지-->
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<!--제이쿼리-->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+<!-- 하이라이트 라이브러리 추가, 토스트 UI 에디터에서 사용됨 -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.4.1/highlight.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.4.1/styles/default.min.css">
+
+<!-- 토스트 UI 에디터, 자바스크립트 코어 -->
+<script
+	src="https://uicdn.toast.com/editor/latest/toastui-editor-all.min.js" defer></script>
+
+<!-- 코드 미러 라이브러리 추가, 토스트 UI 에디터에서 사용됨 -->
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.58.3/codemirror.min.css" />
+<!-- 토스트 UI 에디터, CSS 코어 -->
+<link rel="stylesheet"
+	href="https://uicdn.toast.com/editor/latest/toastui-editor.min.css" />
+
+<!-- 토스트 UI 에디터, 신택스 하이라이트 플러그인 추가 -->
+<script src="https://uicdn.toast.com/editor-plugin-code-syntax-highlight/latest/toastui-editor-plugin-code-syntax-highlight.min.js" defer></script>
+
+<!-- app.css 불러오기 -->
+<link rel="stylesheet" href="app.css">
+<!-- app.js 불러오기 -->
+<script src="app.js" defer></script>
+<!-- index.js 불러오기 
+<script src="index.js" defer></script>
+-->
+</head>
+
+<body>
+<!-- 사이트 박스 시작 -->
+<div class="body-content min-height-100vh flex flex-column">
+  <!-- 로고바 시작 -->
+  <header class="logo-bar con-min-width" id="header">
+    <div class="con height-100p flex flex-jc-c" title="HOME">
+      <a href="index.html" class="logo flex flex-ai-c"> 
+        <img class="logo__img" src="images/Dev_J_logo/logo_transparent.png" alt="">
+        <span>
+          BLOG
+        </span>
+      </a>
+    </div>
+  </header>
+  <!-- 로고바 끝 -->
+
+  <!-- 메뉴바 시작-->
+  <header class="menu-bar con-min-width visible-md-up">
+    <div class="flex flex-jc-sb">
+   	 <div class="menu-bar__status-icon" title="Menu">
+      <div></div>
+      <div></div>
+      <div></div>
+     </div>
+     <a class="search-icon" title="search" href="search.html">
+        <i class="fa fa-search"></i>
+     </a>
+   </div>
+   <div class="con hide">
+    <nav class="menu-bar__menu">
+      <ul class="flex">
+          <li title="ABOUT">
+            <a href="about.html" class="block">
+              <i class="far fa-address-card"></i>
+              <span>ABOUT</span>
+            </a>
+          </li>
+          <li>
+            <a class="block">
+              <i class="fas fa-list"></i>
+              <span>ARTICLES</span>
+            </a>
+            <ul>
+              <li title="NOTICE"><a href="notice-list-1.html" class="block"><i class="fas fa-bullhorn"></i> <span>NOTICE BOARD</span></a></li><li title="JAVA"><a href="java-list-1.html" class="block"><i class="fab fa-java"></i> <span>JAVA BOARD</span></a></li><li title="HTML"><a href="html-list-1.html" class="block"><i class="fab fa-html5"></i> <span>HTML & CSS & JS BOARD</span></a></li><li title="MYSQL"><a href="mysql-list-1.html" class="block"><i class="fas fa-database"></i> <span>MySQL BOARD</span></a></li><li title="ETC"><a href="etc-list-1.html" class="block"><i class="fas fa-mouse-pointer"></i> <span>ETC BOARD</span></a></li>
+            </ul>
+          </li>
+          <li>
+            <a class="block">
+              <i class="fas fa-project-diagram"></i>
+              <span>PROJECT</span>
+            </a>
+            <ul>
+              <li title="P_BLOG"><a href="p_blog-list-1.html" class="block"><i class="fab fa-blogger"></i> <span>P.BLOG PROJECT</span></a></li><li title="P_JSP"><a href="p_jsp-list-1.html" class="block"><i class="fas fa-users"></i> <span>P.JSP PROJECT</span></a></li><li title="P_LAMP"><a href="p_lamp-list-1.html" class="block"><i class="fab fa-vuejs"></i> <span>P.Lamplight PROJECT</span></a></li><li title="P_WHAT"><a href="p_what-list-1.html" class="block"><i class="fas fa-file-word"></i> <span>P.WhatIsMyName PROJECT</span></a></li>
+            </ul>
+          </li>
+          <li>
+            <a class="block">
+              <i class="fas fa-link"></i>
+              <span>LINK</span>
+            </a>
+            <ul>
+              <li title="T-STORY">
+                <a href="https://cjy324.tistory.com/" target="_blank" class="block">
+                  <i class="fas fa-rss-square"></i>
+                  <span>T-STORY</span>
+                </a>
+              </li>
+              <li title="GITHUB">
+                <a href="https://github.com/cjy324/TIL_Jooyoung#til_jooyoung" target="_blank" class="block">
+                  <i class="fab fa-github"></i>
+                  <span>GITHUB</span>
+                </a>
+              </li>
+              <li title="GetIT">
+                <a href="https://getit.devj.me/" target="_blank" class="block">
+                  <i class="fab fa-dev"></i>
+                  <span>GetIT</span>
+                </a>
+              </li>
+            </ul>
+          </li>
+          <li title="STATISTICS">
+            <a href="statistics.html" class="block">
+              <i class="fas fa-chart-pie"></i>
+              <span>STATISTICS</span>
+            </a>
+          </li>
+        </ul>
+      </nav>
+   </div>
+  </header>
+  <!-- 메뉴바 끝 -->
+  
+  <!-- 모바일 사이드 메뉴바 시작 -->
+  <header class="mobile-menu-bar con-min-width visible-sm-down">
+    <div class="flex flex-jc-sb">
+   <div class="mobile-menu-bar__status-icon" title="Menu">
+     <div></div>
+     <div></div>
+     <div></div>
+   </div>
+    <a class="search-icon" title="search" href="search.html">
+        <i class="fa fa-search"></i>
+      </a>
+   </div>
+   <div class="con ">
+    <aside class="mobile-side-bar flex flex-column flex-jc-c ">
+      <div class="mobile-side-bar_X"><i class="fas fa-times"></i></div>
+      <nav class="mobile-side-bar_menu flex">
+      <ul class="">
+          <li title="ABOUT">
+            <a href="about.html" class="block">
+              <i class="far fa-address-card"></i>
+              <span>ABOUT</span>
+            </a>
+          </li>
+          <li>
+            <a class="block">
+              <i class="fas fa-list"></i>
+              <span>ARTICLES</span>
+            </a>
+            <ul class="hide2">
+              <li title="NOTICE"><a href="notice-list-1.html" class="block"><i class="fas fa-bullhorn"></i> <span>NOTICE BOARD</span></a></li><li title="JAVA"><a href="java-list-1.html" class="block"><i class="fab fa-java"></i> <span>JAVA BOARD</span></a></li><li title="HTML"><a href="html-list-1.html" class="block"><i class="fab fa-html5"></i> <span>HTML & CSS & JS BOARD</span></a></li><li title="MYSQL"><a href="mysql-list-1.html" class="block"><i class="fas fa-database"></i> <span>MySQL BOARD</span></a></li><li title="ETC"><a href="etc-list-1.html" class="block"><i class="fas fa-mouse-pointer"></i> <span>ETC BOARD</span></a></li>
+            </ul>
+          </li>
+          <li>
+            <a class="block">
+              <i class="fas fa-project-diagram"></i>
+              <span>PROJECT</span>
+            </a>
+            <ul class="hide2">
+              <li title="P_BLOG"><a href="p_blog-list-1.html" class="block"><i class="fab fa-blogger"></i> <span>P.BLOG PROJECT</span></a></li><li title="P_JSP"><a href="p_jsp-list-1.html" class="block"><i class="fas fa-users"></i> <span>P.JSP PROJECT</span></a></li><li title="P_LAMP"><a href="p_lamp-list-1.html" class="block"><i class="fab fa-vuejs"></i> <span>P.Lamplight PROJECT</span></a></li><li title="P_WHAT"><a href="p_what-list-1.html" class="block"><i class="fas fa-file-word"></i> <span>P.WhatIsMyName PROJECT</span></a></li>
+            </ul>
+          </li>
+          <li>
+            <a class="block">
+              <i class="fas fa-link"></i>
+              <span>LINK</span>
+            </a>
+            <ul class="hide2">
+              <li title="T-STORY">
+                <a href="https://cjy324.tistory.com/" target="_blank" class="block">
+                  <i class="fas fa-rss-square"></i>
+                  <span>T-STORY</span>
+                </a>
+              </li>
+              <li title="GITHUB">
+                <a href="https://github.com/cjy324/TIL_Jooyoung#til_jooyoung" target="_blank" class="block">
+                  <i class="fab fa-github"></i>
+                  <span>GITHUB</span>
+                </a>
+              </li>
+              <li title="GetIT">
+                <a href="https://getit.devj.me/" target="_blank" class="block">
+                  <i class="fab fa-dev"></i>
+                  <span>GetIT</span>
+                </a>
+              </li>
+            </ul>
+          </li>
+          <li title="STATISTICS">
+            <a href="statistics.html" class="block">
+              <i class="fas fa-chart-pie"></i>
+              <span>STATISTICS</span>
+            </a>
+          </li>
+        </ul>
+      </nav>  
+      </aside>
+   </div>
+  </header>
+  
+  <!-- 모바일 사이드 메뉴바 끝 --> 
+   
+
+  <!-- 메인 컨텐츠 박스 시작 -->
+  <main class="main-box flex-grow-1">
+  <section class="main-box-section con-min-width">
+   <!-- 메인-타이틀바 시작 -->
+	<div class="title-bar con-min-width">
+		<h1 class="con">
+			<i class="fas fa-file-invoice"></i> <span>ARTICLE</span>
+		</h1>
+	</div>
+   <!-- 메인-타이틀바 종료 -->
+<!-- Progress-bar -->
+<script type="text/javascript"
+	src="https://rawcdn.githack.com/mburakerman/prognroll/0feda211643153bce2c69de32ea1b39cdc64ffbe/src/prognroll.js"></script>
+<script type="text/javascript">
+	$(function() {
+		$("body").prognroll({
+			height : 10,
+			color : "#666666"
+		});
+		$(".content").prognroll({
+			custom : true
+		});
+	});
+</script>
+
+<!-- 메인-상세페이지 시작 -->
+<section class="section-2 con-min-width min-height-50vh">
+	<div class="con height-100p">
+		<div class="article-detail-cell height-100p">
+			<div class="article-detail-cell__board-name"><div><span>게시판 : </span><span>P.Lamplight 게시판</span></div></div><div class="article-detail-cell__id"><div><span>번호 : </span><span>76</span></div></div><div class="article-detail-cell__member-id"><div><span>작성자 : </span><span>Dev_J</span></div></div><div class="article-detail-cell__reg-date"><div><span>작성일 : </span><span>2021-04-24 14:57:49</span></div></div><div class="article-detail-cell__update-date"><div><span>수정일 : </span><span>2021-04-24 15:02:48</span></div></div><br><div class="article-detail-cell__title-contents flex flex-jc-fe"><div class="article-detail-cell__hitsCount"><div><span>조회수 : </span><span>0</span></div></div><div class="article-detail-cell__likesCount"><div><span>추천수 : </span><span>0</span></div></div><div class="article-detail-cell__commentsCount"><div><span>댓글수 : </span><span>0</span></div></div></div><div class="article-detail-cell__title"><div><span>제목 : </span><span>P.Lamplight - 개발일지(~통합~디자인, native푸시&뱃지&전화 도입, SMS...PWA...구글스토어 앱 등록 완료(검토중))</span></div></div><nav class="ad"><!-- 구글 애드센스2 --><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script><!-- 수평 반응형2 --><ins class="adsbygoogle" style="display: block" data-ad-client="ca-pub-7996879977557531" data-ad-slot="2278060237" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle = window.adsbygoogle || []).push({});</script></nav><script type"text/x-template"># ~통합~디자인, native푸시&뱃지&전화 도입, SMS...PWA...구글스토어 앱 등록 완료(검토중)
+
+## PWA
+[상장례](sangjangrye.web.app)
+
+## NOTE
+
+### 프론트엔드
+```
+<21.04.07~21.04.18 Work Done>
+-리뷰작성후 리뷰리스트[ㅇ]
+-평점 소수점[ㅇ]
+-회원정보 수정시 이미지 삭제 버그 수정 및 지도사 회원가입시 스캔파일 첨부여부 체크[ㅇ]
+-안드로이드 에뮬에서 테스트
+	-안드로이드 에뮬레이터 로컬호스트 연결[ㅇ]
+-가입대기상태인 회원 노출되는 버그 수정[ㅇ]
+-뱃지[ㅇ]
+ -의뢰인 시나리오
+	order
+	-내 요청 접수/거절[ㅇ]
+	-진행단계변경 3-4[ㅇ]
+ 	-최종확인버튼 클릭시 event 데이터 완전 삭제[ㅇ]
+ -전문가 시나리오
+	order
+	-내 지역 신규요청[ㅇ]
+	-장례종료최종확인 5[ㅇ]
+	-의뢰직접요청[ㅇ]
+	-의뢰수락시 지역별 event 데이터 완전 삭제[ㅇ]
+	-의뢰거절시 지역별 event 데이터 다시 생성[ㅇ]
+	 -의뢰 취소했을 경우 지역별 event 삭제[ㅇ]
+ -각 시나리오별 위치에 뱃지 노출[ㅇ]
+ -각 시나리오별 페이지 접근 시 이벤트 삭제[ㅇ]
+-모든 의뢰 종료 시 지도사 work값 1로 변경[ㅇ]
+ 시나리오
+ -장례 최종 종료[ㅇ]
+ -장례 취소 종료[ㅇ]
+ -장례 거절 종료[ㅇ]
+-리스트 의뢰 번호 노출[ㅇ]
+-메인 위치 조정[ㅇ]
+-fab버튼 위치 잡기[기기테스트 필요]
+-헤더 제거[ㅇ]
+-취소/뒤로가기 버튼적용[ㅇ]
+<ion-buttons>
+      <ion-button color="" @click="historyBack">
+        <font-awesome-icon class="text-gray-600 text-2xl mt-3" icon="arrow-left"/>
+      </ion-button>
+    </ion-buttons>
+
+function historyBack(){
+      router.go(-1)
+    }
+-버튼 디자인[ㅇ]
+
+통합
+-아이디/비번 찾기[ㅇ]
+-회원가입 경력/자격증[ㅇ]
+-마이페이지 경력/자격증[ㅇ]
+-전체요청리스트/내요청리스트 구분[ㅇ]
+-지도사 work 상태[ㅇ]
+-의뢰수락,포기 백엔드 연계 테스트 필요[ㅇ]
+-지역명 옵션 채우기 17 [ㅇ]
+-내 의뢰 관리 의뢰인 ID 버그 수정[ㅇ]
+-백엔드랑 연계해봐야 함[ㅇ]
+-회원정보 수정시 기존 genFile도 변경[ㅇ]
+-회원탈퇴시 기존 genFile도 삭제[ㅇ]
+
+
+<ToDo List>
+-백엔드,어드민-전문가 수락 소영님[ㅇ]
+-PWA테스트[ㅇ], 앱 설명작성[ㅇ],앱버전 동연님[ㅇ]
+-푸시 원하님[ㅇ]
+
+```
+```
+<21.04.19>
+-PWA 작업[ㅇ]
+-아이폰 하단 fab버튼 위치[ㅇ]
+-개인정보처리방침,이용약관[ㅇ]
+-이벤트 삭제[ㅇ]
+ -의뢰인시나리오
+	-진행장례 최종 종료 버튼 클릭시[ㅇ]
+ -지도사 시나리오
+	-진행장례 최종 종료 확인 뱃지 확인시[ㅇ]
+	-미확인 장례중간종료시[ㅇ]
+-디자인 수정[ㅇ]
+
+```
+```
+<21.04.20>
+-푸시 작업[ㅇ]
+-sms테스트[ㅇ]
+
+<21.04.21>
+-서버[ㅇ]
+-버그 수정[]
+  -이미지크기 고정[ㅇ]
+  -연락처입력버그[ㅇ]
+  -안드로이드스튜디오 앱 이미지 변경[ㅇ]
+-다크모드[ㅇ]
+.inputOutLine{
+  background-color: #f4f5f8;
+}
+
+@media (prefers-color-scheme: light) {
+    .light {
+        background-color: black;
+        color: red;
+    }
+}
+@media (prefers-color-scheme: light) {
+    .light {
+        background-color: black;
+        color: red;
+    }
+}
+  -로그인 input[ㅇ]
+  -지도사리스트[ㅇ]
+  -프로필,내정보[ㅇ]
+  -지역의뢰리스트[ㅇ]
+  -내의뢰리스트[ㅇ]
+  -의뢰상세보기[ㅇ]
+  -리뷰리스트[ㅇ]
+  -리뷰작성[ㅇ]
+  -회원탈퇴,로그아웃버튼[ㅇ]
+  -하단바[ㅇ]
+-pull제스처-새로고침[ㅇ]
+ionic-vue3.0-ts-lamplight
+```
+```
+<21.04.22>
+-PWA 안드로이드 앱 아이콘,이름변경[ㅇ]  
+-기기 테스트[ㅇ]
+-앱 마켓 등록[ㅇ]
+```
+
+### 백엔드
+```
+- ~통합, event 테이블 생성, 서버 구축, native푸시&뱃지도입, SMS...구글스토어 앱 등록 완료(검토중)
+```
+```
+-EVENT뱃지[ㅇ]
+ -의뢰인 시나리오
+	order
+	-내 요청 접수/거절[ㅇ]
+	-진행단계변경 3-4[ㅇ]
+ 	-최종확인버튼 클릭시 event 데이터 완전 삭제[ㅇ]
+ -전문가 시나리오
+	order
+	-내 지역 신규요청[ㅇ]
+	-장례종료최종확인 5[ㅇ]
+	-의뢰직접요청[ㅇ]
+	-의뢰수락시 지역별 event 데이터 완전 삭제[ㅇ]
+	-의뢰거절시 지역별 event 데이터 다시 생성[ㅇ]
+	 -의뢰 취소했을 경우 지역별 event 삭제[ㅇ]
+ -각 시나리오별 위치에 뱃지 노출[ㅇ]
+ -각 시나리오별 페이지 접근 시 이벤트 삭제[ㅇ]
+-모든 의뢰 종료 시 지도사 work값 1로 변경[ㅇ]
+ 시나리오
+ -장례 최종 종료[ㅇ]
+ -장례 취소 종료[ㅇ]
+ -장례 거절 종료[ㅇ]
+```
+
+<br>
+## 주요소스코드
+
+### DB
+```html
+#이벤트
+CREATE TABLE `event`(
+    id INT(10) UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    regDate DATETIME DEFAULT NULL, # 작성날짜
+    updateDate DATETIME DEFAULT NULL, # 갱신날짜
+    `relTypeCode` CHAR(20) NOT NULL, #order
+    `relTypeCode2` CHAR(20) NOT NULL, #client or expert
+    relId INT(10) UNSIGNED NOT NULL, #orderId
+    relId2 INT(10) UNSIGNED NOT NULL, #clientId or expertId
+    `accept` SMALLINT(2) UNSIGNED NOT NULL, #for client
+    stepLevel SMALLINT(2) UNSIGNED NOT NULL, #3~4 for client / 5 #for expert
+    directOrder SMALLINT(2) UNSIGNED NOT NULL, #for expert
+    cancelOrder SMALLINT(2) UNSIGNED NOT NULL, #for expert
+    `region` CHAR(50) NOT NULL, #for expert
+    `alertCheckStatus` SMALLINT(2) UNSIGNED DEFAULT 0 NOT NULL COMMENT '(0=확인안함 1=확인함)'
+);
+
+```</script><div class="article-detail-cell__body height-70p toast-ui-viewer"><div></div></div><br><div class="article-detail-cell__tag flex flex-wrap"><nav># project</nav><nav># 개발일지</nav><nav># lamplight</nav></div><br><br><nav class="ad"><!-- 구글 애드센스1 --><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script><!-- 수평 반응형1 --><ins class="adsbygoogle" style="display: block" data-ad-client="ca-pub-7996879977557531" data-ad-slot="6812185708" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle = window.adsbygoogle || []).push({});</script></nav>
+			<!-- Disqus api 적용 -->
+			<!-- 정확한 페이지 경로 알려주는 기능 추가-->
+			<nav>
+				<div id="disqus_thread"></div>
+				<script>
+					var disqus_config = function() {
+						this.page.url = 'https://blog.devj.me/article_detail_76.html';
+						this.page.identifier = 'article_detail_76.html';
+					};
+					(function() {
+						//DON'T EDIT BELOW THIS LINE
+						var d = document, s = d.createElement('script');
+						s.src = 'https://devj-blog.disqus.com/embed.js';
+						s.setAttribute('data-timestamp', +new Date());
+						(d.head || d.body).appendChild(s);
+					})();
+				</script>
+				<noscript>
+					Please enable JavaScript to view the
+					<a href="https://disqus.com/?ref_noscript">comments powered by
+						Disqus.</a>
+				</noscript>
+			</nav>
+		</div>
+	</div>
+</section>
+<!-- 메인-상세페이지 끝 -->
+<!-- 메인-상세 하단 메뉴 시작 -->
+<section class="section-3 con-min-width">
+	<div class="con">
+		<div class="article-list-bottom-cell flex flex-jc-c"><div class="./"><a href="article_detail_75.html" class="hover-underline">&lt 이전글</a></div><div class="./"><i class="fas fa-th-list"></i><a href="p_lamp-list-1.html" class="hover-underline"> 목록 </a></div></div>
+	</div>
+</section>
+<!-- 메인-상세 하단 메뉴 끝 -->
+</section>
+</main>
+<!-- 메인 컨텐츠 박스 끝 -->
+  <!-- 맨 위 버튼 시작 -->
+  <nav class="top-button flex flex-jc-c flex-ai-c">
+    <div class="">
+      <a href="#header">▲ TOP</a> 
+    </div>     
+  </nav>
+  <!-- 맨 위 버튼 끝 -->
+
+
+  <!-- 푸터 시작 -->
+  <footer class="bottom-bar con-min-width">
+    <div class="con flex flex-ai-c">
+      <a href="index.html" class="logo logo--mini flex flex-ai-c" title="HOME">
+        <img class="logo--mini__img" src="images/Dev_J_logo/logo_transparent.png" alt="">
+      </a>
+      <div class="bottom-bar__site-info">
+        <span><i class="far fa-envelope"></i> juy32400@gmail.com</span>
+        <br>
+        <br>
+        <span>COPYRIGHT 2020. Dev_J. All rights reserved.</span>
+      </div>
+    </div>
+  </footer>
+  <!-- 푸터 끝 -->
+</div>
+<!-- 사이트 박스 끝 -->
+</body>
+</html>
